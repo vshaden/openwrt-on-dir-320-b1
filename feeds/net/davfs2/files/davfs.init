@@ -1,0 +1,155 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+
+mount_resource () {
+	local url
+	local user
+	local password
+	local mountpoint
+	local clientcert
+	local servercert
+	
+	config_get url $1 url
+	config_get user $1 user
+	config_get password $1 password
+	config_get mountpoint $1 mountpoint
+	config_get clientcert $1 clientcert
+	config_get servercert $1 servercert
+
+	if [ $servercert ] || [ $clientcert ]; then
+		echo "[$mountpoint]" >> /etc/davfs2/davfs2.conf
+		[ $servercert ] && echo "servercert $servercert" >> /etc/davfs2/davfs2.conf
+		[ $clientcert ] && echo "clientcert $clientcert" >> /etc/davfs2/davfs2.conf
+	fi
+
+	echo "$url $user $password" >> /etc/davfs2/secrets
+	chmod 0600 /etc/davfs2/secrets
+	[ -e $mountpoint ] || mkdir -p $mounpoint
+	echo "$url	$mountpoint	davfs	user,rw,noauto	0	0" >> /etc/fstab
+	mount $mountpoint || mount $url || echo "errror mounting $url to $mountpoint"
+	echo "mounted $url to $mountpoint"
+	sleep 3
+}
+
+unmount_resource () {
+	local url
+        local user
+        local password
+        local mountpoint
+        local clientcert
+        local servercert
+
+        config_get url $1 url
+        config_get user $1 user
+        config_get password $1 password
+        config_get mountpoint $1 mountpoint
+        config_get clientcert $1 clientcert
+        config_get servercert $1 servercert
+
+	umount $mountpoint || umount -f $mountpoint || umount -l $mountpoint || exit 1
+	echo unmounted $url from $mountpoint
+	cat /etc/fstab | grep -v "$url" > /etc/fstab.new && mv /etc/fstab.new /etc/fstab
+}
+
+config_generate () {	
+	local cache_size
+	local table_size
+	local dir_refresh
+	local file_refresh
+	local delay_upload
+	local debug
+	local use_proxy
+	local proxy
+	local ask_auth
+	local use_locks
+	local lock_timeout
+	local lock_refresh
+	local use_expect100
+	local if_match_bug
+	local drop_weak_etags
+	local allow_cookie
+	local precheck
+	local server_charset
+	local connect_timeout
+	local read_timeout
+	local retry
+	local max_retry
+	local max_upload_attempts
+
+	config_get cache_size $1 cache_size
+	config_get table_size $1 table_size
+	config_get dir_refresh $1 dir_refresh
+	config_get file_refresh $1 file_refresh
+	config_get delay_upload $1 delay_upload
+	config_get debug $1 debug
+	config_get use_proxy $1 use_proxy
+	config_get proxy $1 proxy
+	config_get ask_auth $1 ask_auth
+	config_get use_locks $1 use_locks
+	config_get lock_timeout $1 lock_timeout
+	config_get lock_refresh $1 lock_refresh
+	config_get use_expect100 $1 use_expect100
+	config_get if_match_bug $1 if_match_bug
+	config_get drop_weak_etags $1 drop_weak_etags
+	config_get allow_cookie $1 allow_cookie
+	config_get precheck $1 precheck
+	config_get sever_charset $1 server_charset
+	config_get connect_timeout $1 connect_timeout
+	config_get read_timeout $1 read_timeout
+	config_get retry $1 retry
+	config_get max_retry $1 max_retry
+	config_get max_upload_attempts $1 max_upload_attempts
+	config_get server_charset $1 server_charset
+
+	echo generating config...
+
+	[ -e /etc/davfs2/davfs2.conf ] && rm /etc/davfs2/davfs2.conf
+	
+	echo "cache_size $cache_size" > /etc/davfs2/davfs2.conf
+	echo "table_size $table_size" >> /etc/davfs2/davfs2.conf
+	echo "dir_refresh $dir_refresh" >> /etc/davfs2/davfs2.conf
+	echo "file_refresh $file_refresh" >> /etc/davfs2/davfs2.conf
+	echo "delay_upload $delay_upload" >> /etc/davfs2/davfs2.conf
+	[ $debug ] && echo "debug $debug" >> /etc/davfs2/davfs2.conf
+	echo "use_proxy $use_proxy" >> /etc/davfs2/davfs2.conf
+	[ $proxy ] && echo "proxy $proxy" >> /etc/davfs2/davfs2.conf
+	echo "ask_auth $ask_auth" >> /etc/davfs2/davfs2.conf
+	echo "use_locks $use_locks" >> /etc/davfs2/davfs2.conf
+	echo "lock_timeout $lock_timeout" >> /etc/davfs2/davfs2.conf
+	echo "lock_refresh $lock_refresh" >> /etc/davfs2/davfs2.conf
+	echo "use_expect100 $use_expect100" >> /etc/davfs2/davfs2.conf
+	echo "if_match_bug $if_match_bug" >> /etc/davfs2/davfs2.conf
+	echo "drop_weak_etags $drop_weak_etags" >> /etc/davfs2/davfs2.conf
+	echo "allow_cookie $allow_cookie" >> /etc/davfs2/davfs2.conf
+	echo "precheck $precheck" >> /etc/davfs2/davfs2.conf
+	echo "server_charset $server_charset" >> /etc/davfs2/davfs2.conf
+	echo "connect_timeout $connect_timeout" >> /etc/davfs2/davfs2.conf
+	echo "read_timeout $read_timeout" >> /etc/davfs2/davfs2.conf
+	echo "retry $retry" >> /etc/davfs2/davfs2.conf
+	echo "max_retry $max_retry" >> /etc/davfs2/davfs2.conf
+	echo "max_upload_attempts $max_upload_attempts" >> /etc/davfs2/davfs2.conf
+}
+
+start () {
+	config_load davfs
+	config_foreach config_generate main
+	
+	echo "trying mount..."
+	[ -e /etc/davfs2/secrets ] && rm /etc/davfs2/secrets
+	config_foreach mount_resource mount
+}
+
+stop () {
+	config_load davfs
+	
+	echo "unmounting..."
+	config_foreach unmount_resource mount
+
+	echo "removing generated configs..."
+	rm /etc/davfs2/secrets
+	rm /etc/davfs2/davfs2.conf
+	[ `ps | grep mount.davfs | grep -v grep` ] && killall mount.davfs
+	[ -e /var/run/mount.davfs/*.pid ] && rm -rf /var/run/mount.davfs/*.pid
+}
+	

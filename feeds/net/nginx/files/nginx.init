@@ -1,0 +1,16 @@
+#!/bin/sh /etc/rc.common
+
+NGINX_BIN=/usr/sbin/nginx
+START=99
+
+start() {
+	$NGINX_BIN -c /etc/nginx.conf
+}
+
+stop() {
+	$NGINX_BIN -s stop
+}
+
+reload() {
+	$NGINX_BIN -s reload
+}

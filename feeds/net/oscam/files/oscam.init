@@ -1,0 +1,13 @@
+#!/bin/sh /etc/rc.common
+
+START=94
+
+start () {
+	[ `cat /etc/inittab | grep #tty` ] || sed -i 's/tty/#tty/g' /etc/inittab
+	service_start /usr/bin/oscam -b -c /etc/oscam
+}
+
+stop () {
+	service_stop /usr/bin/oscam
+}
+
