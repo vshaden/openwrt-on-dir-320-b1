@@ -8,4 +8,4 @@ src-svn luci http://svn.luci.subsignal.org/luci/trunk/contrib/package
 #src-svn xfce svn://svn.openwrt.org/openwrt/feeds/xfce
 #src-svn lxde svn://svn.openwrt.org/openwrt/feeds/lxde
 #src-link custom /usr/src/openwrt/custom-feed
-src-svn custompackages http://openwrt-on-dir320-b1.googlecode.com/svn/feeds
+src-svn custompackages http://openwrt-on-dir-320-b1.googlecode.com/svn/feeds/
