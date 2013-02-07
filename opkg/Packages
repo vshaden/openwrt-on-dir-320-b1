@@ -1,0 +1,1747 @@
+Package: davfs2
+Version: 1.4.7-1
+Depends: libc, libneon, libfuse, kmod-fuse, libexpat
+Source: feeds/custompackages/net/davfs2
+SourceFile: davfs2-1.4.7.tar.bz2
+SourceURL: http://fossies.org/unix/www http://download.savannah.gnu.org/releases/davfs2/
+Section: net
+Architecture: ramips
+Installed-Size: 52312
+Filename: davfs2_1.4.7-1_ramips.ipk
+Size: 52560
+MD5Sum: 4bfbea60def5348590b2c2b40ca321b9
+Description:  Mount a WebDAV resource as a regular file system. davfs2 will work with
+ most WebDAV servers needing little or no configuration.
+
+Package: kmod-crypto-aes
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 105
+Filename: kmod-crypto-aes_3.7.6-1_ramips.ipk
+Size: 671
+MD5Sum: 36d003fc05a5fd66322f3a70fcce9729
+Description:  AES cipher CryptoAPI module
+
+Package: kmod-crypto-arc4
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-core, kmod-crypto-manager
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1331
+Filename: kmod-crypto-arc4_3.7.6-1_ramips.ipk
+Size: 2058
+MD5Sum: 372df4b180318de6b92ef2623d978da0
+Description:  ARC4 (RC4) cipher CryptoAPI module
+
+Package: kmod-crypto-core
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 105
+Filename: kmod-crypto-core_3.7.6-1_ramips.ipk
+Size: 664
+MD5Sum: 4dd30a298493c1873f258f88fdb4d257
+Description:  Core CryptoAPI modules
+
+Package: kmod-crypto-des
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 8789
+Filename: kmod-crypto-des_3.7.6-1_ramips.ipk
+Size: 9250
+MD5Sum: 0ffb97ded6e0987cdf08cabab544bbe2
+Description:  DES/3DES cipher CryptoAPI module
+
+Package: kmod-crypto-ecb
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-manager, kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1637
+Filename: kmod-crypto-ecb_3.7.6-1_ramips.ipk
+Size: 2367
+MD5Sum: ab183d1bf115ad51e196b6edbae338ef
+Description:  Electronic CodeBook CryptoAPI module
+
+Package: kmod-crypto-hash
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 6174
+Filename: kmod-crypto-hash_3.7.6-1_ramips.ipk
+Size: 6838
+MD5Sum: 6374ac8cd39ed9aaca1c9f5259055c81
+Description:  CryptoAPI hash support
+
+Package: kmod-crypto-hmac
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-manager, kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2142
+Filename: kmod-crypto-hmac_3.7.6-1_ramips.ipk
+Size: 2862
+MD5Sum: b50cff417457de57cefd0a71046130df
+Description:  HMAC digest CryptoAPI module
+
+Package: kmod-crypto-manager
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-hash, kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 9334
+Filename: kmod-crypto-manager_3.7.6-1_ramips.ipk
+Size: 10070
+MD5Sum: 0e6fad5afce4212e3e46c662f4914d78
+Description:  CryptoAPI algorithm manager
+
+Package: kmod-crypto-md4
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-hash, kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2233
+Filename: kmod-crypto-md4_3.7.6-1_ramips.ipk
+Size: 2925
+MD5Sum: 910c82063549d7e1bc217fcb1710e61b
+Description:  MD4 digest CryptoAPI module
+
+Package: kmod-crypto-md5
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-hash, kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1378
+Filename: kmod-crypto-md5_3.7.6-1_ramips.ipk
+Size: 2097
+MD5Sum: c8b17c5736a034c4d4e4ac3661341bfc
+Description:  MD5 digest CryptoAPI module
+
+Package: kmod-crypto-sha1
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-hash, kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1590
+Filename: kmod-crypto-sha1_3.7.6-1_ramips.ipk
+Size: 2308
+MD5Sum: 94029b9c8f928c476c894ddbdba4a96e
+Description:  SHA1 digest CryptoAPI module
+
+Package: kmod-crypto-sha256
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-crypto-hash, kmod-crypto-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4086
+Filename: kmod-crypto-sha256_3.7.6-1_ramips.ipk
+Size: 4781
+MD5Sum: 575cda6d6f6cffc52d1aa797ea34ec5c
+Description:  SHA224 SHA256 digest CryptoAPI module
+
+Package: kmod-eeprom-93cx6
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1674
+Filename: kmod-eeprom-93cx6_3.7.6-1_ramips.ipk
+Size: 2390
+MD5Sum: aa88e5baef1e66b443d37b1f594eab38
+Description:  Kernel module for EEPROM 93CX6 support
+
+Package: kmod-fs-cifs
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-nls-base, kmod-crypto-arc4, kmod-crypto-hmac, kmod-crypto-md5, kmod-crypto-md4, kmod-crypto-des, kmod-crypto-ecb, kmod-crypto-sha256
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 137112
+Filename: kmod-fs-cifs_3.7.6-1_ramips.ipk
+Size: 135808
+MD5Sum: e547a87faa35c6127e4ee14e76228274
+Description:  Kernel module for CIFS support
+
+Package: kmod-fs-ext4
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-lib-crc16, kmod-crypto-hash
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 190044
+Filename: kmod-fs-ext4_3.7.6-1_ramips.ipk
+Size: 190174
+MD5Sum: 4494b5ab833bb33cd5a9c25546cf312c
+Description:  Kernel module for EXT4 filesystem support
+
+Package: kmod-fs-msdos
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-nls-base
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4642
+Filename: kmod-fs-msdos_3.7.6-1_ramips.ipk
+Size: 5325
+MD5Sum: d0833b9e9af700915b6c70afc63fbc94
+Description:  Kernel module for MSDOS filesystem support
+
+Package: kmod-fs-ntfs
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-nls-base
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 53086
+Filename: kmod-fs-ntfs_3.7.6-1_ramips.ipk
+Size: 53524
+MD5Sum: c6a47b93edb4f4bc1acd9906fe71fe4b
+Description:  Kernel module for NTFS filesystem support
+
+Package: kmod-fuse
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 36255
+Filename: kmod-fuse_3.7.6-1_ramips.ipk
+Size: 36910
+MD5Sum: f3a7ec3fc974155be7be2ad39ed9879d
+Description:  Kernel module for userspace filesystem support
+
+Package: kmod-gre
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ipv6
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 11566
+Filename: kmod-gre_3.7.6-1_ramips.ipk
+Size: 12274
+MD5Sum: 75e73a8d5ae3235942e39e904f96af9c
+Description:  Generic Routing Encapsulation support
+
+Package: kmod-i2c-core
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 13659
+Filename: kmod-i2c-core_3.7.6-1_ramips.ipk
+Size: 14335
+MD5Sum: c291769fba3ef605652380a6adbacaaa
+Description:  Kernel modules for I2C support
+
+Package: kmod-ifb
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2992
+Filename: kmod-ifb_3.7.6-1_ramips.ipk
+Size: 3657
+MD5Sum: 0eb820825f360b80af31f06a695cfb42
+Description:  The Intermediate Functional Block
+
+Package: kmod-input-core
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 15793
+Filename: kmod-input-core_3.7.6-1_ramips.ipk
+Size: 16409
+MD5Sum: 7dfa15dff7e5c9777c1e15a2fba75aec
+Description:  Kernel modules for support of input device
+
+Package: kmod-input-gpio-keys-polled
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-input-polldev, kmod-input-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2613
+Filename: kmod-input-gpio-keys-polled_3.7.6-1_ramips.ipk
+Size: 3318
+MD5Sum: 62ab8c1ad0a2185a766d6b1a77c28da1
+Description:  Kernel module for support polled GPIO keys input device
+
+Package: kmod-input-polldev
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-input-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2072
+Filename: kmod-input-polldev_3.7.6-1_ramips.ipk
+Size: 2801
+MD5Sum: 34b3f21f94ed3b3bc4abbc49d51d7d3d
+Description:  Kernel module for support of polled input devices
+
+Package: kmod-ip6tables
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ipv6
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 22930
+Filename: kmod-ip6tables_3.7.6-1_ramips.ipk
+Size: 23574
+MD5Sum: 73ff0bac4523d7a19cc7a54be931d2bc
+Description:  Netfilter IPv6 firewalling support
+
+Package: kmod-ipt-conntrack-extra
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ipt-core, kmod-ipt-conntrack
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 8451
+Filename: kmod-ipt-conntrack-extra_3.7.6-1_ramips.ipk
+Size: 9257
+MD5Sum: bc380e71cde91598bb67a8374fd5707e
+Description:  Netfilter (IPv4) extra kernel modules for connection tracking
+ Includes:
+ - connbytes
+ - connmark/CONNMARK
+ - conntrack
+ - helper
+ - recent
+
+Package: kmod-ipt-conntrack
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ipt-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 34612
+Filename: kmod-ipt-conntrack_3.7.6-1_ramips.ipk
+Size: 35388
+MD5Sum: 6116eab100d712b48a91a636eea7b81a
+Description:  Netfilter (IPv4) kernel modules for connection tracking
+ Includes:
+ - conntrack
+ - defrag
+ - iptables_raw
+ - NOTRACK
+ - state
+
+Package: kmod-ipt-core
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 28854
+Filename: kmod-ipt-core_3.7.6-1_ramips.ipk
+Size: 29609
+MD5Sum: d8209539aee7b5cc19ecd51241aade4e
+Description:  Netfilter core kernel modules
+ Includes:
+ - comment
+ - limit
+ - LOG
+ - mac
+ - multiport
+ - REJECT
+ - TCPMSS
+
+Package: kmod-ipt-filter
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ipt-core, kmod-lib-textsearch
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 8226
+Filename: kmod-ipt-filter_3.7.6-1_ramips.ipk
+Size: 8984
+MD5Sum: b22cbcfe10ed0502b1cea06df6aeed36
+Description:  Netfilter (IPv4) kernel modules for packet content inspection
+ Includes:
+ - layer7
+ - string
+
+Package: kmod-ipt-ipopt
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ipt-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 8276
+Filename: kmod-ipt-ipopt_3.7.6-1_ramips.ipk
+Size: 9101
+MD5Sum: 54f75b2cfc183fbcb6ad020f67d199c4
+Description:  Netfilter (IPv4) modules for matching/changing IP packet options
+ Includes:
+ - CLASSIFY
+ - dscp/DSCP
+ - ecn/ECN
+ - hl/HL
+ - length
+ - mark/MARK
+ - statistic
+ - tcpmss
+ - time
+ - ttl/TTL
+ - unclean
+
+Package: kmod-ipt-nat
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ipt-core, kmod-ipt-conntrack
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 13409
+Filename: kmod-ipt-nat_3.7.6-1_ramips.ipk
+Size: 14121
+MD5Sum: 58dd927a5e67de6f91682d4dd69c6101
+Description:  Netfilter (IPv4) kernel modules for basic NAT targets
+ Includes:
+ - MASQUERADE
+
+Package: kmod-ipt-nathelper
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ipt-core, kmod-ipt-nat
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 7735
+Filename: kmod-ipt-nathelper_3.7.6-1_ramips.ipk
+Size: 8511
+MD5Sum: e843058f12666b016806266fee32b948
+Description:  Default Netfilter (IPv4) Conntrack and NAT helpers
+ Includes:
+ - ftp
+ - irc
+ - tftp
+
+Package: kmod-iptunnel4
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1854
+Filename: kmod-iptunnel4_3.7.6-1_ramips.ipk
+Size: 2558
+MD5Sum: 9ce3cbafa4d3a1229ae0e31553b72529
+Description:  Kernel modules for IPv4 tunneling
+
+Package: kmod-ipv6
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 150062
+Filename: kmod-ipv6_3.7.6-1_ramips.ipk
+Size: 150253
+MD5Sum: 6e12edfacba0a26573b4e2cc06a97dfc
+Description:  Kernel modules for IPv6 support
+
+Package: kmod-l2tp
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 12521
+Filename: kmod-l2tp_3.7.6-1_ramips.ipk
+Size: 13192
+MD5Sum: f99120a9ff858b295e15a4548fb2f9f3
+Description:  Kernel modules for L2TP V3 Support
+
+Package: kmod-leds-gpio
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2035
+Filename: kmod-leds-gpio_3.7.6-1_ramips.ipk
+Size: 2740
+MD5Sum: 6393afa11bb24ee20e3029aba1c84755
+Description:  Kernel module for LEDs on GPIO lines
+
+Package: kmod-ledtrig-netdev
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 105
+Filename: kmod-ledtrig-netdev_3.7.6-1_ramips.ipk
+Size: 687
+MD5Sum: ddaa946d2d0fc3a1cd503f6ce3e6de04
+Description:  Kernel module to drive LEDs based on network activity.
+
+Package: kmod-ledtrig-usbdev
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2279
+Filename: kmod-ledtrig-usbdev_3.7.6-1_ramips.ipk
+Size: 2988
+MD5Sum: e30f433c39f3317ea97046d246d8eb22
+Description:  Kernel module to drive LEDs based on USB device presence/activity.
+
+Package: kmod-lib-crc-ccitt
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1385
+Filename: kmod-lib-crc-ccitt_3.7.6-1_ramips.ipk
+Size: 2094
+MD5Sum: 61faf6b8b879a7faeabd7431e57e4e61
+Description:  Kernel module for CRC-CCITT support
+
+Package: kmod-lib-crc-itu-t
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1402
+Filename: kmod-lib-crc-itu-t_3.7.6-1_ramips.ipk
+Size: 2109
+MD5Sum: 4bf2a6f7126d685770e626ca5a9112ee
+Description:  Kernel module for CRC ITU-T V.41 support
+
+Package: kmod-lib-crc16
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1343
+Filename: kmod-lib-crc16_3.7.6-1_ramips.ipk
+Size: 2056
+MD5Sum: 11d9a8dce5c58a3c2d2de475f44c39c4
+Description:  Kernel module for CRC16 support
+
+Package: kmod-lib-lzo
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2907
+Filename: kmod-lib-lzo_3.7.6-1_ramips.ipk
+Size: 3598
+MD5Sum: 24753684ea056ea594c6d106cbfe8542
+Description:  Kernel module for LZO compression/decompression support
+
+Package: kmod-lib-textsearch
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 3537
+Filename: kmod-lib-textsearch_3.7.6-1_ramips.ipk
+Size: 4227
+MD5Sum: 2fa8b6e97af600d6f0aa099e55233baa
+Description:  Textsearch support
+
+Package: kmod-mppe
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ppp, kmod-crypto-core, kmod-crypto-arc4, kmod-crypto-sha1, kmod-crypto-ecb
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4337
+Filename: kmod-mppe_3.7.6-1_ramips.ipk
+Size: 5041
+MD5Sum: 7ab34959af591c793bd5cd40828ca54b
+Description:  Kernel modules for Microsoft PPP compression/encryption
+
+Package: kmod-nls-base
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 3202
+Filename: kmod-nls-base_3.7.6-1_ramips.ipk
+Size: 3897
+MD5Sum: 037368b25e59a8567f270c92d06012d4
+Description:  Kernel module for NLS (Native Language Support)
+
+Package: kmod-nls-cp1251
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-nls-base
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1926
+Filename: kmod-nls-cp1251_3.7.6-1_ramips.ipk
+Size: 2621
+MD5Sum: 559dcf8a57854cfae6cfdb035d24b30e
+Description:  Kernel module for NLS Codepage 1251 (Russian)
+
+Package: kmod-nls-koi8r
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-nls-base
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1987
+Filename: kmod-nls-koi8r_3.7.6-1_ramips.ipk
+Size: 2685
+MD5Sum: f2f69c4df0c8c97432177b1ccf57a8c8
+Description:  Kernel module for NLS KOI8-R (Russian)
+
+Package: kmod-nls-utf8
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-nls-base
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1025
+Filename: kmod-nls-utf8_3.7.6-1_ramips.ipk
+Size: 1733
+MD5Sum: 0ff77a0c253e3719f0bb02ae6376900a
+Description:  Kernel module for NLS UTF-8
+
+Package: kmod-ppp
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-lib-crc-ccitt
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 22604
+Filename: kmod-ppp_3.7.6-1_ramips.ipk
+Size: 23237
+MD5Sum: 8cd9cd1e1cc830d6c1011f73623fba73
+Description:  Kernel modules for PPP support
+
+Package: kmod-pppoe
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ppp, kmod-pppox
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 6217
+Filename: kmod-pppoe_3.7.6-1_ramips.ipk
+Size: 6928
+MD5Sum: ccc96f35ed87e4c08eba0ffeef5b045e
+Description:  Kernel module for PPPoE (PPP over Ethernet) support
+
+Package: kmod-pppol2tp
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ppp, kmod-pppox, kmod-l2tp
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 9510
+Filename: kmod-pppol2tp_3.7.6-1_ramips.ipk
+Size: 10224
+MD5Sum: 0cb32111e669f3d29f4b26af36c593a8
+Description:  Kernel modules for PPPoL2TP (PPP over L2TP) support
+
+Package: kmod-pppox
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ppp
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1709
+Filename: kmod-pppox_3.7.6-1_ramips.ipk
+Size: 2433
+MD5Sum: 671352c51da8ede9f917c971c1339394
+Description:  Kernel helper module for PPPoE and PPTP support
+
+Package: kmod-pptp
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ppp, kmod-gre, kmod-pppox
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 5019
+Filename: kmod-pptp_3.7.6-1_ramips.ipk
+Size: 5681
+MD5Sum: 5ddb24255bab93271cc892a3b969b634
+Description:  PPtP support
+
+Package: kmod-regmap
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-lib-lzo, kmod-i2c-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 12973
+Filename: kmod-regmap_3.7.6-1_ramips.ipk
+Size: 13672
+MD5Sum: 24d4a12e04977a4739971964e6c3a496
+Description:  Generic register map support
+
+Package: kmod-sched-connmark
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-sched-core, kmod-ipt-core, kmod-ipt-conntrack-extra
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1283
+Filename: kmod-sched-connmark_3.7.6-1_ramips.ipk
+Size: 2018
+MD5Sum: ef91531744b51fbb069427ccce24c156
+Description:  Traffic shaper conntrack mark support
+
+Package: kmod-sched-core
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 34255
+Filename: kmod-sched-core_3.7.6-1_ramips.ipk
+Size: 34976
+MD5Sum: 8fe35ed34a118f3daa21301d3cf54860
+Description:  Core kernel scheduler support for IP traffic
+
+Package: kmod-scsi-core
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 69182
+Filename: kmod-scsi-core_3.7.6-1_ramips.ipk
+Size: 69562
+MD5Sum: 2a23078d840e4d67069c7ed49dc1a1d8
+Description:  SCSI device support
+
+Package: kmod-sit
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-ipv6, kmod-iptunnel4
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 7974
+Filename: kmod-sit_3.7.6-1_ramips.ipk
+Size: 8648
+MD5Sum: 56b2684276cdb799d1bb1419ebb1dbdd
+Description:  Kernel modules for IPv6-in-IPv4 tunnelling
+
+Package: kmod-sound-core
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-input-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 119998
+Filename: kmod-sound-core_3.7.6-1_ramips.ipk
+Size: 120463
+MD5Sum: 9fc2299e0434b21b50e4df7cbeff2c9d
+Description:  Kernel modules for sound support
+
+Package: kmod-sound-seq
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-sound-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 29979
+Filename: kmod-sound-seq_3.7.6-1_ramips.ipk
+Size: 30664
+MD5Sum: 3342cecaa8506d769889aa0cd187e269
+Description:  Kernel modules for sequencer support
+
+Package: kmod-sound-soc-core
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-regmap, kmod-sound-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 46970
+Filename: kmod-sound-soc-core_3.7.6-1_ramips.ipk
+Size: 47490
+MD5Sum: 7096ad6e37bf7751726b6b92b891de4c
+Description:  SoC sound support
+
+Package: kmod-tun
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 9711
+Filename: kmod-tun_3.7.6-1_ramips.ipk
+Size: 10392
+MD5Sum: db9903fd77ec66deff8f52eedef1ae5d
+Description:  Kernel support for the TUN/TAP tunneling device
+
+Package: kmod-usb-audio
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-core, kmod-sound-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 57010
+Filename: kmod-usb-audio_3.7.6-1_ramips.ipk
+Size: 57303
+MD5Sum: 8d42339df1d349c155820acef123ce65
+Description:  Kernel support for USB audio devices
+
+Package: kmod-usb-core
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-nls-base
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 66890
+Filename: kmod-usb-core_3.7.6-1_ramips.ipk
+Size: 67364
+MD5Sum: d9f4b422162a181b4961bdfbc69149a6
+Description:  Kernel support for USB
+
+Package: kmod-usb-net-asix
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 10471
+Filename: kmod-usb-net-asix_3.7.6-1_ramips.ipk
+Size: 11152
+MD5Sum: f859329594bf2460373fcd1d8fde3963
+Description:  Kernel module for USB-to-Ethernet Asix convertors
+
+Package: kmod-usb-net-cdc-ether
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 3224
+Filename: kmod-usb-net-cdc-ether_3.7.6-1_ramips.ipk
+Size: 3907
+MD5Sum: 6133a6079ca32bd81f44a22d34305fad
+Description:  Kernel support for USB CDC Ethernet devices
+
+Package: kmod-usb-net-cdc-ncm
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 5795
+Filename: kmod-usb-net-cdc-ncm_3.7.6-1_ramips.ipk
+Size: 6496
+MD5Sum: f9326872f2614f5c8e1356732d2a5e70
+Description:  Kernel support for CDC NCM connections
+
+Package: kmod-usb-net-dm9601-ether
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4724
+Filename: kmod-usb-net-dm9601-ether_3.7.6-1_ramips.ipk
+Size: 5407
+MD5Sum: a82e55defe158dda6f627f175e900ce3
+Description:  Kernel support for USB DM9601 devices
+
+Package: kmod-usb-net-ipheth
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4368
+Filename: kmod-usb-net-ipheth_3.7.6-1_ramips.ipk
+Size: 5060
+MD5Sum: c4d53fc59f4769187f3460984064ca05
+Description:  Kernel support for Apple iPhone USB Ethernet driver
+
+Package: kmod-usb-net-kaweth
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 7200
+Filename: kmod-usb-net-kaweth_3.7.6-1_ramips.ipk
+Size: 7895
+MD5Sum: 8f38ef9da083834280d501cab9af0069
+Description:  Kernel module for USB-to-Ethernet Kaweth convertors
+
+Package: kmod-usb-net-mcs7830
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4191
+Filename: kmod-usb-net-mcs7830_3.7.6-1_ramips.ipk
+Size: 4888
+MD5Sum: a17e154e3a34ad0b5a32553e8937f49f
+Description:  Kernel module for USB-to-Ethernet MCS7830 convertors
+
+Package: kmod-usb-net-pegasus
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 11555
+Filename: kmod-usb-net-pegasus_3.7.6-1_ramips.ipk
+Size: 12267
+MD5Sum: a5f7cd90b6959c66d8aa290d051c3079
+Description:  Kernel module for USB-to-Ethernet Pegasus convertors
+
+Package: kmod-usb-net-qmi-wwan
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net, kmod-usb-wdm
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 3756
+Filename: kmod-usb-net-qmi-wwan_3.7.6-1_ramips.ipk
+Size: 4472
+MD5Sum: 85a55ee4218b4fbfb0d545167df4755e
+Description:  QMI WWAN driver for Qualcomm MSM based 3G and LTE modems
+
+Package: kmod-usb-net-rndis
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net, kmod-usb-net-cdc-ether
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4379
+Filename: kmod-usb-net-rndis_3.7.6-1_ramips.ipk
+Size: 5070
+MD5Sum: 95f559f7306f07916ca170b0abe4bfb7
+Description:  Kernel support for RNDIS connections
+
+Package: kmod-usb-net-sierrawireless
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-net
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 5336
+Filename: kmod-usb-net-sierrawireless_3.7.6-1_ramips.ipk
+Size: 6047
+MD5Sum: 5f6cb1fca0c5953b4df91f7474db64b1
+Description:  Kernel support for Sierra Wireless devices
+
+Package: kmod-usb-net
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 9540
+Filename: kmod-usb-net_3.7.6-1_ramips.ipk
+Size: 10246
+MD5Sum: 31b20809908cb8f27374b8dbebe6c6f8
+Description:  Kernel modules for USB-to-Ethernet convertors
+
+Package: kmod-usb-ohci
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 10220
+Filename: kmod-usb-ohci_3.7.6-1_ramips.ipk
+Size: 10937
+MD5Sum: e21124ebdc63dbf6f3deb6b8104550e4
+Description:  Kernel support for USB OHCI controllers
+
+Package: kmod-usb-printer
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 7164
+Filename: kmod-usb-printer_3.7.6-1_ramips.ipk
+Size: 7885
+MD5Sum: 1299738ead3616253f7f50f2b33138c1
+Description:  Kernel support for USB printers
+
+Package: kmod-usb-rt305x-dwc_otg
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 37353
+Filename: kmod-usb-rt305x-dwc_otg_3.7.6-1_ramips.ipk
+Size: 37961
+MD5Sum: e722ebceaeb58cb5e0f9c27912387830
+Description:  This driver provides USB Device Controller support for the
+ Synopsys DesignWare USB OTG Core used in the Ralink RT305X SoCs.
+
+Package: kmod-usb-serial-ark3116
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4692
+Filename: kmod-usb-serial-ark3116_3.7.6-1_ramips.ipk
+Size: 5400
+MD5Sum: 3715195f8135e0c5da3e449b66269cb3
+Description:  Kernel support for ArkMicroChips ARK3116 USB-to-Serial converters
+
+Package: kmod-usb-serial-belkin
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 3722
+Filename: kmod-usb-serial-belkin_3.7.6-1_ramips.ipk
+Size: 4408
+MD5Sum: 7f50c3d556018e4568c8e6b606ccfd8e
+Description:  Kernel support for Belkin USB-to-Serial converters
+
+Package: kmod-usb-serial-ch341
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 3627
+Filename: kmod-usb-serial-ch341_3.7.6-1_ramips.ipk
+Size: 4332
+MD5Sum: e4ebe96c9ad320d2679a3d31322d3897
+Description:  Kernel support for Winchiphead CH341 USB-to-Serial converters
+
+Package: kmod-usb-serial-cp210x
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4622
+Filename: kmod-usb-serial-cp210x_3.7.6-1_ramips.ipk
+Size: 5351
+MD5Sum: a6851c282d79c397a6ea701b0efd6cd5
+Description:  Kernel support for Silicon Labs cp210x USB-to-Serial converters
+
+Package: kmod-usb-serial-cypress-m8
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 6333
+Filename: kmod-usb-serial-cypress-m8_3.7.6-1_ramips.ipk
+Size: 7193
+MD5Sum: f1fb5807bbb73f67c5d6a8450b269b56
+Description:  Kernel support for devices with Cypress M8 USB to Serial chip
+ (for example, the Delorme Earthmate LT-20 GPS)
+ Supported microcontrollers in the CY4601 family are:
+ CY7C63741 CY7C63742 CY7C63743 CY7C64013
+
+Package: kmod-usb-serial-ftdi
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 14029
+Filename: kmod-usb-serial-ftdi_3.7.6-1_ramips.ipk
+Size: 14356
+MD5Sum: ddbd7aab8acbbafb4ec0b8b21f8f9191
+Description:  Kernel support for FTDI USB-to-Serial converters
+
+Package: kmod-usb-serial-ipw
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2064
+Filename: kmod-usb-serial-ipw_3.7.6-1_ramips.ipk
+Size: 2753
+MD5Sum: caa8fc519954dfda25bac6ca78a31ba1
+Description:  Support for IPWireless 3G devices
+
+Package: kmod-usb-serial-keyspan
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 9039
+Filename: kmod-usb-serial-keyspan_3.7.6-1_ramips.ipk
+Size: 9720
+MD5Sum: 2421c6929f6e1e024cc554b520b0baeb
+Description:  Kernel support for Keyspan USB-to-Serial devices
+
+Package: kmod-usb-serial-mct
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4693
+Filename: kmod-usb-serial-mct_3.7.6-1_ramips.ipk
+Size: 5400
+MD5Sum: 52981b844c36b297fc593331627cd364
+Description:  Kernel support for Magic Control Technology USB-to-Serial converters
+
+Package: kmod-usb-serial-mos7720
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 5916
+Filename: kmod-usb-serial-mos7720_3.7.6-1_ramips.ipk
+Size: 6637
+MD5Sum: aca77977a01063dcb1dae5033f45ce12
+Description:  Kernel support for Moschip MOS7720 USB-to-Serial converters
+
+Package: kmod-usb-serial-motorola-phone
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 1017
+Filename: kmod-usb-serial-motorola-phone_3.7.6-1_ramips.ipk
+Size: 1739
+MD5Sum: df2be683713557eb5122308c0d056666
+Description:  Kernel support for Motorola usb phone
+
+Package: kmod-usb-serial-option
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial-wwan, kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 7786
+Filename: kmod-usb-serial-option_3.7.6-1_ramips.ipk
+Size: 7843
+MD5Sum: 1264ca3117d972407e06100eaed5fb0d
+Description:  Kernel support for Option HSDPA modems
+
+Package: kmod-usb-serial-oti6858
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 5057
+Filename: kmod-usb-serial-oti6858_3.7.6-1_ramips.ipk
+Size: 5768
+MD5Sum: 53787d5767e791e37659ca170517c14d
+Description:  Kernel support for Ours Technology OTI6858 USB-to-Serial converters
+
+Package: kmod-usb-serial-pl2303
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 5368
+Filename: kmod-usb-serial-pl2303_3.7.6-1_ramips.ipk
+Size: 6092
+MD5Sum: 78511339b8988f466e979a49e5771955
+Description:  Kernel support for Prolific PL2303 USB-to-Serial converters
+
+Package: kmod-usb-serial-qualcomm
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 2507
+Filename: kmod-usb-serial-qualcomm_3.7.6-1_ramips.ipk
+Size: 3213
+MD5Sum: c8f3c5c18e929c010d075ad83f3408f6
+Description:  Kernel support for Qualcomm USB Serial devices (Gobi)
+
+Package: kmod-usb-serial-sierrawireless
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 5096
+Filename: kmod-usb-serial-sierrawireless_3.7.6-1_ramips.ipk
+Size: 5811
+MD5Sum: da9473ff7386ffa90c7f376001292975
+Description:  Kernel support for Sierra Wireless devices
+
+Package: kmod-usb-serial-ti-usb
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 9754
+Filename: kmod-usb-serial-ti-usb_3.7.6-1_ramips.ipk
+Size: 10466
+MD5Sum: 83c3427e3495433b617b7bd807a2717a
+Description:  Kernel support for TI USB 3410/5052 devices
+
+Package: kmod-usb-serial-visor
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 4098
+Filename: kmod-usb-serial-visor_3.7.6-1_ramips.ipk
+Size: 4792
+MD5Sum: 25a08ca53bf3553fefa84479bdff9ce0
+Description:  Kernel support for Handspring Visor PDAs
+
+Package: kmod-usb-serial-wwan
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-serial
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 3860
+Filename: kmod-usb-serial-wwan_3.7.6-1_ramips.ipk
+Size: 4551
+MD5Sum: 6de818ad19282badadee7c8e93ae9bf8
+Description:  Kernel support for USB GSM and CDMA modems
+
+Package: kmod-usb-serial
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 12146
+Filename: kmod-usb-serial_3.7.6-1_ramips.ipk
+Size: 12849
+MD5Sum: 32865140e94ee3c807b7e9831992038f
+Description:  Kernel support for USB-to-Serial converters
+
+Package: kmod-usb-storage-extras
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-storage
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 31001
+Filename: kmod-usb-storage-extras_3.7.6-1_ramips.ipk
+Size: 31719
+MD5Sum: d84a8ba05e9dce513c9ff44d1cd54a73
+Description:  Say Y here if you want to have some more drivers,
+ such as for SmartMedia card readers.
+
+Package: kmod-usb-storage
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-scsi-core, kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 23018
+Filename: kmod-usb-storage_3.7.6-1_ramips.ipk
+Size: 23557
+MD5Sum: fa3e8420cbb74b4f506b7f4ea963d715
+Description:  Kernel support for USB Mass Storage devices
+
+Package: kmod-usb-wdm
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 5921
+Filename: kmod-usb-wdm_3.7.6-1_ramips.ipk
+Size: 6630
+MD5Sum: 12e8931b04fb725a62952a471c154810
+Description:  USB Wireless Device Management support
+
+Package: kmod-usb2
+Version: 3.7.6-1
+Depends: kernel (=3.7.6-1-868ae25a5b5ad600a2fbaf9e83e84900), kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips
+Installed-Size: 21625
+Filename: kmod-usb2_3.7.6-1_ramips.ipk
+Size: 22303
+MD5Sum: 4a2fae5bb8be60bfbe9aa6c99896d472
+Description:  Kernel support for USB2 (EHCI) controllers
+
+Package: libexpat
+Version: 2.0.1-1
+Depends: libc
+Source: feeds/packages/libs/expat
+SourceFile: expat-2.0.1.tar.gz
+SourceURL: @SF/expat
+License: MIT
+Section: libs
+Architecture: ramips
+Installed-Size: 52886
+Filename: libexpat_2.0.1-1_ramips.ipk
+Size: 53280
+MD5Sum: ee5c09a8a0b87cd1de181471f9b455fc
+Description:  A fast, non-validating, stream-oriented XML parsing library.
+
+Package: libfuse
+Version: 2.9.0-2
+Depends: libc, kmod-fuse, libpthread
+Source: package/fuse
+SourceFile: fuse-2.9.0.tar.gz
+SourceURL: @SF/fuse
+License: LGPLv2.1 GPLv2
+LicenseFiles: COPYING.LIB COPYING
+Section: libs
+Architecture: ramips
+Installed-Size: 60218
+Filename: libfuse_2.9.0-2_ramips.ipk
+Size: 60816
+MD5Sum: 198918340b558ab10393244fe65bb675
+Description:  FUSE (Filesystem in UserSpacE)
+ This package contains the FUSE shared libraries, needed by other programs.
+ - libfuse
+ - libulockmgr
+
+Package: libgcc
+Version: 4.6-linaro-1
+Source: package/toolchain
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@openwrt.org>
+Architecture: ramips
+Installed-Size: 30271
+Filename: libgcc_4.6-linaro-1_ramips.ipk
+Size: 30766
+MD5Sum: 8ace1e3173d16eb086ff4e5da8983249
+Description:  GCC support library
+
+Package: liblua
+Version: 5.1.5-1
+Depends: libc
+Source: package/lua
+SourceFile: lua-5.1.5.tar.gz
+SourceURL: http://www.lua.org/ftp/ http://ftp.gwdg.de/pub/languages/lua/ http://mirrors.dotsrc.org/lua/ http://www.tecgraf.puc-rio.br/lua/ftp/
+License: MIT
+LicenseFiles: COPYRIGHT
+Section: libs
+Maintainer: Jo-Philipp Wich <jow@openwrt.org>
+Architecture: ramips
+Installed-Size: 72124
+Filename: liblua_5.1.5-1_ramips.ipk
+Size: 72753
+MD5Sum: 15db02fcd54546a33ea0b9f7b7e127c0
+Description:  Lua is a powerful light-weight programming language designed for extending 
+ applications. Lua is also frequently used as a general-purpose, stand-alone 
+ language. Lua is free software.
+ This package contains the Lua shared libraries, needed by other programs.
+
+Package: libneon
+Version: 0.29.6-2
+Depends: libc, libopenssl, libexpat
+Source: feeds/packages/libs/neon
+SourceFile: neon-0.29.6.tar.gz
+SourceURL: http://www.webdav.org/neon
+Section: libs
+Architecture: ramips
+Installed-Size: 58680
+Filename: libneon_0.29.6-2_ramips.ipk
+Size: 59280
+MD5Sum: a35c6b9846082055160b53720a5ca560
+Description:  HTTP and WebDAV client library
+
+Package: libopenssl
+Version: 1.0.1c-1
+Depends: libc, zlib
+Source: package/libs/openssl
+SourceFile: openssl-1.0.1c.tar.gz
+SourceURL: http://www.openssl.org/source/ ftp://ftp.funet.fi/pub/crypt/cryptography/libs/openssl/source/ ftp://ftp.webmonster.de/pub/openssl/source/ ftp://ftp.sunet.se/pub/security/tools/net/openssl/source/
+License: SSLEAY OPENSSL
+LicenseFiles: LICENSE
+Section: libs
+Architecture: ramips
+Installed-Size: 621219
+Filename: libopenssl_1.0.1c-1_ramips.ipk
+Size: 616171
+MD5Sum: cde350507f31a5e187a87d8b5eba70e0
+Description:  The OpenSSL Project is a collaborative effort to develop a robust,
+ commercial-grade, full-featured, and Open Source toolkit implementing the Secure
+ Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) protocols as well
+ as a full-strength general purpose cryptography library.
+ This package contains the OpenSSL shared libraries, needed by other programs.
+
+Package: libpcre
+Version: 8.11-2
+Depends: libc
+Source: feeds/packages/libs/pcre
+SourceFile: pcre-8.11.tar.bz2
+SourceURL: @SF/pcre
+License: BSD-3c
+LicenseFiles: LICENCE
+Section: libs
+Architecture: ramips
+Installed-Size: 74915
+Filename: libpcre_8.11-2_ramips.ipk
+Size: 75491
+MD5Sum: 449255489ee68b928fa8671f0eb8cf24
+Description:  A Perl Compatible Regular Expression library
+
+Package: libpthread
+Version: 0.9.33.2-1
+Depends: libgcc
+Source: package/toolchain
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@openwrt.org>
+Architecture: ramips
+Installed-Size: 30540
+Filename: libpthread_0.9.33.2-1_ramips.ipk
+Size: 31112
+MD5Sum: a8162779ec061c832da6c5c344c8a271
+Description:  POSIX thread library
+
+Package: librt
+Version: 0.9.33.2-1
+Depends: libpthread
+Source: package/toolchain
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@openwrt.org>
+Architecture: ramips
+Installed-Size: 4861
+Filename: librt_0.9.33.2-1_ramips.ipk
+Size: 5431
+MD5Sum: 3574f7880738577b95ce874c23e5d150
+Description:  POSIX.1b RealTime extension library
+
+Package: libstdcpp
+Version: 4.6-linaro-1
+Source: package/toolchain
+Section: libs
+Status: unknown hold not-installed
+Essential: yes
+Maintainer: Felix Fietkau <nbd@openwrt.org>
+Architecture: ramips
+Installed-Size: 236707
+Filename: libstdcpp_4.6-linaro-1_ramips.ipk
+Size: 236073
+MD5Sum: 950ead9a15c90c3f1d1d815887bf2f17
+Description:  GNU Standard C++ Library v3
+
+Package: libusb-1.0
+Version: 1.0.9-1
+Depends: libc, libpthread, librt
+Source: package/libs/libusb
+SourceFile: libusb-1.0.9.tar.bz2
+SourceURL: @SF/libusb
+Section: libs
+Maintainer: Felix Fietkau <nbd@openwrt.org>
+Architecture: ramips
+Installed-Size: 22908
+Filename: libusb-1.0_1.0.9-1_ramips.ipk
+Size: 23488
+MD5Sum: 8ad2c4951d398be7cac6540ec2a18ff8
+Description:  libusb is a C library that gives applications easy access to USB devices on
+ many different operating systems.
+
+Package: lua
+Version: 5.1.5-1
+Depends: libc, liblua
+Source: package/lua
+SourceFile: lua-5.1.5.tar.gz
+SourceURL: http://www.lua.org/ftp/ http://ftp.gwdg.de/pub/languages/lua/ http://mirrors.dotsrc.org/lua/ http://www.tecgraf.puc-rio.br/lua/ftp/
+License: MIT
+LicenseFiles: COPYRIGHT
+Section: lang
+Maintainer: Jo-Philipp Wich <jow@openwrt.org>
+Architecture: ramips
+Installed-Size: 4724
+Filename: lua_5.1.5-1_ramips.ipk
+Size: 5481
+MD5Sum: 4863fdb43b56df91979131c507ac1e8a
+Description:  Lua is a powerful light-weight programming language designed for extending 
+ applications. Lua is also frequently used as a general-purpose, stand-alone 
+ language. Lua is free software.
+ This package contains the Lua language interpreter.
+
+Package: nginx
+Version: 1.2.6-1
+Depends: libc, libpcre, libopenssl, zlib, libpthread, liblua
+Source: feeds/packages/net/nginx
+SourceFile: nginx-1.2.6.tar.gz
+SourceURL: http://nginx.org/download/
+Section: net
+Architecture: ramips
+Installed-Size: 306465
+Filename: nginx_1.2.6-1_ramips.ipk
+Size: 306739
+MD5Sum: 3d77f7e9bded39cc0f0663c0be7ab062
+Description:  nginx is an HTTP and reverse proxy server, as well as a mail proxy server,
+ written by Igor Sysoev.
+
+Package: oscam
+Version: svn5339-1
+Depends: libc, libusb, libopenssl, libpthread, librt
+Source: feeds/custompackages/net/oscam
+SourceFile: oscam-svn5339.tar.gz
+SourceURL: http://www.streamboard.tv/svn/oscam/trunk
+Section: custom
+Architecture: ramips
+Installed-Size: 334191
+Filename: oscam_svn5339-1_ramips.ipk
+Size: 334209
+MD5Sum: c0a4f3b58497c3ad61d8a899a227f0d2
+Description:  An Open Source Conditional Access Module software,
+ based on the very good MpCS version 0.9d created by dukat.
+
+Package: zlib
+Version: 1.2.7-1
+Depends: libc
+Source: package/libs/zlib
+SourceFile: zlib-1.2.7.tar.bz2
+SourceURL: http://www.zlib.net @SF/libpng
+License: ZLIB
+LicenseFiles: README
+Section: libs
+Architecture: ramips
+Installed-Size: 39721
+Filename: zlib_1.2.7-1_ramips.ipk
+Size: 40402
+MD5Sum: 92c6ea96402c71f968628f9619b01313
+Description:  Library implementing the deflate compression method
+
