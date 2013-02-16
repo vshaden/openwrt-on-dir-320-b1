@@ -1,0 +1,22 @@
+--- a/cscrypt/des.c	2013-02-16 21:38:48.026083390 +0400
++++ b/cscrypt/des.c	2013-02-16 21:56:59.520361448 +0400
+@@ -516,7 +516,7 @@
+   }
+ }
+ 
+-#define CWS_NETMSGSIZE 256 
++#define CWS_NETMSGSIZE 256+3
+ 
+ int des_encrypt(byte *buffer, int len, byte *deskey)
+ {
+
+--- a/module-newcamd.c	2013-02-16 21:38:48.166081628 +0400
++++ b/module-newcamd.c	2013-02-16 21:55:41.577341324 +0400
+@@ -1,6 +1,6 @@
+ #include "globals.h"
+ 
+-#define CWS_NETMSGSIZE 256
++#define CWS_NETMSGSIZE 256+3
+ 
+ typedef unsigned char uint8;
+ typedef unsigned short uint16;
