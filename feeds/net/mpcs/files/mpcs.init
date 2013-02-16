@@ -1,0 +1,14 @@
+#!/bin/sh /etc/rc.common
+
+START=50
+
+SERVICE_DAEMONIZE=1
+
+start () {
+	[ "`cat /etc/inittab | grep #tty`" ] || sed -i 's/tty/#tty/g' /etc/inittab
+	service_start /usr/sbin/mpcs -c /etc/mpcs
+}
+
+stop () {
+	service_stop /usr/sbin/mpcs
+}

@@ -1,0 +1,21 @@
+[reader]
+Label          = camd35
+Protocol       = camd35
+Device         = 4444444444,4444
+Account        = 444444,444444
+Fallback       = 0
+Group          = 1
+
+#[reader]
+#Label            = newcamd
+#Protocol         = newcamd
+#Device           = 444444444,4444
+#Key              = 0102030405060708091011121314
+#Account          = 444444,444444
+#Fallback         = 0
+#Group            = 1
+#ReconnectTimeout = 20
+#CAID             = 0500
+#IDENT            = 023700
+
+
