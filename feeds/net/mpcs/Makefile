@@ -8,38 +8,35 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=mpcs
-PKG_VERSION:=09e
+PKG_VERSION:=0.9e
 PKG_RELEASE:=1
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 define Package/mpcs
-  SECTION:=custom
-  CATEGORY:=Custom Packages
-  TITLE:=Cardsharing software
+SECTION:=custom
+CATEGORY:=Custom packages
+TITLE:=Cardsharing software
+DEPENDS:= +libpthread
 endef
 
 define Package/mpcs/description
 	Cardsharing software 
 endef
 
-define Package/mpcs/prepare
+define Build/Prepare
 	mkdir -p $(PKG_BUILD_DIR)
 	$(CP) ./src/* $(PKG_BUILD_DIR)
+	$(call Build/Prepare/Default)
 endef
 
-define Package/mpcs/conffiles
-	/etc/mpcs/mpcs.conf
-	/etc/mpcs/mpcs.guess
-	/etc/mpcs/mpcs.server
-	/etc/mpcs/mpcs.sid
-	/etc/mpcs/mpcs.user
+define Build/Configure
 endef
 
 define Package/mpcs/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/mpcs $(1)/ust/sbin/
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/Distribution/mpcs-pre_$(PKG_VERSION)_Community_edition-i386-pc-linux $(1)/usr/sbin/mpcs
 	$(INSTALL_DIR) $(1)/etc/mpcs
 	$(INSTALL_CONF) ./files/mpcs.{conf,guess,server,sid,user} $(1)/etc/mpcs/
 	$(INSTALL_DIR) $(1)/etc/init.d
