@@ -1,0 +1,11 @@
+--- a/dbus/dbus-glib-tool.h	2013-01-16 20:02:42.000000000 +0200
++++ b/dbus/dbus-glib-tool.h	2013-01-16 20:04:28.000000000 +0200
+@@ -23,7 +23,7 @@
+ #ifndef DBUS_BINDING_TOOL_H
+ #define DBUS_BINDING_TOOL_H
+ 
+-#include <glib/gquark.h>
++#include <glib.h>
+ 
+ typedef enum
+ {
