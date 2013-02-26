@@ -1,0 +1,26 @@
+#!/bin/sh
+
+. /lib/functions.sh
+. /lib/netifd/netifd-proto.sh
+
+find_4g_iface () {
+
+	IFACE=$(uci show | grep "proto=4g" | awk -F"." '{ print $2 }')
+	[ "$IFACE" != "" ] || return 0
+
+}
+
+echo "$INTERFACE" | grep -q '^wwan[0-9][0-9]*$' && case "$ACTION" in
+	add|register)
+		logger "4G-WWAN-HOTPLUG: INTERFACE ADDED. IFUP $IFACE."
+		find_4g_iface
+		proto_set_available "$IFACE" 1
+		ifup "$IFACE" &
+	;;
+	remove|unregister)
+		logger "4G-WWAN-HOTPLUG: INTERFACE REMOVED. IFDOWN $IFACE."
+		find_4g_iface
+		proto_set_available "$IFACE" 0
+		ifdown "$IFACE" &
+	;;
+esac

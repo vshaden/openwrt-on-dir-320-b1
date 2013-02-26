@@ -1,0 +1,20 @@
+--- a/Makefile	2011-11-19 15:18:50.000000000 +0200
++++ b/Makefile	2013-01-15 15:12:14.000000000 +0200
+@@ -10,7 +10,7 @@ ifndef LDO
+ LDO=$(CC)
+ endif
+ 
+-CONFDIR = /usr/share/gctwimax
++CONFDIR = /etc/gctwimax
+ 
+ FLAGS = -MMD -O2 -g -Wall
+ 
+@@ -25,7 +25,7 @@ FLAGS += -DCONFDIR="$(CONFDIR)"
+ FLAGS += -DIEEE8021X_EAPOL
+ #FLAGS += -DWITH_DBUS
+ 
+-override CFLAGS += $(FLAGS)
++#override CFLAGS += $(FLAGS)
+ 
+ OBJS_ex = src/wimax.o src/protocol.o src/logging.o src/tap_dev.o src/eap_auth.o src/config.o
+ 

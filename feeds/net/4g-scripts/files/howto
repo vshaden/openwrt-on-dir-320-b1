@@ -1,0 +1,14 @@
+#/etc/config/network
+
+config interface 'wan'
+	option proto '4g'
+	option service 'qmi'
+	option ifname 'wwan0'
+	option apn 'yota.ru'
+	option device '/dev/cdc-wdm0'
+
+#/lib/netifd/proto/4g.sh
+#/etc/hotplug.d/usb/25-wimax
+#/etc/hotplug.d/net/25-wwan
+#/usr/bin/usbwan
+

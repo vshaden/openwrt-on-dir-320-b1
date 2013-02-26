@@ -1,0 +1,30 @@
+#!/bin/sh
+
+action="$1"
+ifname="$2"
+
+case "$action" in
+	if-up)
+		logger "4G: CREATE AND UP INTERFACE UWAN."
+		uci delete firewall.@zone[1].network
+		uci delete network.uwan
+		uci set network.uwan=interface
+		uci set network.uwan.proto=dhcp
+		uci set network.uwan.ifname="$ifname"
+		uci set network.uwan.auto=0
+		uci commit network
+		uci set firewall.@zone[1].network='wan uwan'
+		uci commit firewall
+		ifup uwan
+		;;
+	if-down)
+		logger "4G: DOWN AND DELETE INTERFACE UWAN."
+		ifdown uwan
+		uci delete firewall.@zone[1].network
+		uci delete network.uwan
+		uci commit firewall
+		uci commit network
+		;;
+esac
+
+exit 0

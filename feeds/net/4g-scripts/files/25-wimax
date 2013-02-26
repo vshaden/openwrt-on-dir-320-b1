@@ -1,0 +1,34 @@
+#!/bin/sh
+
+. /lib/functions.sh
+. /lib/netifd/netifd-proto.sh
+
+find_4g_iface () {
+
+	IFACE=$(uci show | grep "proto=4g" | awk -F"." '{ print $2 }')
+	[ "$IFACE" != "" ] || return 0
+
+}
+
+[ "${DEVTYPE}" = "usb_device" ] && case "$ACTION" in
+	add)
+		case "${PRODUCT}" in
+			"4e8/6761/1"|"4e9/6761/1"|"4e8/6731/1"|"4e8/6780/1"|"1076/7f00/2")
+				logger "4G-WIMAX-HOTPLUG: USB DEVICE ADDED. IFUP $IFACE."
+				find_4g_iface
+				proto_set_available "$IFACE" 1
+				ifup "$IFACE" &
+			;;
+		esac
+		;;
+	remove)
+		case "${PRODUCT}" in
+			"4e8/6761/1"|"4e9/6761/1"|"4e8/6731/1"|"4e8/6780/1"|"1076/7f00/2")
+				logger "4G-WIMAX-HOTPLUG: USB DEVICE REMOVED. IFDOWN $IFACE."
+				find_4g_iface
+				proto_set_available "$IFACE" 0
+				ifdown "$IFACE" &
+			;;
+		esac
+		;;
+esac
