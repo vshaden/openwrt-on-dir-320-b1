@@ -15,7 +15,7 @@ PKG_SOURCE:=dbus-glib-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://dbus.freedesktop.org/releases/dbus-glib/
 PKG_MD5SUM:=86ea60ba2118a1b9deafe8257f6a6a1a
 
-PKG_BUILD_DIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/dbus-glib-$(PKG_VERSION)
 
 PKG_FIXUP:=autoreconf
 
