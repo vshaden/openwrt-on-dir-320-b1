@@ -18,7 +18,7 @@ define KernelPackage/wimax-u200
   TITLE:=Drivers for WiMAX
   FILES:= \
 	$(PKG_BUILD_DIR)/samsung_u200/u200.$(LINUX_KMOD_SUFFIX)
-  AUTOLOAD:=$(call AutoLoad,70,u200)
+#  AUTOLOAD:=$(call AutoLoad,70,u200)
 endef
 
 define Build/Prepare
