@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=http://gctwimax.googlecode.com/files/
-PKG_MD5SUM:=55d643a2e18811207b96a31751dcd2ab,
+PKG_MD5SUM:=55d643a2e18811207b96a31751dcd2ab
 PKG_BUILD_DEPENDS:=dbus libdbus dbus-glib-fixed glib2 libeap libusb-1.0
 
 include $(INCLUDE_DIR)/package.mk
