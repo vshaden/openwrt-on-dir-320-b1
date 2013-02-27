@@ -10,6 +10,7 @@ define Package/4g-scripts
   SECTION:=net
   CATEGORY:=Network
   TITLE:=My scripts for 4G/LTE network
+  DEPENDS:= +gctwimax +kmod-wimax-u200 +libqmi
 endef
 
 define Package/4g-scripts/description
