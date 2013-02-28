@@ -116,23 +116,12 @@ void __init rt305x_register_flash(unsigned int id)
 
 static void rt305x_fe_reset(void)
 {
-	u32 val;
+	u32 reset_bits = RT305X_RESET_FE;
 
-	val = rt305x_sysc_rr(SYSC_REG_RESET_CTRL);
-
-	if (soc_is_rt5350()) {
-		val = val | RT305X_RESET_FE | RT305X_RESET_ESW;
-	} else {
-		val = val | RT305X_RESET_FE;
-	}
-		rt305x_sysc_wr(SYSC_REG_RESET_CTRL, val);
-
-	if (soc_is_rt5350()) {
-		val = val & ~(RT305X_RESET_FE | RT305X_RESET_ESW);
-	} else {
-		val = val & ~(RT305X_RESET_FE);
-	}
-		rt305x_sysc_wr(SYSC_REG_RESET_CTRL, val);
+	if (soc_is_rt5350())
+		reset_bits |= RT305X_RESET_ESW;
+	rt305x_sysc_wr(reset_bits, SYSC_REG_RESET_CTRL);
+	rt305x_sysc_wr(0, SYSC_REG_RESET_CTRL);
 }
 
 static struct resource rt305x_eth_resources[] = {
@@ -367,7 +356,6 @@ static void rt3352_usb_power_off(struct platform_device *pdev)
 }
 
 static struct usb_ehci_pdata rt3352_ehci_data = {
-	.port_power_off	= 1,
 	.power_on	= rt3352_usb_power_on,
 	.power_off	= rt3352_usb_power_off,
 };
