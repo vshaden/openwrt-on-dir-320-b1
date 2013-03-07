@@ -561,6 +561,16 @@ define Image/Build/Profile/DIR620D1
 endef
 #########################################################################################
 
+#########################################################################################
+define Image/Build/Profile/DIR320B1
+        $(call Image/Build/Template/$(fs_squash)/$(1),DIR320B1,dir-320-b1,DIR-320-B1)
+endef
+
+define Image/Build/Profile/DIR620D1
+        $(call Image/Build/Template/$(fs_squash)/$(1),DIR620D1,dir-620-d1,DIR-620-D1)
+endef
+#########################################################################################
+
 define Image/Build/Profile/ESR9753
 	$(call Image/Build/Template/$(fs_squash)/$(1),GENERIC_4M,esr-9753,ESR-9753,ttyS1,57600,phys)
 endef
@@ -695,10 +705,10 @@ define Image/Build/Profile/Default
 	$(call Image/Build/Profile/DIR300B1,$(1))
 	$(call Image/Build/Profile/DIR615H1,$(1))
 	$(call Image/Build/Profile/DAP1350,$(1))
-###################################################
+	###################################################
 	$(call Image/Build/Profile/DIR320B1,$(1))
 	$(call Image/Build/Profile/DIR620D1,$(1))
-###################################################
+	###################################################
 	$(call Image/Build/Profile/ESR9753,$(1))
 	$(call Image/Build/Profile/F5D8235V2,$(1))
 	$(call Image/Build/Profile/RTN10PLUS,$(1))
