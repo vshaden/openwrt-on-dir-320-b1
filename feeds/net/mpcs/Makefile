@@ -38,7 +38,7 @@ define Package/mpcs/install
 	$(INSTALL_DIR) $(1)/usr/sbin
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/Distribution/mpcs-pre_$(PKG_VERSION)_Community_edition-i386-pc-linux $(1)/usr/sbin/mpcs
 	$(INSTALL_DIR) $(1)/etc/mpcs
-	$(INSTALL_CONF) ./files/mpcs.{conf,guess,server,sid,user} $(1)/etc/mpcs/
+	$(INSTALL_CONF) $(PKG_BUILD_DIR)/Distribution/mpcs.{ac,cert,conf,guess,ird,server,services,srvid,user} $(1)/etc/mpcs/
 	$(INSTALL_DIR) $(1)/etc/init.d
 	$(INSTALL_BIN) ./files/mpcs.init $(1)/etc/init.d/mpcs
 endef
