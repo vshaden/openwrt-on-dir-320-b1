@@ -40,20 +40,20 @@ endef
 MAKE_FLAGS += USE_LIBUSB=1 USE_LIBCRYPTO=1 USE_SSL=1 OSCAM_BIN=Distribution/oscam LIST_SMARGO_BIN=Distribution/list-smargo
 
 define Package/oscam/conffiles
-        /etc/config/epg
-        /etc/oscam/oscam.conf
-        /etc/oscam/oscam.server
-        /etc/oscam/oscam.user
+	/etc/config/epg
+	/etc/oscam/oscam.conf
+	/etc/oscam/oscam.server
+	/etc/oscam/oscam.user
 endef
 
 define Package/oscam/install
-        $(INSTALL_DIR) $(1)/usr/bin
-        $(INSTALL_BIN) $(PKG_BUILD_DIR)/Distribution/oscam $(1)/usr/bin/
-        $(INSTALL_DIR) $(1)/etc/oscam
-        $(INSTALL_CONF) ./files/oscam.conf $(1)/etc/oscam/
-        $(INSTALL_CONF) ./files/oscam.server $(1)/etc/oscam/
-        $(INSTALL_CONF) ./files/oscam.user $(1)/etc/oscam/
-        $(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/Distribution/oscam $(1)/usr/bin/
+	$(INSTALL_DIR) $(1)/etc/oscam
+	$(INSTALL_CONF) ./files/oscam.conf $(1)/etc/oscam/
+	$(INSTALL_CONF) ./files/oscam.server $(1)/etc/oscam/
+	$(INSTALL_CONF) ./files/oscam.user $(1)/etc/oscam/
+	$(INSTALL_DIR) $(1)/etc/init.d
 endef
 
 define Package/list-smargo/install
