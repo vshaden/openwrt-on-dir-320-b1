@@ -1,4 +1,4 @@
-# Copyright (C) 2006-2012 OpenWrt.org
+# Copyright (C) 2006-2010 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -81,8 +81,7 @@ menu "Target Images"
 	config TARGET_ROOTFS_ISO
 		bool "iso"
 		default n
-		depends on TARGET_x86_generic
-		depends !TARGET_ROOTFS_INITRAMFS
+		depends TARGET_ROOTFS_INITRAMFS && TARGET_x86
 		help
 		  Create some bootable ISO image
 
@@ -128,7 +127,7 @@ menu "Target Images"
 	config TARGET_ROOTFS_RESERVED_PCT
 		int "Percentage of reserved blocks in root filesystem"
 		depends TARGET_ROOTFS_EXT4FS
-		default 0
+		default 5
 		help
 		    Allows you to change the percentage of reserved blocks in the root filesystem
 
@@ -215,7 +214,7 @@ menu "Global build settings"
 
 	config KERNEL_KALLSYMS
 		bool "Compile the kernel with symbol table information"
-		default y
+		default n
 		help
 		  This will give you more information in stack traces from kernel oopses
 
@@ -234,7 +233,7 @@ menu "Global build settings"
 
 	config KERNEL_DEBUG_INFO
 		bool "Compile the kernel with debug information"
-		default y
+		default n
 		select KERNEL_DEBUG_KERNEL
 		help
 		  This will compile your kernel and modules with debug information.
@@ -268,20 +267,12 @@ menu "Global build settings"
 		bool "Compile the kernel with asynchronous IO support"
 		default n
 
-	config KERNEL_DIRECT_IO
-		bool "Compile the kernel with direct IO support"
-		default n
-
 	config KERNEL_MAGIC_SYSRQ
 		bool "Compile the kernel with SysRq support"
 		default y
 
-	config KERNEL_COREDUMP
-		bool
-
 	config KERNEL_ELF_CORE
 		bool "Enable process core dump support"
-		select KERNEL_COREDUMP
 		default y
 
 	config KERNEL_PROVE_LOCKING
@@ -292,156 +283,6 @@ menu "Global build settings"
 	config KERNEL_PRINTK_TIME
 		bool "Enable printk timestamps"
 		default y
-
-	config KERNEL_RELAY
-		bool
-
-	#
-	# CGROUP support symbols
-	#
-
-	config KERNEL_FREEZER
-		bool
-		default y if KERNEL_CGROUP_FREEZER
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CGROUP_FREEZER
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CGROUP_DEVICE
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CPUSETS
-		bool
-		default y if KERNEL_CGROUP_CPUACCT
-		depends KERNEL_CGROUPS
-
-	config KERNEL_PROC_PID_CPUSET
-		bool
-		default y if KERNEL_CGROUP_CPUACCT
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CGROUP_CPUACCT
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_RESOURCE_COUNTERS
-		bool
-		default y if KERNEL_CGROUP_MEM_RES_CTLR
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CGROUP_MEM_RES_CTLR
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CGROUP_MEM_RES_CTLR_SWAP
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CGROUP_MEM_RES_CTLR_SWAP_ENABLED
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CGROUP_MEM_RES_CTLR_KMEM
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CGROUP_PERF
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CFS_BANDWIDTH
-		bool
-		default y if KERNEL_FAIR_GROUP_SCHED
-		depends KERNEL_CGROUP_SCHED
-
-	config KERNEL_FAIR_GROUP_SCHED
-		bool
-		default y if KERNEL_CGROUP_SCHED
-		depends KERNEL_CGROUP_SCHED
-
-	config KERNEL_RT_GROUP_SCHED
-		bool
-		default y if KERNEL_CGROUP_SCHED
-		depends KERNEL_CGROUP_SCHED
-
-	config KERNEL_CGROUP_SCHED
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_NET_CLS_CGROUP
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_NETPRIO_CGROUP
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_BLK_CGROUP
-		bool
-		depends KERNEL_CGROUPS
-
-	config KERNEL_DEBUG_BLK_CGROUP
-		bool
-		default n if KERNEL_CGROUPS
-		depends KERNEL_CGROUPS
-
-	config KERNEL_CGROUPS
-		bool "Enable kernel cgroups"
-		default n
-		select KERNEL_CGROUP_FREEZER
-		select KERNEL_CGROUP_DEVICE
-		select KERNEL_CGROUP_CPUACCT
-		select KERNEL_CGROUP_MEM_RES_CTLR
-		select KERNEL_CGROUP_MEM_RES_CTLR_SWAP
-		select KERNEL_CGROUP_MEM_RES_CTLR_SWAP_ENABLED
-		select KERNEL_CGROUP_MEM_RES_CTLR_KMEM
-		select KERNEL_CGROUP_PERF
-		select KERNEL_CGROUP_SCHED
-		select KERNEL_NET_CLS_CGROUP
-		select KERNEL_NETPRIO_CGROUP
-		select KERNEL_BLK_CGROUP
-
-	#
-	# Namespace support symbols
-	#
-
-	config KERNEL_UTS_NS
-		bool
-		depends KERNEL_NAMESPACES
-
-	config KERNEL_IPC_NS
-		bool
-		depends KERNEL_NAMESPACES
-
-	config KERNEL_USER_NS
-		bool
-		depends KERNEL_NAMESPACES
-
-	config KERNEL_PID_NS
-		bool
-		depends KERNEL_NAMESPACES
-
-	config KERNEL_NET_NS
-		bool
-		depends KERNEL_NAMESPACES
-
-	config KERNEL_DEVPTS_MULTIPLE_INSTANCES
-		bool
-		depends KERNEL_NAMESPACES
-
-	config KERNEL_NAMESPACES
-		bool "Enable kernel namespaces"
-		default n
-		select KERNEL_UTS_NS
-		select KERNEL_IPC_NS
-		select KERNEL_USER_NS
-		select KERNEL_PID_NS
-		select KERNEL_NET_NS
-		select KERNEL_DEVPTS_MULTIPLE_INSTANCES
-
 
 	comment "Package build options"
 
@@ -513,12 +354,26 @@ menu "Global build settings"
 		  Only say Y, if you don't mind fixing broken packages.
 		  Before reporting build bugs, set this to N and re-run the build.
 
+	config TOOLCHAIN_PARALLEL
+		bool
+		prompt "Parallelize the toolchain build (May break build)"
+		depends on PKG_BUILD_PARALLEL
+		depends on BROKEN
+		default n
+		help
+		  Build the toolchain with parallel make jobs.
+		  This speeds up the toolchain build on SMP machines, but may
+		  break the build for certain toolchain versions.
+
+		  If you say Y, toolchain build might break.
+		  Before reporting build bugs, set this to N and re-run the build.
+
 	comment "Stripping options"
 
 	choice
 		prompt "Binary stripping method"
 		default USE_STRIP   if EXTERNAL_TOOLCHAIN
-		default USE_STRIP   if USE_GLIBC || USE_EGLIBC || USE_MUSL
+		default USE_STRIP   if USE_GLIBC || USE_EGLIBC
 		default USE_SSTRIP
 		help
 		  Select the binary stripping method you wish to use.
@@ -554,7 +409,6 @@ menu "Global build settings"
 
 	config STRIP_KERNEL_EXPORTS
 		bool "Strip unnecessary exports from the kernel image"
-		depends BROKEN
 		help
 		  Reduces kernel size by stripping unused kernel exports from the kernel image
 		  Note that this might make the kernel incompatible with any kernel modules that
@@ -568,21 +422,20 @@ menu "Global build settings"
 		  Note that this will make the system libraries incompatible with most of the packages
 		  that are not selected during the build process
 
-	if INSTALL_LIBSTDCPP
-		choice
-			prompt "Preferred standard C++ library"
-			default USE_LIBSTDCXX if USE_EGLIBC
-			default USE_UCLIBCXX
-			help
-			  Select the preferred standard C++ library for all packages that support this.
+	choice
+		prompt "Preferred standard C++ library"
+		default USE_LIBSTDCXX if USE_EGLIBC
+		default USE_UCLIBCXX
+		help
+		  Select the preferred standard C++ library for all packages that support this.
 
-			config USE_UCLIBCXX
-				bool "uClibc++"
+		config USE_UCLIBCXX
+			bool "uClibc++"
 
-			config USE_LIBSTDCXX
-				bool "libstdc++"
-		endchoice
-	endif
+		config USE_LIBSTDCXX
+			bool "libstdc++"
+
+	endchoice
 
 endmenu
 

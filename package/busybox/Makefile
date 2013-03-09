@@ -20,9 +20,6 @@ PKG_MD5SUM:=9c0cae5a0379228e7b55e5b29528df8e
 PKG_BUILD_DEPENDS:=BUSYBOX_CONFIG_FEATURE_HAVE_RPC:librpc
 PKG_BUILD_PARALLEL:=1
 
-PKG_LICENSE:=GPLv2 BSD-4c
-PKG_LICENSE_FILES:=LICENSE archival/libarchive/bz/LICENSE
-
 include $(INCLUDE_DIR)/package.mk
 
 ifeq ($(DUMP),)
@@ -36,6 +33,7 @@ else
 endif
 
 init-y :=
+init-$(CONFIG_BUSYBOX_CONFIG_HTTPD) += httpd
 init-$(CONFIG_BUSYBOX_CONFIG_CROND) += cron
 init-$(CONFIG_BUSYBOX_CONFIG_TELNETD) += telnet
 

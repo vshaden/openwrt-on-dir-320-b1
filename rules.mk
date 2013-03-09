@@ -60,7 +60,7 @@ ifneq ($(filter -march=armv%,$(TARGET_OPTIMIZATION)),)
   ARCH_SUFFIX:=_$(patsubst -march=arm%,%,$(filter -march=armv%,$(TARGET_OPTIMIZATION)))
   GCC_ARCH:=$(patsubst -march=%,%,$(filter -march=armv%,$(TARGET_OPTIMIZATION)))
 endif
-ifneq ($(filter -mips%r2,$(TARGET_OPTIMIZATION)),)
+ifneq ($(findstring -mips32r2,$(TARGET_OPTIMIZATION)),)
   ARCH_SUFFIX:=_r2
 endif
 ifdef CONFIG_HAS_SPE_FPU
@@ -81,7 +81,6 @@ ifeq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
   REAL_GNU_TARGET_NAME=$(OPTIMIZE_FOR_CPU)-openwrt-linux$(if $(TARGET_SUFFIX),-$(TARGET_SUFFIX))
   GNU_TARGET_NAME=$(OPTIMIZE_FOR_CPU)-openwrt-linux
   DIR_SUFFIX:=_$(LIBC)-$(LIBCV)$(if $(CONFIG_arm),_eabi)
-  BIN_DIR:=$(BIN_DIR)$(if $(CONFIG_USE_UCLIBC),,-$(LIBC))
   BUILD_DIR:=$(BUILD_DIR_BASE)/target-$(ARCH)$(ARCH_SUFFIX)$(DIR_SUFFIX)$(if $(BUILD_SUFFIX),_$(BUILD_SUFFIX))
   STAGING_DIR:=$(TOPDIR)/staging_dir/target-$(ARCH)$(ARCH_SUFFIX)$(DIR_SUFFIX)$(if $(BUILD_SUFFIX),_$(BUILD_SUFFIX))
   BUILD_DIR_TOOLCHAIN:=$(BUILD_DIR_BASE)/toolchain-$(ARCH)$(ARCH_SUFFIX)_gcc-$(GCCV)$(DIR_SUFFIX)
@@ -106,7 +105,6 @@ TARGET_ROOTFS_DIR?=$(if $(call qstrip,$(CONFIG_TARGET_ROOTFS_DIR)),$(call qstrip
 TARGET_DIR:=$(TARGET_ROOTFS_DIR)/root-$(BOARD)
 STAGING_DIR_ROOT:=$(STAGING_DIR)/root-$(BOARD)
 BUILD_LOG_DIR:=$(TOPDIR)/logs
-PKG_INFO_DIR := $(STAGING_DIR)/pkginfo
 
 TARGET_PATH:=$(STAGING_DIR_HOST)/bin:$(subst $(space),:,$(filter-out .,$(filter-out ./,$(subst :,$(space),$(PATH)))))
 TARGET_CFLAGS:=$(TARGET_OPTIMIZATION)$(if $(CONFIG_DEBUG), -g3)
@@ -116,9 +114,9 @@ TARGET_LDFLAGS:=-L$(STAGING_DIR)/usr/lib -L$(STAGING_DIR)/lib
 ifneq ($(CONFIG_EXTERNAL_TOOLCHAIN),)
 LIBGCC_S_PATH=$(realpath $(wildcard $(call qstrip,$(CONFIG_LIBGCC_ROOT_DIR))/$(call qstrip,$(CONFIG_LIBGCC_FILE_SPEC))))
 LIBGCC_S=$(if $(LIBGCC_S_PATH),-L$(dir $(LIBGCC_S_PATH)) -lgcc_s)
-LIBGCC_A=$(realpath $(lastword $(wildcard $(dir $(LIBGCC_S_PATH))/gcc/*/*/libgcc.a)))
+LIBGCC_A=$(realpath $(wildcard $(dir $(LIBGCC_S_PATH))/gcc/*/*/libgcc.a))
 else
-LIBGCC_A=$(lastword $(wildcard $(TOOLCHAIN_DIR)/lib/gcc/*/*/libgcc.a))
+LIBGCC_A=$(wildcard $(TOOLCHAIN_DIR)/lib/gcc/*/*/libgcc.a)
 LIBGCC_S=$(if $(wildcard $(TOOLCHAIN_DIR)/lib/libgcc_s.so),-L$(TOOLCHAIN_DIR)/lib -lgcc_s,$(LIBGCC_A))
 endif
 LIBRPC=-lrpc
@@ -285,24 +283,6 @@ define locked
 	$(STAGING_DIR_HOST)/bin/flock \
 		$(TMP_DIR)/.$(if $(2),$(strip $(2)),global).flock \
 		-c '$(subst ','\'',$(1))'
-endef
-
-# Recursively copy paths into another directory, purge dangling
-# symlinks before.
-# $(1) => File glob expression
-# $(2) => Destination directory
-define file_copy
-	for src_dir in $(sort $(foreach d,$(wildcard $(1)),$(dir $(d)))); do \
-		( cd $$src_dir; find -type f -or -type d ) | \
-			( cd $(2); while :; do \
-				read FILE; \
-				[ -z "$$FILE" ] && break; \
-				[ -L "$$FILE" ] || continue; \
-				echo "Removing symlink $(2)/$$FILE"; \
-				rm -f "$$FILE"; \
-			done; ); \
-	done; \
-	$(CP) $(1) $(2)
 endef
 
 # file extension

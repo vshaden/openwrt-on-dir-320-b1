@@ -1,25 +1,40 @@
 #!/bin/sh
-# Copyright (C) 2010-2013 OpenWrt.org
+#
+# Copyright (C) 2010 OpenWrt.org
+#
+#
 
-. /lib/functions/leds.sh
 . /lib/ramips.sh
+
+status_led=""
+
+led_set_attr() {
+	[ -f "/sys/class/leds/$1/$2" ] && echo "$3" > "/sys/class/leds/$1/$2"
+}
+
+status_led_set_timer() {
+	led_set_attr $status_led "trigger" "timer"
+	led_set_attr $status_led "delay_on" "$1"
+	led_set_attr $status_led "delay_off" "$2"
+}
+
+status_led_on() {
+	led_set_attr $status_led "trigger" "none"
+	led_set_attr $status_led "brightness" 255
+}
+
+status_led_off() {
+	led_set_attr $status_led "trigger" "none"
+	led_set_attr $status_led "brightness" 0
+}
 
 get_status_led() {
 	case $(ramips_board_name) in
 	3g-6200n)
 		status_led="edimax:green:power"
 		;;
-	3g300m)
-		status_led="tenda:blue:ap"
-		;;
 	argus-atp52b)
 		status_led="argus-atp52b:green:run"
-		;;
-	br6524n)
-		status_led="edimax:blue:power"
-		;;
-	br6425)
-		status_led="edimax:green:power"
 		;;
 	dir-300-b1 | dir-600-b1 | dir-600-b2 | dir-615-h1 | dir-615-d | dir-620-a1 | dir-320-b1 | dir-620-d1)
 		status_led="d-link:green:status"
@@ -39,9 +54,6 @@ get_status_led() {
 	fonera20n)
 		status_led="fonera20n:green:power"
 		;;
-	rt-n13u)
-		status_led="rt-n13u:power"
-		;;
 	all0239-3g|\
 	hw550-3g)
 		status_led="hw550-3g:green:status"
@@ -55,8 +67,7 @@ get_status_led() {
 	nw718)
 		status_led="nw718:amber:cpu"
 		;;
-	omni-emb|\
-	omni-emb-hpm)
+	omni-emb)
 		status_led="emb:green:status"
 		;;
 	psr-680w)
@@ -108,9 +119,6 @@ get_status_led() {
 	wr512-3gn)
 		status_led="wr512:green:wps"
 		;;
-	mzk-w300nh2)
-		status_led="mzkw300nh2:green:power"
-		;;
 	ur-336un)
 		status_led="ur336:green:wps"
 		;;
@@ -126,10 +134,10 @@ set_state() {
 	case "$1" in
 	preinit)
 		insmod leds-gpio
-		status_led_blink_preinit
+		status_led_set_timer 200 200
 		;;
 	failsafe)
-		status_led_blink_failsafe
+		status_led_set_timer 50 50
 		;;
 	done)
 		status_led_on

@@ -7,7 +7,7 @@ init_devpts() {
 }
 
 do_mount_devpts() {
-    mount -o noatime -t devpts devpts /dev/pts
+    mount devpts /dev/pts -t devpts
 }
 
 boot_hook_add preinit_essential init_devpts

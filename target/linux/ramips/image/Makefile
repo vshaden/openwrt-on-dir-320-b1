@@ -163,19 +163,6 @@ define BuildFirmware/ARGUS_ATP52B
 	$(call BuildFirmware/Generic,$(1),$(2),board=$(3) $(call mkmtd/phys,$(mtdlayout_argus_atp52b)),$(mtd_argus_atp52b_kernel_part_size),$(mtd_argus_atp52b_rootfs_part_size))
 endef
 
-# djh - Note all of these are marked Read-Only for now
-mtdlayout_broadway=192k(bootloader)ro,64k(config)ro,64k(factory)ro,1024k(kernel)ro,6720k(rootfs),7744k@0x50000(firmware)
-mtd_broadway_kernel_part_size=1048576
-mtd_broadway_rootfs_part_size=6881280
-define BuildFirmware/BROADWAY
-	$(call BuildFirmware/Generic,$(1),$(2),$(call mkcmdline,$(3),$(4),$(5)) $(call mkmtd/$(6),$(mtdlayout_broadway)),$(mtd_broadway_kernel_part_size),$(mtd_broadway_rootfs_part_size),Broadway Kernel Image,factory.bin)
-	$(call BuildFirmware/Generic,$(1),$(2),$(call mkcmdline,$(3),$(4),$(5)) $(call mkmtd/$(6),$(mtdlayout_broadway)),$(mtd_broadway_kernel_part_size),$(mtd_broadway_rootfs_part_size))
-endef
-
-define BuildFirmware/BROADWAY/initramfs
-	$(call BuildFirmware/Generic/initramfs,$(1),$(2),$(call mkcmdline,$(3),$(4),$(5)) $(call mkmtd/$(6),$(mtdlayout_broadway)))
-endef
-
 define BuildFirmware/Buffalo
 	$(call MkImageLzma,$(2),$(3))
 	$(call Sysupgrade/KRuImage,$(1),$(2),$(4),$(5))
@@ -300,10 +287,6 @@ endef
 
 define BuildFirmware/FONERA20N/initramfs
 	$(call BuildFirmware/GENERIC_8M/initramfs,$(1),fonera20n,FONERA20N,ttyS1,57600,phys)
-endef
-
-define BuildFirmware/RT-N13U
-	$(call BuildFirmware/GENERIC_8M,$(1),rt-n13u,RT-N13U,ttyS1,57600,phys)
 endef
 
 mtdlayout_nw718=192k(u-boot)ro,128k(config)ro,64k(factory)ro,896k(kernel),2816k(rootfs),3712k@0x60000(firmware)
@@ -527,10 +510,6 @@ define Image/Build/Profile/BC2
 	$(call Image/Build/Template/$(fs_squash)/$(1),GENERIC_8M,bc2,BC2,ttyS1,57600,phys)
 endef
 
-define Image/Build/Profile/BROADWAY
-	$(call Image/Build/Template/$(fs_squash)/$(1),BROADWAY,broadway,BROADWAY,ttyS1,57600,phys)
-endef
-
 define Image/Build/Profile/CARAMBOLA
 	$(call Image/Build/Template/$(fs_squash)/$(1),GENERIC_8M,carambola,CARAMBOLA,ttyS1,115200,phys)
 endef
@@ -561,16 +540,6 @@ define Image/Build/Profile/DIR620D1
 endef
 #########################################################################################
 
-#########################################################################################
-define Image/Build/Profile/DIR320B1
-        $(call Image/Build/Template/$(fs_squash)/$(1),DIR320B1,dir-320-b1,DIR-320-B1)
-endef
-
-define Image/Build/Profile/DIR620D1
-        $(call Image/Build/Template/$(fs_squash)/$(1),DIR620D1,dir-620-d1,DIR-620-D1)
-endef
-#########################################################################################
-
 define Image/Build/Profile/ESR9753
 	$(call Image/Build/Template/$(fs_squash)/$(1),GENERIC_4M,esr-9753,ESR-9753,ttyS1,57600,phys)
 endef
@@ -585,10 +554,6 @@ endef
 
 define Image/Build/Profile/FONERA20N
 	$(call Image/Build/Template/$(fs_squash)/$(1),FONERA20N)
-endef
-
-define Image/Build/Profile/RT-N13U
-	$(call Image/Build/Template/$(fs_squash)/$(1),RT-N13U)
 endef
 
 define Image/Build/Profile/FREESTATION5
@@ -700,20 +665,18 @@ define Image/Build/Profile/Default
 	$(call Image/Build/Profile/ALL5002,$(1))
 	$(call Image/Build/Profile/ARGUS_ATP52B,$(1))
 	$(call Image/Build/Profile/BC2,$(1))
-	$(call Image/Build/Profile/BROADWAY,$(1))
 	$(call Image/Build/Profile/CARAMBOLA,$(1))
 	$(call Image/Build/Profile/DIR300B1,$(1))
 	$(call Image/Build/Profile/DIR615H1,$(1))
 	$(call Image/Build/Profile/DAP1350,$(1))
-	###################################################
+###################################################
 	$(call Image/Build/Profile/DIR320B1,$(1))
 	$(call Image/Build/Profile/DIR620D1,$(1))
-	###################################################
+###################################################
 	$(call Image/Build/Profile/ESR9753,$(1))
 	$(call Image/Build/Profile/F5D8235V2,$(1))
 	$(call Image/Build/Profile/RTN10PLUS,$(1))
 	$(call Image/Build/Profile/FONERA20N,$(1))
-	$(call Image/Build/Profile/RT-N13U,$(1))
 	$(call Image/Build/Profile/FREESTATION5,$(1))
 	$(call Image/Build/Profile/HW5503G,$(1))
 	$(call Image/Build/Profile/MOFI35003GN,$(1))
