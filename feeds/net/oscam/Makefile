@@ -54,6 +54,7 @@ define Package/oscam/install
 	$(INSTALL_CONF) ./files/oscam.server $(1)/etc/oscam/
 	$(INSTALL_CONF) ./files/oscam.user $(1)/etc/oscam/
 	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/oscam.init $(1)/etc/init.d/oscam
 endef
 
 define Package/list-smargo/install
