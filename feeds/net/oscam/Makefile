@@ -9,15 +9,16 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=oscam
-PKG_REV:=8025
-PKG_VER:=2013-01-01
-PKG_VERSION:=$(PKG_VER)-$(PKG_REV)
 PKG_RELEASE:=1
+
+PKG_SOURCE_URL:=http://www.streamboard.tv/svn/oscam/trunk
+PKG_REV:=$(shell svn info ${PKG_SOURCE_URL} | sed -ne's/^Last Changed Rev: //p')
+PKG_VER:=$(shell svn info ${PKG_SOURCE_URL} | grep -oE [0-9]{4}-[0-9]{2}-[0-9]{2})
+PKG_VERSION:=$(PKG_VER)-$(PKG_REV)
 
 PKG_SOURCE_PROTO:=svn
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-PKG_SOURCE_URL:=http://www.streamboard.tv/svn/oscam/trunk
 PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
@@ -40,7 +41,6 @@ endef
 MAKE_FLAGS += USE_LIBUSB=1 USE_LIBCRYPTO=1 USE_SSL=1 OSCAM_BIN=Distribution/oscam LIST_SMARGO_BIN=Distribution/list-smargo
 
 define Package/oscam/conffiles
-	/etc/config/epg
 	/etc/oscam/oscam.conf
 	/etc/oscam/oscam.server
 	/etc/oscam/oscam.user
