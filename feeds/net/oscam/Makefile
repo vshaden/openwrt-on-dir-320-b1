@@ -38,6 +38,11 @@ define Package/list-smargo
   DEPENDS:=oscam
 endef
 
+define Build/Prepare
+	$(call Build/Prepare/Default)
+	cd $(PKG_BUILD_DIR);$(PKG_BUILD_DIR)/config.sh --enable all --disable LEDSUPPORT --disable LCDSUPPORT
+endef
+
 MAKE_FLAGS += USE_LIBUSB=1 USE_LIBCRYPTO=1 USE_SSL=1 OSCAM_BIN=Distribution/oscam LIST_SMARGO_BIN=Distribution/list-smargo
 
 define Package/oscam/conffiles
