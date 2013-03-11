@@ -97,8 +97,7 @@ private_key:depends("cert_nv", cert_nv.disabled)
 private_key_passwd = section:taboption("general", Value, "private_key_passwd", translate("Private key password"))
 private_key_passwd:depends("use_nv", use_nv.disabled)
 
-log_file
-event_script
+log_file = event_script
 
 defaultroute = section:taboption("advanced", Flag, "defaultroute",
 	translate("Use default gateway"),
