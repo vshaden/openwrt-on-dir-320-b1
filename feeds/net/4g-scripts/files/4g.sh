@@ -49,7 +49,7 @@ local opt="/etc/gctwimax/gctwimax.conf"
 			sleep 10			
 			logger "4G: QMI-CLIENT START. DEVICE=$device, APN=$apn"		
 #			qmicli -d "$device" --wds-start-network="$apn" --client-no-release-cid &
-			uqmi --device=/dev/cdc-wdm0 --keep-client-id wds  --start-network $apn &
+			uqmi -d "$device" --keep-client-id wds  --start-network $apn &
 		;;
 		ncm)
 			json_get_var device device
