@@ -9,7 +9,21 @@ function proto.is_installed(self)
 end
 
 function proto.opkg_package(self)
-	return "4g-support"
+	return "4g"
 end
 
+function proto.get_interfaces(self)
+	return nil
+end
+
+function proto.is_floating(self)
+	return true
+end
+
+function proto.is_virtual(self)
+	return true
+end
+
+
 luci.model.network:register_pattern_virtual("^%s-%%w" % "4g")
+
