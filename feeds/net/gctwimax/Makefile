@@ -22,7 +22,7 @@ define Package/gctwimax
   SECTION:=net
   CATEGORY:=Network
   TITLE:=gctwimax user space wimax driver and connection manager
-  DEPENDS:=+kmod-tun +libdbus +libusb-1.0 +libopenssl +libeap +zlib
+  DEPENDS:=+kmod-tun +libdbus +libusb-1.0 +libopenssl +libeap +zlib +4g-scripts
   URL:=http://code.google.com/p/gctwimax/
 endef
 
