@@ -1,0 +1,334 @@
+menu "Addons"
+	depends on PACKAGE_oscam
+
+config OSCAM_ADDON_WEBIF
+	bool
+	prompt "Web Interface"
+	default y
+	help
+		"Web Interface"
+
+config OSCAM_ADDON_TOUCH
+	bool
+	prompt "Touch Web Interface"
+	default y
+	help
+		"Touch Web Interface"
+
+config OSCAM_ADDON_HAVE_DVBAPI
+	bool
+	prompt "DVB API"
+	default y
+	help
+		"DVB API"
+
+config OSCAM_ADDON_IRDETO_GUESSING
+	bool
+	prompt "Irdeto guessing"
+	default y
+	help
+		"Irdeto guessing"
+
+config OSCAM_ADDON_CS_ANTICASC
+	bool
+	prompt "Anti cascading"
+	default y
+	help
+		"Anti cascading"
+
+config OSCAM_ADDON_WITH_DEBUG
+	bool
+	prompt "Debug messages"
+	default y
+	help
+		"Debug messages"
+
+config OSCAM_ADDON_MODULE_MONITOR
+	bool
+	prompt "Monitor"
+	default y
+	help
+		"Monitor"
+
+config OSCAM_ADDON_WITH_SSL
+	bool
+	prompt "OpenSSL support"
+	default y
+	help
+		"OpenSSL support"
+
+config OSCAM_ADDON_WITH_LB
+	bool
+	prompt "Loadbalancing"
+	default y
+	help
+		"Loadbalancing"
+
+config OSCAM_ADDON_CS_CACHEEX
+	bool
+	prompt "Cache exchange"
+	default y
+	help
+		"Cache exchange"
+
+config OSCAM_ADDON_CW_CYCLE_CHECK
+	bool
+	prompt "CW Cycle Check"
+	default y
+	help
+		"CW Cycle Check"
+
+config OSCAM_ADDON_LCDSUPPORT
+	bool
+	prompt "LCD support"
+	default n
+	help
+		"LCD support"
+
+config OSCAM_ADDON_LEDSUPPORT
+	bool
+	prompt "LED support"
+	default n
+	help
+		"LED support"
+
+config OSCAM_ADDON_IPV6SUPPORT
+	bool
+	prompt "IPv6 support (experimental)"
+	default n
+	help
+		"IPv6 support (experimental)"
+
+endmenu
+
+menu "Protocols"
+	depends on PACKAGE_oscam
+
+config OSCAM_MODULE_CAMD33
+	bool
+	prompt "camd 3.3"
+	default y
+	help
+		"camd 3.3"
+
+config OSCAM_MODULE_CAMD35
+	bool
+	prompt "camd 3.5 UDP"
+	default y
+	help
+		"camd 3.5 UDP"
+
+config OSCAM_MODULE_CAMD35_TCP
+	bool
+	prompt "camd 3.5 TCP"
+	default y
+	help
+		"camd 3.5 TCP"
+
+config OSCAM_MODULE_NEWCAMD
+	bool
+	prompt "newcamd"
+	default y
+	help
+		"newcamd"
+
+config OSCAM_MODULE_CCCAM
+	bool
+	prompt "CCcam"
+	default y
+	help
+		"CCcam"
+
+config OSCAM_MODULE_CCCSHARE
+	bool
+	prompt "CCcam share"
+	default y
+	help
+		"CCcam share"
+
+config OSCAM_MODULE_GBOX
+	bool
+	prompt "gbox"
+	default y
+	help
+		"gbox"
+
+config OSCAM_MODULE_RADEGAST
+	bool
+	prompt "radegast"
+	default y
+	help
+		"radegast"
+
+config OSCAM_MODULE_SERIAL
+	bool
+	prompt "Serial"
+	default y
+	help
+		"Serial"
+
+config OSCAM_MODULE_CONSTCW
+	bool
+	prompt "constant CW"
+	default y
+	help
+		"constant CW"
+
+config OSCAM_MODULE_PANDORA
+	bool
+	prompt "Pandora"
+	default y
+	help
+		"Pandora"
+
+config OSCAM_MODULE_GHTTP
+	bool
+	prompt "Ghttp"
+	default y
+	help
+		"Ghttp"
+
+endmenu
+
+menu "Cardreaders"
+	depends on PACKAGE_oscam
+
+config OSCAM_CARDREADER_PHOENIX
+	bool
+	prompt "Phoenix/mouse"
+	default y
+	help
+		"Phoenix/mouse"
+
+config OSCAM_CARDREADER_INTERNAL
+	bool
+	prompt "Internal (Sci,Azbox,Cool)"
+	default y
+	help
+		"Internal (Sci,Azbox,Cool)"
+
+config OSCAM_CARDREADER_SC8IN1
+	bool
+	prompt "SC8in1"
+	default y
+	help
+		"SC8in1"
+
+config OSCAM_CARDREADER_MP35
+	bool
+	prompt "AD-Teknik MP 3.6/USB Phoenix"
+	default y
+	help
+		"AD-Teknik MP 3.6/USB Phoenix"
+
+config OSCAM_CARDREADER_SMARGO
+	bool
+	prompt "Argolis Smargo SmartCARDREADER"
+	default y
+	help
+		"Argolis Smargo SmartCARDREADER"
+
+config OSCAM_CARDREADER_DB2COM
+	bool
+	prompt "dbox2"
+	default y
+	help
+		"dbox2"
+
+config OSCAM_CARDREADER_STAPI
+	bool
+	prompt "STAPI"
+	default y
+	help
+		"STAPI"
+
+endmenu
+
+menu "Readers"
+	depends on PACKAGE_oscam
+
+config OSCAM_READER_NAGRA
+	bool
+	prompt "Nagravision"
+	default y
+	help
+		"Nagravision"
+
+config OSCAM_READER_IRDETO
+	bool
+	prompt "Irdeto"
+	default y
+	help
+		"Irdeto"
+
+config OSCAM_READER_CONAX
+	bool
+	prompt "Conax"
+	default y
+	help
+		"Conax"
+
+config OSCAM_READER_CRYPTOWORKS
+	bool
+	prompt "Cryptoworks"
+	default y
+	help
+		"Cryptoworks"
+
+config OSCAM_READER_SECA
+	bool
+	prompt "Seca"
+	default y
+	help
+		"Seca"
+
+config OSCAM_READER_VIACCESS
+	bool
+	prompt "Viaccess"
+	default y
+	help
+		"Viaccess"
+
+config OSCAM_READER_VIDEOGUARD
+	bool
+	prompt "NDS Videoguard"
+	default y
+	help
+		"NDS Videoguard"
+
+config OSCAM_READER_DRE
+	bool
+	prompt "DRE Crypt"
+	default y
+	help
+		"DRE Crypt"
+
+config OSCAM_READER_TONGFANG
+	bool
+	prompt "Tongfang"
+	default y
+	help
+		"Tongfang"
+
+config OSCAM_READER_BULCRYPT
+	bool
+	prompt "Bulcrypt"
+	default y
+	help
+		"Bulcrypt"
+
+config OSCAM_READER_GRIFFIN
+	bool
+	prompt "Griffin"
+	default y
+	help
+		"Griffin"
+
+config OSCAM_READER_DGCRYPT
+	bool
+	prompt "DGCrypt"
+	default y
+	help
+		"DGCrypt"
+
+endmenu

@@ -30,20 +30,123 @@ define Package/oscam
   TITLE:=Open Source Conditional Access Module
   URL:=http://www.streamboard.tv/oscam/wiki/BuildingOscam
   DEPENDS:=+libopenssl +libusb-1.0
+  MENU:=1
+endef
+
+define Package/oscam/config
+  source "$(SOURCE)/Config.in"
 endef
 
 define Package/list-smargo
   $(call Package/oscam)
   TITLE:=Smargo reader support
-  DEPENDS:=oscam
+  DEPENDS:=oscam @OSCAM_CARDREADER_SMARGO
+  MENU:=0
 endef
+
+###################### CONFIGURE FEATURES ########################################
+ADDONS_LIST:=WEBIF \
+		TOUCH \
+		HAVE_DVBAPI \
+		IRDETO_GUESSING \
+		CS_ANTICASC \
+		WITH_DEBUG \
+		MODULE_MONITOR \
+		WITH_SSL \
+		WITH_LB \
+		CS_CACHEEX \
+		CW_CYCLE_CHECK \
+		LCDSUPPORT \
+		LEDSUPPORT \
+		IPV6SUPPORT
+
+ADDONS_ENABLED:=
+define addons
+	ifeq ($(CONFIG_OSCAM_ADDON_$(1)),y)
+		ADDONS_ENABLED += $(1)
+	endif
+endef
+$(foreach addon,$(ADDONS_LIST),$(eval $(call addons,$(addon))))
+
+PROTOCOLS_LIST:=CAMD33 \
+		CAMD35 \
+		CAMD35_TCP \
+		NEWCAMD \
+		CCCAM \
+		CCCSHARE \
+		GBOX \
+		RADEGAST \
+		SERIAL \
+		CONSTCW \
+		PANDORA \
+		GHTTP
+
+PROTOCOLS_ENABLED:=
+define protocols
+	ifeq ($(CONFIG_OSCAM_MODULE_$(1)),y)
+		PROTOCOLS_ENABLED += MODULE_$(1)
+	endif
+endef
+$(foreach protocol,$(PROTOCOLS_LIST),$(eval $(call protocols,$(protocol))))
+
+READERS_LIST:=NAGRA \
+		IRDETO \
+		CONAX \
+		CRYPTOWORKS \
+		SECA \
+		VIACCESS \
+		VIDEOGUARD \
+		DRE \
+		TONGFANG \
+		BULCRYPT \
+		GRIFFIN \
+		DGCRYPT
+
+READERS_ENABLED:=
+define readers
+	ifeq ($(CONFIG_OSCAM_READER_$(1)),y)
+		READERS_ENABLED += READER_$(1)
+	endif
+endef
+$(foreach reader,$(READERS_LIST),$(eval $(call readers,$(reader))))
+
+CARDREADERS_LIST:=HOENIX \
+		NTERNAL \
+		SC8IN1 \
+		MP35 \
+		SMARGO \
+		DB2COM \
+		STAPI
+
+CARDREADERS_ENABLED:=
+define cardreaders
+	ifeq ($(CONFIG_OSCAM_CARDREADER_$(1)),y)
+		CARDREADERS_ENABLED += CARDREADER_$(1)
+	endif
+endef
+$(foreach cardreader,$(CARDREADERS_LIST),$(eval $(call cardreaders,$(cardreader))))
+
+ifneq ($(CARDREADERS_ENABLED),)
+	MAKE_FLAGS += USE_LIBUSB=1
+endif
+
+ifeq ($(CONFIG_OSCAM_ADDONS_WITH_SSL),y)
+	MAKE_FLAGS += USE_LIBCRYPTO=1 USE_SSL=1
+endif
+
+ifneq ($(CONFIG_PACKAGE_list_smargo),)
+	MAKE_FLAGS += LIST_SMARGO_BIN=Distribution/list-smargo
+endif
+######################################################################################
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	cd $(PKG_BUILD_DIR);$(PKG_BUILD_DIR)/config.sh --enable all --disable LEDSUPPORT --disable LCDSUPPORT
+	cd $(PKG_BUILD_DIR); \
+		$(PKG_BUILD_DIR)/config.sh --disable all		
+		$(PKG_BUILD_DIR)/config.sh --enable $(ADDONS_ENABLED) $(PROTOCOLS_ENABLED) $(READERS_ENABLED) $(CARDREADERS_ENABLED)
 endef
 
-MAKE_FLAGS += USE_LIBUSB=1 USE_LIBCRYPTO=1 USE_SSL=1 OSCAM_BIN=Distribution/oscam LIST_SMARGO_BIN=Distribution/list-smargo
+MAKE_FLAGS += OSCAM_BIN=Distribution/oscam
 
 define Package/oscam/conffiles
 	/etc/oscam/oscam.conf
