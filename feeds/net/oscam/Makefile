@@ -134,7 +134,7 @@ ifeq ($(CONFIG_OSCAM_ADDONS_WITH_SSL),y)
 	MAKE_FLAGS += USE_LIBCRYPTO=1 USE_SSL=1
 endif
 
-ifneq ($(CONFIG_PACKAGE_list_smargo),)
+ifneq ($(CONFIG_PACKAGE_list-smargo),)
 	MAKE_FLAGS += LIST_SMARGO_BIN=Distribution/list-smargo
 endif
 ######################################################################################
