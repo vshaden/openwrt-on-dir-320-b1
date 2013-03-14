@@ -1,3 +1,15 @@
+Package: 3ginfo
+Version: 1-1
+Depends: libc, ussd159, gnokii
+Source: feeds/custompackages/net/3ginfo
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 16554
+Filename: 3ginfo_1-1_ramips_24kec.ipk
+Size: 17116
+MD5Sum: faff3dadae020ff66e3e3ef8bd224156
+Description:  Web interface with information about your 3g/4g connection
+
 Package: 4g-scripts
 Version: 1-1
 Depends: libc, gctwimax, kmod-wimax-u200, libqmi
@@ -3351,20 +3363,6 @@ Size: 17589
 MD5Sum: b9d8dd1c38a911111b4ef79b9437ff2f
 Description:  IPv4/IPv6 firewall - shared xtables library
 
-Package: list-smargo
-Version: 2013-03-10-8523-1
-Depends: libc, oscam
-Source: feeds/custompackages/net/oscam
-SourceFile: oscam-2013-03-10-8523.tar.bz2
-SourceURL: http://www.streamboard.tv/svn/oscam/trunk
-Section: net
-Architecture: ramips_24kec
-Installed-Size: 2484
-Filename: list-smargo_2013-03-10-8523-1_ramips_24kec.ipk
-Size: 3093
-MD5Sum: 80e5f91f78523cb1cf16faf99e843c28
-Description:  Smargo reader support
-
 Package: lua
 Version: 5.1.5-1
 Depends: libc, liblua
@@ -4018,20 +4016,6 @@ Description:  Lightweight package management system
  
  opkg knows how to install both .ipk and .deb packages.
 
-Package: oscam
-Version: 2013-03-10-8523-1
-Depends: libc, libopenssl, libusb-1.0
-Source: feeds/custompackages/net/oscam
-SourceFile: oscam-2013-03-10-8523.tar.bz2
-SourceURL: http://www.streamboard.tv/svn/oscam/trunk
-Section: net
-Architecture: ramips_24kec
-Installed-Size: 391580
-Filename: oscam_2013-03-10-8523-1_ramips_24kec.ipk
-Size: 391602
-MD5Sum: 0853982f28c16eeeee2cd2735ae4f06c
-Description:  Open Source Conditional Access Module
-
 Package: ppp-mod-pppoe
 Version: 2.4.5-9
 Depends: libc, kmod-pppoe
@@ -4371,6 +4355,18 @@ Size: 18252
 MD5Sum: 455b98515f9fefab957bce5f77429e1b
 Description:  A mode switching tool for controlling
  "flip flop" (multiple device) USB gear.
+
+Package: ussd159
+Version: 1-1
+Depends: libc
+Source: feeds/custompackages/net/ussd159
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 3423
+Filename: ussd159_1-1_ramips_24kec.ipk
+Size: 3970
+MD5Sum: 7bcaf5786fd8b090edcbc446e99f550a
+Description:  Small program for sending USSD requests.
 
 Package: wget
 Version: 1.14-1
