@@ -1,0 +1,8 @@
+NOTDETECTED="Устройств не обнаружено!"
+NODEVICE="Нет устройства"
+PINERROR="Ошибка PIN кода"
+CONNECTED="Подключен"
+CONNECT="Подключается"
+DISCONNECTED="Отключен"
+DISCONNECT="Отключается"
+NOINFO="Нет информации"

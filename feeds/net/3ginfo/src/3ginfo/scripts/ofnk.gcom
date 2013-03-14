@@ -1,0 +1,34 @@
+opengt
+ set com 115200n81
+ set comecho off
+ set senddelay 0.02
+ waitquiet 0.2 0.2
+
+ send "at+cmgf=0^m"
+ waitfor 5 "OK"
+ if % = -1 goto error
+
+ send "at+cscs=\"IRA\"^m"
+ waitfor 5 "OK"
+ if % = -1 goto error
+
+ send "AT+CUSD=1,\"aa180c3602\",15^m"
+ waitfor 5 "+CUSD:"
+ if % = -1 goto error
+
+ send "AT+CUSD=1,\"31\",15^m"
+ waitfor 5 "+CUSD:"
+ if % = -1 goto error
+
+ send "AT+CUSD=1,\"32\",15^m"
+ waitfor 5 "+CUSD:"
+ if % = -1 goto error
+
+ get 1 "^m" $s
+ print $s
+
+ exit 0
+
+:error
+ print "Problem operatora - brak możliwości sprawdzenia..."
+ exit 0
