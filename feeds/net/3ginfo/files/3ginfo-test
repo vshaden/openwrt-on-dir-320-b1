@@ -4,7 +4,7 @@
 
 DEVICE=$(uci -q get 3ginfo.@3ginfo[0].device)
 if [ ! -e $DEVICE ]; then
-	echo "Brak urzadzenia $DEVICE!"
+	echo "Нет устройства $DEVICE!"
 	exit 0
 fi
 
