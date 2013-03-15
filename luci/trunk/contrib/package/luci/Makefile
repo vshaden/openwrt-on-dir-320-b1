@@ -434,6 +434,9 @@ $(eval $(call application,vnstat,LuCI Support for VnStat,\
 $(eval $(call application,radvd,LuCI Support for Radvd,\
 	+PACKAGE_luci-app-radvd:radvd))
 
+$(eval $(call application,3ginfo, LuCI Support for 3ginfo,\
+	+PACKAGE_luci-app-3ginfo:3ginfo))
+
 $(eval $(call application,ahcp,LuCI Support for AHCPd,\
 	+PACKAGE_luci-app-ahcp:ahcpd))
 
