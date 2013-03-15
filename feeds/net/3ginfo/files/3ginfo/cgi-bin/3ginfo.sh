@@ -7,7 +7,6 @@
 RES="/usr/share/3ginfo"
 
 LANG=$(uci -q get 3ginfo.@3ginfo[0].language)
-#[ "x$LANG" = "x" ] && LANG="pl"
 [ "x$LANG" = "x" ] && LANG="ru"
 
 getpath() {
@@ -269,23 +268,7 @@ if [ "x$CID" != "x" ]; then
 	fi
 
 	CID_NUM=$(printf %d 0x$CID)
-	if [ $TOTXT -eq 0 ]; then
-		case $COPS_NUM in
-			26001*) CID="<a href=\"http://btsearch.pl/szukaj.php?search="$CID"h\&amp;siec=3\&amp;mode=adv\">$CID</a>";;
-			26002*) CID="<a href=\"http://btsearch.pl/szukaj.php?search="$CID"h\&amp;siec=1\&amp;mode=adv\">$CID</a>";;
-			26003*) CID="<a href=\"http://btsearch.pl/szukaj.php?search="$CID"h\&amp;siec=2\&amp;mode=adv\">$CID</a>";;
-			26006*) CID="<a href=\"http://btsearch.pl/szukaj.php?search="$CID"h\&amp;siec=4\&amp;mode=adv\">$CID</a>";;
-			26016*) CID="<a href=\"http://btsearch.pl/szukaj.php?search="$CID"h\&amp;siec=7\&amp;mode=adv\">$CID</a>";;
-			26017*) CID="<a href=\"http://btsearch.pl/szukaj.php?search="$CID"h\&amp;siec=8\&amp;mode=adv\">$CID</a>";;
-		esac
-	fi
 
-	CLF=$(uci -q get 3ginfo.@3ginfo[0].clf)
-	if [ -e "$CLF" ]; then
-		PAT="^$COPS_NUM;0X"$(printf %04X $CID_NUM)";0X"$(printf %04X $LAC_NUM)";"
-		GDZIE="<a href=\"http://maps.google.pl/?t=k\&z=17\&q="$(awk -F";" '/'$PAT'/ {printf $5","$6}' "$CLF")"\">"$(awk -F";" '/'$PAT'/ {print $8}' "$CLF")"</a>"
-	fi
-else
 	LCID="-"
 	LCID_NUM="-"
 	RNC="-"
