@@ -32,7 +32,7 @@ if try_devices then
 end
 dev.default = ""
 
-pin = m:section(Value, "pincode", translate("PIN code (only for 3g), optional")
+pin = m:section(Value, "pincode", translate("PIN code (only for 3g), optional"))
 pin.default = ""
 
 port = m:section(Value, "http_port", translate("Port for HTTP connections"))
