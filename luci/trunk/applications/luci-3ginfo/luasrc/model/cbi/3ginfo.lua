@@ -1,6 +1,6 @@
 --[[
 
-LuCI p910nd
+LuCI 3ginfo
 (c) 2008 Yanira <forum-2008@email.de>
 (c) 2012 Jo-Philipp Wich <jow@openwrt.org>
 
