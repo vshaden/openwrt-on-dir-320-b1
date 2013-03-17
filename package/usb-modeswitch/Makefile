@@ -27,7 +27,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/usb-modeswitch
   SECTION:=utils
   CATEGORY:=Utilities
-  DEPENDS:=+libusb-1.0
+  DEPENDS:=+libusb-1.0 +libusb
   TITLE:=USB ModeSwitch
   URL:=http://www.draisberghof.de/usb_modeswitch/
 endef
