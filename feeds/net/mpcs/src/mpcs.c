@@ -1642,29 +1642,23 @@ void get_cw(ECM_REQUEST *er)
     // moved behind the check routines, because newcamd-ECM will fail if ecm is converted before
     {
       int n;
-      ulong mask_all=0xFFFF;
       TUNTAB *ttab;
       ttab=&client[cs_idx].ttab;
       for (n=0; (n<CS_MAXCAIDTAB); n++)
-      if ((er->caid==ttab->bt_caidfrom[n]) && ((er->srvid==ttab->bt_srvid[n]) || (ttab->bt_srvid[n])==mask_all))
+      if ((er->caid==ttab->bt_caidfrom[n]) && (er->srvid==ttab->bt_srvid[n]))
       {
         int l;
-        char hack_n3[13]={0x70, 0x51, 0xc7, 0x00, 0x00, 0x00, 0x01, 0x10, 0x10, 0x00, 0x87, 0x12, 0x07};
-        char hack_n2[13]={0x70, 0x51, 0xc9, 0x00, 0x00, 0x00, 0x01, 0x10, 0x10, 0x00, 0x48, 0x12, 0x07};
+        char hack[13]={0x70, 0x51, 0xc7, 0x00, 0x00, 0x00, 0x01, 0x10, 0x10, 0x00, 0x87, 0x12, 0x07};
         er->caid=ttab->bt_caidto[n];
         er->prid=0;
         er->l=(er->ecm[2]+3);
         memmove(er->ecm+14, er->ecm+4, er->l-1);
-	if (er->l > 0x88)
-	{
-	   memcpy(er->ecm+1, hack_n3, 13);
-	   if (er->ecm[0]==0x81) er->ecm[12]+= 1;
-	}
-	else memcpy(er->ecm+1, hack_n2, 13);
+        memcpy(er->ecm+1, hack, 13);
         er->l+=10;
         er->ecm[2]=er->l-3;
         cs_debug("ecm converted from: 0x%X to betacrypt: 0x%X for service id:0x%X",
 	 ttab->bt_caidfrom[n], ttab->bt_caidto[n], ttab->bt_srvid[n]);
+        if (er->ecm[0]==0x81) er->ecm[12]+= 1;
       }
     }
 
