@@ -60,5 +60,3 @@ Betatunnel    = liste der caid's und service id's die intern mit einem
                   (trifft bei KDG auf die beiden P-HD Kanaele zu)
                   Betatunnel = 1801.0081:1722,1801.0082:1722
                   (trifft bei SAT Empfang auf die beiden P-HD Kanaele zu)
-		  Betatunnel = 1801.797D:1722
-		  (trifft bei KABELim Unitymedia Netz fuer P-HD zu)

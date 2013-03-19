@@ -34,9 +34,26 @@ endef
 define Build/Configure
 endef
 
+define Build/Compile
+	$(MAKE) -f Maketype \
+		-C $(PKG_BUILD_DIR) \
+		OS_LIBS="" \
+		OS_CULI="-lncurses" \
+		OS_PTLI="-lpthread" \
+		DS_OPTS="-O2 -DOS_LINUX" \
+		DS_CFLAGS="-c" \
+		DS_LDFLAGS="" \
+		DS_ARFLAGS="-rvsl" \
+		DS_CC=$(TARGET_CROSS)gcc \
+		DS_AR=$(TARGET_CROSS)ar \
+		DS_LD=$(TARGET_CROSS)ld \
+		DS_RL=$(TARGET_CROSS)ranlib \
+		DS_ST=$(TARGET_CROSS)strip
+endef
+
 define Package/mpcs/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/Distribution/mpcs-pre_$(PKG_VERSION)_Community_edition-i386-pc-linux $(1)/usr/sbin/mpcs
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/Distribution/mpcs-- $(1)/usr/sbin/mpcs
 	$(INSTALL_DIR) $(1)/etc/mpcs
 	$(INSTALL_CONF) $(PKG_BUILD_DIR)/Distribution/mpcs.{ac,cert,conf,guess,ird,server,services,srvid,user} $(1)/etc/mpcs/
 	$(INSTALL_DIR) $(1)/etc/init.d
