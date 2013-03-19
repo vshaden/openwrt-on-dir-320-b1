@@ -90,7 +90,7 @@ Description:  Provides support for 6to4 tunnels in /etc/config/network.
  configuration details.
 
 Package: base-files
-Version: 117-r107
+Version: 117-r115
 Depends: libc, netifd
 Provides: 
 Source: package/base-files
@@ -100,10 +100,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 33739
-Filename: base-files_117-r107_ramips.ipk
-Size: 34554
-MD5Sum: 310191bfef91aaec19288caf619a75f5
+Installed-Size: 33738
+Filename: base-files_117-r115_ramips.ipk
+Size: 34538
+MD5Sum: 0dc113a9b1b8855237b8c19240216752
 Description:  This package contains a base filesystem and system scripts for OpenWrt.
 
 Package: busybox
@@ -515,10 +515,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 14906
+Installed-Size: 14894
 Filename: kmod-aoe_3.3.8-1_ramips.ipk
-Size: 15619
-MD5Sum: 9d0257cb9e9dee5dc5463929ee4b0c5c
+Size: 15594
+MD5Sum: be822e44c1998855a17d6ae16969aa48
 Description:  Kernel support for ATA over Ethernet
 
 Package: kmod-arptables
@@ -532,10 +532,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 8089
+Installed-Size: 8091
 Filename: kmod-arptables_3.3.8-1_ramips.ipk
-Size: 8862
-MD5Sum: 05d9d20dabc39f434cd9ae6fb792da87
+Size: 8869
+MD5Sum: cac6fd26cb002df07e6a62cb9c91ed09
 Description:  Kernel modules for ARP firewalling
 
 Package: kmod-atm
@@ -549,10 +549,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 26337
+Installed-Size: 26334
 Filename: kmod-atm_3.3.8-1_ramips.ipk
-Size: 26992
-MD5Sum: 1ebc72033ec279c28372e390de89fb4c
+Size: 26995
+MD5Sum: 7a4c465604cf5daceb33f35cfc708fe4
 Description:  Kernel modules for ATM support
 
 Package: kmod-bluetooth
@@ -566,10 +566,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 125991
+Installed-Size: 125992
 Filename: kmod-bluetooth_3.3.8-1_ramips.ipk
-Size: 126582
-MD5Sum: d5cb666fe58257b09b5077cd2b34d07c
+Size: 126581
+MD5Sum: 0d2702d691c187c1007d5fc4355f7202
 Description:  Kernel support for Bluetooth devices
 
 Package: kmod-button-hotplug
@@ -583,10 +583,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 2928
+Installed-Size: 2927
 Filename: kmod-button-hotplug_3.3.8-3_ramips.ipk
-Size: 3670
-MD5Sum: c0e25e7b584e7f0d20435f91ae6aa8f1
+Size: 3669
+MD5Sum: e0fb2843aa11b5e8b26419de215e962b
 Description:  Kernel module to generate button hotplug events
 
 Package: kmod-cfg80211
@@ -600,10 +600,10 @@ Essential: no
 Priority: optional
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips
-Installed-Size: 98916
+Installed-Size: 98922
 Filename: kmod-cfg80211_3.3.8+2013-02-22-1_ramips.ipk
-Size: 99558
-MD5Sum: 2023406983ea2c6cddb09eda6391d4f3
+Size: 99536
+MD5Sum: 016e7021c006b6d926ac40e85381b1d6
 Description:  cfg80211 is the Linux wireless LAN (802.11) configuration API.
 
 Package: kmod-crypto-aes
@@ -617,10 +617,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 12557
+Installed-Size: 12551
 Filename: kmod-crypto-aes_3.3.8-1_ramips.ipk
-Size: 12761
-MD5Sum: cb3c76e483c565c9e3b2bc29c9af2ba1
+Size: 12767
+MD5Sum: 03f6e4e869d5722b8b08655ed76614e4
 Description:  AES cipher CryptoAPI module
 
 Package: kmod-crypto-arc4
@@ -634,10 +634,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1031
+Installed-Size: 1023
 Filename: kmod-crypto-arc4_3.3.8-1_ramips.ipk
-Size: 1806
-MD5Sum: e9c56eed129cf2de016ce1df49e7b5f9
+Size: 1792
+MD5Sum: 9f2cd8bc87487d5f2b2b75a5e5b48c49
 Description:  ARC4 (RC4) cipher CryptoAPI module
 
 Package: kmod-crypto-core
@@ -653,8 +653,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 7649
 Filename: kmod-crypto-core_3.3.8-1_ramips.ipk
-Size: 8413
-MD5Sum: 3118100c3949de509b5934b6c0f4bef1
+Size: 8414
+MD5Sum: b6044146c3784e6c12cae30579f2e721
 Description:  Core CryptoAPI modules
 
 Package: kmod-crypto-des
@@ -668,10 +668,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 8884
+Installed-Size: 8880
 Filename: kmod-crypto-des_3.3.8-1_ramips.ipk
-Size: 9382
-MD5Sum: 0c77c0aad7b86a9f1a93e628566afe92
+Size: 9404
+MD5Sum: 6be4edf6fde9f428685030e69d846bd4
 Description:  DES/3DES cipher CryptoAPI module
 
 Package: kmod-crypto-ecb
@@ -685,10 +685,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1634
+Installed-Size: 1633
 Filename: kmod-crypto-ecb_3.3.8-1_ramips.ipk
-Size: 2423
-MD5Sum: 24484daf330232a3d11f1b09416ec2b2
+Size: 2416
+MD5Sum: f0aac4718ca50adeb63c0a2feb8fc759
 Description:  Electronic CodeBook CryptoAPI module
 
 Package: kmod-crypto-hash
@@ -702,10 +702,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 5856
+Installed-Size: 5859
 Filename: kmod-crypto-hash_3.3.8-1_ramips.ipk
-Size: 6614
-MD5Sum: 77dc48de5b6737a1014226d70121b240
+Size: 6611
+MD5Sum: 52cee58654af040319f40174f0c9a625
 Description:  CryptoAPI hash support
 
 Package: kmod-crypto-hmac
@@ -719,10 +719,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 2141
+Installed-Size: 2142
 Filename: kmod-crypto-hmac_3.3.8-1_ramips.ipk
-Size: 2927
-MD5Sum: cacef69cfc2c6bd230ce1de0713417a1
+Size: 2925
+MD5Sum: 7eb0f73383e677af6c8ac64c85f759be
 Description:  HMAC digest CryptoAPI module
 
 Package: kmod-crypto-manager
@@ -736,10 +736,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 10947
+Installed-Size: 10945
 Filename: kmod-crypto-manager_3.3.8-1_ramips.ipk
-Size: 11692
-MD5Sum: 97695ab5e0c5859c10c41989794c2ca0
+Size: 11699
+MD5Sum: 5f622100747bbf882f43b1c6108739dd
 Description:  CryptoAPI algorithm manager
 
 Package: kmod-crypto-md4
@@ -753,10 +753,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 2227
+Installed-Size: 2222
 Filename: kmod-crypto-md4_3.3.8-1_ramips.ipk
-Size: 2985
-MD5Sum: 251806e4bf2d996f4459170508592e9b
+Size: 2981
+MD5Sum: 3145ebe7861362937b15d310ba438bc9
 Description:  MD4 digest CryptoAPI module
 
 Package: kmod-crypto-md5
@@ -772,8 +772,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 1360
 Filename: kmod-crypto-md5_3.3.8-1_ramips.ipk
-Size: 2149
-MD5Sum: a49c07386ef05590c8d09ceff3c18bc7
+Size: 2146
+MD5Sum: 128a8aa3d5adb84bedabb0b2cd7e1bdb
 Description:  MD5 digest CryptoAPI module
 
 Package: kmod-crypto-sha1
@@ -787,10 +787,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1580
+Installed-Size: 1579
 Filename: kmod-crypto-sha1_3.3.8-1_ramips.ipk
-Size: 2367
-MD5Sum: f538d33adc54ac8d52db136b1ed8f54a
+Size: 2366
+MD5Sum: e5f23f5f8b5d576b80ae9b8d2d470523
 Description:  SHA1 digest CryptoAPI module
 
 Package: kmod-ebtables-ipv4
@@ -804,10 +804,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 3912
+Installed-Size: 3911
 Filename: kmod-ebtables-ipv4_3.3.8-1_ramips.ipk
-Size: 4709
-MD5Sum: 213d047e5f0cd233c24c776c2a31cd8e
+Size: 4706
+MD5Sum: 5e64ae3553b31a3410302eedef246424
 Description:  This option adds the IPv4 support to ebtables, which allows basic
  IPv4 header field filtering, ARP filtering as well as SNAT, DNAT targets.
 
@@ -822,10 +822,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1674
+Installed-Size: 1673
 Filename: kmod-ebtables-ipv6_3.3.8-1_ramips.ipk
-Size: 2499
-MD5Sum: 7517070f75b66bd65563355f35a59aa2
+Size: 2492
+MD5Sum: 128843dc427616bbc7193a7cd7e4d649
 Description:  This option adds the IPv6 support to ebtables, which allows basic
  IPv6 header field filtering and target support.
 
@@ -840,10 +840,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 5325
+Installed-Size: 5326
 Filename: kmod-ebtables-watchers_3.3.8-1_ramips.ipk
-Size: 6122
-MD5Sum: 1d243c16132487303c1c50e1e1feda37
+Size: 6128
+MD5Sum: e96a2d005c04d3b70948fa48fddfa6b0
 Description:  This option adds the log watchers, that you can use in any rule
  in any ebtables table.
 
@@ -858,10 +858,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 16829
+Installed-Size: 16831
 Filename: kmod-ebtables_3.3.8-1_ramips.ipk
-Size: 17617
-MD5Sum: b69b39f5da98a136f265d7744d929d9c
+Size: 17633
+MD5Sum: 80a46cdfa5b856ddb533bfb41557e337
 Description:  ebtables is a general, extensible frame/packet identification
  framework. It provides you to do Ethernet
  filtering/NAT/brouting on the Ethernet bridge.
@@ -877,10 +877,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1683
+Installed-Size: 1682
 Filename: kmod-eeprom-93cx6_3.3.8-1_ramips.ipk
-Size: 2464
-MD5Sum: be229bc7297959a7bca589cef152a378
+Size: 2467
+MD5Sum: a408d20b8333669f7b359f8f5cba67ee
 Description:  Kernel module for EEPROM 93CX6 support
 
 Package: kmod-fs-cifs
@@ -894,10 +894,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 133952
+Installed-Size: 133957
 Filename: kmod-fs-cifs_3.3.8-1_ramips.ipk
-Size: 132598
-MD5Sum: c42a8714cfc30388a494f15deab6b48b
+Size: 132656
+MD5Sum: 54579a41b05fe5d389737b595256c05e
 Description:  Kernel module for CIFS support
 
 Package: kmod-fs-ext4
@@ -911,10 +911,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 177790
+Installed-Size: 177793
 Filename: kmod-fs-ext4_3.3.8-1_ramips.ipk
-Size: 178054
-MD5Sum: e600033197829d2e85f9a918147bf6d9
+Size: 178098
+MD5Sum: be3f507fa7b137d2f37206372aa1f59c
 Description:  Kernel module for EXT4 filesystem support
 
 Package: kmod-fs-hfs
@@ -930,8 +930,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 27231
 Filename: kmod-fs-hfs_3.3.8-1_ramips.ipk
-Size: 27870
-MD5Sum: 6807261578c13640f790f6eb21e75135
+Size: 27874
+MD5Sum: 64f455658e6fcb85f6f3c1947d89ee10
 Description:  Kernel module for HFS filesystem support
 
 Package: kmod-fs-hfsplus
@@ -945,10 +945,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 47846
+Installed-Size: 47853
 Filename: kmod-fs-hfsplus_3.3.8-1_ramips.ipk
-Size: 48424
-MD5Sum: 77abf17e5b8b8d59396e03222f952462
+Size: 48447
+MD5Sum: 5e7331ce132116b29f27cd29dee83335
 Description:  Kernel module for HFS+ filesystem support
 
 Package: kmod-fs-isofs
@@ -962,10 +962,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 17383
+Installed-Size: 17381
 Filename: kmod-fs-isofs_3.3.8-1_ramips.ipk
-Size: 18147
-MD5Sum: cb36e5615de29a6f35a1435d8d890fc5
+Size: 18164
+MD5Sum: 038a8d2c02571894bc47c1cc033acb4d
 Description:  Kernel module for ISO9660 filesystem support
 
 Package: kmod-fs-msdos
@@ -979,10 +979,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 4635
+Installed-Size: 4632
 Filename: kmod-fs-msdos_3.3.8-1_ramips.ipk
 Size: 5384
-MD5Sum: caa516d460ddd64522d0cf840a8336c1
+MD5Sum: c87eef476ba0a458e02dd81e6a85943e
 Description:  Kernel module for MSDOS filesystem support
 
 Package: kmod-fs-ntfs
@@ -996,10 +996,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 52522
+Installed-Size: 52524
 Filename: kmod-fs-ntfs_3.3.8-1_ramips.ipk
-Size: 53024
-MD5Sum: d8f2bda57db42cef7c9af9c15ad2dcb1
+Size: 53023
+MD5Sum: c2439acf2065771f806e5745b0ae007b
 Description:  Kernel module for NTFS filesystem support
 
 Package: kmod-fs-reiserfs
@@ -1013,10 +1013,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 116815
+Installed-Size: 116814
 Filename: kmod-fs-reiserfs_3.3.8-1_ramips.ipk
-Size: 116932
-MD5Sum: 2642931cb349bad9bf8b6572c7c57847
+Size: 116949
+MD5Sum: 59d8aa6c82d76faa45931bce84bb56c0
 Description:  Kernel module for ReiserFS support
 
 Package: kmod-fs-udf
@@ -1032,8 +1032,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 47204
 Filename: kmod-fs-udf_3.3.8-1_ramips.ipk
-Size: 47935
-MD5Sum: 2efa129081eaca1e182f088ffde85b3b
+Size: 47936
+MD5Sum: 5c2c440633526417aa32c946e8bd4dc8
 Description:  Kernel module for UDF filesystem support
 
 Package: kmod-fs-vfat
@@ -1047,10 +1047,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 35443
+Installed-Size: 35455
 Filename: kmod-fs-vfat_3.3.8-1_ramips.ipk
 Size: 36164
-MD5Sum: b3efa75fd818d8ed261bc0e89582c2eb
+MD5Sum: e4ab1817f24d3c3065d8667aa90dc06a
 Description:  Kernel module for VFAT filesystem support
 
 Package: kmod-fuse
@@ -1064,10 +1064,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 35424
+Installed-Size: 35422
 Filename: kmod-fuse_3.3.8-1_ramips.ipk
-Size: 36159
-MD5Sum: 72d8e80da5166f61f101675019230aa4
+Size: 36153
+MD5Sum: 22211a967e9c47d88b15cfb9afd5d19b
 Description:  Kernel module for userspace filesystem support
 
 Package: kmod-gre
@@ -1081,10 +1081,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 9891
+Installed-Size: 9885
 Filename: kmod-gre_3.3.8-1_ramips.ipk
-Size: 10648
-MD5Sum: a3fa303b07c7c97c63ced086ac421511
+Size: 10645
+MD5Sum: 713c678988c5b188b91bd3e157598610
 Description:  Generic Routing Encapsulation support
 
 Package: kmod-hid
@@ -1100,8 +1100,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 33342
 Filename: kmod-hid_3.3.8-1_ramips.ipk
-Size: 33935
-MD5Sum: 95e86e58d95d1a441c1145499d630cac
+Size: 33944
+MD5Sum: f02eeb909374eb96e8c67637625239f3
 Description:  Kernel modules for HID devices
 
 Package: kmod-i2c-core
@@ -1115,10 +1115,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 13538
+Installed-Size: 13540
 Filename: kmod-i2c-core_3.3.8-1_ramips.ipk
-Size: 14282
-MD5Sum: 3dce4709efaa8d13720f39eea39f9888
+Size: 14273
+MD5Sum: 95607de166895dbff9761ab0da89a0b8
 Description:  Kernel modules for I2C support
 
 Package: kmod-ifb
@@ -1132,10 +1132,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 2964
+Installed-Size: 2956
 Filename: kmod-ifb_3.3.8-1_ramips.ipk
-Size: 3689
-MD5Sum: 714ea9d715c518a89c86c07e96513ac2
+Size: 3684
+MD5Sum: 66d20c3316dd902273fbf0a2702a791b
 Description:  The Intermediate Functional Block
 
 Package: kmod-input-core
@@ -1149,10 +1149,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 14300
+Installed-Size: 14298
 Filename: kmod-input-core_3.3.8-1_ramips.ipk
-Size: 15029
-MD5Sum: d8b87d9a122d4d60e84b617760b8359a
+Size: 15024
+MD5Sum: 6e01e825133377976dc34144aaa50217
 Description:  Kernel modules for support of input device
 
 Package: kmod-input-evdev
@@ -1166,10 +1166,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 5968
+Installed-Size: 5967
 Filename: kmod-input-evdev_3.3.8-1_ramips.ipk
-Size: 6730
-MD5Sum: 029d91a1da5cf7e2b414982fd3bc9bb4
+Size: 6733
+MD5Sum: 5251c49681b26b82d9b0fd9e802d9713
 Description:  Kernel modules for support of input device events
 
 Package: kmod-input-gpio-keys-polled
@@ -1183,10 +1183,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 2502
+Installed-Size: 2495
 Filename: kmod-input-gpio-keys-polled_3.3.8-1_ramips.ipk
-Size: 3273
-MD5Sum: c05113ee8ccb40e6dccc964b8ecfaf9c
+Size: 3275
+MD5Sum: eabd1ea74ac1c9ea09c06073731711ae
 Description:  Kernel module for support polled GPIO keys input device
 
 Package: kmod-input-polldev
@@ -1200,10 +1200,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 2036
+Installed-Size: 2034
 Filename: kmod-input-polldev_3.3.8-1_ramips.ipk
-Size: 2821
-MD5Sum: 1a3fd13d489273f3a0ff0a2087bf71a6
+Size: 2825
+MD5Sum: 6beaf02b3895dcb7f5df5c4583dfa207
 Description:  Kernel module for support of polled input devices
 
 Package: kmod-ip6tables
@@ -1217,10 +1217,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 30442
+Installed-Size: 30453
 Filename: kmod-ip6tables_3.3.8-1_ramips.ipk
-Size: 31194
-MD5Sum: 38e7d0124552a4bd5aaba33480137e0c
+Size: 31209
+MD5Sum: 04cb93f79d6378f7858b12a2f8fd4102
 Description:  Netfilter IPv6 firewalling support
 
 Package: kmod-ipt-compat-xtables
@@ -1234,10 +1234,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1781
+Installed-Size: 1780
 Filename: kmod-ipt-compat-xtables_3.3.8+1.42-3.1_ramips.ipk
-Size: 2592
-MD5Sum: 016ac71b984e1ffdb0dd226d5792ee29
+Size: 2586
+MD5Sum: af4de7374682914a1bb6133c3ceabf75
 Description:  API compatibilty layer netfilter module
 
 Package: kmod-ipt-conntrack-extra
@@ -1251,10 +1251,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 8096
+Installed-Size: 8090
 Filename: kmod-ipt-conntrack-extra_3.3.8-1_ramips.ipk
-Size: 8949
-MD5Sum: 3feff18110c3632a5bd06f168ec36620
+Size: 8943
+MD5Sum: f3935f491a529cbff517f25e2aea2bad
 Description:  Netfilter (IPv4) extra kernel modules for connection tracking
  Includes:
  - connbytes
@@ -1274,10 +1274,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 33754
+Installed-Size: 33755
 Filename: kmod-ipt-conntrack_3.3.8-1_ramips.ipk
-Size: 34596
-MD5Sum: 237f9c0cecbb955d5820d175c1d14b2c
+Size: 34598
+MD5Sum: 47be249a97f02e5771a75ed6d5ab7443
 Description:  Netfilter (IPv4) kernel modules for connection tracking
  Includes:
  - conntrack
@@ -1297,10 +1297,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 26112
+Installed-Size: 26122
 Filename: kmod-ipt-core_3.3.8-1_ramips.ipk
-Size: 26858
-MD5Sum: 99e7c8a067585884a9ec283954bbcd07
+Size: 26871
+MD5Sum: 807e2216b1bc27f86f256898d81920e8
 Description:  Netfilter core kernel modules
  Includes:
  - comment
@@ -1322,10 +1322,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 8217
+Installed-Size: 8212
 Filename: kmod-ipt-filter_3.3.8-1_ramips.ipk
-Size: 9036
-MD5Sum: ef066ea9f8f3953d18c3aae87e596787
+Size: 9037
+MD5Sum: 758b7ba84dc39dcb24696bf08822515a
 Description:  Netfilter (IPv4) kernel modules for packet content inspection
  Includes:
  - layer7
@@ -1342,10 +1342,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 8164
+Installed-Size: 8158
 Filename: kmod-ipt-ipopt_3.3.8-1_ramips.ipk
-Size: 9048
-MD5Sum: ff13b544d143b0e7bb6cc9f697d8e0b0
+Size: 9031
+MD5Sum: 90e940e6c2cc336176296bf7af34875b
 Description:  Netfilter (IPv4) modules for matching/changing IP packet options
  Includes:
  - CLASSIFY
@@ -1371,10 +1371,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 5282
+Installed-Size: 5289
 Filename: kmod-ipt-ipp2p_3.3.8+1.42-3.1_ramips.ipk
-Size: 6078
-MD5Sum: 0c687d9749ef974b11508169293db914
+Size: 6070
+MD5Sum: 9c1a037dd7718e8af69dabe048618f9e
 Description:  IPP2P netfilter module
 
 Package: kmod-ipt-iprange
@@ -1388,10 +1388,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1292
+Installed-Size: 1295
 Filename: kmod-ipt-iprange_3.3.8-1_ramips.ipk
-Size: 2095
-MD5Sum: c491876f4fabf7dff4c6abf0f647e724
+Size: 2100
+MD5Sum: 9680116e0bf57b66a53f3d20c3677a54
 Description:  Netfilter (IPv4) module for matching ip ranges
  Includes:
  - iprange
@@ -1407,10 +1407,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1410
+Installed-Size: 1411
 Filename: kmod-ipt-ipsec_3.3.8-1_ramips.ipk
-Size: 2199
-MD5Sum: 7f012035e37c6ff0e6c97013c3d96d1a
+Size: 2193
+MD5Sum: 1469613e9b73a1a1ab05a57b71e8959c
 Description:  Netfilter (IPv4) modules for matching IPSec packets
  Includes:
  - ah
@@ -1428,10 +1428,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 86483
+Installed-Size: 86481
 Filename: kmod-ipt-ipset_3.3.8+6.11-2_ramips.ipk
 Size: 87009
-MD5Sum: c45eff83964db0c665bdc20ad88debaa
+MD5Sum: 55de55dde231895e4f2d3ef97f85880c
 Description:  IPset netfilter modules
 
 Package: kmod-ipt-ipv4options
@@ -1447,8 +1447,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 1015
 Filename: kmod-ipt-ipv4options_3.3.8+1.42-3.1_ramips.ipk
-Size: 1800
-MD5Sum: 6d9fa14f85789333c5cdc92ac705579a
+Size: 1803
+MD5Sum: 5464f6d2a18a48d92a2c29fbac1e32cc
 Description:  ipv4options netfilter module
 
 Package: kmod-ipt-led
@@ -1462,10 +1462,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1972
+Installed-Size: 1967
 Filename: kmod-ipt-led_3.3.8-1_ramips.ipk
-Size: 2776
-MD5Sum: b1d3261476f1c10e42b4bdddc524a192
+Size: 2772
+MD5Sum: 61360e55561a6c0c77f49c189a19b6ea
 Description:  Netfilter target to trigger a LED when a network packet is matched.
 
 Package: kmod-ipt-nat-extra
@@ -1481,8 +1481,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 1457
 Filename: kmod-ipt-nat-extra_3.3.8-1_ramips.ipk
-Size: 2257
-MD5Sum: 8d08e23a296696407492aa38a05d8fde
+Size: 2259
+MD5Sum: 1981bd55ddfb9663ac28de2c3fae626b
 Description:  Netfilter (IPv4) kernel modules for extra NAT targets
  Includes:
  - NETMAP
@@ -1499,10 +1499,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 10387
+Installed-Size: 10392
 Filename: kmod-ipt-nat_3.3.8-1_ramips.ipk
-Size: 11183
-MD5Sum: 6e7c5691fbe5cafce49627634e8e7c14
+Size: 11189
+MD5Sum: 542a58ee0913518d962cda902e89310d
 Description:  Netfilter (IPv4) kernel modules for basic NAT targets
  Includes:
  - MASQUERADE
@@ -1518,10 +1518,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 47817
+Installed-Size: 47818
 Filename: kmod-ipt-nathelper-extra_3.3.8-1_ramips.ipk
-Size: 48723
-MD5Sum: 4fc82133871796a79c8a78944f6f1f93
+Size: 48705
+MD5Sum: 28746d3e739f77d151ca89b4e1829f8c
 Description:  Extra Netfilter (IPv4) Conntrack and NAT helpers
  Includes:
  - amanda
@@ -1544,10 +1544,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 6622
+Installed-Size: 6618
 Filename: kmod-ipt-nathelper-rtsp_3.3.8+1.42-3.1_ramips.ipk
-Size: 7471
-MD5Sum: 276bc87c047acdd5f99d5d3cda88a839
+Size: 7462
+MD5Sum: 70c26c6d71991cd720c50aceb4824784
 Description:  RTSP Conntrack and NAT netfilter module
 
 Package: kmod-ipt-nathelper
@@ -1561,10 +1561,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 7532
+Installed-Size: 7531
 Filename: kmod-ipt-nathelper_3.3.8-1_ramips.ipk
-Size: 8369
-MD5Sum: 7d3c3fc9966f5aa7dfbbd508a94f4185
+Size: 8368
+MD5Sum: 23fd9c16f9cdbe2f2dc99256bfaec079
 Description:  Default Netfilter (IPv4) Conntrack and NAT helpers
  Includes:
  - ftp
@@ -1582,10 +1582,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1841
+Installed-Size: 1842
 Filename: kmod-iptunnel4_3.3.8-1_ramips.ipk
-Size: 2615
-MD5Sum: 4abd3b1ee9ffaebfce6ca9e7327dcbcd
+Size: 2617
+MD5Sum: 8c8e3f63635a1ef4ab7e77177b784ff7
 Description:  Kernel modules for IPv4 tunneling
 
 Package: kmod-ipv6
@@ -1599,10 +1599,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 140327
+Installed-Size: 140330
 Filename: kmod-ipv6_3.3.8-1_ramips.ipk
-Size: 140724
-MD5Sum: 7f26bed7bf4b6d7166cc7e95ff43a6b3
+Size: 140692
+MD5Sum: 383097e05bc389ac069f1f48dc5add50
 Description:  Kernel modules for IPv6 support
 
 Package: kmod-l2tp
@@ -1616,10 +1616,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 12972
+Installed-Size: 12970
 Filename: kmod-l2tp_3.3.8-1_ramips.ipk
-Size: 13713
-MD5Sum: e13b299085404012cecaa4134d474ab1
+Size: 13702
+MD5Sum: cf05b5ff7484160ddce4604892f61371
 Description:  Kernel modules for L2TP V3 Support
 
 Package: kmod-leds-gpio
@@ -1633,10 +1633,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 2073
+Installed-Size: 2069
 Filename: kmod-leds-gpio_3.3.8-1_ramips.ipk
-Size: 2848
-MD5Sum: 1909cb67c4a457ab31691e1df00123d0
+Size: 2849
+MD5Sum: 414d46f5fb608249bbf4dce00f4255aa
 Description:  Kernel module for LEDs on GPIO lines
 
 Package: kmod-ledtrig-netdev
@@ -1652,8 +1652,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 105
 Filename: kmod-ledtrig-netdev_3.3.8-1_ramips.ipk
-Size: 756
-MD5Sum: d010884c0dcb2b68a151c9973d72e34a
+Size: 761
+MD5Sum: 980c6e840b2a87236868616ff0b45768
 Description:  Kernel module to drive LEDs based on network activity.
 
 Package: kmod-ledtrig-usbdev
@@ -1667,10 +1667,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 2331
+Installed-Size: 2338
 Filename: kmod-ledtrig-usbdev_3.3.8-1_ramips.ipk
-Size: 3107
-MD5Sum: aa97b955d1831fbcf3aba06e18875d3b
+Size: 3112
+MD5Sum: e66876d4632ae3e0f9c974b3d35d1753
 Description:  Kernel module to drive LEDs based on USB device presence/activity.
 
 Package: kmod-lib-crc-ccitt
@@ -1684,10 +1684,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1389
+Installed-Size: 1394
 Filename: kmod-lib-crc-ccitt_3.3.8-1_ramips.ipk
-Size: 2162
-MD5Sum: 9e346932148b2f250d47693a55b47582
+Size: 2164
+MD5Sum: 3b28c7fcfe71e915385a2e0d90281a7c
 Description:  Kernel module for CRC-CCITT support
 
 Package: kmod-lib-crc-itu-t
@@ -1701,10 +1701,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1402
+Installed-Size: 1404
 Filename: kmod-lib-crc-itu-t_3.3.8-1_ramips.ipk
 Size: 2177
-MD5Sum: eb2af3e50b86d9ccab5e56355dc7e07c
+MD5Sum: 1b044c77a04cfc4e993a87de00e2372a
 Description:  Kernel module for CRC ITU-T V.41 support
 
 Package: kmod-lib-crc16
@@ -1718,10 +1718,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1340
+Installed-Size: 1339
 Filename: kmod-lib-crc16_3.3.8-1_ramips.ipk
-Size: 2117
-MD5Sum: b4148c5a20c15fbfadeab3eae20c1fa6
+Size: 2115
+MD5Sum: cbd1cfcafb246c45ab035f949bae6c20
 Description:  Kernel module for CRC16 support
 
 Package: kmod-lib-textsearch
@@ -1735,10 +1735,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 3554
+Installed-Size: 3558
 Filename: kmod-lib-textsearch_3.3.8-1_ramips.ipk
-Size: 4308
-MD5Sum: a96396ad1ae397dc691c5a6c846a63b2
+Size: 4317
+MD5Sum: d08158a489e0c31c09c15d0ec041a36f
 Description:  Textsearch support
 
 Package: kmod-mac80211
@@ -1752,10 +1752,10 @@ Essential: no
 Priority: optional
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips
-Installed-Size: 169798
+Installed-Size: 169802
 Filename: kmod-mac80211_3.3.8+2013-02-22-1_ramips.ipk
-Size: 169846
-MD5Sum: 96f5e9b297d27180e7bc179ace9a85a8
+Size: 169810
+MD5Sum: 55b3c56ab0235dd797758a2acb7e424b
 Description:  Generic IEEE 802.11 Networking Stack (mac80211)
 
 Package: kmod-mppe
@@ -1769,10 +1769,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 4375
+Installed-Size: 4376
 Filename: kmod-mppe_3.3.8-1_ramips.ipk
-Size: 5140
-MD5Sum: 75e586994687fffaadead17f58ad34e2
+Size: 5154
+MD5Sum: e6ec6160ffa470f0b3b4368626f02133
 Description:  Kernel modules for Microsoft PPP compression/encryption
 
 Package: kmod-nfnetlink
@@ -1786,10 +1786,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 2370
+Installed-Size: 2369
 Filename: kmod-nfnetlink_3.3.8-1_ramips.ipk
-Size: 3129
-MD5Sum: 3330f260b8e09df7c2f5c16a7ee8ff72
+Size: 3134
+MD5Sum: b5d3c658830ec5544eb1ccb304077058
 Description:  Kernel modules support for a netlink-based userspace interface
 
 Package: kmod-nls-base
@@ -1803,10 +1803,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 3195
+Installed-Size: 3197
 Filename: kmod-nls-base_3.3.8-1_ramips.ipk
-Size: 3957
-MD5Sum: 9822e56886a4dd40701ec60178727355
+Size: 3958
+MD5Sum: a0b57fe69df73825aadcd05b0f5f1b7a
 Description:  Kernel module for NLS (Native Language Support)
 
 Package: kmod-nls-cp1251
@@ -1820,10 +1820,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1921
+Installed-Size: 1920
 Filename: kmod-nls-cp1251_3.3.8-1_ramips.ipk
-Size: 2689
-MD5Sum: 5783030b582771390d3b8faec3cb6e61
+Size: 2691
+MD5Sum: 815992d2626cf0306ee2dbe7cdbb75d6
 Description:  Kernel module for NLS Codepage 1251 (Russian)
 
 Package: kmod-nls-cp866
@@ -1837,10 +1837,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1935
+Installed-Size: 1937
 Filename: kmod-nls-cp866_3.3.8-1_ramips.ipk
-Size: 2705
-MD5Sum: fc6195b6adfe21c9a33ca9a6f7b29339
+Size: 2703
+MD5Sum: 25ebc433e5bb90fe90cb4d5255b43aa4
 Description:  Kernel module for NLS Codepage 866 (Cyrillic)
 
 Package: kmod-nls-koi8r
@@ -1854,10 +1854,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1971
+Installed-Size: 1967
 Filename: kmod-nls-koi8r_3.3.8-1_ramips.ipk
-Size: 2723
-MD5Sum: bdfa103f7c8a1415d0912f1d6bc7dfd5
+Size: 2731
+MD5Sum: e1a704a521a48d3ff19b8a251df20b56
 Description:  Kernel module for NLS KOI8-R (Russian)
 
 Package: kmod-nls-utf8
@@ -1871,10 +1871,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 997
+Installed-Size: 998
 Filename: kmod-nls-utf8_3.3.8-1_ramips.ipk
 Size: 1768
-MD5Sum: 55819898cb736eeecb767afc57daf66f
+MD5Sum: 761e4b09996314ea680e4c5aa8c4d683
 Description:  Kernel module for NLS UTF-8
 
 Package: kmod-ppp
@@ -1890,8 +1890,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 22401
 Filename: kmod-ppp_3.3.8-1_ramips.ipk
-Size: 23082
-MD5Sum: 32673534f71f51852e0ea99e75b1a075
+Size: 23084
+MD5Sum: a90088a7e2cd3e59ac2cc8aed584688b
 Description:  Kernel modules for PPP support
 
 Package: kmod-pppoe
@@ -1905,10 +1905,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 6212
+Installed-Size: 6213
 Filename: kmod-pppoe_3.3.8-1_ramips.ipk
-Size: 7043
-MD5Sum: 5487a0fdcf044260493c4d11ebb9b0d8
+Size: 7033
+MD5Sum: 7f5b88970652648bea0941fa30145ba7
 Description:  Kernel module for PPPoE (PPP over Ethernet) support
 
 Package: kmod-pppol2tp
@@ -1924,8 +1924,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 9371
 Filename: kmod-pppol2tp_3.3.8-1_ramips.ipk
-Size: 10164
-MD5Sum: 01daf09020762d35b1fe6e66a48a187f
+Size: 10167
+MD5Sum: 03bcf88ad602c460530bba6d4b57ab56
 Description:  Kernel modules for PPPoL2TP (PPP over L2TP) support
 
 Package: kmod-pppox
@@ -1939,10 +1939,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1714
+Installed-Size: 1719
 Filename: kmod-pppox_3.3.8-1_ramips.ipk
-Size: 2497
-MD5Sum: ccec7654f46e78167d61e7caacc68bcd
+Size: 2501
+MD5Sum: e5c231436a9e7889343b2ee4926365da
 Description:  Kernel helper module for PPPoE and PPTP support
 
 Package: kmod-pptp
@@ -1956,10 +1956,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 5122
+Installed-Size: 5121
 Filename: kmod-pptp_3.3.8-1_ramips.ipk
-Size: 5847
-MD5Sum: 9d4588e83e0c8f9d35868be3b92c3e4f
+Size: 5845
+MD5Sum: 28e49f471050ec8651708e7cb35c7581
 Description:  PPtP support
 
 Package: kmod-rt2800-lib
@@ -1973,10 +1973,10 @@ Essential: no
 Priority: optional
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips
-Installed-Size: 23773
+Installed-Size: 23775
 Filename: kmod-rt2800-lib_3.3.8+2013-02-22-1_ramips.ipk
-Size: 24363
-MD5Sum: af7be6bd4bd65223713cda315150569e
+Size: 24382
+MD5Sum: 6c0679f3718e6b9effa4c1bab1b7a5fb
 Description:  Ralink Drivers for RT2x00 cards (rt2800 LIB)
 
 Package: kmod-rt2800-pci
@@ -1990,10 +1990,10 @@ Essential: no
 Priority: optional
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips
-Installed-Size: 9302
+Installed-Size: 9304
 Filename: kmod-rt2800-pci_3.3.8+2013-02-22-1_ramips.ipk
-Size: 10106
-MD5Sum: 4fa12b54998f58b3358f66eeb9b958c5
+Size: 10105
+MD5Sum: 68b595bad3a45a13025905bb7f8d1c0d
 Description:  Ralink Drivers for RT2x00 cards (RT2860 PCI)
 
 Package: kmod-rt2x00-lib
@@ -2007,10 +2007,10 @@ Essential: no
 Priority: optional
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips
-Installed-Size: 20205
+Installed-Size: 20212
 Filename: kmod-rt2x00-lib_3.3.8+2013-02-22-1_ramips.ipk
-Size: 20994
-MD5Sum: 112c6eacc6b6fcd5e6b7c6b097e9495f
+Size: 21005
+MD5Sum: 3e5452fdde4924a9cf37936863f89116
 Description:  Ralink Drivers for RT2x00 cards (LIB)
 
 Package: kmod-rt2x00-pci
@@ -2026,8 +2026,8 @@ Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips
 Installed-Size: 2108
 Filename: kmod-rt2x00-pci_3.3.8+2013-02-22-1_ramips.ipk
-Size: 2914
-MD5Sum: 97567edd3c96365bcdbe37716bdca24b
+Size: 2908
+MD5Sum: 9598224e5daa23decd02bf17cc97ecc2
 Description:  Ralink Drivers for RT2x00 cards (PCI)
 
 Package: kmod-rt2x00-soc
@@ -2043,8 +2043,8 @@ Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips
 Installed-Size: 1620
 Filename: kmod-rt2x00-soc_3.3.8+2013-02-22-1_ramips.ipk
-Size: 2415
-MD5Sum: d6791d64d2de00713597f6c99a9e5896
+Size: 2410
+MD5Sum: fde8e9cee0e5c8c8d521a80f09f5e605
 Description:  Ralink Drivers for RT2x00 cards (SoC)
 
 Package: kmod-sched-connmark
@@ -2058,10 +2058,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 1208
+Installed-Size: 1211
 Filename: kmod-sched-connmark_3.3.8-1_ramips.ipk
-Size: 1884
-MD5Sum: 2102c4014eed54d05ebebd3dd8cb56ab
+Size: 1895
+MD5Sum: 87238926210d26b673eb9495acd2a561
 Description:  Traffic shaper conntrack mark support
 
 Package: kmod-sched-core
@@ -2075,10 +2075,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 34181
+Installed-Size: 34183
 Filename: kmod-sched-core_3.3.8-1_ramips.ipk
-Size: 34861
-MD5Sum: 310d0a2420a824e6bec9a55249697b05
+Size: 34876
+MD5Sum: 4671970475522fec37a20f64095cffb7
 Description:  Core kernel scheduler support for IP traffic
 
 Package: kmod-scsi-core
@@ -2092,10 +2092,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 67090
+Installed-Size: 67093
 Filename: kmod-scsi-core_3.3.8-1_ramips.ipk
-Size: 67565
-MD5Sum: e8cd526046a276d9179dfdbbb02c5c3d
+Size: 67532
+MD5Sum: 377b0b360b389b299893527ff4dba729
 Description:  SCSI device support
 
 Package: kmod-sit
@@ -2109,10 +2109,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 7454
+Installed-Size: 7455
 Filename: kmod-sit_3.3.8-1_ramips.ipk
-Size: 8274
-MD5Sum: c06d39934f6edab1e42d0ac4496b98bc
+Size: 8266
+MD5Sum: 8e1ac469563a010baf24eb3abad25684
 Description:  Kernel modules for IPv6-in-IPv4 tunnelling
 
 Package: kmod-sound-core
@@ -2126,10 +2126,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 118115
+Installed-Size: 118121
 Filename: kmod-sound-core_3.3.8-1_ramips.ipk
-Size: 118579
-MD5Sum: 40f4969733c2834f04144b985cbcf30b
+Size: 118607
+MD5Sum: 63edca99d504577b38af7bf41561f8a8
 Description:  Kernel modules for sound support
 
 Package: kmod-sound-seq
@@ -2143,10 +2143,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 29742
+Installed-Size: 29738
 Filename: kmod-sound-seq_3.3.8-1_ramips.ipk
-Size: 30498
-MD5Sum: 22df526da3c8b526bb0953630503db72
+Size: 30487
+MD5Sum: 240213fc3a57fb8786c3ea35e8e3d5d2
 Description:  Kernel modules for sequencer support
 
 Package: kmod-sound-soc-core
@@ -2160,10 +2160,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 33901
+Installed-Size: 33904
 Filename: kmod-sound-soc-core_3.3.8-1_ramips.ipk
-Size: 34648
-MD5Sum: 8d4fce431abe79d9dce09894d70b33a0
+Size: 34655
+MD5Sum: 5ccdf3f01338e4644740aa25f75de387
 Description:  SoC sound support
 
 Package: kmod-usb-acm
@@ -2177,10 +2177,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 9185
+Installed-Size: 9188
 Filename: kmod-usb-acm_3.3.8-1_ramips.ipk
-Size: 9982
-MD5Sum: 9285dd1b951fdae5fdd16f5e06932ac0
+Size: 9993
+MD5Sum: 81c7b606f8356efbe3199273051e0870
 Description:  Kernel support for USB ACM devices (modems/isdn controllers)
 
 Package: kmod-usb-atm-cxacru
@@ -2194,10 +2194,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 10498
+Installed-Size: 10496
 Filename: kmod-usb-atm-cxacru_3.3.8-1_ramips.ipk
-Size: 11220
-MD5Sum: 019b614aa381ff1780ef312f012afe02
+Size: 11207
+MD5Sum: f3559139a4861c0f109929ceec468d7c
 Description:  Kernel support for cxacru based USB ADSL modems
 
 Package: kmod-usb-atm-speedtouch
@@ -2211,10 +2211,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 6959
+Installed-Size: 6954
 Filename: kmod-usb-atm-speedtouch_3.3.8-1_ramips.ipk
-Size: 7723
-MD5Sum: 8600c02d257eda87980d5f585388f0dc
+Size: 7716
+MD5Sum: 91b34fa285a2a8315e591f983cefdbdb
 Description:  Kernel support for SpeedTouch USB ADSL modems
 
 Package: kmod-usb-atm-ueagle
@@ -2228,10 +2228,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 14142
+Installed-Size: 14147
 Filename: kmod-usb-atm-ueagle_3.3.8-1_ramips.ipk
-Size: 14827
-MD5Sum: 0cad5cfacadcfef80871f7c633019fff
+Size: 14849
+MD5Sum: 4b5cc6a1d6b35d33b06b5415bf743d1e
 Description:  Kernel support for Eagle 8051 based USB ADSL modems
 
 Package: kmod-usb-atm
@@ -2245,10 +2245,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 8721
+Installed-Size: 8722
 Filename: kmod-usb-atm_3.3.8-1_ramips.ipk
-Size: 9481
-MD5Sum: bb48753578696dc89033a27baaff5392
+Size: 9486
+MD5Sum: 77c6aebed54e896e56870a7116922518
 Description:  Kernel support for USB DSL modems
 
 Package: kmod-usb-audio
@@ -2262,10 +2262,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 52923
+Installed-Size: 52930
 Filename: kmod-usb-audio_3.3.8-1_ramips.ipk
-Size: 53310
-MD5Sum: b99bb6a7037792755f7f6649c911eb34
+Size: 53314
+MD5Sum: 637ed117aefb3e232314168d09385fbb
 Description:  Kernel support for USB audio devices
 
 Package: kmod-usb-cm109
@@ -2279,10 +2279,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 4972
+Installed-Size: 4970
 Filename: kmod-usb-cm109_3.3.8-1_ramips.ipk
-Size: 5729
-MD5Sum: 4f7ad4fe3da3f27fe4ec06772916d93b
+Size: 5725
+MD5Sum: 47c95ef115c164d3c732c4d383749f5c
 Description:  Kernel support for CM109 VOIP phone
 
 Package: kmod-usb-core
@@ -2296,10 +2296,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 66512
+Installed-Size: 66516
 Filename: kmod-usb-core_3.3.8-1_ramips.ipk
-Size: 67064
-MD5Sum: e6997b88a41dcb77a0ec6d5c0c88ef38
+Size: 67051
+MD5Sum: 663efe1051f760114b5c351a6ce65ec3
 Description:  Kernel support for USB
 
 Package: kmod-usb-hid
@@ -2313,10 +2313,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 16021
+Installed-Size: 16026
 Filename: kmod-usb-hid_3.3.8-1_ramips.ipk
-Size: 16791
-MD5Sum: 5bd924920bb94c78dd4e39768121395a
+Size: 16808
+MD5Sum: d1c3cc993c3c96f555c1ab636eeae8e5
 Description:  Kernel support for USB HID devices such as keyboards and mice
 
 Package: kmod-usb-net-asix
@@ -2330,10 +2330,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 7799
+Installed-Size: 7801
 Filename: kmod-usb-net-asix_3.3.8-1_ramips.ipk
-Size: 8599
-MD5Sum: 297ad55c224ff793e19db809a0091ba4
+Size: 8595
+MD5Sum: 02bfaee028819495ed6115be44dc1e18
 Description:  Kernel module for USB-to-Ethernet Asix convertors
 
 Package: kmod-usb-net-cdc-ether
@@ -2347,10 +2347,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 3124
+Installed-Size: 3127
 Filename: kmod-usb-net-cdc-ether_3.3.8-1_ramips.ipk
-Size: 3885
-MD5Sum: 8ac319d0c4766e3b3ae4c1e7942df47a
+Size: 3891
+MD5Sum: e53471081b11aa1979ccc2d7ef36536f
 Description:  Kernel support for USB CDC Ethernet devices
 
 Package: kmod-usb-net-rndis
@@ -2366,8 +2366,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 4354
 Filename: kmod-usb-net-rndis_3.3.8-1_ramips.ipk
-Size: 5119
-MD5Sum: 7901aa08079cccfdf35ca2317934221b
+Size: 5127
+MD5Sum: f6e5fd6cbaed1d66f59b698ab397e7d6
 Description:  Kernel support for RNDIS connections
 
 Package: kmod-usb-net-sierrawireless
@@ -2381,10 +2381,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 5300
+Installed-Size: 5302
 Filename: kmod-usb-net-sierrawireless_3.3.8-1_ramips.ipk
-Size: 6076
-MD5Sum: cc260fb870cb71c7f4d45ac1beac3ddc
+Size: 6074
+MD5Sum: d72e83503fb7a044ebe3ed5266585c7d
 Description:  Kernel support for Sierra Wireless devices
 
 Package: kmod-usb-net
@@ -2400,8 +2400,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 9298
 Filename: kmod-usb-net_3.3.8-1_ramips.ipk
-Size: 10074
-MD5Sum: 6d5ad035afdec33045b7b98da9fa7ae1
+Size: 10071
+MD5Sum: 26b9097c6e0e88da5b8eac318c79561f
 Description:  Kernel modules for USB-to-Ethernet convertors
 
 Package: kmod-usb-ohci
@@ -2415,10 +2415,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 9775
+Installed-Size: 9772
 Filename: kmod-usb-ohci_3.3.8-1_ramips.ipk
-Size: 10536
-MD5Sum: 717ef15e2cbf31287ebf565f313b438c
+Size: 10531
+MD5Sum: 3cc0fdf3e0d29385f30e73429c6d8e3b
 Description:  Kernel support for USB OHCI controllers
 
 Package: kmod-usb-printer
@@ -2432,10 +2432,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 7035
+Installed-Size: 7027
 Filename: kmod-usb-printer_3.3.8-1_ramips.ipk
-Size: 7845
-MD5Sum: 2ede710ce577b300528b0e0b9dce0f36
+Size: 7839
+MD5Sum: 1c51200024d7676b801b01eb3b1fad00
 Description:  Kernel support for USB printers
 
 Package: kmod-usb-rt305x-dwc_otg
@@ -2449,10 +2449,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 36927
+Installed-Size: 36929
 Filename: kmod-usb-rt305x-dwc_otg_3.3.8-1_ramips.ipk
-Size: 37598
-MD5Sum: 27a6c4859a69d1326f08503bad0d69ad
+Size: 37692
+MD5Sum: 68d54b34d152d52ebd7a8a74ee5a69c4
 Description:  This driver provides USB Device Controller support for the
  Synopsys DesignWare USB OTG Core used in the Ralink RT305X SoCs.
 
@@ -2467,10 +2467,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 7423
+Installed-Size: 7421
 Filename: kmod-usb-serial-cp210x_3.3.8-1_ramips.ipk
-Size: 8206
-MD5Sum: a4b64b2308fb8cf323469cee9522d0e1
+Size: 8208
+MD5Sum: f533f8cd0b7c5d21f4f56a6a4578f649
 Description:  Kernel support for Silicon Labs cp210x USB-to-Serial converters
 
 Package: kmod-usb-serial-cypress-m8
@@ -2484,10 +2484,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 10207
+Installed-Size: 10219
 Filename: kmod-usb-serial-cypress-m8_3.3.8-1_ramips.ipk
-Size: 11045
-MD5Sum: 327c635167d5a7e455cec26f535b3ce6
+Size: 11061
+MD5Sum: feb328f5940e41d7ce722a5f7399b2ef
 Description:  Kernel support for devices with Cypress M8 USB to Serial chip
  (for example, the Delorme Earthmate LT-20 GPS)
  Supported microcontrollers in the CY4601 family are:
@@ -2504,10 +2504,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 16805
+Installed-Size: 16816
 Filename: kmod-usb-serial-ftdi_3.3.8-1_ramips.ipk
-Size: 17188
-MD5Sum: c87e63bae8d00c6b31913ebcafb998b1
+Size: 17215
+MD5Sum: 1af298bf8768ca8aed336a6bb5a1603e
 Description:  Kernel support for FTDI USB-to-Serial converters
 
 Package: kmod-usb-serial-option
@@ -2521,10 +2521,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 7618
+Installed-Size: 7619
 Filename: kmod-usb-serial-option_3.3.8-1_ramips.ipk
-Size: 7956
-MD5Sum: 257e49dd1187effe995df80cd5f80f85
+Size: 8026
+MD5Sum: 94258cdd9d0e7cd5e680e0beae09141c
 Description:  Kernel support for Option HSDPA modems
 
 Package: kmod-usb-serial-pl2303
@@ -2538,10 +2538,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 7994
+Installed-Size: 7992
 Filename: kmod-usb-serial-pl2303_3.3.8-1_ramips.ipk
-Size: 8778
-MD5Sum: bb2469f7c0852b53f2003595d093f655
+Size: 8780
+MD5Sum: b507759b84b835f90d1b64e21e8b7264
 Description:  Kernel support for Prolific PL2303 USB-to-Serial converters
 
 Package: kmod-usb-serial-wwan
@@ -2555,10 +2555,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 5790
+Installed-Size: 5791
 Filename: kmod-usb-serial-wwan_3.3.8-1_ramips.ipk
-Size: 6550
-MD5Sum: ca9b70f017c3bb3faf6d5b4e68a187cc
+Size: 6560
+MD5Sum: 54bffb041756ffddb1049df2c6d60415
 Description:  Kernel support for USB GSM and CDMA modems
 
 Package: kmod-usb-serial
@@ -2572,10 +2572,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 16294
+Installed-Size: 16299
 Filename: kmod-usb-serial_3.3.8-1_ramips.ipk
-Size: 16979
-MD5Sum: 220fd459315b23e14cc2dabe62326345
+Size: 16992
+MD5Sum: bf9f55b4f032b8b26fa95afb42a447d5
 Description:  Kernel support for USB-to-Serial converters
 
 Package: kmod-usb-sierrawireless-directip
@@ -2589,10 +2589,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 11691
+Installed-Size: 11695
 Filename: kmod-usb-sierrawireless-directip_3.3.8-10_ramips.ipk
-Size: 12488
-MD5Sum: 801949aaff456fcf7891fb2a7fbf0684
+Size: 12486
+MD5Sum: 655149e3854c62d811bb2327f5bd701e
 Description:  Updated Sierra Wireless drivers for DirectIP
 
 Package: kmod-usb-storage-extras
@@ -2606,10 +2606,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 30559
+Installed-Size: 30566
 Filename: kmod-usb-storage-extras_3.3.8-1_ramips.ipk
-Size: 31328
-MD5Sum: f7fe333c59f4469fd0a300a086fb3954
+Size: 31340
+MD5Sum: 20428ee59cc685c7b2736bbe6d68352b
 Description:  Say Y here if you want to have some more drivers,
  such as for SmartMedia card readers.
 
@@ -2624,10 +2624,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 22744
+Installed-Size: 22745
 Filename: kmod-usb-storage_3.3.8-1_ramips.ipk
-Size: 23029
-MD5Sum: 51160605ebcc8a9e1218e9b9d4926fc5
+Size: 23186
+MD5Sum: 996800b7bf1de5b34d83297f1b28a434
 Description:  Kernel support for USB Mass Storage devices
 
 Package: kmod-usb2
@@ -2641,10 +2641,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 21235
+Installed-Size: 21234
 Filename: kmod-usb2_3.3.8-1_ramips.ipk
-Size: 21965
-MD5Sum: 019eacab3e7145f037b149061fb04788
+Size: 21970
+MD5Sum: 02cca816a7228bb9f315484c792dfd85
 Description:  Kernel support for USB2 (EHCI) controllers
 
 Package: kmod-video-core
@@ -2658,10 +2658,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 43664
+Installed-Size: 43669
 Filename: kmod-video-core_3.3.8-1_ramips.ipk
-Size: 44062
-MD5Sum: b8d1cb21d039ac52b8a0541466aac748
+Size: 44063
+MD5Sum: 25611018d81685b7d332ac7fc6932f92
 Description:  Kernel modules for Video4Linux support
 
 Package: kmod-video-cpia2
@@ -2675,10 +2675,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 18700
+Installed-Size: 18707
 Filename: kmod-video-cpia2_3.3.8-1_ramips.ipk
-Size: 19484
-MD5Sum: bd9c7140bde89bd1e4a7a9865683411b
+Size: 19483
+MD5Sum: 78215396a0099ed75d484cea6371a24f
 Description:  Kernel modules for supporting CPIA2 USB based cameras.
 
 Package: kmod-video-gspca-core
@@ -2692,10 +2692,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 11051
+Installed-Size: 11057
 Filename: kmod-video-gspca-core_3.3.8-1_ramips.ipk
-Size: 11910
-MD5Sum: 327268c76be1c278128b76fed638c9a2
+Size: 11928
+MD5Sum: fe3ba735c5c3588a5fba831b98ffab48
 Description:  Kernel modules for supporting GSPCA based webcam devices. Note this is just
  the core of the driver, please select a submodule that supports your webcam.
 
@@ -2710,10 +2710,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 23003
+Installed-Size: 23008
 Filename: kmod-video-pwc_3.3.8-1_ramips.ipk
-Size: 23760
-MD5Sum: b1029d03f54af472b9fe1c35e26ec7f8
+Size: 23766
+MD5Sum: ca28db8d0da208ff21359186659a94bd
 Description:  Kernel modules for supporting Philips USB based cameras.
 
 Package: kmod-video-sn9c102
@@ -2729,8 +2729,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 31306
 Filename: kmod-video-sn9c102_3.3.8-1_ramips.ipk
-Size: 31783
-MD5Sum: 6c324434220dafcddb583af1dc825009
+Size: 31762
+MD5Sum: 1cc699f8a8fda6f0bc4e6aa2d1aa7386
 Description:  Kernel modules for supporting SN9C102
  camera chips.
 
@@ -2745,10 +2745,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 36237
+Installed-Size: 36248
 Filename: kmod-video-uvc_3.3.8-1_ramips.ipk
-Size: 37033
-MD5Sum: e93e3be0553623b9256c1e419a0c09b8
+Size: 37047
+MD5Sum: 6dff548da9596f2a2410fd833c8e466a
 Description:  Kernel modules for supporting USB Video Class (UVC) devices.
 
 Package: kmod-video-videobuf2
@@ -2762,10 +2762,10 @@ Essential: no
 Priority: optional
 Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
-Installed-Size: 13538
+Installed-Size: 13544
 Filename: kmod-video-videobuf2_3.3.8-1_ramips.ipk
-Size: 14299
-MD5Sum: 4908db01efb673da7ac9f9c1a5b07403
+Size: 14298
+MD5Sum: eb0896363e98158b1fffbec7d1dd1d9c
 Description:  Kernel modules that implements three basic types of media buffers.
 
 Package: kmod-wimax-u200
@@ -2781,8 +2781,8 @@ Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
 Architecture: ramips
 Installed-Size: 9001
 Filename: kmod-wimax-u200_3.3.8-1_ramips.ipk
-Size: 9643
-MD5Sum: f2b22c84973e94ff3dcdb1f5525a35c4
+Size: 9648
+MD5Sum: 478f79e66962589c4da8f4032e20b137
 Description:  Drivers for WiMAX
 
 Package: libblobmsg-json
@@ -3225,6 +3225,23 @@ Size: 10771
 MD5Sum: 326f099abfd5ea347a492a319aa1dcc0
 Description:  IPv4/IPv6 firewall - shared xtables library
 
+Package: list-smargo
+Version: 2013-03-19-8560-1
+Depends: libc, oscam
+Provides: 
+Source: feeds/custompackages/net/oscam
+Section: net
+Status: unknown ok not-installed
+Essential: no
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ramips
+Installed-Size: 2486
+Filename: list-smargo_2013-03-19-8560-1_ramips.ipk
+Size: 3137
+MD5Sum: 3922f0a891072116d3ed9f5681e82f52
+Description:  Smargo reader support
+
 Package: lua
 Version: 5.1.4-8
 Depends: libc, liblua
@@ -3246,7 +3263,7 @@ Description:  Lua is a powerful light-weight programming language designed for e
  This package contains the Lua language interpreter.
 
 Package: luci-app-3ginfo
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, 3ginfo
 Provides: 
 Source: feeds/luci/luci
@@ -3256,14 +3273,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 1202
-Filename: luci-app-3ginfo_trunk+svn114-1_ramips.ipk
-Size: 1835
-MD5Sum: 47f6e459732b0cc4c970549e4f2e2560
+Installed-Size: 1204
+Filename: luci-app-3ginfo_trunk+svn116-1_ramips.ipk
+Size: 1838
+MD5Sum: 287e6ec7879494188593e14fbf944500
 Description:  LuCI Support for 3ginfo
 
 Package: luci-app-commands
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3274,13 +3291,13 @@ Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
 Installed-Size: 6786
-Filename: luci-app-commands_trunk+svn114-1_ramips.ipk
-Size: 7450
-MD5Sum: 3d6c2466f0c658b396447a63e40481ba
+Filename: luci-app-commands_trunk+svn116-1_ramips.ipk
+Size: 7442
+MD5Sum: 07c4fe3a6d2555be33e94dce1e552c85
 Description:  LuCI Shell Command Module
 
 Package: luci-app-ddns
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, ddns-scripts
 Provides: 
 Source: feeds/luci/luci
@@ -3290,14 +3307,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 10965
-Filename: luci-app-ddns_trunk+svn114-1_ramips.ipk
-Size: 11585
-MD5Sum: fffc49b5c7e76e6fe8894149e535e1d3
+Installed-Size: 10974
+Filename: luci-app-ddns_trunk+svn116-1_ramips.ipk
+Size: 11600
+MD5Sum: a190991ef16bb498b37696fade250953
 Description:  Dynamic DNS configuration module
 
 Package: luci-app-diag-core
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3307,14 +3324,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 4723
-Filename: luci-app-diag-core_trunk+svn114-1_ramips.ipk
-Size: 5345
-MD5Sum: 023a033d44d53eaea4548042bdcff76a
+Installed-Size: 4717
+Filename: luci-app-diag-core_trunk+svn116-1_ramips.ipk
+Size: 5337
+MD5Sum: cb8ee6b036b7aa3e933ca4d12c9ac22e
 Description:  LuCI Diagnostics Tools (Core)
 
 Package: luci-app-diag-devinfo
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-app-diag-core, smap, netdiscover, mac-to-devinfo, httping, smap-to-devinfo, netdiscover-to-devinfo
 Provides: 
 Source: feeds/luci/luci
@@ -3324,14 +3341,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 20961
-Filename: luci-app-diag-devinfo_trunk+svn114-1_ramips.ipk
-Size: 21676
-MD5Sum: b7a1225e55e4ca497e9a2e2929f2ddd0
+Installed-Size: 20968
+Filename: luci-app-diag-devinfo_trunk+svn116-1_ramips.ipk
+Size: 21686
+MD5Sum: 4014a5d6a1f3d96204e27545124e5e37
 Description:  LuCI Diagnostics Tools (Device Info)
 
 Package: luci-app-firewall
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, firewall
 Provides: 
 Source: feeds/luci/luci
@@ -3341,14 +3358,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 52842
-Filename: luci-app-firewall_trunk+svn114-1_ramips.ipk
-Size: 53580
-MD5Sum: dfe28c8767c11f4a32648b533a8208d7
+Installed-Size: 52843
+Filename: luci-app-firewall_trunk+svn116-1_ramips.ipk
+Size: 53574
+MD5Sum: 919bd1468d8ba653f73f0269757c52f5
 Description:  Firewall and Portforwarding application
 
 Package: luci-app-multiwan
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-app-firewall, multiwan
 Provides: 
 Source: feeds/luci/luci
@@ -3358,14 +3375,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 11505
-Filename: luci-app-multiwan_trunk+svn114-1_ramips.ipk
-Size: 12144
-MD5Sum: 7d27e184c4dc0033d8ecc639abb7b2b2
+Installed-Size: 11512
+Filename: luci-app-multiwan_trunk+svn116-1_ramips.ipk
+Size: 12152
+MD5Sum: 3bb4be565176a61ff820d87dc5cb5701
 Description:  LuCI Support for the OpenWrt MultiWAN agent
 
 Package: luci-app-ntpc
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, ntpclient
 Provides: 
 Source: feeds/luci/luci
@@ -3375,14 +3392,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 7466
-Filename: luci-app-ntpc_trunk+svn114-1_ramips.ipk
-Size: 8135
-MD5Sum: 674a730c669ecf071d08d1a9f3efa302
+Installed-Size: 7473
+Filename: luci-app-ntpc_trunk+svn116-1_ramips.ipk
+Size: 8141
+MD5Sum: 852acd71a58aecf352c10a0ee4acc4ab
 Description:  NTP time synchronisation configuration module
 
 Package: luci-app-qos
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, qos-scripts
 Provides: 
 Source: feeds/luci/luci
@@ -3393,13 +3410,13 @@ Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
 Installed-Size: 9976
-Filename: luci-app-qos_trunk+svn114-1_ramips.ipk
-Size: 10648
-MD5Sum: 8fb4af62cbb01f4ac75b449562aef613
+Filename: luci-app-qos_trunk+svn116-1_ramips.ipk
+Size: 10642
+MD5Sum: cdb491609d9f4b61a0f3e4e24ca27221
 Description:  Quality of Service configuration module
 
 Package: luci-app-upnp
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, miniupnpd
 Provides: 
 Source: feeds/luci/luci
@@ -3409,14 +3426,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 17347
-Filename: luci-app-upnp_trunk+svn114-1_ramips.ipk
-Size: 18054
-MD5Sum: 6527a463ef6b1a1afadbfbfe5505b3ef
+Installed-Size: 17348
+Filename: luci-app-upnp_trunk+svn116-1_ramips.ipk
+Size: 18039
+MD5Sum: bbf888ab5b61b4af24dae1f21691b2fe
 Description:  Universal Plug & Play configuration module
 
 Package: luci-app-wol
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, etherwake
 Provides: 
 Source: feeds/luci/luci
@@ -3426,14 +3443,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 7810
-Filename: luci-app-wol_trunk+svn114-1_ramips.ipk
-Size: 8459
-MD5Sum: 426a0656d1963cf95643bd60427d250f
+Installed-Size: 7817
+Filename: luci-app-wol_trunk+svn116-1_ramips.ipk
+Size: 8457
+MD5Sum: e83e31768456361f4c9c3d1f2181987f
 Description:  LuCI Support for Wake-on-LAN
 
 Package: luci-i18n-english
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3444,13 +3461,13 @@ Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
 Installed-Size: 524
-Filename: luci-i18n-english_trunk+svn114-1_ramips.ipk
-Size: 1248
-MD5Sum: 2f775932d277449460b01bf44f5c2eeb
+Filename: luci-i18n-english_trunk+svn116-1_ramips.ipk
+Size: 1265
+MD5Sum: 8febd82fd34458cc5ce7555aeef4d6f5
 Description:  English
 
 Package: luci-i18n-russian
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3460,14 +3477,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 24722
-Filename: luci-i18n-russian_trunk+svn114-1_ramips.ipk
-Size: 25485
-MD5Sum: 40eeb520a637760f0f60b9838f556759
+Installed-Size: 24725
+Filename: luci-i18n-russian_trunk+svn116-1_ramips.ipk
+Size: 25484
+MD5Sum: 872fee534dd5569e6cbde92c84f68e2e
 Description:  Russian (by Skryabin Dmitry)
 
 Package: luci-i18n-ukrainian
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3477,14 +3494,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 22707
-Filename: luci-i18n-ukrainian_trunk+svn114-1_ramips.ipk
-Size: 23440
-MD5Sum: 33569f575f1ca1472ade9c1974fcbed3
+Installed-Size: 22706
+Filename: luci-i18n-ukrainian_trunk+svn116-1_ramips.ipk
+Size: 23436
+MD5Sum: cea553818ffb9f147da4556c82ad2a89
 Description:  Ukrainian
 
 Package: luci-lib-core
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, lua, libuci-lua, libubus-lua
 Provides: 
 Source: feeds/luci/luci
@@ -3494,14 +3511,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 29404
-Filename: luci-lib-core_trunk+svn114-1_ramips.ipk
-Size: 30044
-MD5Sum: 96651eda5873845fe7b2504f219a4059
+Installed-Size: 29400
+Filename: luci-lib-core_trunk+svn116-1_ramips.ipk
+Size: 30033
+MD5Sum: 1493b4fd8c19125bb6fbbfd73176b889
 Description:  LuCI core libraries
 
 Package: luci-lib-ipkg
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3511,14 +3528,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 2306
-Filename: luci-lib-ipkg_trunk+svn114-1_ramips.ipk
-Size: 2923
-MD5Sum: 573fe1fe2e0a09105ccec6916773153f
+Installed-Size: 2307
+Filename: luci-lib-ipkg_trunk+svn116-1_ramips.ipk
+Size: 2920
+MD5Sum: 48d17544a2c737744d3005a7df478d39
 Description:  LuCI IPKG/OPKG call abstraction library
 
 Package: luci-lib-lucid-http
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-lib-core, luci-lib-lucid
 Provides: 
 Source: feeds/luci/luci
@@ -3528,14 +3545,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 9089
-Filename: luci-lib-lucid-http_trunk+svn114-1_ramips.ipk
-Size: 9725
-MD5Sum: fb6328d2f0e8e338debf15809254e5bb
+Installed-Size: 9093
+Filename: luci-lib-lucid-http_trunk+svn116-1_ramips.ipk
+Size: 9735
+MD5Sum: ec143549b3ccf37c431af392e5390c72
 Description:  LuCId HTTP Backend
 
 Package: luci-lib-lucid-rpc
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-lib-core, luci-lib-lucid
 Provides: 
 Source: feeds/luci/luci
@@ -3545,14 +3562,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 4480
-Filename: luci-lib-lucid-rpc_trunk+svn114-1_ramips.ipk
-Size: 5082
-MD5Sum: 6367b4a5c91f97c750fe154902226e63
+Installed-Size: 4482
+Filename: luci-lib-lucid-rpc_trunk+svn116-1_ramips.ipk
+Size: 5093
+MD5Sum: 6590aa22c6acc233c948969089ba3dc6
 Description:  LuCId RPC Backend
 
 Package: luci-lib-lucid
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-lib-core, luci-lib-nixio, luci-lib-web, luci-lib-px5g
 Provides: 
 Source: feeds/luci/luci
@@ -3562,14 +3579,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 5818
-Filename: luci-lib-lucid_trunk+svn114-1_ramips.ipk
-Size: 6458
-MD5Sum: edf54e38678073a41f8c246c42d8963c
+Installed-Size: 5820
+Filename: luci-lib-lucid_trunk+svn116-1_ramips.ipk
+Size: 6463
+MD5Sum: 6c9a01ac89ae23878adb1fd905b99b65
 Description:  LuCId Full-Stack Webserver
 
 Package: luci-lib-nixio
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-lib-core, libopenssl
 Provides: 
 Source: feeds/luci/luci
@@ -3579,14 +3596,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 31782
-Filename: luci-lib-nixio_trunk+svn114-1_ramips.ipk
-Size: 32370
-MD5Sum: ff260efedb9c5c702a0e7e4acbeb7df4
+Installed-Size: 31791
+Filename: luci-lib-nixio_trunk+svn116-1_ramips.ipk
+Size: 32380
+MD5Sum: 40aec6a1941154771c11f4a9a894d66c
 Description:  NIXIO POSIX library
 
 Package: luci-lib-px5g
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-lib-core, luci-lib-nixio
 Provides: 
 Source: feeds/luci/luci
@@ -3596,14 +3613,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 28556
-Filename: luci-lib-px5g_trunk+svn114-1_ramips.ipk
-Size: 29196
-MD5Sum: a45c3e5ecd42b5afae774e7a98e7ad44
+Installed-Size: 28563
+Filename: luci-lib-px5g_trunk+svn116-1_ramips.ipk
+Size: 29206
+MD5Sum: ca0c2aafc080c469c969d5d9b795feff
 Description:  RSA/X.509 Key Generator (required for LuCId SSL support)
 
 Package: luci-lib-sys
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3613,14 +3630,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 15731
-Filename: luci-lib-sys_trunk+svn114-1_ramips.ipk
-Size: 16334
-MD5Sum: 9bb2439cbd494a8b6e90e7c4d09a6541
+Installed-Size: 15734
+Filename: luci-lib-sys_trunk+svn116-1_ramips.ipk
+Size: 16335
+MD5Sum: 33878b21f5c1bcbe36f6114927dd52c7
 Description:  LuCI Linux/POSIX system library
 
 Package: luci-lib-web
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-lib-core, luci-lib-sys, luci-lib-nixio, luci-lib-core, luci-sgi-cgi
 Provides: 
 Source: feeds/luci/luci
@@ -3630,14 +3647,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 64398
-Filename: luci-lib-web_trunk+svn114-1_ramips.ipk
-Size: 65174
-MD5Sum: 077d89a9f10394a81bfee1c85a2c1809
+Installed-Size: 64403
+Filename: luci-lib-web_trunk+svn116-1_ramips.ipk
+Size: 65179
+MD5Sum: a44095a39c05439ab264dfc32a9a9adc
 Description:  MVC Webframework
 
 Package: luci-mod-admin-core
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-lib-web, luci-proto-core, luci-i18n-english
 Provides: 
 Source: feeds/luci/luci
@@ -3647,14 +3664,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 5259
-Filename: luci-mod-admin-core_trunk+svn114-1_ramips.ipk
-Size: 6015
-MD5Sum: 9ed6a04e4db2985cc9400546cdf7e3d9
+Installed-Size: 5261
+Filename: luci-mod-admin-core_trunk+svn116-1_ramips.ipk
+Size: 6020
+MD5Sum: 9bd47392ed5840e2bfc49b3eedf42acd
 Description:  Web UI Core module
 
 Package: luci-mod-admin-full
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-mod-admin-core, luci-lib-ipkg
 Provides: 
 Source: feeds/luci/luci
@@ -3665,13 +3682,13 @@ Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
 Installed-Size: 67742
-Filename: luci-mod-admin-full_trunk+svn114-1_ramips.ipk
-Size: 68476
-MD5Sum: 560263cc517315314eeae37061a152bb
+Filename: luci-mod-admin-full_trunk+svn116-1_ramips.ipk
+Size: 68473
+MD5Sum: df5b017420ddfb5a02b8efb195798118
 Description:  LuCI Administration - full-featured for full control
 
 Package: luci-proto-3g
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, comgt
 Provides: 
 Source: feeds/luci/luci
@@ -3681,14 +3698,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 1851
-Filename: luci-proto-3g_trunk+svn114-1_ramips.ipk
+Installed-Size: 1847
+Filename: luci-proto-3g_trunk+svn116-1_ramips.ipk
 Size: 2453
-MD5Sum: 59dfb365cad57630c878aee9c004085e
+MD5Sum: 44f45fcae6fc3138bd353ba98d39fe02
 Description:  Support for 3G
 
 Package: luci-proto-4g
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, 4g-scripts
 Provides: 
 Source: feeds/luci/luci
@@ -3698,14 +3715,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 2348
-Filename: luci-proto-4g_trunk+svn114-1_ramips.ipk
-Size: 2963
-MD5Sum: 1e06552b3c0db9659896e22fbd3e5c2c
+Installed-Size: 2342
+Filename: luci-proto-4g_trunk+svn116-1_ramips.ipk
+Size: 2965
+MD5Sum: 03c29e4b5a19c42930a5c915cfdd5a6c
 Description:  Suport for 4G (LTE)
 
 Package: luci-proto-core
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3715,14 +3732,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 1880
-Filename: luci-proto-core_trunk+svn114-1_ramips.ipk
-Size: 2510
-MD5Sum: 7802dbf2d72e71db63a164d7b4b7ccbd
+Installed-Size: 1878
+Filename: luci-proto-core_trunk+svn116-1_ramips.ipk
+Size: 2499
+MD5Sum: 5523cb93b58e37fcfac8bcd0aae04b7f
 Description:  Support for static/dhcp/none
 
 Package: luci-proto-ipv6
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, 6in4, 6to4, 6rd, ipv6-support
 Provides: 
 Source: feeds/luci/luci
@@ -3732,14 +3749,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 2719
-Filename: luci-proto-ipv6_trunk+svn114-1_ramips.ipk
-Size: 3350
-MD5Sum: 0f5e1cf677d2086505b16c46f374552e
+Installed-Size: 2721
+Filename: luci-proto-ipv6_trunk+svn116-1_ramips.ipk
+Size: 3355
+MD5Sum: 69c8414df5d22ebbe8ea91cfdba12cf7
 Description:  Support for DHCPv6/6in4/6to4/6rd
 
 Package: luci-proto-ppp
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3749,14 +3766,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 2982
-Filename: luci-proto-ppp_trunk+svn114-1_ramips.ipk
-Size: 3608
-MD5Sum: 15561276f7bdadaac253798973a1cc3b
+Installed-Size: 2984
+Filename: luci-proto-ppp_trunk+svn116-1_ramips.ipk
+Size: 3607
+MD5Sum: caf3201cd888eee6579c10521f9ecf4a
 Description:  Support for PPP/PPPoE/PPPoA/PPtP
 
 Package: luci-proto-relay
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, relayd
 Provides: 
 Source: feeds/luci/luci
@@ -3766,14 +3783,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 2203
-Filename: luci-proto-relay_trunk+svn114-1_ramips.ipk
-Size: 2830
-MD5Sum: 1c73c4066b388888097dc64f97f3d574
+Installed-Size: 2201
+Filename: luci-proto-relay_trunk+svn116-1_ramips.ipk
+Size: 2829
+MD5Sum: f4ef8e7fee1f55eee033a1c1e2e0cc62
 Description:  Support for relayd pseudo bridges
 
 Package: luci-sgi-cgi
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3783,14 +3800,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 1477
-Filename: luci-sgi-cgi_trunk+svn114-1_ramips.ipk
-Size: 2125
-MD5Sum: d59257e39a6b2d9f31bbecc2d6706a10
+Installed-Size: 1481
+Filename: luci-sgi-cgi_trunk+svn116-1_ramips.ipk
+Size: 2129
+MD5Sum: c660fcd2b1f44eaddd864b2ffe73022f
 Description:  CGI Gateway behind existing Webserver
 
 Package: luci-sgi-uhttpd
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, uhttpd, uhttpd-mod-lua
 Provides: 
 Source: feeds/luci/luci
@@ -3800,14 +3817,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 1491
-Filename: luci-sgi-uhttpd_trunk+svn114-1_ramips.ipk
-Size: 2142
-MD5Sum: 9f0d69a7c164f7d60f96c75d2936f892
+Installed-Size: 1492
+Filename: luci-sgi-uhttpd_trunk+svn116-1_ramips.ipk
+Size: 2147
+MD5Sum: 9ce946e31d15f2d65116806f853773fc
 Description:  Binding for the uHTTPd server
 
 Package: luci-ssl
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci, libustream-cyassl, px5g
 Provides: 
 Source: feeds/luci/luci
@@ -3818,13 +3835,13 @@ Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
 Installed-Size: 105
-Filename: luci-ssl_trunk+svn114-1_ramips.ipk
+Filename: luci-ssl_trunk+svn116-1_ramips.ipk
 Size: 732
-MD5Sum: 9fabebb6d1518ebec3b10d88528d0660
+MD5Sum: d33ad1281eb286fe2a31d2c223a6a572
 Description:  Standard OpenWrt set with HTTPS support
 
 Package: luci-theme-base
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc
 Provides: 
 Source: feeds/luci/luci
@@ -3834,14 +3851,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 23638
-Filename: luci-theme-base_trunk+svn114-1_ramips.ipk
-Size: 24248
-MD5Sum: 35a8a8ef88cd6ae456372090cabf8689
+Installed-Size: 23640
+Filename: luci-theme-base_trunk+svn116-1_ramips.ipk
+Size: 24250
+MD5Sum: a4f754317b396e75d3b3f7753fb83a37
 Description:  Common base for all themes
 
 Package: luci-theme-openwrt
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, luci-theme-base
 Provides: 
 Source: feeds/luci/luci
@@ -3851,14 +3868,14 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 7057
-Filename: luci-theme-openwrt_trunk+svn114-1_ramips.ipk
-Size: 7845
-MD5Sum: 95610b3057240506ab1d3ee423bb8f93
+Installed-Size: 7058
+Filename: luci-theme-openwrt_trunk+svn116-1_ramips.ipk
+Size: 7852
+MD5Sum: 71440b8a871533d7a5108f9d7a5c2a6e
 Description:  OpenWrt.org (default)
 
 Package: luci
-Version: trunk+svn114-1
+Version: trunk+svn116-1
 Depends: libc, uhttpd, uhttpd-mod-ubus, luci-mod-admin-full, luci-theme-openwrt, luci-app-firewall, luci-proto-core, luci-proto-ppp, libiwinfo-lua
 Provides: 
 Source: feeds/luci/luci
@@ -3868,10 +3885,10 @@ Essential: no
 Priority: optional
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips
-Installed-Size: 104
-Filename: luci_trunk+svn114-1_ramips.ipk
-Size: 802
-MD5Sum: 71a6ee216652d827673b30c77d56256c
+Installed-Size: 105
+Filename: luci_trunk+svn116-1_ramips.ipk
+Size: 805
+MD5Sum: b770a3090544109962363d32f6b0b807
 Description:  Standard OpenWrt set including full admin with ppp support and the default OpenWrt theme
 
 Package: mac-to-devinfo
@@ -3927,6 +3944,23 @@ Filename: miniupnpd_1.8-1_ramips.ipk
 Size: 42134
 MD5Sum: be3968a70d43902e9877c2c0e125ce97
 Description:  Lightweight UPnP daemon
+
+Package: mpcs
+Version: 0.9e-1
+Depends: libc, libpthread
+Provides: 
+Source: feeds/custompackages/net/mpcs
+Section: custom
+Status: unknown ok not-installed
+Essential: no
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ramips
+Installed-Size: 149598
+Filename: mpcs_0.9e-1_ramips.ipk
+Size: 149068
+MD5Sum: 71a223912ffa62eabe74b4d59b167934
+Description:  Cardsharing software 
 
 Package: mtd
 Version: 18.1
@@ -4056,6 +4090,23 @@ Description:  Lightweight package management system
  necessary to install a particular package.
  
  opkg knows how to install both .ipk and .deb packages.
+
+Package: oscam
+Version: 2013-03-19-8560-1
+Depends: libc, libopenssl, libusb-1.0
+Provides: 
+Source: feeds/custompackages/net/oscam
+Section: net
+Status: unknown ok not-installed
+Essential: no
+Priority: optional
+Maintainer: OpenWrt Developers Team <openwrt-devel@openwrt.org>
+Architecture: ramips
+Installed-Size: 392088
+Filename: oscam_2013-03-19-8560-1_ramips.ipk
+Size: 392422
+MD5Sum: 75a3270f447790c8c3034686dfcefac1
+Description:  Open Source Conditional Access Module
 
 Package: ppp-mod-pppoe
 Version: 2.4.5-8
