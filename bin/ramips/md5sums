@@ -1,6 +1,8 @@
+19dbf729604e9a657c96cb6a0abe2fea *openwrt-AA-mpcs-19.03.2013.bin
 15471c68ece0f4dcb7ee4818d9798ea5 *openwrt-AA-std-17.03.2013.bin
-714d57a77f262291933fce85df1a7b72 *openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin
-ec1ca35fb07a7784e2581bcb64dcab5f *openwrt-ramips-rt305x-root.squashfs
-6d2162a953f0960fb13eac4682dff20d *openwrt-ramips-rt305x-uImage.bin
-f23a463e98d956b281436e792b55c376 *openwrt-ramips-rt305x-vmlinux.bin
-27106f50cb5b01bea3cbe29659c75a92 *openwrt-ramips-rt305x-vmlinux.elf
+714d57a77f262291933fce85df1a7b72 *openwrt-AA-std-18.03.2013.bin
+c89c09598642642b51a7ff8634f93b00 *openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin
+907a3719576f9efcd7a89e572c020b1d *openwrt-ramips-rt305x-root.squashfs
+1820d6645db539fd764521ce551ee538 *openwrt-ramips-rt305x-uImage.bin
+a26fed42972b3c137653635d97377942 *openwrt-ramips-rt305x-vmlinux.bin
+522bfd408276c99ef2986c9c2f8369d7 *openwrt-ramips-rt305x-vmlinux.elf
