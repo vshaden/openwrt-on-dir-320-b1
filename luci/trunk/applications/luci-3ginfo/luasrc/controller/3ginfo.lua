@@ -7,6 +7,6 @@ function index()
 
 	local page
 
-	page = entry({"admin", "services", "3ginfo"}, cbi("3ginfo"), _("3ginfo - information about your 3g/4g connection"), 60)
+	page = entry({"admin", "services", "3ginfo"}, cbi("3ginfo"), _("3ginfo"), 60)
 	page.dependent = true
 end
