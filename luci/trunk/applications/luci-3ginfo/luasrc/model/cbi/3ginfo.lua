@@ -44,7 +44,7 @@ qos.enabled = "1"
 qos.disabled = "0"
 
 lang = s:option(Value, "language", translate("Language"))
-lang:value("ru", "Russian")
+lang:value("ru", "Русский")
 lang:value("en", "English")
 lang.default = "ru"
  
