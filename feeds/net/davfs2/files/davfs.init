@@ -9,6 +9,8 @@ mount_resource () {
 	local mountpoint
 	local clientcert
 	local servercert
+	local mountopts
+	local force_y
 	
 	config_get url $1 url
 	config_get user $1 user
@@ -16,92 +18,60 @@ mount_resource () {
 	config_get mountpoint $1 mountpoint
 	config_get clientcert $1 clientcert
 	config_get servercert $1 servercert
+	config_get mountopts $1 mountopts
+	config_get_bool force_y $1 force_y
 
-	if [ $servercert ] || [ $clientcert ]; then
+	if [ "$servercert" ] || [ "$clientcert" ]; then
 		echo "[$mountpoint]" >> /etc/davfs2/davfs2.conf
-		[ $servercert ] && echo "servercert $servercert" >> /etc/davfs2/davfs2.conf
-		[ $clientcert ] && echo "clientcert $clientcert" >> /etc/davfs2/davfs2.conf
+		[ "$servercert" ] && echo "servercert $servercert" >> /etc/davfs2/davfs2.conf
+		[ "$clientcert" ] && echo "clientcert $clientcert" >> /etc/davfs2/davfs2.conf
+		echo >> /etc/davfs2/davfs2.conf
 	fi
 
 	echo "$url $user $password" >> /etc/davfs2/secrets
 	chmod 0600 /etc/davfs2/secrets
-	[ -e $mountpoint ] || mkdir -p $mounpoint
-	echo "$url	$mountpoint	davfs	user,rw,noauto	0	0" >> /etc/fstab
-	mount $mountpoint || mount $url || echo "errror mounting $url to $mountpoint"
-	echo "mounted $url to $mountpoint"
+
+	[ -e "$mountpoint" ] || mkdir -p "$mounpoint"
+
+	if $force_y; then
+		[ -e /tmp/dav.inp ] || echo "y" > /tmp/dav.inp
+		mount -t davfs $url "$mountpoint" "$mountopts" < /tmp/dav.inp
+	else
+		mount -t davfs $url "$mountpoint" "$mountopts"
+	fi
+
+	if [ $? -eq 0 ]; then
+		echo "mounted $url to $mountpoint"	
+	else	
+		echo "errror mounting $url to $mountpoint"
+	fi
+
 	sleep 3
 }
 
 unmount_resource () {
-	local url
-        local user
-        local password
-        local mountpoint
-        local clientcert
-        local servercert
+	local mountpoint
 
-        config_get url $1 url
-        config_get user $1 user
-        config_get password $1 password
         config_get mountpoint $1 mountpoint
-        config_get clientcert $1 clientcert
-        config_get servercert $1 servercert
 
-	umount $mountpoint || umount -f $mountpoint || umount -l $mountpoint || exit 1
+	umount "$mountpoint" || umount -f "$mountpoint" || umount -l "$mountpoint"
 	echo unmounted $url from $mountpoint
-	cat /etc/fstab | grep -v "$url" > /etc/fstab.new && mv /etc/fstab.new /etc/fstab
 }
 
-config_generate () {	
-	local cache_size
-	local table_size
-	local dir_refresh
-	local file_refresh
-	local delay_upload
-	local debug
-	local use_proxy
-	local proxy
-	local ask_auth
-	local use_locks
-	local lock_timeout
-	local lock_refresh
-	local use_expect100
-	local if_match_bug
-	local drop_weak_etags
-	local allow_cookie
-	local precheck
-	local server_charset
-	local connect_timeout
-	local read_timeout
-	local retry
-	local max_retry
-	local max_upload_attempts
-
-	config_get cache_size $1 cache_size
-	config_get table_size $1 table_size
-	config_get dir_refresh $1 dir_refresh
-	config_get file_refresh $1 file_refresh
-	config_get delay_upload $1 delay_upload
-	config_get debug $1 debug
-	config_get use_proxy $1 use_proxy
-	config_get proxy $1 proxy
-	config_get ask_auth $1 ask_auth
-	config_get use_locks $1 use_locks
-	config_get lock_timeout $1 lock_timeout
-	config_get lock_refresh $1 lock_refresh
-	config_get use_expect100 $1 use_expect100
-	config_get if_match_bug $1 if_match_bug
-	config_get drop_weak_etags $1 drop_weak_etags
-	config_get allow_cookie $1 allow_cookie
-	config_get precheck $1 precheck
-	config_get sever_charset $1 server_charset
-	config_get connect_timeout $1 connect_timeout
-	config_get read_timeout $1 read_timeout
-	config_get retry $1 retry
-	config_get max_retry $1 max_retry
-	config_get max_upload_attempts $1 max_upload_attempts
-	config_get server_charset $1 server_charset
-
+config_generate () {
+	param_list="cache_size table_size dir_refresh \
+			file_refresh delay_upload debug \
+			use_proxy proxy ask_auth use_locks \
+			lock_timeout lock_refresh use_expect100 \
+			if_match_bug drop_weak_etags allow_cookie \
+			precheck server_charset connect_timeout \
+			read_timeout retry max_retry max_upload_attempts"
+	
+	for option in $param_list; do
+		local $option
+		config_get $option $1 $option
+	done
+	
 	echo generating config...
 
 	[ -e /etc/davfs2/davfs2.conf ] && rm /etc/davfs2/davfs2.conf
