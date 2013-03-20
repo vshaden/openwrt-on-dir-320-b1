@@ -3,8 +3,8 @@
 # Copyright (C) 2010 Vertical Communications
 
 find_mount_jffs2() {
-    mkdir -p /tmp/overlay
-    mount -o noatime -t jffs2 "$(find_mtd_part rootfs_data)" /tmp/overlay
+	mkdir -p /tmp/overlay
+    mount "$(find_mtd_part rootfs_data)" /tmp/overlay -t jffs2
     mtd -qq unlock rootfs_data
 }
 

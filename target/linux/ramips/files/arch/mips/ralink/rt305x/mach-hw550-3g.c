@@ -100,6 +100,3 @@ static void __init hw550_3g_init(void)
 
 MIPS_MACHINE(RAMIPS_MACH_HW550_3G, "HW550-3G", "Aztech HW550-3G",
 	     hw550_3g_init);
-
-MIPS_MACHINE(RAMIPS_MACH_ALL0239_3G, "ALL0239-3G", "Allnet ALL0239-3G",
-	     hw550_3g_init);

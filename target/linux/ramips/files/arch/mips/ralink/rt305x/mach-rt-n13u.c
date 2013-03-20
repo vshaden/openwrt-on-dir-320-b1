@@ -1,5 +1,5 @@
 /*
- *  ASUS RT-N13U board support
+ *  ASUS RT-N13U b2 board support
  *
  *  Copyright (C) 2012 lintel<lintel.huang@gmail.com>
  *
@@ -10,6 +10,9 @@
 
 #include <linux/init.h>
 #include <linux/platform_device.h>
+#include <linux/mtd/mtd.h>
+#include <linux/mtd/partitions.h>
+#include <linux/mtd/physmap.h>
 
 #include <asm/mach-ralink/machine.h>
 #include <asm/mach-ralink/dev-gpio-buttons.h>
@@ -27,33 +30,72 @@
 
 
 #define RT_N13U_BUTTONS_POLL_INTERVAL	10
-#define RT_N13U_BUTTONS_DEBOUNCE_INTERVAL  (3 * RT_N13U_BUTTONS_POLL_INTERVAL)
+
+#ifdef CONFIG_MTD_PARTITIONS
+static struct mtd_partition rt_n13u_partitions[] = {
+	{
+		.name	= "u-boot",
+		.offset	= 0,
+		.size	= 0x030000,
+		.mask_flags = MTD_WRITEABLE,
+	}, {
+		.name	= "u-boot-env",
+		.offset	= 0x030000,
+		.size	= 0x010000,
+		.mask_flags = MTD_WRITEABLE,
+	}, {
+		.name	= "factory",
+		.offset	= 0x040000,
+		.size	= 0x010000,
+		.mask_flags = MTD_WRITEABLE,
+	}, {
+		.name	= "kernel",
+		.offset	= 0x050000,
+		.size	= 0x0a0000,
+	}, {
+		.name	= "rootfs",
+		.offset	= 0x150000,
+		.size	= 0x6b0000,
+	}, {
+		.name	= "firmware",
+		.offset	= 0x050000,
+		.size	= 0x7b0000,
+	}
+};
+#endif /* CONFIG_MTD_PARTITIONS */
+
+static struct physmap_flash_data rt_n13u_flash_data = {
+#ifdef CONFIG_MTD_PARTITIONS
+	.nr_parts	= ARRAY_SIZE(rt_n13u_partitions),
+	.parts		= rt_n13u_partitions,
+#endif
+};
 
 static struct gpio_led rt_n13u_leds_gpio[] __initdata = {
 	{
-		.name		= "rt-n13u:power",
+		.name		= "rt-n13:power",
 		.gpio		= RT_N13U_GPIO_LED_POWER,
 		.active_low	= 1,
 	}, {
-		.name		= "rt-n13u:wifi",
+		.name		= "rt-n13:wifi",
 		.gpio		= RT_N13U_GPIO_LED_WIFI,
 		.active_low	= 1,
 	}
 };
 
-static struct gpio_keys_button rt_n13u_gpio_buttons[] __initdata = {
+static struct gpio_button rt_n13u_gpio_buttons[] __initdata = {
 	{
 		.desc		= "reset",
 		.type		= EV_KEY,
-		.code		= KEY_RESTART,
-		.debounce_interval	= RT_N13U_BUTTONS_DEBOUNCE_INTERVAL,
+		.code		= BTN_0,
+		.threshold	= RT_N13U_BUTTONS_POLL_INTERVAL,
 		.gpio		= RT_N13U_GPIO_BUTTON_RESET,
 		.active_low	= 1,
 	}, {
 		.desc		= "wps",
 		.type		= EV_KEY,
-		.code		= KEY_WPS_BUTTON,
-		.debounce_interval	= RT_N13U_BUTTONS_DEBOUNCE_INTERVAL,
+		.code		= BTN_1,
+		.threshold	= RT_N13U_BUTTONS_POLL_INTERVAL,
 		.gpio		= RT_N13U_GPIO_BUTTON_WPS,
 		.active_low	= 1,
 	},
@@ -63,6 +105,7 @@ static void __init rt_n13u_init(void)
 {
 	rt305x_gpio_init(RT305X_GPIO_MODE_GPIO << RT305X_GPIO_MODE_UART0_SHIFT);
 
+//	rt305x_register_flash(0, &rt_n13u_flash_data);
 	rt305x_register_flash(0);
 
 	ramips_register_gpio_leds(-1, ARRAY_SIZE(rt_n13u_leds_gpio),
@@ -77,7 +120,8 @@ static void __init rt_n13u_init(void)
 	rt305x_register_wifi();
 	rt305x_register_wdt();
 	rt305x_register_usb();
+	rt305x_register_gpiodev();
 }
 
-MIPS_MACHINE(RAMIPS_MACH_RT_N13U, "RT-N13U", "Asus RT-N13U",
+MIPS_MACHINE(RAMIPS_MACH_RT_N13U, "RT-N13U", "ASUS RT-N13",
 	     rt_n13u_init);

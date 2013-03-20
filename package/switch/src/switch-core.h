@@ -4,12 +4,18 @@
 #include <linux/version.h>
 #include <linux/list.h>
 #define SWITCH_MAX_BUFSZ	4096
-#define SWITCH_NAME_BUFSZ	16
 
 #define SWITCH_MEDIA_AUTO	1
 #define SWITCH_MEDIA_100	2
 #define SWITCH_MEDIA_FD		4
-#define SWITCH_MEDIA_1000	8
+
+#ifndef KERNEL_VERSION
+#define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))
+#endif
+
+#if LINUX_VERSION_CODE < KERNEL_VERSION(2,5,0)
+#define LINUX_2_4
+#endif
 
 typedef int (*switch_handler)(void *driver, char *buf, int nr);
 
@@ -29,7 +35,6 @@ typedef struct {
 	const switch_config *driver_handlers, *port_handlers, *vlan_handlers;
 	void *data;
 	void *priv;
-	char dev_name[SWITCH_NAME_BUFSZ];
 } switch_driver;
 
 typedef struct {

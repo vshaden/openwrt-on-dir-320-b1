@@ -20,8 +20,8 @@ static void __init rb192_setup(void)
 	rb1xx_generic_setup();
 	rb1xx_add_device_nand();
 
+	adm5120_add_device_gpio(0);
 	adm5120_add_device_switch(6, rb192_vlans);
 }
 
-MIPS_MACHINE(MACH_ADM5120_RB_192, "192", "Mikrotik RouterBOARD 192",
-	     rb192_setup);
+MIPS_MACHINE(MACH_ADM5120_RB_192, "Mikrotik RouterBOARD 192", rb192_setup);

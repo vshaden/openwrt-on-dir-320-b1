@@ -39,12 +39,13 @@ static struct gpio_led wcr150gn_leds_gpio[] __initdata = {
 	}
 };
 
-static struct gpio_keys_button wcr150gn_gpio_buttons[] __initdata = {
+static struct gpio_button wcr150gn_gpio_buttons[] __initdata = {
 	{
 		.desc       = "wps",
 		.type       = EV_KEY,
 		.code       = KEY_WPS_BUTTON,
-		.debounce_interval = WCR150GN_KEYS_DEBOUNCE_INTERVAL,
+//		.debounce_interval = WCR150GN_KEYS_DEBOUNCE_INTERVAL,
+		.threshold	= 3,
 		.gpio       = WCR150GN_GPIO_BUTTON_WPS,
 		.active_low = 1,
 	},
@@ -52,7 +53,8 @@ static struct gpio_keys_button wcr150gn_gpio_buttons[] __initdata = {
 		.desc       = "reset",
 		.type       = EV_KEY,
 		.code       = KEY_RESTART,
-		.debounce_interval = WCR150GN_KEYS_DEBOUNCE_INTERVAL,
+//		.debounce_interval = WCR150GN_KEYS_DEBOUNCE_INTERVAL,
+		.threshold	= 3,
 		.gpio       = WCR150GN_GPIO_BUTTON_RESET,
 		.active_low = 1,
 	}

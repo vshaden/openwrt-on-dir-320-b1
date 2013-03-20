@@ -18,8 +18,6 @@
 #include <linux/rt2x00_platform.h>
 #include <linux/delay.h>
 #include <linux/dma-mapping.h>
-#include <linux/usb/ehci_pdriver.h>
-#include <linux/usb/ohci_pdriver.h>
 
 #include <asm/addrspace.h>
 
@@ -29,6 +27,8 @@
 
 #include <ramips_eth_platform.h>
 #include <rt305x_esw_platform.h>
+#include <rt3883_ehci_platform.h>
+#include <rt3883_ohci_platform.h>
 
 static struct resource rt305x_flash0_resources[] = {
 	{
@@ -160,15 +160,8 @@ static struct resource rt305x_esw_resources[] = {
 };
 
 struct rt305x_esw_platform_data rt305x_esw_data = {
-	/* All ports are LAN ports. */
 	.vlan_config		= RT305X_ESW_VLAN_CONFIG_NONE,
 	.reg_initval_fct2	= 0x00d6500c,
-	/*
-	 * ext phy base addr 31, enable port 5 polling, rx/tx clock skew 1,
-	 * turbo mii off, rgmi 3.3v off
-	 * port5: disabled
-	 * port6: enabled, gige, full-duplex, rx/tx-flow-control
-	 */
 	.reg_initval_fpa2	= 0x3f502b28,
 };
 
@@ -219,16 +212,7 @@ static struct platform_device rt305x_wifi_device = {
 
 void __init rt305x_register_wifi(void)
 {
-	u32 t;
-
-	rt305x_wifi_data.eeprom_file_name = "soc_wmac.eeprom";
-
-	if (soc_is_rt3352() || soc_is_rt5350()) {
-		t = rt305x_sysc_rr(SYSC_REG_SYSTEM_CONFIG);
-		t &= RT3352_SYSCFG0_XTAL_SEL;
-		if (!t)
-			rt305x_wifi_data.clk_is_20mhz = 1;
-	}
+	rt305x_wifi_data.eeprom_file_name = "RT305X.eeprom";
 	platform_device_register(&rt305x_wifi_device);
 }
 
@@ -302,62 +286,60 @@ static struct platform_device rt305x_dwc_otg_device = {
 	}
 };
 
-static atomic_t rt3352_usb_pwr_ref = ATOMIC_INIT(0);
+static atomic_t rt3352_usb_use_count = ATOMIC_INIT(0);
 
-static int rt3352_usb_power_on(struct platform_device *pdev)
+static void rt3352_usb_host_start(void)
 {
+	u32 t;
 
-	if (atomic_inc_return(&rt3352_usb_pwr_ref) == 1) {
-		u32 t;
+	if (atomic_inc_return(&rt3352_usb_use_count) != 1)
+		return;
 
-		t = rt305x_sysc_rr(RT3352_SYSC_REG_USB_PS);
+	t = rt305x_sysc_rr(RT3352_SYSC_REG_USB_PS);
 
-		/* enable clock for port0's and port1's phys */
-		t = rt305x_sysc_rr(RT3352_SYSC_REG_CLKCFG1);
-		t |= RT3352_CLKCFG1_UPHY0_CLK_EN | RT3352_CLKCFG1_UPHY1_CLK_EN;
-		rt305x_sysc_wr(t, RT3352_SYSC_REG_CLKCFG1);
-		mdelay(500);
+	/* enable clock for port0's and port1's phys */
+	t = rt305x_sysc_rr(RT3352_SYSC_REG_CLKCFG1);
+	t = t | RT3352_CLKCFG1_UPHY0_CLK_EN | RT3352_CLKCFG1_UPHY1_CLK_EN;
+	rt305x_sysc_wr(t, RT3352_SYSC_REG_CLKCFG1);
+	mdelay(500);
 
-		/* pull USBHOST and USBDEV out from reset */
-		t = rt305x_sysc_rr(RT3352_SYSC_REG_RSTCTRL);
-		t &= ~(RT3352_RSTCTRL_UHST | RT3352_RSTCTRL_UDEV);
-		rt305x_sysc_wr(t, RT3352_SYSC_REG_RSTCTRL);
-		mdelay(500);
+	/* pull USBHOST and USBDEV out from reset */
+	t = rt305x_sysc_rr(RT3352_SYSC_REG_RSTCTRL);
+	t &= ~(RT3352_RSTCTRL_UHST | RT3352_RSTCTRL_UDEV);
+	rt305x_sysc_wr(t, RT3352_SYSC_REG_RSTCTRL);
+	mdelay(500);
 
-		/* enable host mode */
-		t = rt305x_sysc_rr(RT3352_SYSC_REG_SYSCFG1);
-		t |= RT3352_SYSCFG1_USB0_HOST_MODE;
-		rt305x_sysc_wr(t, RT3352_SYSC_REG_SYSCFG1);
+	/* enable host mode */
+	t = rt305x_sysc_rr(RT3352_SYSC_REG_SYSCFG1);
+	t |= RT3352_SYSCFG1_USB0_HOST_MODE;
+	rt305x_sysc_wr(t, RT3352_SYSC_REG_SYSCFG1);
 
-		t = rt305x_sysc_rr(RT3352_SYSC_REG_USB_PS);
-	}
-
-	return 0;
+	t = rt305x_sysc_rr(RT3352_SYSC_REG_USB_PS);
 }
 
-static void rt3352_usb_power_off(struct platform_device *pdev)
+static void rt3352_usb_host_stop(void)
 {
+	u32 t;
 
-	if (atomic_dec_return(&rt3352_usb_pwr_ref) == 0) {
-		u32 t;
+	if (atomic_dec_return(&rt3352_usb_use_count) != 0)
+		return;
 
-		/* put USBHOST and USBDEV into reset */
-		t = rt305x_sysc_rr(RT3352_SYSC_REG_RSTCTRL);
-		t |= RT3352_RSTCTRL_UHST | RT3352_RSTCTRL_UDEV;
-		rt305x_sysc_wr(t, RT3352_SYSC_REG_RSTCTRL);
-		udelay(10000);
+	/* put USBHOST and USBDEV into reset */
+	t = rt305x_sysc_rr(RT3352_SYSC_REG_RSTCTRL);
+	t |= RT3352_RSTCTRL_UHST | RT3352_RSTCTRL_UDEV;
+	rt305x_sysc_wr(t, RT3352_SYSC_REG_RSTCTRL);
+	udelay(10000);
 
-		/* disable clock for port0's and port1's phys*/
-		t = rt305x_sysc_rr(RT3352_SYSC_REG_CLKCFG1);
-		t &= ~(RT3352_CLKCFG1_UPHY0_CLK_EN | RT3352_CLKCFG1_UPHY1_CLK_EN);
-		rt305x_sysc_wr(t, RT3352_SYSC_REG_CLKCFG1);
-		udelay(10000);
-	}
+	/* disable clock for port0's and port1's phys*/
+	t = rt305x_sysc_rr(RT3352_SYSC_REG_CLKCFG1);
+	t &= ~(RT3352_CLKCFG1_UPHY0_CLK_EN | RT3352_CLKCFG1_UPHY1_CLK_EN);
+	rt305x_sysc_wr(t, RT3352_SYSC_REG_CLKCFG1);
+	udelay(10000);
 }
 
-static struct usb_ehci_pdata rt3352_ehci_data = {
-	.power_on	= rt3352_usb_power_on,
-	.power_off	= rt3352_usb_power_off,
+static struct rt3883_ehci_platform_data rt3352_ehci_data = {
+	.start_hw	= rt3352_usb_host_start,
+	.stop_hw	= rt3352_usb_host_stop,
 };
 
 static struct resource rt3352_ehci_resources[] = {
@@ -374,7 +356,7 @@ static struct resource rt3352_ehci_resources[] = {
 
 static u64 rt3352_ehci_dmamask = DMA_BIT_MASK(32);
 static struct platform_device rt3352_ehci_device = {
-	.name		= "ehci-platform",
+	.name		= "rt3883-ehci",
 	.id		= -1,
 	.resource	= rt3352_ehci_resources,
 	.num_resources	= ARRAY_SIZE(rt3352_ehci_resources),
@@ -397,14 +379,26 @@ static struct resource rt3352_ohci_resources[] = {
 	},
 };
 
-static struct usb_ohci_pdata rt3352_ohci_data = {
-	.power_on	= rt3352_usb_power_on,
-	.power_off	= rt3352_usb_power_off,
+static struct rt3883_ohci_platform_data rt3352_ohci_data = {
+	.start_hw	= rt3352_usb_host_start,
+	.stop_hw	= rt3352_usb_host_stop,
 };
+
+/*
+ * map the gpio
+ */
+static struct resource gpiodev_resource = {
+	.start			= 0xFFFFFFFF,
+};
+
+void __init rt305x_register_gpiodev(void)
+{
+	platform_device_register_simple("GPIODEV", 0, &gpiodev_resource, 1);
+}
 
 static u64 rt3352_ohci_dmamask = DMA_BIT_MASK(32);
 static struct platform_device rt3352_ohci_device = {
-	.name		= "ohci-platform",
+	.name		= "rt3883-ohci",
 	.id		= -1,
 	.resource	= rt3352_ohci_resources,
 	.num_resources	= ARRAY_SIZE(rt3352_ohci_resources),
@@ -419,7 +413,7 @@ void __init rt305x_register_usb(void)
 {
 	if (soc_is_rt305x() || soc_is_rt3350()) {
 		platform_device_register(&rt305x_dwc_otg_device);
-	} else if (soc_is_rt3352() || soc_is_rt5350()) {
+	} else if (soc_is_rt3352()) {
 		platform_device_register(&rt3352_ehci_device);
 		platform_device_register(&rt3352_ohci_device);
 	} else {

@@ -1,5 +1,5 @@
-#
-# Copyright (C) 2006-2011 OpenWrt.org
+ 
+# Copyright (C) 2006-2009 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -10,14 +10,13 @@ ARCH:=mipsel
 BOARD:=ar7
 BOARDNAME:=TI AR7
 FEATURES:=squashfs jffs2 atm
-MAINTAINER:=Florian Fainelli <florian@openwrt.org>
-SUBTARGETS:=generic ac49x
 
-LINUX_VERSION:=3.3.8
+LINUX_VERSION:=2.6.32.48
 
 include $(INCLUDE_DIR)/target.mk
 
-DEFAULT_PACKAGES+= swconfig
+DEFAULT_PACKAGES+= kmod-pppoa ppp-mod-pppoa linux-atm atm-tools br2684ctl \
+		kmod-acx swconfig
 
 define Target/Description
 	Build firmware images for TI AR7 based routers.

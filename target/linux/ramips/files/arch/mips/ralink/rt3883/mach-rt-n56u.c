@@ -60,12 +60,13 @@ static struct gpio_led rt_n56u_leds_gpio[] __initdata = {
 	},
 };
 
-static struct gpio_keys_button rt_n56u_gpio_buttons[] __initdata = {
+static struct gpio_button rt_n56u_gpio_buttons[] __initdata = {
 	{
 		.desc		= "reset",
 		.type		= EV_KEY,
 		.code		= KEY_RESTART,
-		.debounce_interval = RT_N56U_KEYS_DEBOUNCE_INTERVAL,
+//		.debounce_interval = RT_N56U_KEYS_DEBOUNCE_INTERVAL,
+		.threshold	= 3,
 		.gpio		= RT_N56U_GPIO_BUTTON_RESET,
 		.active_low	= 1,
 	},
@@ -73,7 +74,8 @@ static struct gpio_keys_button rt_n56u_gpio_buttons[] __initdata = {
 		.desc		= "wps",
 		.type		= EV_KEY,
 		.code		= KEY_WPS_BUTTON,
-		.debounce_interval = RT_N56U_KEYS_DEBOUNCE_INTERVAL,
+//		.debounce_interval = RT_N56U_KEYS_DEBOUNCE_INTERVAL,
+		.threshold	= 3,
 		.gpio		= RT_N56U_GPIO_BUTTON_WPS,
 		.active_low	= 1,
 	}

@@ -5,7 +5,7 @@
  * 
  *   GPL LICENSE SUMMARY
  * 
- *   Copyright(c) 2007,2008,2009 Intel Corporation. All rights reserved.
+ *   Copyright(c) 2007,2008 Intel Corporation. All rights reserved.
  * 
  *   This program is free software; you can redistribute it and/or modify 
  *   it under the terms of version 2 of the GNU General Public License as
@@ -27,7 +27,7 @@
  * 
  *   BSD LICENSE 
  * 
- *   Copyright(c) 2007,2008,2009 Intel Corporation. All rights reserved.
+ *   Copyright(c) 2007,2008 Intel Corporation. All rights reserved.
  *   All rights reserved.
  * 
  *   Redistribution and use in source and binary forms, with or without 
@@ -57,7 +57,7 @@
  *   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  * 
  * 
- *  version: Security.L.1.0.2-229
+ *  version: Security.L.1.0.130
  *
  ***************************************************************************/
 
@@ -70,94 +70,90 @@ calling program uses different input buffer positions, these defines will have
 to be changed.*/
 
 /*DIFFIE HELLMAN buffer index values*/
-#define ICP_DH_KRP_PARAM_PRIME_INDEX                            (0)
-#define ICP_DH_KRP_PARAM_BASE_INDEX                             (1)
-#define ICP_DH_KRP_PARAM_PRIVATE_VALUE_INDEX                    (2)
-#define ICP_DH_KRP_PARAM_RESULT_INDEX                           (3)
+#define ICP_DH_KRP_PARAM_PRIME_INDEX				(0)
+#define ICP_DH_KRP_PARAM_BASE_INDEX				(1)
+#define ICP_DH_KRP_PARAM_PRIVATE_VALUE_INDEX			(2)
+#define ICP_DH_KRP_PARAM_RESULT_INDEX				(3)
 
 /*MOD EXP buffer index values*/
-#define ICP_MOD_EXP_KRP_PARAM_BASE_INDEX                        (0)
-#define ICP_MOD_EXP_KRP_PARAM_EXPONENT_INDEX                    (1)
-#define ICP_MOD_EXP_KRP_PARAM_MODULUS_INDEX                     (2)
-#define ICP_MOD_EXP_KRP_PARAM_RESULT_INDEX                      (3)
+#define ICP_MOD_EXP_KRP_PARAM_BASE_INDEX			(0)
+#define ICP_MOD_EXP_KRP_PARAM_EXPONENT_INDEX			(1)
+#define ICP_MOD_EXP_KRP_PARAM_MODULUS_INDEX			(2)
+#define ICP_MOD_EXP_KRP_PARAM_RESULT_INDEX			(3)
+
+#define SINGLE_BYTE_VALUE					(4)
 
 /*MOD EXP CRT buffer index values*/
-#define ICP_MOD_EXP_CRT_KRP_PARAM_PRIME_P_INDEX                 (0)
-#define ICP_MOD_EXP_CRT_KRP_PARAM_PRIME_Q_INDEX                 (1)
-#define ICP_MOD_EXP_CRT_KRP_PARAM_I_INDEX                       (2)
-#define ICP_MOD_EXP_CRT_KRP_PARAM_EXPONENT_DP_INDEX             (3)
-#define ICP_MOD_EXP_CRT_KRP_PARAM_EXPONENT_DQ_INDEX             (4)
-#define ICP_MOD_EXP_CRT_KRP_PARAM_COEFF_QINV_INDEX              (5)
-#define ICP_MOD_EXP_CRT_KRP_PARAM_RESULT_INDEX                  (6)
+#define ICP_MOD_EXP_CRT_KRP_PARAM_PRIME_P_INDEX			(0)
+#define ICP_MOD_EXP_CRT_KRP_PARAM_PRIME_Q_INDEX			(1)
+#define ICP_MOD_EXP_CRT_KRP_PARAM_I_INDEX			(2)
+#define ICP_MOD_EXP_CRT_KRP_PARAM_EXPONENT_DP_INDEX		(3)
+#define ICP_MOD_EXP_CRT_KRP_PARAM_EXPONENT_DQ_INDEX		(4)
+#define ICP_MOD_EXP_CRT_KRP_PARAM_COEFF_QINV_INDEX		(5)
+#define ICP_MOD_EXP_CRT_KRP_PARAM_RESULT_INDEX			(6)
 
 /*DSA sign buffer index values*/
-#define ICP_DSA_SIGN_KRP_PARAM_DGST_INDEX                       (0)
-#define ICP_DSA_SIGN_KRP_PARAM_PRIME_P_INDEX                    (1)
-#define ICP_DSA_SIGN_KRP_PARAM_PRIME_Q_INDEX                    (2)
-#define ICP_DSA_SIGN_KRP_PARAM_G_INDEX                          (3)
-#define ICP_DSA_SIGN_KRP_PARAM_X_INDEX                          (4)
-#define ICP_DSA_SIGN_KRP_PARAM_R_RESULT_INDEX                   (5)
-#define ICP_DSA_SIGN_KRP_PARAM_S_RESULT_INDEX                   (6)
+#define ICP_DSA_SIGN_KRP_PARAM_DGST_INDEX			(0)
+#define ICP_DSA_SIGN_KRP_PARAM_PRIME_P_INDEX			(1)
+#define ICP_DSA_SIGN_KRP_PARAM_PRIME_Q_INDEX			(2)
+#define ICP_DSA_SIGN_KRP_PARAM_G_INDEX				(3)
+#define ICP_DSA_SIGN_KRP_PARAM_X_INDEX				(4)
+#define ICP_DSA_SIGN_KRP_PARAM_R_RESULT_INDEX			(5)
+#define ICP_DSA_SIGN_KRP_PARAM_S_RESULT_INDEX			(6)
 
 /*DSA verify buffer index values*/
-#define ICP_DSA_VERIFY_KRP_PARAM_DGST_INDEX                     (0)
-#define ICP_DSA_VERIFY_KRP_PARAM_PRIME_P_INDEX                  (1)
-#define ICP_DSA_VERIFY_KRP_PARAM_PRIME_Q_INDEX                  (2)
-#define ICP_DSA_VERIFY_KRP_PARAM_G_INDEX                        (3)
-#define ICP_DSA_VERIFY_KRP_PARAM_PUBKEY_INDEX                   (4)
-#define ICP_DSA_VERIFY_KRP_PARAM_SIG_R_INDEX                    (5)
-#define ICP_DSA_VERIFY_KRP_PARAM_SIG_S_INDEX                    (6)
+#define ICP_DSA_VERIFY_KRP_PARAM_DGST_INDEX			(0)
+#define ICP_DSA_VERIFY_KRP_PARAM_PRIME_P_INDEX			(1)
+#define ICP_DSA_VERIFY_KRP_PARAM_PRIME_Q_INDEX			(2)
+#define ICP_DSA_VERIFY_KRP_PARAM_G_INDEX			(3)
+#define ICP_DSA_VERIFY_KRP_PARAM_PUBKEY_INDEX			(4)
+#define ICP_DSA_VERIFY_KRP_PARAM_SIG_R_INDEX			(5)
+#define ICP_DSA_VERIFY_KRP_PARAM_SIG_S_INDEX			(6)
 
 /*DSA sign prime Q vs random number K size check values*/
-#define DONT_RUN_LESS_THAN_CHECK                                (0)
-#define FAIL_A_IS_GREATER_THAN_B                                (1)
-#define FAIL_A_IS_EQUAL_TO_B                                    (1)
-#define SUCCESS_A_IS_LESS_THAN_B                                (0)
-#define DSA_SIGN_RAND_GEN_VAL_CHECK_MAX_ITERATIONS              (500)
+#define DONT_RUN_LESS_THAN_CHECK				(0)
+#define FAIL_A_IS_GREATER_THAN_B				(1)
+#define FAIL_A_IS_EQUAL_TO_B					(1)
+#define SUCCESS_A_IS_LESS_THAN_B				(0)
+#define DSA_SIGN_RAND_GEN_VAL_CHECK_MAX_ITERATIONS		(500)
 
 /* We need to set a cryptokp success value just in case it is set or allocated
    and not set to zero outside of this module */
-#define CRYPTO_OP_SUCCESS                                       (0)
+#define CRYPTO_OP_SUCCESS					(0)
 
-/*Function to compute Diffie Hellman (DH) phase 1 or phase 2 key values*/
 static int icp_ocfDrvDHComputeKey(struct cryptkop *krp);
 
-/*Function to compute a Modular Exponentiation (Mod Exp)*/
 static int icp_ocfDrvModExp(struct cryptkop *krp);
 
-/*Function to compute a Mod Exp using the Chinease Remainder Theorem*/
 static int icp_ocfDrvModExpCRT(struct cryptkop *krp);
 
-/*Helper function to compute whether the first big number argument is less than
- the second big number argument */
 static int
 icp_ocfDrvCheckALessThanB(CpaFlatBuffer * pK, CpaFlatBuffer * pQ, int *doCheck);
 
-/*Function to sign an input with DSA R and S keys*/
 static int icp_ocfDrvDsaSign(struct cryptkop *krp);
 
-/*Function to Verify a DSA buffer signature*/
 static int icp_ocfDrvDsaVerify(struct cryptkop *krp);
 
-/*Callback function for DH operation*/
 static void
 icp_ocfDrvDhP1CallBack(void *callbackTag,
 		       CpaStatus status,
 		       void *pOpData, CpaFlatBuffer * pLocalOctetStringPV);
 
-/*Callback function for ME operation*/
 static void
 icp_ocfDrvModExpCallBack(void *callbackTag,
 			 CpaStatus status,
 			 void *pOpData, CpaFlatBuffer * pResult);
 
-/*Callback function for ME CRT operation*/
 static void
 icp_ocfDrvModExpCRTCallBack(void *callbackTag,
 			    CpaStatus status,
 			    void *pOpData, CpaFlatBuffer * pOutputData);
 
-/*Callback function for DSA sign operation*/
+static void
+icp_ocfDrvDsaVerifyCallBack(void *callbackTag,
+			    CpaStatus status,
+			    void *pOpData, CpaBoolean verifyStatus);
+
 static void
 icp_ocfDrvDsaRSSignCallBack(void *callbackTag,
 			    CpaStatus status,
@@ -165,18 +161,12 @@ icp_ocfDrvDsaRSSignCallBack(void *callbackTag,
 			    CpaBoolean protocolStatus,
 			    CpaFlatBuffer * pR, CpaFlatBuffer * pS);
 
-/*Callback function for DSA Verify operation*/
-static void
-icp_ocfDrvDsaVerifyCallBack(void *callbackTag,
-			    CpaStatus status,
-			    void *pOpData, CpaBoolean verifyStatus);
-
 /* Name        : icp_ocfDrvPkeProcess
  *
  * Description : This function will choose which PKE process to follow
  * based on the input arguments
  */
-int icp_ocfDrvPkeProcess(icp_device_t dev, struct cryptkop *krp, int hint)
+int icp_ocfDrvPkeProcess(device_t dev, struct cryptkop *krp, int hint)
 {
 	CpaStatus lacStatus = CPA_STATUS_SUCCESS;
 
@@ -186,7 +176,7 @@ int icp_ocfDrvPkeProcess(icp_device_t dev, struct cryptkop *krp, int hint)
 		return EINVAL;
 	}
 
-	if (CPA_TRUE == icp_atomic_read(&icp_ocfDrvIsExiting)) {
+	if (CPA_TRUE == atomic_read(&icp_ocfDrvIsExiting)) {
 		krp->krp_status = ECANCELED;
 		return ECANCELED;
 	}
@@ -268,7 +258,8 @@ int icp_ocfDrvPkeProcess(icp_device_t dev, struct cryptkop *krp, int hint)
  * It has been seen that in general we are passed little endian byte order
  * buffers, but LAC only accepts big endian byte order buffers.
  */
-static void inline icp_ocfDrvSwapBytes(u_int8_t * num, u_int32_t buff_len_bytes)
+static void inline
+icp_ocfDrvSwapBytes(u_int8_t * num, u_int32_t buff_len_bytes)
 {
 
 	int i;
@@ -328,9 +319,7 @@ static int icp_ocfDrvDHComputeKey(struct cryptkop *krp)
 
 	callbackTag = krp;
 
-/*All allocations are set to ICP_M_NOWAIT due to the possibility of getting
-called in interrupt context*/
-	pPhase1OpData = icp_kmem_cache_zalloc(drvDH_zone, ICP_M_NOWAIT);
+	pPhase1OpData = kmem_cache_zalloc(drvDH_zone, GFP_KERNEL);
 	if (NULL == pPhase1OpData) {
 		APRINTK("%s():Failed to get memory for key gen data\n",
 			__FUNCTION__);
@@ -338,12 +327,11 @@ called in interrupt context*/
 		return ENOMEM;
 	}
 
-	pLocalOctetStringPV =
-	    icp_kmem_cache_zalloc(drvFlatBuffer_zone, ICP_M_NOWAIT);
+	pLocalOctetStringPV = kmem_cache_zalloc(drvFlatBuffer_zone, GFP_KERNEL);
 	if (NULL == pLocalOctetStringPV) {
 		APRINTK("%s():Failed to get memory for pLocalOctetStringPV\n",
 			__FUNCTION__);
-		ICP_CACHE_FREE(drvDH_zone, pPhase1OpData);
+		kmem_cache_free(drvDH_zone, pPhase1OpData);
 		krp->krp_status = ENOMEM;
 		return ENOMEM;
 	}
@@ -391,7 +379,7 @@ called in interrupt context*/
 		EPRINTK("%s(): DH Phase 1 Key Gen failed (%d).\n",
 			__FUNCTION__, lacStatus);
 		icp_ocfDrvFreeFlatBuffer(pLocalOctetStringPV);
-		ICP_CACHE_FREE(drvDH_zone, pPhase1OpData);
+		kmem_cache_free(drvDH_zone, pPhase1OpData);
 	}
 
 	return lacStatus;
@@ -430,7 +418,7 @@ static int icp_ocfDrvModExp(struct cryptkop *krp)
 
 	callbackTag = krp;
 
-	pModExpOpData = icp_kmem_cache_zalloc(drvLnModExp_zone, ICP_M_NOWAIT);
+	pModExpOpData = kmem_cache_zalloc(drvLnModExp_zone, GFP_KERNEL);
 	if (NULL == pModExpOpData) {
 		APRINTK("%s():Failed to get memory for key gen data\n",
 			__FUNCTION__);
@@ -438,11 +426,11 @@ static int icp_ocfDrvModExp(struct cryptkop *krp)
 		return ENOMEM;
 	}
 
-	pResult = icp_kmem_cache_zalloc(drvFlatBuffer_zone, ICP_M_NOWAIT);
+	pResult = kmem_cache_zalloc(drvFlatBuffer_zone, GFP_KERNEL);
 	if (NULL == pResult) {
 		APRINTK("%s():Failed to get memory for ModExp result\n",
 			__FUNCTION__);
-		ICP_CACHE_FREE(drvLnModExp_zone, pModExpOpData);
+		kmem_cache_free(drvLnModExp_zone, pModExpOpData);
 		krp->krp_status = ENOMEM;
 		return ENOMEM;
 	}
@@ -457,15 +445,35 @@ static int icp_ocfDrvModExp(struct cryptkop *krp)
 	icp_ocfDrvSwapBytes(pModExpOpData->modulus.pData,
 			    pModExpOpData->modulus.dataLenInBytes);
 
-	DPRINTK("%s : base (%d)\n", __FUNCTION__, krp->
-		krp_param[ICP_MOD_EXP_KRP_PARAM_BASE_INDEX].crp_nbits);
-	pModExpOpData->base.pData =
-	    krp->krp_param[ICP_MOD_EXP_KRP_PARAM_BASE_INDEX].crp_p;
-	BITS_TO_BYTES(pModExpOpData->base.dataLenInBytes,
-		      krp->krp_param[ICP_MOD_EXP_KRP_PARAM_BASE_INDEX].
-		      crp_nbits);
-	icp_ocfDrvSwapBytes(pModExpOpData->base.pData,
-			    pModExpOpData->base.dataLenInBytes);
+	/*OCF patch to Openswan Pluto regularly sends the base value as 2
+	   bits in size. In this case, it has been found it is better to
+	   use the base size memory space as the input buffer (if the number
+	   is in bits is less than a byte, the number of bits is the input
+	   value) */
+	if (krp->krp_param[ICP_MOD_EXP_KRP_PARAM_BASE_INDEX].crp_nbits <
+	    NUM_BITS_IN_BYTE) {
+		DPRINTK("%s : base is small (%d)\n", __FUNCTION__, krp->
+			krp_param[ICP_MOD_EXP_KRP_PARAM_BASE_INDEX].crp_nbits);
+		pModExpOpData->base.dataLenInBytes = SINGLE_BYTE_VALUE;
+		pModExpOpData->base.pData =
+		    (uint8_t *) & (krp->
+				   krp_param[ICP_MOD_EXP_KRP_PARAM_BASE_INDEX].
+				   crp_nbits);
+		*((uint32_t *) pModExpOpData->base.pData) =
+		    htonl(*((uint32_t *) pModExpOpData->base.pData));
+
+	} else {
+
+		DPRINTK("%s : base is big (%d)\n", __FUNCTION__, krp->
+			krp_param[ICP_MOD_EXP_KRP_PARAM_BASE_INDEX].crp_nbits);
+		pModExpOpData->base.pData =
+		    krp->krp_param[ICP_MOD_EXP_KRP_PARAM_BASE_INDEX].crp_p;
+		BITS_TO_BYTES(pModExpOpData->base.dataLenInBytes,
+			      krp->krp_param[ICP_MOD_EXP_KRP_PARAM_BASE_INDEX].
+			      crp_nbits);
+		icp_ocfDrvSwapBytes(pModExpOpData->base.pData,
+				    pModExpOpData->base.dataLenInBytes);
+	}
 
 	pModExpOpData->exponent.pData =
 	    krp->krp_param[ICP_MOD_EXP_KRP_PARAM_EXPONENT_INDEX].crp_p;
@@ -491,7 +499,7 @@ static int icp_ocfDrvModExp(struct cryptkop *krp)
 			__FUNCTION__, lacStatus);
 		krp->krp_status = ECANCELED;
 		icp_ocfDrvFreeFlatBuffer(pResult);
-		ICP_CACHE_FREE(drvLnModExp_zone, pModExpOpData);
+		kmem_cache_free(drvLnModExp_zone, pModExpOpData);
 	}
 
 	return lacStatus;
@@ -507,6 +515,7 @@ static int icp_ocfDrvModExp(struct cryptkop *krp)
  * numbers. Although basic primality checks are done in LAC, it is up to the
  * user to do any correct prime number checking before passing the inputs.
  */
+
 static int icp_ocfDrvModExpCRT(struct cryptkop *krp)
 {
 	CpaStatus lacStatus = CPA_STATUS_SUCCESS;
@@ -518,8 +527,7 @@ static int icp_ocfDrvModExpCRT(struct cryptkop *krp)
 	   them here. */
 	callbackTag = krp;
 
-	rsaDecryptOpData =
-	    icp_kmem_cache_zalloc(drvRSADecrypt_zone, ICP_M_NOWAIT);
+	rsaDecryptOpData = kmem_cache_zalloc(drvRSADecrypt_zone, GFP_KERNEL);
 	if (NULL == rsaDecryptOpData) {
 		APRINTK("%s():Failed to get memory"
 			" for MOD EXP CRT Op data struct\n", __FUNCTION__);
@@ -528,11 +536,11 @@ static int icp_ocfDrvModExpCRT(struct cryptkop *krp)
 	}
 
 	rsaDecryptOpData->pRecipientPrivateKey
-	    = icp_kmem_cache_zalloc(drvRSAPrivateKey_zone, ICP_M_NOWAIT);
+	    = kmem_cache_zalloc(drvRSAPrivateKey_zone, GFP_KERNEL);
 	if (NULL == rsaDecryptOpData->pRecipientPrivateKey) {
 		APRINTK("%s():Failed to get memory for MOD EXP CRT"
 			" private key values struct\n", __FUNCTION__);
-		ICP_CACHE_FREE(drvRSADecrypt_zone, rsaDecryptOpData);
+		kmem_cache_free(drvRSADecrypt_zone, rsaDecryptOpData);
 		krp->krp_status = ENOMEM;
 		return ENOMEM;
 	}
@@ -542,13 +550,13 @@ static int icp_ocfDrvModExpCRT(struct cryptkop *krp)
 	rsaDecryptOpData->pRecipientPrivateKey->
 	    privateKeyRepType = CPA_CY_RSA_PRIVATE_KEY_REP_TYPE_2;
 
-	pOutputData = icp_kmem_cache_zalloc(drvFlatBuffer_zone, ICP_M_NOWAIT);
+	pOutputData = kmem_cache_zalloc(drvFlatBuffer_zone, GFP_KERNEL);
 	if (NULL == pOutputData) {
 		APRINTK("%s():Failed to get memory"
 			" for MOD EXP CRT output data\n", __FUNCTION__);
-		ICP_CACHE_FREE(drvRSAPrivateKey_zone,
-			       rsaDecryptOpData->pRecipientPrivateKey);
-		ICP_CACHE_FREE(drvRSADecrypt_zone, rsaDecryptOpData);
+		kmem_cache_free(drvRSAPrivateKey_zone,
+				rsaDecryptOpData->pRecipientPrivateKey);
+		kmem_cache_free(drvRSADecrypt_zone, rsaDecryptOpData);
 		krp->krp_status = ENOMEM;
 		return ENOMEM;
 	}
@@ -650,9 +658,9 @@ static int icp_ocfDrvModExpCRT(struct cryptkop *krp)
 			__FUNCTION__, lacStatus);
 		krp->krp_status = ECANCELED;
 		icp_ocfDrvFreeFlatBuffer(pOutputData);
-		ICP_CACHE_FREE(drvRSAPrivateKey_zone,
-			       rsaDecryptOpData->pRecipientPrivateKey);
-		ICP_CACHE_FREE(drvRSADecrypt_zone, rsaDecryptOpData);
+		kmem_cache_free(drvRSAPrivateKey_zone,
+				rsaDecryptOpData->pRecipientPrivateKey);
+		kmem_cache_free(drvRSADecrypt_zone, rsaDecryptOpData);
 	}
 
 	return lacStatus;
@@ -739,8 +747,7 @@ static int icp_ocfDrvDsaSign(struct cryptkop *krp)
 		return EDOM;
 	}
 
-	dsaRsSignOpData =
-	    icp_kmem_cache_zalloc(drvDSARSSign_zone, ICP_M_NOWAIT);
+	dsaRsSignOpData = kmem_cache_zalloc(drvDSARSSign_zone, GFP_KERNEL);
 	if (NULL == dsaRsSignOpData) {
 		APRINTK("%s():Failed to get memory"
 			" for DSA RS Sign Op data struct\n", __FUNCTION__);
@@ -749,35 +756,35 @@ static int icp_ocfDrvDsaSign(struct cryptkop *krp)
 	}
 
 	dsaRsSignOpData->K.pData =
-	    icp_kmem_cache_alloc(drvDSARSSignKValue_zone, ICP_M_NOWAIT);
+	    kmem_cache_alloc(drvDSARSSignKValue_zone, GFP_ATOMIC);
 
 	if (NULL == dsaRsSignOpData->K.pData) {
 		APRINTK("%s():Failed to get memory"
 			" for DSA RS Sign Op Random value\n", __FUNCTION__);
-		ICP_CACHE_FREE(drvDSARSSign_zone, dsaRsSignOpData);
+		kmem_cache_free(drvDSARSSign_zone, dsaRsSignOpData);
 		krp->krp_status = ENOMEM;
 		return ENOMEM;
 	}
 
-	pR = icp_kmem_cache_zalloc(drvFlatBuffer_zone, ICP_M_NOWAIT);
+	pR = kmem_cache_zalloc(drvFlatBuffer_zone, GFP_KERNEL);
 	if (NULL == pR) {
 		APRINTK("%s():Failed to get memory"
 			" for DSA signature R\n", __FUNCTION__);
-		ICP_CACHE_FREE(drvDSARSSignKValue_zone,
-			       dsaRsSignOpData->K.pData);
-		ICP_CACHE_FREE(drvDSARSSign_zone, dsaRsSignOpData);
+		kmem_cache_free(drvDSARSSignKValue_zone,
+				dsaRsSignOpData->K.pData);
+		kmem_cache_free(drvDSARSSign_zone, dsaRsSignOpData);
 		krp->krp_status = ENOMEM;
 		return ENOMEM;
 	}
 
-	pS = icp_kmem_cache_zalloc(drvFlatBuffer_zone, ICP_M_NOWAIT);
+	pS = kmem_cache_zalloc(drvFlatBuffer_zone, GFP_KERNEL);
 	if (NULL == pS) {
 		APRINTK("%s():Failed to get memory"
 			" for DSA signature S\n", __FUNCTION__);
 		icp_ocfDrvFreeFlatBuffer(pR);
-		ICP_CACHE_FREE(drvDSARSSignKValue_zone,
-			       dsaRsSignOpData->K.pData);
-		ICP_CACHE_FREE(drvDSARSSign_zone, dsaRsSignOpData);
+		kmem_cache_free(drvDSARSSignKValue_zone,
+				dsaRsSignOpData->K.pData);
+		kmem_cache_free(drvDSARSSign_zone, dsaRsSignOpData);
 		krp->krp_status = ENOMEM;
 		return ENOMEM;
 	}
@@ -823,9 +830,9 @@ static int icp_ocfDrvDsaSign(struct cryptkop *krp)
 				"value\n", __FUNCTION__);
 			icp_ocfDrvFreeFlatBuffer(pS);
 			icp_ocfDrvFreeFlatBuffer(pR);
-			ICP_CACHE_FREE(drvDSARSSignKValue_zone,
-				       dsaRsSignOpData->K.pData);
-			ICP_CACHE_FREE(drvDSARSSign_zone, dsaRsSignOpData);
+			kmem_cache_free(drvDSARSSignKValue_zone,
+					dsaRsSignOpData->K.pData);
+			kmem_cache_free(drvDSARSSign_zone, dsaRsSignOpData);
 			krp->krp_status = EAGAIN;
 			return EAGAIN;
 		}
@@ -836,9 +843,9 @@ static int icp_ocfDrvDsaSign(struct cryptkop *krp)
 				"value less than Q value\n", __FUNCTION__);
 			icp_ocfDrvFreeFlatBuffer(pS);
 			icp_ocfDrvFreeFlatBuffer(pR);
-			ICP_CACHE_FREE(drvDSARSSignKValue_zone,
-				       dsaRsSignOpData->K.pData);
-			ICP_CACHE_FREE(drvDSARSSign_zone, dsaRsSignOpData);
+			kmem_cache_free(drvDSARSSignKValue_zone,
+					dsaRsSignOpData->K.pData);
+			kmem_cache_free(drvDSARSSign_zone, dsaRsSignOpData);
 			krp->krp_status = EAGAIN;
 			return EAGAIN;
 		}
@@ -862,13 +869,13 @@ static int icp_ocfDrvDsaSign(struct cryptkop *krp)
 	icp_ocfDrvSwapBytes(dsaRsSignOpData->X.pData,
 			    dsaRsSignOpData->X.dataLenInBytes);
 
-	/*OpenSSL dgst parameter is left in big endian byte order, 
-	   therefore no byte swap is required */
 	dsaRsSignOpData->M.pData =
 	    krp->krp_param[ICP_DSA_SIGN_KRP_PARAM_DGST_INDEX].crp_p;
 	BITS_TO_BYTES(dsaRsSignOpData->M.dataLenInBytes,
 		      krp->krp_param[ICP_DSA_SIGN_KRP_PARAM_DGST_INDEX].
 		      crp_nbits);
+	icp_ocfDrvSwapBytes(dsaRsSignOpData->M.pData,
+			    dsaRsSignOpData->M.dataLenInBytes);
 
 	/* Output Parameters */
 	pS->pData = krp->krp_param[ICP_DSA_SIGN_KRP_PARAM_S_RESULT_INDEX].crp_p;
@@ -892,9 +899,9 @@ static int icp_ocfDrvDsaSign(struct cryptkop *krp)
 		krp->krp_status = ECANCELED;
 		icp_ocfDrvFreeFlatBuffer(pS);
 		icp_ocfDrvFreeFlatBuffer(pR);
-		ICP_CACHE_FREE(drvDSARSSignKValue_zone,
-			       dsaRsSignOpData->K.pData);
-		ICP_CACHE_FREE(drvDSARSSign_zone, dsaRsSignOpData);
+		kmem_cache_free(drvDSARSSignKValue_zone,
+				dsaRsSignOpData->K.pData);
+		kmem_cache_free(drvDSARSSign_zone, dsaRsSignOpData);
 	}
 
 	return lacStatus;
@@ -914,8 +921,7 @@ static int icp_ocfDrvDsaVerify(struct cryptkop *krp)
 
 	callbackTag = krp;
 
-	dsaVerifyOpData =
-	    icp_kmem_cache_zalloc(drvDSAVerify_zone, ICP_M_NOWAIT);
+	dsaVerifyOpData = kmem_cache_zalloc(drvDSAVerify_zone, GFP_KERNEL);
 	if (NULL == dsaVerifyOpData) {
 		APRINTK("%s():Failed to get memory"
 			" for DSA Verify Op data struct\n", __FUNCTION__);
@@ -956,13 +962,13 @@ static int icp_ocfDrvDsaVerify(struct cryptkop *krp)
 	icp_ocfDrvSwapBytes(dsaVerifyOpData->Y.pData,
 			    dsaVerifyOpData->Y.dataLenInBytes);
 
-	/*OpenSSL dgst parameter is left in big endian byte order, 
-	   therefore no byte swap is required */
 	dsaVerifyOpData->M.pData =
 	    krp->krp_param[ICP_DSA_VERIFY_KRP_PARAM_DGST_INDEX].crp_p;
 	BITS_TO_BYTES(dsaVerifyOpData->M.dataLenInBytes,
 		      krp->krp_param[ICP_DSA_VERIFY_KRP_PARAM_DGST_INDEX].
 		      crp_nbits);
+	icp_ocfDrvSwapBytes(dsaVerifyOpData->M.pData,
+			    dsaVerifyOpData->M.dataLenInBytes);
 
 	dsaVerifyOpData->R.pData =
 	    krp->krp_param[ICP_DSA_VERIFY_KRP_PARAM_SIG_R_INDEX].crp_p;
@@ -987,11 +993,46 @@ static int icp_ocfDrvDsaVerify(struct cryptkop *krp)
 	if (CPA_STATUS_SUCCESS != lacStatus) {
 		EPRINTK("%s(): DSA Verify Operation failed (%d).\n",
 			__FUNCTION__, lacStatus);
-		ICP_CACHE_FREE(drvDSAVerify_zone, dsaVerifyOpData);
+		kmem_cache_free(drvDSAVerify_zone, dsaVerifyOpData);
 		krp->krp_status = ECANCELED;
 	}
 
 	return lacStatus;
+}
+
+/* Name        : icp_ocfDrvReadRandom
+ *
+ * Description : This function will map RNG functionality calls from OCF
+ * to the LAC API.
+ */
+int icp_ocfDrvReadRandom(void *arg, uint32_t * buf, int maxwords)
+{
+	CpaStatus lacStatus = CPA_STATUS_SUCCESS;
+	CpaCyRandGenOpData randGenOpData;
+	CpaFlatBuffer randData;
+
+	if (NULL == buf) {
+		APRINTK("%s(): Invalid input parameters\n", __FUNCTION__);
+		return EINVAL;
+	}
+
+	/* maxwords here is number of integers to generate data for */
+	randGenOpData.generateBits = CPA_TRUE;
+
+	randGenOpData.lenInBytes = maxwords * sizeof(uint32_t);
+
+	icp_ocfDrvPtrAndLenToFlatBuffer((Cpa8U *) buf,
+					randGenOpData.lenInBytes, &randData);
+
+	lacStatus = cpaCyRandGen(CPA_INSTANCE_HANDLE_SINGLE,
+				 NULL, NULL, &randGenOpData, &randData);
+	if (CPA_STATUS_SUCCESS != lacStatus) {
+		EPRINTK("%s(): icp_LacSymRandGen failed (%d). \n",
+			__FUNCTION__, lacStatus);
+		return RETURN_RAND_NUM_GEN_FAILED;
+	}
+
+	return randGenOpData.lenInBytes / sizeof(uint32_t);
 }
 
 /* Name        : icp_ocfDrvDhP1Callback
@@ -1027,7 +1068,7 @@ icp_ocfDrvDhP1CallBack(void *callbackTag,
 		DPRINTK("%s(): Invalid input parameters - "
 			"pLocalOctetStringPV Data is NULL\n", __FUNCTION__);
 		memset(pPhase1OpData, 0, sizeof(CpaCyDhPhase1KeyGenOpData));
-		ICP_CACHE_FREE(drvDH_zone, pPhase1OpData);
+		kmem_cache_free(drvDH_zone, pPhase1OpData);
 		krp->krp_status = ECANCELED;
 		crypto_kdone(krp);
 		return;
@@ -1046,7 +1087,7 @@ icp_ocfDrvDhP1CallBack(void *callbackTag,
 
 	icp_ocfDrvFreeFlatBuffer(pLocalOctetStringPV);
 	memset(pPhase1OpData, 0, sizeof(CpaCyDhPhase1KeyGenOpData));
-	ICP_CACHE_FREE(drvDH_zone, pPhase1OpData);
+	kmem_cache_free(drvDH_zone, pPhase1OpData);
 
 	crypto_kdone(krp);
 
@@ -1087,7 +1128,7 @@ icp_ocfDrvModExpCallBack(void *callbackTag,
 			"pResult data is NULL\n", __FUNCTION__);
 		krp->krp_status = ECANCELED;
 		memset(pLnModExpOpData, 0, sizeof(CpaCyLnModExpOpData));
-		ICP_CACHE_FREE(drvLnModExp_zone, pLnModExpOpData);
+		kmem_cache_free(drvLnModExp_zone, pLnModExpOpData);
 		crypto_kdone(krp);
 		return;
 	}
@@ -1112,7 +1153,7 @@ icp_ocfDrvModExpCallBack(void *callbackTag,
 	}
 	icp_ocfDrvFreeFlatBuffer(pResult);
 	memset(pLnModExpOpData, 0, sizeof(CpaCyLnModExpOpData));
-	ICP_CACHE_FREE(drvLnModExp_zone, pLnModExpOpData);
+	kmem_cache_free(drvLnModExp_zone, pLnModExpOpData);
 
 	crypto_kdone(krp);
 
@@ -1155,10 +1196,10 @@ icp_ocfDrvModExpCRTCallBack(void *callbackTag,
 			"pOutputData is NULL\n", __FUNCTION__);
 		memset(pDecryptData->pRecipientPrivateKey, 0,
 		       sizeof(CpaCyRsaPrivateKey));
-		ICP_CACHE_FREE(drvRSAPrivateKey_zone,
-			       pDecryptData->pRecipientPrivateKey);
+		kmem_cache_free(drvRSAPrivateKey_zone,
+				pDecryptData->pRecipientPrivateKey);
 		memset(pDecryptData, 0, sizeof(CpaCyRsaDecryptOpData));
-		ICP_CACHE_FREE(drvRSADecrypt_zone, pDecryptData);
+		kmem_cache_free(drvRSADecrypt_zone, pDecryptData);
 		krp->krp_status = ECANCELED;
 		crypto_kdone(krp);
 		return;
@@ -1177,10 +1218,10 @@ icp_ocfDrvModExpCRTCallBack(void *callbackTag,
 	icp_ocfDrvFreeFlatBuffer(pOutputData);
 	memset(pDecryptData->pRecipientPrivateKey, 0,
 	       sizeof(CpaCyRsaPrivateKey));
-	ICP_CACHE_FREE(drvRSAPrivateKey_zone,
-		       pDecryptData->pRecipientPrivateKey);
+	kmem_cache_free(drvRSAPrivateKey_zone,
+			pDecryptData->pRecipientPrivateKey);
 	memset(pDecryptData, 0, sizeof(CpaCyRsaDecryptOpData));
-	ICP_CACHE_FREE(drvRSADecrypt_zone, pDecryptData);
+	kmem_cache_free(drvRSADecrypt_zone, pDecryptData);
 
 	crypto_kdone(krp);
 
@@ -1223,7 +1264,7 @@ icp_ocfDrvDsaRSSignCallBack(void *callbackTag,
 		DPRINTK("%s(): Invalid input parameter - "
 			"pR sign is NULL\n", __FUNCTION__);
 		icp_ocfDrvFreeFlatBuffer(pS);
-		ICP_CACHE_FREE(drvDSARSSign_zone, pSignData);
+		kmem_cache_free(drvDSARSSign_zone, pSignData);
 		krp->krp_status = ECANCELED;
 		crypto_kdone(krp);
 		return;
@@ -1233,7 +1274,7 @@ icp_ocfDrvDsaRSSignCallBack(void *callbackTag,
 		DPRINTK("%s(): Invalid input parameter - "
 			"pS sign is NULL\n", __FUNCTION__);
 		icp_ocfDrvFreeFlatBuffer(pR);
-		ICP_CACHE_FREE(drvDSARSSign_zone, pSignData);
+		kmem_cache_free(drvDSARSSign_zone, pSignData);
 		krp->krp_status = ECANCELED;
 		crypto_kdone(krp);
 		return;
@@ -1263,9 +1304,9 @@ icp_ocfDrvDsaRSSignCallBack(void *callbackTag,
 	icp_ocfDrvFreeFlatBuffer(pR);
 	icp_ocfDrvFreeFlatBuffer(pS);
 	memset(pSignData->K.pData, 0, pSignData->K.dataLenInBytes);
-	ICP_CACHE_FREE(drvDSARSSignKValue_zone, pSignData->K.pData);
+	kmem_cache_free(drvDSARSSignKValue_zone, pSignData->K.pData);
 	memset(pSignData, 0, sizeof(CpaCyDsaRSSignOpData));
-	ICP_CACHE_FREE(drvDSARSSign_zone, pSignData);
+	kmem_cache_free(drvDSARSSign_zone, pSignData);
 	crypto_kdone(krp);
 
 	return;
@@ -1327,7 +1368,7 @@ icp_ocfDrvDsaVerifyCallBack(void *callbackTag,
 	}
 
 	memset(pVerData, 0, sizeof(CpaCyDsaVerifyOpData));
-	ICP_CACHE_FREE(drvDSAVerify_zone, pVerData);
+	kmem_cache_free(drvDSAVerify_zone, pVerData);
 	crypto_kdone(krp);
 
 	return;

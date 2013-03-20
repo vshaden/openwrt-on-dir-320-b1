@@ -61,43 +61,35 @@ define BuildKernel
   $(if $(QUILT),$(Build/Quilt))
   $(if $(LINUX_SITE),$(call Download,kernel))
 
-  $(STAMP_PREPARED): $(if $(LINUX_SITE),$(DL_DIR)/$(LINUX_SOURCE))
+  $(STAMP_PREPARED): $(DL_DIR)/$(LINUX_SOURCE)
 	-rm -rf $(KERNEL_BUILD_DIR)
 	-mkdir -p $(KERNEL_BUILD_DIR)
 	$(Kernel/Prepare)
 	touch $$@
 
-  $(KERNEL_BUILD_DIR)/symtab.h: FORCE
-	rm -f $(KERNEL_BUILD_DIR)/symtab.h
-	touch $(KERNEL_BUILD_DIR)/symtab.h
-	+$(MAKE) $(KERNEL_MAKEOPTS) vmlinux
+  $(KERNEL_BUILD_DIR)/symtab.txt: FORCE
 	find $(LINUX_DIR) $(STAGING_DIR_ROOT)/lib/modules -name \*.ko | \
 		xargs $(TARGET_CROSS)nm | \
 		awk '$$$$1 == "U" { print $$$$2 } ' | \
-		sort -u > $(KERNEL_BUILD_DIR)/mod_symtab.txt
-	$(TARGET_CROSS)nm -n $(LINUX_DIR)/vmlinux.o | grep ' r __ksymtab' | sed -e 's,........ r __ksymtab_,,' > $(KERNEL_BUILD_DIR)/kernel_symtab.txt
-	grep -f $(KERNEL_BUILD_DIR)/mod_symtab.txt $(KERNEL_BUILD_DIR)/kernel_symtab.txt > $(KERNEL_BUILD_DIR)/sym_include.txt
-	grep -vf $(KERNEL_BUILD_DIR)/mod_symtab.txt $(KERNEL_BUILD_DIR)/kernel_symtab.txt > $(KERNEL_BUILD_DIR)/sym_exclude.txt
+		sort -u > $$@
+
+  $(KERNEL_BUILD_DIR)/symtab.h: $(KERNEL_BUILD_DIR)/symtab.txt
 	( \
 		echo '#define SYMTAB_KEEP \'; \
-		cat $(KERNEL_BUILD_DIR)/sym_include.txt | \
-			awk '{print "KEEP(*(___ksymtab+" $$$$1 ")) \\" }'; \
+		cat $(KERNEL_BUILD_DIR)/symtab.txt | \
+			awk '{print "*(__ksymtab." $$$$1 ") \\" }'; \
 		echo; \
 		echo '#define SYMTAB_KEEP_GPL \'; \
-		cat $(KERNEL_BUILD_DIR)/sym_include.txt | \
-			awk '{print "KEEP(*(___ksymtab_gpl+" $$$$1 ")) \\" }'; \
+		cat $(KERNEL_BUILD_DIR)/symtab.txt | \
+			awk '{print "*(__ksymtab_gpl." $$$$1 ") \\" }'; \
 		echo; \
-		echo '#define SYMTAB_DISCARD \'; \
-		cat $(KERNEL_BUILD_DIR)/sym_exclude.txt | \
-			awk '{print "*(___ksymtab+" $$$$1 ") \\" }'; \
-		echo; \
-		echo '#define SYMTAB_DISCARD_GPL \'; \
-		cat $(KERNEL_BUILD_DIR)/sym_exclude.txt | \
-			awk '{print "*(___ksymtab_gpl+" $$$$1 ") \\" }'; \
+		echo '#define SYMTAB_KEEP_STR \'; \
+		cat $(KERNEL_BUILD_DIR)/symtab.txt | \
+			awk '{print "*(__ksymtab_strings." $$$$1 ") \\" }'; \
 		echo; \
 	) > $$@
 
-  $(STAMP_CONFIGURED): $(STAMP_PREPARED) $(LINUX_KCONFIG_LIST) $(TOPDIR)/.config
+  $(STAMP_CONFIGURED): $(STAMP_PREPARED) $(LINUX_CONFIG) $(GENERIC_LINUX_CONFIG) $(TOPDIR)/.config
 	$(Kernel/Configure)
 	touch $$@
 
@@ -121,11 +113,14 @@ define BuildKernel
   compile: $(LINUX_DIR)/.modules
 	$(MAKE) -C image compile TARGET_BUILD=
 
-  oldconfig menuconfig nconfig: $(STAMP_PREPARED) $(STAMP_CHECKED) FORCE
-	rm -f $(STAMP_CONFIGURED)
-	$(LINUX_RECONF_CMD) > $(LINUX_DIR)/.config
+  oldconfig menuconfig: $(STAMP_PREPARED) $(STAMP_CHECKED) FORCE
+	[ -e "$(LINUX_CONFIG)" ] || touch "$(LINUX_CONFIG)"
+	$(LINUX_CONFCMD) > $(LINUX_DIR)/.config
+	touch $(LINUX_CONFIG)
 	$(_SINGLE)$(MAKE) -C $(LINUX_DIR) $(KERNEL_MAKEOPTS) $$@
-	$(LINUX_RECONF_DIFF) $(LINUX_DIR)/.config > $(LINUX_RECONFIG_TARGET)
+	$(SCRIPT_DIR)/kconfig.pl '>' $(if $(LINUX_SUBCONFIG),'+' $(GENERIC_LINUX_CONFIG) $(LINUX_CONFIG),$(GENERIC_LINUX_CONFIG)) \
+		$(LINUX_DIR)/.config > $(if $(LINUX_SUBCONFIG),$(LINUX_SUBCONFIG),$(LINUX_CONFIG))
+	$(Kernel/Configure)
 
   install: $(LINUX_DIR)/.image
 	+$(MAKE) -C image compile install TARGET_BUILD=

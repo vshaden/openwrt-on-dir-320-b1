@@ -13,8 +13,8 @@
 
 static struct gpio_led rb11x_gpio_leds[] __initdata = {
 	GPIO_LED_STD(ADM5120_GPIO_PIN3, "user",		NULL),
-	GPIO_LED_INV(ADM5120_GPIO_P0L1,	"lan_speed",	NULL),
-	GPIO_LED_INV(ADM5120_GPIO_P0L0, "lan_lnkact",	NULL),
+	GPIO_LED_INV(ADM5120_GPIO_P0L1, "lan_speed", 	NULL),
+	GPIO_LED_INV(ADM5120_GPIO_P0L0, "lan_lnkact", 	NULL),
 };
 
 static u8 rb11x_vlans[6] __initdata = {
@@ -27,9 +27,9 @@ static void __init rb11x_setup(void)
 	rb1xx_add_device_nand();
 
 	adm5120_add_device_switch(1, rb11x_vlans);
+	adm5120_add_device_gpio(0);
 	adm5120_add_device_gpio_leds(ARRAY_SIZE(rb11x_gpio_leds),
 					rb11x_gpio_leds);
 }
 
-MIPS_MACHINE(MACH_ADM5120_RB_11X, "11x", "Mikrotik RouterBOARD 111/112",
-	     rb11x_setup);
+MIPS_MACHINE(MACH_ADM5120_RB_11X, "Mikrotik RouterBOARD 111/112", rb11x_setup);

@@ -2,29 +2,20 @@
 # Copyright (C) 2006 OpenWrt.org
 # Copyright (C) 2010 Vertical Communications
 
-do_move_devtmpfs() {
-    local mnt="$(grep devtmpfs /proc/mounts)"
-          mnt="${mnt#* }"; mnt="${mnt%% *}"
-
-    [ "$mnt" = "/dev" ] || mount -o noatime,move "$mnt" /dev
-}
-
 do_mount_devfs() {
-    mount -o noatime -t devfs devfs /dev
+    mount devfs /dev -t devfs
 }
 
 do_mount_hotplug() {
-    mount -t tmpfs -o noatime,mode=0755,size=512K tmpfs /dev
+    mount -t tmpfs tmpfs /dev -o mode=0755,size=512K
 }
 
 do_mount_udev() {
-    mount -n -t tmpfs -o noatime,mode=0755 udev /dev
+    mount -n -t tmpfs -o mode=0755 udev /dev
 }
 
 choose_device_fs() {
-    if grep -q devtmpfs /proc/mounts; then
-    	do_move_devtmpfs
-    elif grep -q devfs /proc/filesystems; then
+    if grep -q devfs /proc/filesystems; then
         do_mount_devfs
     elif [ -x /sbin/hotplug2 ]; then
         do_mount_hotplug

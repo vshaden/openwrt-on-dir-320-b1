@@ -8,7 +8,7 @@
  *
  * This code written by Kim A. B. Phillips <kim.phillips@freescale.com>
  * some code copied from files with the following:
- * Copyright (C) 2004-2007 David McCullough <david_mccullough@mcafee.com>
+ * Copyright (C) 2004-2007 David McCullough <david_mccullough@securecomputing.com
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
@@ -107,8 +107,7 @@
  * o add statistics
  */
 
-#include <linux/version.h>
-#if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,38) && !defined(AUTOCONF_INCLUDED)
+#ifndef AUTOCONF_INCLUDED
 #include <linux/config.h>
 #endif
 #include <linux/module.h>
@@ -121,6 +120,7 @@
 #include <linux/dma-mapping.h>  /* dma_map_single() */
 #include <linux/moduleparam.h>
 
+#include <linux/version.h>
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,15)
 #include <linux/platform_device.h>
 #endif
@@ -418,6 +418,10 @@ talitos_newsession(device_t dev, u_int32_t *sidp, struct cryptoini *cri)
 	ses->ses_used = 1;
 
 	if (encini) {
+		/* get an IV */
+		/* XXX may read fewer than requested */
+		read_random(ses->ses_iv, sizeof(ses->ses_iv));
+
 		ses->ses_klen = (encini->cri_klen + 7) / 8;
 		memcpy(ses->ses_key, encini->cri_key, ses->ses_klen);
 		if (macini) {
@@ -507,7 +511,6 @@ talitos_process(device_t dev, struct cryptop *crp, int hint)
 	int hmac_key, hmac_data, cipher_iv, cipher_key, 
 		in_fifo, out_fifo, cipher_iv_out;
 	static int chsel = -1;
-	u_int32_t rand_iv[4];
 
 	DPRINTF("%s()\n", __FUNCTION__);
 
@@ -749,7 +752,7 @@ talitos_process(device_t dev, struct cryptop *crp, int hint)
 			if (enccrd->crd_flags & CRD_F_IV_EXPLICIT)
 				iv = enccrd->crd_iv;
 			else
-				read_random((iv = (caddr_t) rand_iv), sizeof(rand_iv));
+				iv = (caddr_t) ses->ses_iv;
 			if ((enccrd->crd_flags & CRD_F_IV_PRESENT) == 0) {
 				crypto_copyback(crp->crp_flags, crp->crp_buf,
 				    enccrd->crd_inject, ivsize, iv);
@@ -758,8 +761,9 @@ talitos_process(device_t dev, struct cryptop *crp, int hint)
 			td->hdr |= TALITOS_DIR_INBOUND; 
 			if (enccrd->crd_flags & CRD_F_IV_EXPLICIT) {
 				iv = enccrd->crd_iv;
+				bcopy(enccrd->crd_iv, iv, ivsize);
 			} else {
-				iv = (caddr_t) rand_iv;
+				iv = (caddr_t) ses->ses_iv;
 				crypto_copydata(crp->crp_flags, crp->crp_buf,
 				    enccrd->crd_inject, ivsize, iv);
 			}

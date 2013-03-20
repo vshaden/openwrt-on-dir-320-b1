@@ -1,7 +1,7 @@
 /*
  * YAFFS: Yet Another Flash File System. A NAND-flash specific file system.
  *
- * Copyright (C) 2002-2010 Aleph One Ltd.
+ * Copyright (C) 2002-2007 Aleph One Ltd.
  *   for Toby Churchill Ltd and Brightstar Engineering
  *
  * Created by Charles Manning <charles@aleph1.co.uk>
@@ -11,129 +11,123 @@
  * published by the Free Software Foundation.
  */
 
+const char *yaffs_nand_c_version =
+    "$Id: yaffs_nand.c,v 1.7 2007-02-14 01:09:06 wookey Exp $";
+
 #include "yaffs_nand.h"
 #include "yaffs_tagscompat.h"
 #include "yaffs_tagsvalidity.h"
 
-#include "yaffs_getblockinfo.h"
 
-int yaffs_rd_chunk_tags_nand(yaffs_dev_t *dev, int nand_chunk,
-					   __u8 *buffer,
-					   yaffs_ext_tags *tags)
+int yaffs_ReadChunkWithTagsFromNAND(yaffs_Device * dev, int chunkInNAND,
+					   __u8 * buffer,
+					   yaffs_ExtendedTags * tags)
 {
 	int result;
-	yaffs_ext_tags localTags;
+	yaffs_ExtendedTags localTags;
 
-	int realignedChunkInNAND = nand_chunk - dev->chunk_offset;
-
-	dev->n_page_reads++;
+	int realignedChunkInNAND = chunkInNAND - dev->chunkOffset;
 
 	/* If there are no tags provided, use local tags to get prioritised gc working */
-	if (!tags)
+	if(!tags)
 		tags = &localTags;
 
-	if (dev->param.read_chunk_tags_fn)
-		result = dev->param.read_chunk_tags_fn(dev, realignedChunkInNAND, buffer,
+	if (dev->readChunkWithTagsFromNAND)
+		result = dev->readChunkWithTagsFromNAND(dev, realignedChunkInNAND, buffer,
 						      tags);
 	else
-		result = yaffs_tags_compat_rd(dev,
+		result = yaffs_TagsCompatabilityReadChunkWithTagsFromNAND(dev,
 									realignedChunkInNAND,
 									buffer,
 									tags);
-	if (tags &&
-	   tags->ecc_result > YAFFS_ECC_RESULT_NO_ERROR) {
+	if(tags &&
+	   tags->eccResult > YAFFS_ECC_RESULT_NO_ERROR){
 
-		yaffs_block_info_t *bi;
-		bi = yaffs_get_block_info(dev, nand_chunk/dev->param.chunks_per_block);
-		yaffs_handle_chunk_error(dev, bi);
+		yaffs_BlockInfo *bi = yaffs_GetBlockInfo(dev, chunkInNAND/dev->nChunksPerBlock);
+                yaffs_HandleChunkError(dev,bi);
 	}
 
 	return result;
 }
 
-int yaffs_wr_chunk_tags_nand(yaffs_dev_t *dev,
-						   int nand_chunk,
-						   const __u8 *buffer,
-						   yaffs_ext_tags *tags)
+int yaffs_WriteChunkWithTagsToNAND(yaffs_Device * dev,
+						   int chunkInNAND,
+						   const __u8 * buffer,
+						   yaffs_ExtendedTags * tags)
 {
-
-	dev->n_page_writes++;
-
-	nand_chunk -= dev->chunk_offset;
+	chunkInNAND -= dev->chunkOffset;
 
 
 	if (tags) {
-		tags->seq_number = dev->seq_number;
-		tags->chunk_used = 1;
-		if (!yaffs_validate_tags(tags)) {
+		tags->sequenceNumber = dev->sequenceNumber;
+		tags->chunkUsed = 1;
+		if (!yaffs_ValidateTags(tags)) {
 			T(YAFFS_TRACE_ERROR,
 			  (TSTR("Writing uninitialised tags" TENDSTR)));
 			YBUG();
 		}
 		T(YAFFS_TRACE_WRITE,
-		  (TSTR("Writing chunk %d tags %d %d" TENDSTR), nand_chunk,
-		   tags->obj_id, tags->chunk_id));
+		  (TSTR("Writing chunk %d tags %d %d" TENDSTR), chunkInNAND,
+		   tags->objectId, tags->chunkId));
 	} else {
 		T(YAFFS_TRACE_ERROR, (TSTR("Writing with no tags" TENDSTR)));
 		YBUG();
 	}
 
-	if (dev->param.write_chunk_tags_fn)
-		return dev->param.write_chunk_tags_fn(dev, nand_chunk, buffer,
+	if (dev->writeChunkWithTagsToNAND)
+		return dev->writeChunkWithTagsToNAND(dev, chunkInNAND, buffer,
 						     tags);
 	else
-		return yaffs_tags_compat_wr(dev,
-								       nand_chunk,
+		return yaffs_TagsCompatabilityWriteChunkWithTagsToNAND(dev,
+								       chunkInNAND,
 								       buffer,
 								       tags);
 }
 
-int yaffs_mark_bad(yaffs_dev_t *dev, int block_no)
+int yaffs_MarkBlockBad(yaffs_Device * dev, int blockNo)
 {
-	block_no -= dev->block_offset;
+	blockNo -= dev->blockOffset;
 
-
-	if (dev->param.bad_block_fn)
-		return dev->param.bad_block_fn(dev, block_no);
+;
+	if (dev->markNANDBlockBad)
+		return dev->markNANDBlockBad(dev, blockNo);
 	else
-		return yaffs_tags_compat_mark_bad(dev, block_no);
+		return yaffs_TagsCompatabilityMarkNANDBlockBad(dev, blockNo);
 }
 
-int yaffs_query_init_block_state(yaffs_dev_t *dev,
-						 int block_no,
-						 yaffs_block_state_t *state,
-						 __u32 *seq_number)
+int yaffs_QueryInitialBlockState(yaffs_Device * dev,
+						 int blockNo,
+						 yaffs_BlockState * state,
+						 unsigned *sequenceNumber)
 {
-	block_no -= dev->block_offset;
+	blockNo -= dev->blockOffset;
 
-	if (dev->param.query_block_fn)
-		return dev->param.query_block_fn(dev, block_no, state, seq_number);
+	if (dev->queryNANDBlock)
+		return dev->queryNANDBlock(dev, blockNo, state, sequenceNumber);
 	else
-		return yaffs_tags_compat_query_block(dev, block_no,
+		return yaffs_TagsCompatabilityQueryNANDBlock(dev, blockNo,
 							     state,
-							     seq_number);
+							     sequenceNumber);
 }
 
 
-int yaffs_erase_block(struct yaffs_dev_s *dev,
-				  int flash_block)
+int yaffs_EraseBlockInNAND(struct yaffs_DeviceStruct *dev,
+				  int blockInNAND)
 {
 	int result;
 
-	flash_block -= dev->block_offset;
+	blockInNAND -= dev->blockOffset;
 
-	dev->n_erasures++;
 
-	result = dev->param.erase_fn(dev, flash_block);
+	dev->nBlockErasures++;
+	result = dev->eraseBlockInNAND(dev, blockInNAND);
 
 	return result;
 }
 
-int yaffs_init_nand(struct yaffs_dev_s *dev)
+int yaffs_InitialiseNAND(struct yaffs_DeviceStruct *dev)
 {
-	if(dev->param.initialise_flash_fn)
-		return dev->param.initialise_flash_fn(dev);
-	return YAFFS_OK;
+	return dev->initialiseNAND(dev);
 }
 
 

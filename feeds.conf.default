@@ -1,11 +1,11 @@
-src-svn packages svn://svn.openwrt.org/openwrt/packages
-src-svn xwrt http://x-wrt.googlecode.com/svn/trunk/package
-src-svn luci http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk/contrib/package
+src-svn packages svn://svn.openwrt.org.cn/dreambox/packages_10.03.1
+src-svn xwrt http://x-wrt.googlecode.com/svn/branches/backfire_10.03/package
+src-svn luci http://openwrt-on-dir-320-b1.googlecode.com/svn/luci_dreambox
+#src-svn dreambox_packages svn://svn.openwrt.org.cn/dreambox/feeds/dreambox_packages
+#src-svn qpe svn://svn.openwrt.org.cn/dreambox/feeds/qpe
 #src-svn phone svn://svn.openwrt.org/openwrt/feeds/phone
 #src-svn efl svn://svn.openwrt.org/openwrt/feeds/efl
-#src-svn xorg svn://svn.openwrt.org/openwrt/feeds/xorg
 #src-svn desktop svn://svn.openwrt.org/openwrt/feeds/desktop
 #src-svn xfce svn://svn.openwrt.org/openwrt/feeds/xfce
-#src-svn lxde svn://svn.openwrt.org/openwrt/feeds/lxde
 #src-link custom /usr/src/openwrt/custom-feed
 src-svn custompackages http://openwrt-on-dir-320-b1.googlecode.com/svn/feeds/

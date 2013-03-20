@@ -8,6 +8,7 @@
 #include <linux/kernel.h>
 #include <linux/module.h>
 #include <linux/init.h>
+#include <linux/version.h>
 
 #ifdef CONFIG_BCM47XX
 #include <bcm47xx.h>
@@ -19,6 +20,12 @@
 
 #ifdef CONFIG_BCMA
 #include <linux/bcma/bcma.h>
+#endif
+
+#if 0
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,32)
+#define SSB_VENDOR_BROADCOM2 0x04BF
+#endif
 #endif
 
 MODULE_AUTHOR("Jo-Philipp Wich (jow@openwrt.org)");
@@ -74,6 +81,9 @@ static void wl_glue_ssb_remove(struct ssb_device *dev)
 
 static const struct ssb_device_id wl_glue_ssb_tbl[] = {
 	SSB_DEVICE(SSB_VENDOR_BROADCOM, SSB_DEV_80211, SSB_ANY_REV),
+#if LINUX_VERSION_CODE > KERNEL_VERSION(2,6,32)
+	SSB_DEVICE(SSB_VENDOR_BROADCOM2, SSB_DEV_80211, SSB_ANY_REV),
+#endif
 	SSB_DEVTABLE_END
 };
 
@@ -88,6 +98,7 @@ static struct ssb_driver wl_glue_ssb_driver = {
 #ifdef CONFIG_BCMA
 static int wl_glue_bcma_probe(struct bcma_device *dev)
 {
+	void *mmio;
 	void *wldev;
 
 	if (!attach_cb)
@@ -108,7 +119,8 @@ static int wl_glue_bcma_probe(struct bcma_device *dev)
 	 * 0x1000     = BCMA_CORE_SIZE
 	 */
 
-	wldev = attach_cb(dev->id.manuf, dev->id.id, (ulong)dev->addr, dev, dev->irq);
+	mmio = (void *) 0x18000000 + dev->core_index * 0x1000;
+	wldev = attach_cb(dev->id.manuf, dev->id.id, (ulong)mmio, dev, dev->irq);
 
 	if (!wldev)
 	{
@@ -232,6 +244,12 @@ EXPORT_SYMBOL(wl_glue_unregister);
 struct device * wl_glue_get_dmadev(void *dev)
 {
 	struct device *dma_dev;
+
+	if (!wl_glue_attached)
+	{
+		BUG();
+		return NULL;
+	}
 
 	switch (active_bus_type)
 	{
