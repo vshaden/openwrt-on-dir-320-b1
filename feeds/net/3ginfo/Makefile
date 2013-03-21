@@ -25,6 +25,24 @@ define Build/Compile/Default
 
 endef
 
+define Package/mrelay/postinst
+#!/bin/sh
+# check if we are on real system
+if [ -z "$${IPKG_INSTROOT}" ]; then
+      ln -s /usr/share/3ginfo/cgi-bin/3ginfo.sh /usr/bin/3ginfo
+fi
+exit 0
+endef
+
+define Package/mrelay/prerm
+#!/bin/sh
+# check if we are on real system
+if [ -z "$${IPKG_INSTROOT}" ]; then
+	rm /usr/bin/3ginfo
+fi
+exit 0
+endef
+
 define Package/3ginfo/install
 	$(INSTALL_DIR) $(1)/etc/hotplug.d/usb
 	$(INSTALL_BIN) ./files/99-3ginfo $(1)/etc/hotplug.d/usb/
