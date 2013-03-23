@@ -145,6 +145,52 @@ endef
 
 $(eval $(call KernelPackage,usb-acm))
 
+define KernelPackage/cdc-wdm
+  TITLE:=Support for Wireless Device Management
+  KCONFIG:=CONFIG_CDC_WDM
+  FILES:=$(LINUX_DIR)/drivers/usb/class/cdc-wdm.ko
+  AUTOLOAD:=$(call AutoLoad,60,cdc-wdm)
+$(call AddDepends/usb)
+endef
+
+define KernelPackage/cdc-wdm/description
+ Kernel support for USB WDM devices
+endef
+
+$(eval $(call KernelPackage,cdc-wdm))
+
+define KernelPackage/usb-net-qmi-wwan
+  SUBMENU:=$(USB_MENU)
+  TITLE:=Kernel module for QMI Devices
+  KCONFIG:=CONFIG_USB_NET_QMI_WWAN
+  FILES:= \
+   $(LINUX_DIR)/drivers/$(USBNET_DIR)/qmi_wwan.ko
+  AUTOLOAD:=$(call AutoLoad,61,qmi_wwan)
+  $(call AddDepends/usb-net,+kmod-cdc-wdm)
+endef
+
+define KernelPackage/usb-net-qmi-wwan/description
+ Kernel module for Option USB High Speed Mobile Devices
+endef
+
+$(eval $(call KernelPackage,usb-net-qmi-wwan))
+
+define KernelPackage/usb-net-cdc-mbim
+  SUBMENU:=$(USB_MENU)
+  TITLE:=Kernel module for MBIM Devices
+  KCONFIG:=CONFIG_USB_NET_CDC_MBIM
+  FILES:= \
+   $(LINUX_DIR)/drivers/$(USBNET_DIR)/cdc_mbim.ko
+  AUTOLOAD:=$(call AutoLoad,61,cdc_mbim)
+  $(call AddDepends/usb-net,+kmod-cdc-wdm,+kmod-usb-net-cdc-ncm)
+endef
+
+define KernelPackage/usb-net-cdc-mbim/description
+ Kernel module for Option USB High Speed Mobile Devices
+endef
+
+$(eval $(call KernelPackage,usb-net-cdc-mbim))
+
 
 define KernelPackage/usb-audio
   TITLE:=Support for USB audio devices
@@ -756,6 +802,19 @@ endef
 
 $(eval $(call KernelPackage,usb-net-cdc-ether))
 
+define KernelPackage/usb-net-hw-cdc-driver
+  TITLE:=Support for Huawei's mobile router connected to USB
+  KCONFIG:=CONFIG_USB_NET_HW_CDC_DRIVER
+  FILES:=$(LINUX_DIR)/drivers/$(USBNET_DIR)/hw_cdc_driver.ko
+  AUTOLOAD:=$(call AutoLoad,66,hw_cdc_driver)
+  $(call AddDepends/usb-net)
+endef
+
+define KernelPackage/usb-net-hw-cdc-driver/description
+ Kernel support for Huawei's mobile router connected to USB
+endef
+
+$(eval $(call KernelPackage,usb-net-hw-cdc-driver))
 
 define KernelPackage/usb-net-rndis
   TITLE:=Support for RNDIS connections
@@ -770,6 +829,20 @@ define KernelPackage/usb-net-rndis/description
 endef
 
 $(eval $(call KernelPackage,usb-net-rndis))
+
+define KernelPackage/usb-net-cdc-ncm
+  TITLE:=Support for CDC NCM connections
+  KCONFIG:=CONFIG_USB_NET_CDC_NCM
+  FILES:= $(LINUX_DIR)/drivers/$(USBNET_DIR)/cdc_ncm.ko
+  AUTOLOAD:=$(call AutoLoad,61,cdc_ncm)
+  $(call AddDepends/usb-net)
+endef
+
+define KernelPackage/usb-net-cdc-ncm/description
+ Kernel support for CDC NCM connections
+endef
+
+$(eval $(call KernelPackage,usb-net-cdc-ncm))
 
 define KernelPackage/usb-net-sierrawireless
   TITLE:=Support for Sierra Wireless devices
