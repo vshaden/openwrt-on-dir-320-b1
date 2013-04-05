@@ -46,7 +46,14 @@
 #define RT305X_ESW_REG_P3PC		0xf4
 #define RT305X_ESW_REG_P4PC		0xf8
 #define RT305X_ESW_REG_P5PC		0xfc
+/* RT5350 only registers */
 #define RT305X_EWS_REG_LED_POLARITY     0x168
+#define RT305X_ESW_REG_P0TPC		0x150
+#define RT305X_ESW_REG_P1TPC		0x154
+#define RT305X_ESW_REG_P2TPC		0x158
+#define RT305X_ESW_REG_P3TPC		0x15c
+#define RT305X_ESW_REG_P4TPC		0x160
+#define RT305X_ESW_REG_P5TPC		0x164
 
 #define RT305X_ESW_LED_LINK		0
 #define RT305X_ESW_LED_100M		1
@@ -57,7 +64,7 @@
 #define RT305X_ESW_LED_DUPLCOLL		6
 #define RT305X_ESW_LED_10MACT		7
 #define RT305X_ESW_LED_100MACT		8
-/* Additional led states not in datasheet: */
+/* Additional led states (from rt5350 datasheet): */
 #define RT305X_ESW_LED_BLINK		10
 #define RT305X_ESW_LED_OFF		11
 #define RT305X_ESW_LED_ON		12
@@ -148,6 +155,9 @@ enum {
 	/* Global attributes. */
 	RT305X_ESW_ATTR_ENABLE_VLAN,
 	RT305X_ESW_ATTR_ALT_VLAN_DISABLE,
+	RT305X_ESW_ATTR_LED_FREQ,
+	RT305X_ESW_ATTR_PKT_LENGTH,
+	RT305X_ESW_ATTR_BC_STATUS,
 	/* Port attributes. */
 	RT305X_ESW_ATTR_PORT_DISABLE,
 	RT305X_ESW_ATTR_PORT_DOUBLETAG,
@@ -156,6 +166,8 @@ enum {
 	RT305X_ESW_ATTR_PORT_LAN,
 	RT305X_ESW_ATTR_PORT_RECV_BAD,
 	RT305X_ESW_ATTR_PORT_RECV_GOOD,
+	RT305X_ESW_ATTR_PORT_TR_BAD,
+	RT305X_ESW_ATTR_PORT_TR_GOOD,
 	RT305X_ESW_ATTR_PORT_LED_POLARITY,
 };
 
@@ -184,6 +196,7 @@ struct rt305x_esw {
 	struct rt305x_esw_vlan vlans[RT305X_ESW_NUM_VLANS];
 	struct rt305x_esw_port ports[RT305X_ESW_NUM_PORTS];
 	u8                      led_polarity; /* LED polarity. RT5350 only */
+	u32                     sgc; /* SGC value */
 
 };
 
@@ -423,6 +436,7 @@ rt305x_esw_hw_init(struct rt305x_esw *esw)
 	 * ports.
 	 */
 	rt305x_esw_wr(esw, 0x0008a301, RT305X_ESW_REG_SGC);
+	esw->sgc=0x0008a301;
 
 	/* Setup SoC Port control register */
 	rt305x_esw_wr(esw,
@@ -529,6 +543,7 @@ rt305x_esw_apply_config(struct switch_dev *dev)
 	u8 en_vlan = 0;
 	u8 untag = 0;
 
+	rt305x_esw_wr(esw, esw->sgc, RT305X_ESW_REG_SGC);
 	for (i = 0; i < RT305X_ESW_NUM_VLANS; i++) {
 		u32 vid, vmsc;
 		if (esw->global_vlan_enable) {
@@ -783,6 +798,29 @@ rt305x_esw_get_port_recv_badgood(struct switch_dev *dev,
 }
 
 static int
+rt305x_esw_get_port_tr_badgood(struct switch_dev *dev,
+				 const struct switch_attr *attr,
+				 struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
+	int idx = val->port_vlan;
+	int shift = attr->id == RT305X_ESW_ATTR_PORT_TR_GOOD ? 0 : 16;
+	u32 reg;
+
+	if (!soc_is_rt5350())
+		return -EINVAL;
+	
+	if (idx < 0 || idx >= RT305X_ESW_NUM_LANWAN)
+		return -EINVAL;
+
+	reg = rt305x_esw_rr(esw, RT305X_ESW_REG_P0TPC + 4*idx);
+	val->value.i = (reg >> shift) & 0xffff;
+
+	return 0;
+}
+
+
+static int
 rt305x_esw_get_port_led(struct switch_dev *dev,
 			const struct switch_attr *attr,
 			struct switch_val *val)
@@ -981,6 +1019,80 @@ rt305x_esw_get_port_led_polarity(struct switch_dev *dev,
 	return 0;
 }
 
+static int
+rt305x_esw_set_led_freq(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
+	
+        esw->sgc &= 0xfe7fffff;
+        esw->sgc |= ((val->value.i & 3) << 23);
+        return 0;
+}
+
+static int
+rt305x_esw_get_led_freq(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
+
+	val->value.i = (rt305x_esw_rr(esw,RT305X_ESW_REG_SGC) >> 23) & 3;
+
+	return 0;
+}
+
+static int
+rt305x_esw_set_pkt_length(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
+	
+        esw->sgc &= 0xffffff3f;
+        esw->sgc |= ((val->value.i & 3) << 6);
+        return 0;
+}
+
+static int
+rt305x_esw_get_pkt_length(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_SGC) >> 6) & 3;
+
+	return 0;
+}
+
+
+static int
+rt305x_esw_set_bc_status(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
+	
+        esw->sgc &= 0xffffffcf;
+        esw->sgc |= ((val->value.i & 3) << 4);
+        return 0;
+}
+
+static int
+rt305x_esw_get_bc_status(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_SGC) >> 4) & 3;
+
+	return 0;
+}
+
+
 static const struct switch_attr rt305x_esw_global[] = {
 	{
 		.type = SWITCH_TYPE_INT,
@@ -1000,6 +1112,33 @@ static const struct switch_attr rt305x_esw_global[] = {
 		.id = RT305X_ESW_ATTR_ALT_VLAN_DISABLE,
 		.get = rt305x_esw_get_alt_vlan_disable,
 		.set = rt305x_esw_set_alt_vlan_disable,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "led_freq",
+		.description = "LED Flash frequency (0:30mS, 1:60mS, 2:240mS, 3:480mS)",
+		.max = 3,
+		.id = RT305X_ESW_ATTR_LED_FREQ,
+		.get = rt305x_esw_get_led_freq,
+		.set = rt305x_esw_set_led_freq,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pkt_maxlen",
+		.description = "Maximum packet lenghth tagged/untagged (0:1536/1536, 1:1522/1518, 2:1526/1522)",
+		.max = 2,
+		.id = RT305X_ESW_ATTR_PKT_LENGTH,
+		.get = rt305x_esw_get_pkt_length,
+		.set = rt305x_esw_set_pkt_length,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "bc_storm_protect",
+		.description = "Global broadcast storm protection (0:Disable, 1:64 blocks, 2:96 blocks, 3:128 blocks)",
+		.max = 2,
+		.id = RT305X_ESW_ATTR_BC_STATUS,
+		.get = rt305x_esw_get_bc_status,
+		.set = rt305x_esw_set_bc_status,
 	},
 };
 
@@ -1037,7 +1176,7 @@ static const struct switch_attr rt305x_esw_port[] = {
 		.name = "led",
 		.description = "LED mode (0:link, 1:100m, 2:duplex, 3:activity,"
 				" 4:collision, 5:linkact, 6:duplcoll, 7:10mact,"
-				" 8:100mact, 10:blink, 12:on)",
+				" 8:100mact, 10:blink, 11:off, 12:on)",
 		.max = 15,
 		.id = RT305X_ESW_ATTR_PORT_LED,
 		.get = rt305x_esw_get_port_led,
@@ -1068,11 +1207,25 @@ static const struct switch_attr rt305x_esw_port[] = {
 	{
 		.type = SWITCH_TYPE_INT,
 		.name = "led_polarity",
-		.description = "LED Polarity for each port (0:low active, 1:high active). RT5350 Only",
+		.description = "LED Polarity for each port (0:low active, 1:high active). rt5350 only",
 		.max = 1,
 		.id = RT305X_ESW_ATTR_PORT_LED_POLARITY,
 		.get = rt305x_esw_get_port_led_polarity,
 		.set = rt305x_esw_set_port_led_polarity,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "tr_bad",
+		.description = "Transmit bad packet counter. rt5350 only",
+		.id = RT305X_ESW_ATTR_PORT_TR_BAD,
+		.get = rt305x_esw_get_port_tr_badgood,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "tr_good",
+		.description = "Transmit good packet counter. rt5350 only",
+		.id = RT305X_ESW_ATTR_PORT_TR_GOOD,
+		.get = rt305x_esw_get_port_tr_badgood,
 	},
 };
 
