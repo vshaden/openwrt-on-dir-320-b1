@@ -47,10 +47,11 @@
  };
  
  /* policy for the key attributes */
-@@ -1706,6 +1707,22 @@ static int nl80211_set_wiphy(struct sk_b
+@@ -1705,6 +1706,22 @@ static int nl80211_set_wiphy(struct sk_b
+ 		if (result)
  			goto bad_res;
  	}
- 
++
 +	if (info->attrs[NL80211_ATTR_WIPHY_ANTENNA_GAIN]) {
 +		int idx, dbi = 0;
 +
@@ -66,10 +67,9 @@
 +		if (result)
 +			goto bad_res;
 +	}
-+
+ 
  	if (info->attrs[NL80211_ATTR_WIPHY_ANTENNA_TX] &&
  	    info->attrs[NL80211_ATTR_WIPHY_ANTENNA_RX]) {
- 		u32 tx_ant, rx_ant;
 --- a/net/mac80211/cfg.c
 +++ b/net/mac80211/cfg.c
 @@ -2212,6 +2212,19 @@ static int ieee80211_get_tx_power(struct

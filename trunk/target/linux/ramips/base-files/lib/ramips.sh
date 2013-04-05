@@ -33,6 +33,9 @@ ramips_board_detect() {
 	*"Edimax 3g-6200n")
 		name="3g-6200n"
 		;;
+	*"Edimax 3g-6200nl")
+		name="3g-6200nl"
+		;;
 	*"AirLive Air3GII")
 		name="air3gii"
 		;;
@@ -84,6 +87,9 @@ ramips_board_detect() {
 	*"DIR-320 B1")
 		name="dir-320-b1"
 		;;
+	*"DIR-320 B2")
+		name="dir-320-b2"
+		;;
 	*"DIR-620 D1")
 		name="dir-620-d1"
 		;;
@@ -107,6 +113,9 @@ ramips_board_detect() {
 		;;
 	*"Hauppauge Broadway")
 		name="broadway"
+		;;
+	*"Huawei D105")
+		name="d105"
 		;;
 	*"La Fonera 2.0N")
 		name="fonera20n"
@@ -180,6 +189,9 @@ ramips_board_detect() {
 	*"Tenda W306R V2.0")
 		name="w306r-v20"
 		;;
+	*"Tenda W150M")
+		name="w150m"
+		;;
 	*"TEW-691GR")
 		name="tew-691gr"
 		;;
@@ -198,6 +210,9 @@ ramips_board_detect() {
 	*"WR512-3GN-like router")
 		name="wr512-3gn"
 		;;
+	*"UR-326N4G Wireless N router")
+		name="ur-326n4g"
+ 		;;
 	*"UR-336UN Wireless N router")
 		name="ur-336un"
 		;;

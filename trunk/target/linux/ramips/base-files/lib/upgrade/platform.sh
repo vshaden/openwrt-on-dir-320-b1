@@ -15,7 +15,9 @@ platform_check_image() {
 
 	case "$board" in
 	3g-6200n | \
+	3g-6200nl | \
 	3g300m | \
+	w150m | \
 	air3gii | \
 	all0239-3g | \
 	all0256n | \
@@ -23,6 +25,7 @@ platform_check_image() {
 	bc2 | \
 	broadway | \
 	carambola | \
+	d105 | \
 	dir-300-b1 | \
 	dir-600-b1 | \
 	dir-600-b2 | \
@@ -31,6 +34,7 @@ platform_check_image() {
 	dir-620-a1 | \
 	dir-620-d1 | \
 	dir-320-b1 | \
+	dir-320-b2 | \
 	dap-1350 | \
 	esr-9753 | \
 	fonera20n | \
@@ -60,6 +64,7 @@ platform_check_image() {
 	wl-351 | \
 	wli-tx4-ag300n | \
 	whr-g300n |\
+	ur-326n4g |\
 	ur-336un |\
 	wr512-3gn)
 		[ "$magic" != "27051956" ] && {

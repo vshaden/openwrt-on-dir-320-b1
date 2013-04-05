@@ -554,7 +554,6 @@ menu "Global build settings"
 
 	config STRIP_KERNEL_EXPORTS
 		bool "Strip unnecessary exports from the kernel image"
-		depends BROKEN
 		help
 		  Reduces kernel size by stripping unused kernel exports from the kernel image
 		  Note that this might make the kernel incompatible with any kernel modules that
@@ -681,6 +680,17 @@ menuconfig TARGET_OPTIONS
 		  point support (-msoft-float).
 
 		  Most people will answer N.
+
+	config USE_MIPS16
+		bool "Build packages with MIPS16 instructions" if TARGET_OPTIONS
+		depends on HAS_MIPS16
+		help
+		   If your target CPU does support the MIPS16 instruction set
+		   and you want to use it for packages, enable this option.
+		   MIPS16 produces smaller binaries thus reducing pressure on
+		   caches and TLB.
+
+		   Most people will answer N.
 
 source "toolchain/Config.in"
 

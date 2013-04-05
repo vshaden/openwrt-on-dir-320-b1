@@ -38,6 +38,7 @@ ramips_setup_interfaces()
 
 	case $board in
 	3g300m | \
+	w150m | \
 	all0256n | \
 	all5002 | \
 	broadway)
@@ -46,6 +47,7 @@ ramips_setup_interfaces()
 		;;
 
 	dir-615-h1 | \
+	3g-6200nl | \
 	wl-330n)
 		ucidef_set_interface_lan "eth0.1"
 		;;
@@ -77,6 +79,13 @@ ramips_setup_interfaces()
 
 	f5d8235-v1 | \
 	f5d8235-v2 | \
+	ur-326n4g)
+		ucidef_set_interfaces_lan_wan "eth0.1" "eth0.2"
+		ucidef_add_switch "switch0" "1" "1"
+		ucidef_add_switch_vlan "switch0" "1" "1 2 3 4 6t"
+		ucidef_add_switch_vlan "switch0" "2" "0 6t"
+		;;
+
 	ur-336un)
 		ucidef_set_interfaces_lan_wan "eth0.1" "eth0.2"
 		;;
@@ -117,6 +126,7 @@ ramips_setup_interfaces()
 		ucidef_set_interfaces_lan_wan "eth0.2" "eth0.1"
 		;;
 
+	d105 | \
 	omni-emb-hpm|\
 	wli-tx4-ag300n)
 		ucidef_set_interface_lan "eth0"
@@ -147,6 +157,7 @@ ramips_setup_macs()
 		;;
 	3g-6200n | \
 	3g300m | \
+	w150m | \
 	air3gii | \
 	argus-atp52b | \
 	bc2 | \
@@ -193,12 +204,18 @@ ramips_setup_macs()
 		wan_mac=$(/usr/sbin/maccalc add "$lan_mac" 1)
 		;;
 
+	dir-320-b2)
+		lan_mac=$(ramips_get_mac_binary factory 1032)
+		wan_mac=$(/usr/sbin/maccalc add "$lan_mac" 1)
+		;;
+
 	dir-645)
 		lan_mac=$(mtd_get_mac_ascii nvram lanmac)
 		wan_mac=$(mtd_get_mac_ascii nvram wanmac)
 		;;
 
 	esr-9753 | \
+	ur-326n4g | \
 	ur-336un)
 		lan_mac=$(mtd_get_mac_binary devdata 16388)
 		wan_mac=$(macaddr_add "$lan_mac" 1)
@@ -246,6 +263,7 @@ ramips_setup_macs()
 		wan_mac=$(macaddr_add "$lan_mac" 1)
 		;;
 
+	d105 | \
 	wli-tx4-ag300n)
 		lan_mac=$(mtd_get_mac_binary factory 4)
 		;;
