@@ -4,22 +4,22 @@ Depends: libc, ussd159, gnokii
 Source: feeds/custompackages/net/3ginfo
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 16554
+Installed-Size: 16146
 Filename: 3ginfo_1-1_ramips_24kec.ipk
-Size: 17116
-MD5Sum: faff3dadae020ff66e3e3ef8bd224156
+Size: 16698
+MD5Sum: a038db4be7533c1285fefd18de66e8ca
 Description:  Web interface with information about your 3g/4g connection
 
 Package: 4g-scripts
 Version: 1-1
-Depends: libc, gctwimax, kmod-wimax-u200, libqmi
+Depends: libc, uqmi
 Source: feeds/custompackages/net/4g-scripts
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 2167
+Installed-Size: 2190
 Filename: 4g-scripts_1-1_ramips_24kec.ipk
-Size: 2737
-MD5Sum: 1f4e2d05b907805098d2894f905b7664
+Size: 2738
+MD5Sum: e98e81864609d9f50b53dee1df0ccfeb
 Description:  My scripts for 4G/LTE network.
 
 Package: 6in4
@@ -29,10 +29,10 @@ Source: package/network/ipv6/6in4
 Section: ipv6
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: all
-Installed-Size: 1172
+Installed-Size: 1166
 Filename: 6in4_14-1_all.ipk
-Size: 1812
-MD5Sum: ce914a3c461a6b3d6d1e2efc9b42cf26
+Size: 1809
+MD5Sum: 9cb71ccef1e4faea814b064d9ee24eed
 Description:  Provides support for 6in4 tunnels in /etc/config/network.
  Refer to http://wiki.openwrt.org/doc/uci/network for
  configuration details.
@@ -44,10 +44,10 @@ Source: package/network/ipv6/6rd
 Section: ipv6
 Maintainer: Stéphan Kochen <stephan@kochen.nl>
 Architecture: all
-Installed-Size: 2822
+Installed-Size: 2817
 Filename: 6rd_3-1_all.ipk
-Size: 3443
-MD5Sum: 3cdf9a3e7d6f11ff419c26d7efba98dd
+Size: 3432
+MD5Sum: 24fc4e3da9f38120638d6ea0b395ea77
 Description:  Provides support for 6rd tunnels in /etc/config/network.
  Refer to http://wiki.openwrt.org/doc/uci/network for
  configuration details.
@@ -61,10 +61,10 @@ SourceURL: git://github.com/sbyx/6relayd.git
 Section: ipv6
 Maintainer: Steven Barth <steven@midlink.org>
 Architecture: ramips_24kec
-Installed-Size: 13909
+Installed-Size: 13898
 Filename: 6relayd_2013-02-28.1-be18c9722e8fa76ca96de16fb927b85bfe3197bc_ramips_24kec.ipk
-Size: 14811
-MD5Sum: 4e48dec9bd411e1e4e915f803f06e209
+Size: 14794
+MD5Sum: 4e252c0d27201ba06a3a8988d6dcab90
 Description:  6relayd is an IPv6-tool that relays IPv6-management protocols like router
  discovery, neighbor discovery and DHCPv6 so that clients on routed (non-
  bridged) interfaces can use the public address prefix, DHCPv6 and DNS-service
@@ -80,25 +80,74 @@ Source: package/network/ipv6/6to4
 Section: ipv6
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: all
-Installed-Size: 1008
+Installed-Size: 1007
 Filename: 6to4_12-1_all.ipk
-Size: 1639
-MD5Sum: 731f8c2d5477fe40283a03f971882e7d
+Size: 1635
+MD5Sum: bcabc597b2b1ed6b9085043968580438
 Description:  Provides support for 6to4 tunnels in /etc/config/network.
  Refer to http://wiki.openwrt.org/doc/uci/network for
  configuration details.
 
 Package: base-files
-Version: 134-r68
+Version: 137-r141
 Depends: libc, netifd, procd
 Source: package/base-files
 Section: base
 Architecture: ramips_24kec
-Installed-Size: 36380
-Filename: base-files_134-r68_ramips_24kec.ipk
-Size: 37106
-MD5Sum: 029ac55d3270f143bb96b410d32e2075
+Installed-Size: 35848
+Filename: base-files_137-r141_ramips_24kec.ipk
+Size: 36589
+MD5Sum: caf505f059c52ae69656ef2508473f7d
 Description:  This package contains a base filesystem and system scripts for OpenWrt.
+
+Package: blkid
+Version: 2.21.2-1
+Depends: libc, libblkid
+Source: package/util-linux
+SourceFile: util-linux-2.21.2.tar.xz
+SourceURL: @KERNEL/linux/utils/util-linux/v2.21
+License: GPLv2 LGPLv2.1 BSD-3c
+LicenseFiles: COPYING getopt/COPYING libblkid/COPYING libmount/COPYING Documentation/licenses/COPYING.GPLv2 Documentation/licenses/COPYING.LGPLv2.1 libuuid/COPYING Documentation/licenses/COPYING.BSD-3
+Section: utils
+Architecture: ramips_24kec
+Installed-Size: 12341
+Filename: blkid_2.21.2-1_ramips_24kec.ipk
+Size: 13038
+MD5Sum: 95e4d9759545744d284caecf172d1425
+Description:  The blkid program is the command-line interface to working with the libblkid
+ library.
+
+Package: block-mount
+Version: 0.2.0-10
+Depends: libc, blkid, swap-utils
+Source: package/block-mount
+Section: base
+Architecture: ramips_24kec
+Installed-Size: 6064
+Filename: block-mount_0.2.0-10_ramips_24kec.ipk
+Size: 6796
+MD5Sum: 87f547094432faa35678668508fd733d
+Description:  Scripts used to mount and check block devices (filesystems and swap), as well
+ as hotplug scripts to automount and check block devices when hotplug event (e.g.
+ from plugging in a device) occurs.
+ Also includes preinit scripts for mounting a block device as the root filesystem.
+ This allows one to have the root filesystem on devices other than the built in flash
+ device.
+
+Package: bridge
+Version: 1.5-2
+Depends: libc
+Source: feeds/packages/net/bridge-utils
+SourceFile: bridge-utils-1.5.tar.gz
+SourceURL: @SF/bridge
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 8824
+Filename: bridge_1.5-2_ramips_24kec.ipk
+Size: 9425
+MD5Sum: 35c67d2140a5bb52823e2f98a7ea796b
+Description:  Manage ethernet bridging: a way to connect networks together to 
+ form a larger network.
 
 Package: busybox
 Version: 1.19.4-6
@@ -112,10 +161,10 @@ Section: base
 Essential: yes
 Maintainer: Nicolas Thill <nico@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 237573
+Installed-Size: 239208
 Filename: busybox_1.19.4-6_ramips_24kec.ipk
-Size: 237385
-MD5Sum: b174a3fce999ae39d3276210994581f6
+Size: 238952
+MD5Sum: eed9327a49a715e087443859239a9228
 Description:  The Swiss Army Knife of embedded Linux.
  It slices, it dices, it makes Julian Fries.
 
@@ -128,10 +177,10 @@ SourceURL: ftp://ftp.samba.org/pub/ppp/
 Section: net
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 8732
+Installed-Size: 8726
 Filename: chat_2.4.5-9_ramips_24kec.ipk
-Size: 9422
-MD5Sum: 1ca2a02d73fd4f148c9e971d75e30039
+Size: 9408
+MD5Sum: d6386316c2cbff1c47da6b45fb2b877b
 Description:  This package contains an utility to establish conversation with other PPP servers
  (via a modem).
 
@@ -144,10 +193,10 @@ SourceURL: @SF/comgt
 Section: utils
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 19505
+Installed-Size: 19496
 Filename: comgt_0.32-21_ramips_24kec.ipk
-Size: 20175
-MD5Sum: 8ae68acd196a40e98497c3a0b3f015e5
+Size: 20156
+MD5Sum: 73535fb52fc775717893258301247ed1
 Description:  comgt is a scripting language interpreter useful for establishing 
  communications on serial lines and through PCMCIA modems as well as GPRS 
  and 3G datacards.
@@ -158,12 +207,30 @@ Depends: libc
 Source: feeds/packages/net/ddns-scripts
 Section: net
 Architecture: all
-Installed-Size: 6720
+Installed-Size: 6718
 Filename: ddns-scripts_1.0.0-21_all.ipk
-Size: 7359
-MD5Sum: 44283559b0dd8608f81c11cec5132b93
+Size: 7346
+MD5Sum: 97aec3e177a1b48c3f7280077801317c
 Description:  A highly configurable set of scripts for doing
  dynamic dns updates
+
+Package: dnsmasq-dhcpv6
+Version: 2.62-3
+Depends: libc, kmod-ipv6
+Source: package/network/services/dnsmasq
+SourceFile: dnsmasq-2.62.tar.gz
+SourceURL: http://thekelleys.org.uk/dnsmasq
+License: GPLv2
+LicenseFiles: COPYING
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 100476
+Filename: dnsmasq-dhcpv6_2.62-3_ramips_24kec.ipk
+Size: 100897
+MD5Sum: 2ef6ad3150f48ab32c277bca352aba51
+Description:  It is intended to provide coupled DNS and DHCP service to a LAN.
+ 
+ This is a variant with DHCPv6 support
 
 Package: dnsmasq
 Version: 2.62-3
@@ -191,10 +258,10 @@ License: MIT
 LicenseFiles: LICENSE libtomcrypt/LICENSE libtommath/LICENSE
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 78580
+Installed-Size: 78577
 Filename: dropbear_2012.55-2_ramips_24kec.ipk
-Size: 79287
-MD5Sum: 66245f04d73052b735ed395369911fa2
+Size: 79278
+MD5Sum: 109bfb4df4d36007697128c10e0a702d
 Description:  A small SSH2 server/client designed for small memory environments.
 
 Package: etherwake
@@ -205,10 +272,10 @@ SourceFile: etherwake_1.09.orig.tar.gz
 SourceURL: http://ftp.debian.org/debian/pool/main/e/etherwake
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 5008
+Installed-Size: 5006
 Filename: etherwake_1.09-3_ramips_24kec.ipk
-Size: 5790
-MD5Sum: 05d2fb8f9ea36729e1e16ddbc130eb30
+Size: 5779
+MD5Sum: 0c7c4c92fda12ab2a8e3844f44132c6f
 Description:  You can wake up WOL compliant Computers which have been powered down to 
  sleep mode or start WOL compliant Computers with a BIOS feature.
  WOL is an abbreviation for Wake-on-LAN. It is a standard that allows you 
@@ -216,18 +283,18 @@ Description:  You can wake up WOL compliant Computers which have been powered do
  ether-wake also supports WOL passwords.
 
 Package: firewall3
-Version: 2013-03-02
+Version: 2013-03-22
 Depends: libc, libubox, libubus, libuci
 Source: package/network/config/firewall3
-SourceFile: firewall3-2013-03-02-46536e5263c4bf57a91c38b5d08d78c774649dda.tar.gz
+SourceFile: firewall3-2013-03-22-55cad166123faca16c40b25579fd4d49e4b3a380.tar.gz
 SourceURL: git://nbd.name/firewall3.git
 Section: net
 Maintainer: Jo-Philipp Wich <jow@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 24326
-Filename: firewall3_2013-03-02_ramips_24kec.ipk
-Size: 24988
-MD5Sum: 5242456cecc6312ef863485a973c1cca
+Installed-Size: 26418
+Filename: firewall3_2013-03-22_ramips_24kec.ipk
+Size: 27074
+MD5Sum: f4c3fd19c0a53d1991c0cc71df1e8dec
 Description:  This package provides a config-compatible C implementation of the UCI firewall.
 
 Package: firewall
@@ -237,10 +304,10 @@ Source: package/network/config/firewall
 Section: net
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: all
-Installed-Size: 13372
+Installed-Size: 13375
 Filename: firewall_2-59_all.ipk
-Size: 13982
-MD5Sum: d4a84a4bbdcae386e6b998de4537e212
+Size: 13987
+MD5Sum: f582a8e190c319dc5f47359d17667db1
 Description:  UCI based firewall for OpenWrt
 
 Package: gctwimax
@@ -279,10 +346,10 @@ SourceFile: gnokii-0.6.21.tar.gz
 SourceURL: http://gnokii.org/download/gnokii/0.6.x
 Section: utils
 Architecture: ramips_24kec
-Installed-Size: 216538
+Installed-Size: 216646
 Filename: gnokii_0.6.21-3_ramips_24kec.ipk
-Size: 215038
-MD5Sum: 894e60f6c97760f3dccd3e461edbb774
+Size: 215285
+MD5Sum: 99274526c3810e81094635dedd0daa32
 Description:  Gnokii is a suite of programs linked against a backend
  library that allows communication with the phones. It
  currently supports the most mobile phones, all AT
@@ -297,10 +364,10 @@ SourceURL: http://svn.nomi.cz/svn/isteve/hotplug2
 Section: base
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 14544
+Installed-Size: 14530
 Filename: hotplug2_1.0-beta-4_ramips_24kec.ipk
-Size: 15200
-MD5Sum: d78b164f9c520baca49a1309795aa2e3
+Size: 15220
+MD5Sum: ad19ccddfce74161b851085c031937f5
 Description:  Hotplug2 is a trivial replacement of some of the UDev functionality
  in a tiny pack, intended for Linux early userspace: Init RAM FS and InitRD.
  This is an implementation of Hotplug2-1.0-beta
@@ -313,27 +380,27 @@ SourceFile: httping-1.5.2.tgz
 SourceURL: http://www.vanheusden.com/httping
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 14417
+Installed-Size: 14418
 Filename: httping_1.5.2-1_ramips_24kec.ipk
-Size: 15070
-MD5Sum: b4b0dabb6f2917bdac20613ffa72a80e
+Size: 15064
+MD5Sum: a05250cda0daec76a6c155f6dcbdf540
 Description:  Give it an url, and it'll show you how long it takes to connect, send a
  request and retrieve the reply (only the headers). Be aware that the
  transmission across the network also takes time!
  This package is built with SSL support.
 
 Package: ip6tables
-Version: 1.4.18-1
+Version: 1.4.18-3
 Depends: libc, kmod-ip6tables, iptables
 Source: package/network/utils/iptables
 SourceFile: iptables-1.4.18.tar.bz2
 SourceURL: http://www.netfilter.org/projects/iptables/files ftp://ftp.be.netfilter.org/pub/netfilter/iptables/ ftp://ftp.de.netfilter.org/pub/netfilter/iptables/ ftp://ftp.no.netfilter.org/pub/netfilter/iptables/
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 218
-Filename: ip6tables_1.4.18-1_ramips_24kec.ipk
-Size: 832
-MD5Sum: 3b712d020d889bcae3410f31c3705c8c
+Installed-Size: 216
+Filename: ip6tables_1.4.18-3_ramips_24kec.ipk
+Size: 826
+MD5Sum: 5e362d4d68b63d0a8acda644c1a601fc
 Description:  IPv6 firewall administration tool
 
 Package: ip
@@ -344,14 +411,14 @@ SourceFile: iproute2-3.7.0.tar.bz2
 SourceURL: http://kernel.org/pub/linux/utils/net/iproute2/
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 92719
+Installed-Size: 92709
 Filename: ip_3.7.0-1_ramips_24kec.ipk
-Size: 93279
-MD5Sum: 07107744e9d5b2d203ccaa9a6f24c198
+Size: 93266
+MD5Sum: 5ff35f3543e4be30a28b4d4c30904395
 Description:  Routing control utility
 
 Package: iptables-mod-conntrack-extra
-Version: 1.4.18-1
+Version: 1.4.18-3
 Depends: libc, iptables, kmod-ipt-conntrack-extra
 Source: package/network/utils/iptables
 SourceFile: iptables-1.4.18.tar.bz2
@@ -359,9 +426,9 @@ SourceURL: http://www.netfilter.org/projects/iptables/files ftp://ftp.be.netfilt
 Section: net
 Architecture: ramips_24kec
 Installed-Size: 7585
-Filename: iptables-mod-conntrack-extra_1.4.18-1_ramips_24kec.ipk
-Size: 8276
-MD5Sum: 631fefcdc4f0c3418e1044d2d34f8788
+Filename: iptables-mod-conntrack-extra_1.4.18-3_ramips_24kec.ipk
+Size: 8281
+MD5Sum: 55fabff65afe6d623782a3f2d6e56fae
 Description:  Extra iptables extensions for connection tracking.
  
  Matches:
@@ -375,17 +442,17 @@ Description:  Extra iptables extensions for connection tracking.
  
 
 Package: iptables-mod-filter
-Version: 1.4.18-1
+Version: 1.4.18-3
 Depends: libc, iptables, kmod-ipt-filter
 Source: package/network/utils/iptables
 SourceFile: iptables-1.4.18.tar.bz2
 SourceURL: http://www.netfilter.org/projects/iptables/files ftp://ftp.be.netfilter.org/pub/netfilter/iptables/ ftp://ftp.de.netfilter.org/pub/netfilter/iptables/ ftp://ftp.no.netfilter.org/pub/netfilter/iptables/
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 14328
-Filename: iptables-mod-filter_1.4.18-1_ramips_24kec.ipk
-Size: 14972
-MD5Sum: 4f2b063ac38ff0a4f9dbea54cbf60ebf
+Installed-Size: 14332
+Filename: iptables-mod-filter_1.4.18-3_ramips_24kec.ipk
+Size: 14974
+MD5Sum: a7f9ac9ef3a80dc2f4e9601911942cf0
 Description:  iptables extensions for packet content inspection.
  Includes support for:
  
@@ -395,17 +462,17 @@ Description:  iptables extensions for packet content inspection.
  
 
 Package: iptables-mod-ipopt
-Version: 1.4.18-1
+Version: 1.4.18-3
 Depends: libc, iptables, kmod-ipt-ipopt
 Source: package/network/utils/iptables
 SourceFile: iptables-1.4.18.tar.bz2
 SourceURL: http://www.netfilter.org/projects/iptables/files ftp://ftp.be.netfilter.org/pub/netfilter/iptables/ ftp://ftp.de.netfilter.org/pub/netfilter/iptables/ ftp://ftp.no.netfilter.org/pub/netfilter/iptables/
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 17100
-Filename: iptables-mod-ipopt_1.4.18-1_ramips_24kec.ipk
-Size: 17796
-MD5Sum: 985649225b85c5507d18b557d897e1b2
+Installed-Size: 18165
+Filename: iptables-mod-ipopt_1.4.18-3_ramips_24kec.ipk
+Size: 18828
+MD5Sum: adb96b6de8a8f4025db111a24b80bb0b
 Description:  iptables extensions for matching/changing IP packet options.
  
  Matches:
@@ -428,17 +495,17 @@ Description:  iptables extensions for matching/changing IP packet options.
  
 
 Package: iptables
-Version: 1.4.18-1
+Version: 1.4.18-3
 Depends: libc, kmod-ipt-core, libip4tc, libip6tc, libxtables
 Source: package/network/utils/iptables
 SourceFile: iptables-1.4.18.tar.bz2
 SourceURL: http://www.netfilter.org/projects/iptables/files ftp://ftp.be.netfilter.org/pub/netfilter/iptables/ ftp://ftp.de.netfilter.org/pub/netfilter/iptables/ ftp://ftp.no.netfilter.org/pub/netfilter/iptables/
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 41080
-Filename: iptables_1.4.18-1_ramips_24kec.ipk
-Size: 41774
-MD5Sum: 18a5341f7612001f65a772a0cb5cadeb
+Installed-Size: 46010
+Filename: iptables_1.4.18-3_ramips_24kec.ipk
+Size: 46451
+MD5Sum: da771a7651aa891587fa0f72484f4389
 Description:  IP firewall administration tool.
  
  Matches:
@@ -472,7 +539,7 @@ Architecture: all
 Installed-Size: 374
 Filename: ipv6-support_2013-01-23-1_all.ipk
 Size: 1020
-MD5Sum: 3487e3770c820ab0d114097af99de3d6
+MD5Sum: 3ac5e954b6a61096947205b8c69af6c5
 Description:  This package provides basic IPv6 support including Router Discovery,
  DHCPv6 (client & server), prefix delegation and distribution.
 
@@ -485,26 +552,26 @@ SourceURL: http://wireless.kernel.org/download/iw/
 Section: net
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 37149
+Installed-Size: 37147
 Filename: iw_3.6-1_ramips_24kec.ipk
-Size: 37829
-MD5Sum: 9a38fd04f5bac052866c355a8f83f073
+Size: 37813
+MD5Sum: 9250db403f211381214efc1310ae898c
 Description:  cfg80211 interface configuration utility
 
 Package: jshn
-Version: 2013-01-29-0bc317aa4d9af44806c28ca286d79a8b5a92b2b8
+Version: 2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442
 Depends: libc, libjson
 Source: package/libs/libubox
-SourceFile: libubox-2013-01-29-0bc317aa4d9af44806c28ca286d79a8b5a92b2b8.tar.gz
+SourceFile: libubox-2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442.tar.gz
 SourceURL: git://nbd.name/luci2/libubox.git
 License: ISC BSD-3c
 Section: utils
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 5006
-Filename: jshn_2013-01-29-0bc317aa4d9af44806c28ca286d79a8b5a92b2b8_ramips_24kec.ipk
-Size: 5684
-MD5Sum: a907056fc2a145d60264987530dc633e
+Installed-Size: 5003
+Filename: jshn_2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442_ramips_24kec.ipk
+Size: 5668
+MD5Sum: 2116080c9f1131cac765edf5f2b57ea6
 Description:  Library for parsing and generating JSON from shell scripts
 
 Package: kmod-8021q
@@ -536,45 +603,45 @@ MD5Sum: 30bfe44a51907c8c8326cd0cb3f39f81
 Description:  Kernel support for ATA over Ethernet
 
 Package: kmod-appletalk
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
 Installed-Size: 17887
-Filename: kmod-appletalk_3.8.2-1_ramips_24kec.ipk
-Size: 18589
-MD5Sum: 69f51d6e41faba97d2e5e3d734e1c3e2
+Filename: kmod-appletalk_3.7.10-1_ramips_24kec.ipk
+Size: 18594
+MD5Sum: afb9c210d01fe87f649ef6055b843307
 Description:  Kernel module for AppleTalk protocol.
 
 Package: kmod-arptables
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 8076
-Filename: kmod-arptables_3.8.2-1_ramips_24kec.ipk
-Size: 8798
-MD5Sum: 90039f9f14ef1f6606e3ddd5fc4c16e2
+Installed-Size: 8048
+Filename: kmod-arptables_3.7.10-1_ramips_24kec.ipk
+Size: 8770
+MD5Sum: 460dab77eb9637489117585e974a17ee
 Description:  Kernel modules for ARP firewalling
 
 Package: kmod-bluetooth
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core, kmod-lib-crc16, kmod-hid
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core, kmod-lib-crc16, kmod-hid
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 146082
-Filename: kmod-bluetooth_3.8.2-1_ramips_24kec.ipk
-Size: 146521
-MD5Sum: 2180d19fe2f7808e80382496d33e0262
+Installed-Size: 136882
+Filename: kmod-bluetooth_3.7.10-1_ramips_24kec.ipk
+Size: 137400
+MD5Sum: 61d1127e0ea975866fac265190deb304
 Description:  Kernel support for Bluetooth devices
 
 Package: kmod-bridge
@@ -592,469 +659,497 @@ MD5Sum: 15c59c056d2b2cb1832bf6a9d4f4b820
 Description:  Kernel module for Ethernet bridging.
 
 Package: kmod-button-hotplug
-Version: 3.8.2-3
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-3
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/system/button-hotplug
 Section: kernel
 Architecture: ramips_24kec
-Installed-Size: 2947
-Filename: kmod-button-hotplug_3.8.2-3_ramips_24kec.ipk
-Size: 3610
-MD5Sum: 082b7a6873df8f7fc3f5bd9291895d29
+Installed-Size: 2950
+Filename: kmod-button-hotplug_3.7.10-3_ramips_24kec.ipk
+Size: 3613
+MD5Sum: 2cfff350635ef466207aa9d4b79ec11a
 Description:  Kernel module to generate button hotplug events
 
 Package: kmod-cfg80211
-Version: 3.8.2+2013-02-22-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), iw
+Version: 3.7.10+2013-02-22-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), iw
 Source: package/mac80211
 SourceFile: compat-wireless-2013-02-22.tar.bz2
 SourceURL: http://mirror2.openwrt.org/sources
 Section: kernel
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 94001
-Filename: kmod-cfg80211_3.8.2+2013-02-22-1_ramips_24kec.ipk
-Size: 94613
-MD5Sum: c35bebdd75f53619781adb9977d95e7a
+Installed-Size: 95224
+Filename: kmod-cfg80211_3.7.10+2013-02-22-1_ramips_24kec.ipk
+Size: 95744
+MD5Sum: 234d37e9bb73ffc01468e78729a52b20
 Description:  cfg80211 is the Linux wireless LAN (802.11) configuration API.
 
 Package: kmod-crypto-aes
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
 Installed-Size: 105
-Filename: kmod-crypto-aes_3.8.2-1_ramips_24kec.ipk
-Size: 680
-MD5Sum: b0cee492c34bfbef7ed0b8f44b77fbad
+Filename: kmod-crypto-aes_3.7.10-1_ramips_24kec.ipk
+Size: 681
+MD5Sum: f08636e2f059f41db1d75595ed12895c
 Description:  AES cipher CryptoAPI module
 
 Package: kmod-crypto-arc4
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-core, kmod-crypto-manager
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-core, kmod-crypto-manager
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1334
-Filename: kmod-crypto-arc4_3.8.2-1_ramips_24kec.ipk
-Size: 2076
-MD5Sum: a97d728b973397835f31460bf97f97de
+Installed-Size: 1335
+Filename: kmod-crypto-arc4_3.7.10-1_ramips_24kec.ipk
+Size: 2077
+MD5Sum: 7666639520f2e71d4c6337e69af60379
 Description:  ARC4 (RC4) cipher CryptoAPI module
 
 Package: kmod-crypto-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 105
-Filename: kmod-crypto-core_3.8.2-1_ramips_24kec.ipk
+Installed-Size: 104
+Filename: kmod-crypto-core_3.7.10-1_ramips_24kec.ipk
 Size: 674
-MD5Sum: 29c839e0974ad13cc9a31a23489a52f8
+MD5Sum: 3bae82076480eeb63f092c12d65a7919
 Description:  Core CryptoAPI modules
 
 Package: kmod-crypto-des
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 8790
-Filename: kmod-crypto-des_3.8.2-1_ramips_24kec.ipk
-Size: 9256
-MD5Sum: b115f74ca1c84fe1df662161f786a5f3
+Installed-Size: 8791
+Filename: kmod-crypto-des_3.7.10-1_ramips_24kec.ipk
+Size: 9269
+MD5Sum: c27f5d27ece0c485401f966208cb9917
 Description:  DES/3DES cipher CryptoAPI module
 
 Package: kmod-crypto-ecb
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-manager, kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-manager, kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1638
-Filename: kmod-crypto-ecb_3.8.2-1_ramips_24kec.ipk
-Size: 2373
-MD5Sum: 4a995f85e30ca818454c6f400c03a7be
+Installed-Size: 1639
+Filename: kmod-crypto-ecb_3.7.10-1_ramips_24kec.ipk
+Size: 2375
+MD5Sum: bf7e4b65230b5cb1ec59f168abc5b5df
 Description:  Electronic CodeBook CryptoAPI module
 
 Package: kmod-crypto-hash
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 6181
-Filename: kmod-crypto-hash_3.8.2-1_ramips_24kec.ipk
-Size: 6856
-MD5Sum: 18e500a8748f96387b34b10f726c7ac3
+Installed-Size: 6175
+Filename: kmod-crypto-hash_3.7.10-1_ramips_24kec.ipk
+Size: 6853
+MD5Sum: c8d3eeb941a697cba77b0431d901d45c
 Description:  CryptoAPI hash support
 
 Package: kmod-crypto-hmac
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-manager, kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-manager, kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2143
-Filename: kmod-crypto-hmac_3.8.2-1_ramips_24kec.ipk
-Size: 2875
-MD5Sum: 0a069c229df7dd44078ca387c5c79476
+Installed-Size: 2147
+Filename: kmod-crypto-hmac_3.7.10-1_ramips_24kec.ipk
+Size: 2879
+MD5Sum: 84bb4f664a0b92d464184889fabf8d29
 Description:  HMAC digest CryptoAPI module
 
 Package: kmod-crypto-manager
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-hash, kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-hash, kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 9338
-Filename: kmod-crypto-manager_3.8.2-1_ramips_24kec.ipk
-Size: 10090
-MD5Sum: 265c20cf9e416278f8449d55bbbd32c6
+Installed-Size: 9334
+Filename: kmod-crypto-manager_3.7.10-1_ramips_24kec.ipk
+Size: 10077
+MD5Sum: dcc7aae57fa406d54c0b9945f9379e11
 Description:  CryptoAPI algorithm manager
 
 Package: kmod-crypto-md4
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-hash, kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-hash, kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2235
-Filename: kmod-crypto-md4_3.8.2-1_ramips_24kec.ipk
-Size: 2940
-MD5Sum: 4244071629fce4c16b77f2bc115f9661
+Installed-Size: 2242
+Filename: kmod-crypto-md4_3.7.10-1_ramips_24kec.ipk
+Size: 2951
+MD5Sum: 17763ef43fa396cc2c198bc64367d989
 Description:  MD4 digest CryptoAPI module
 
 Package: kmod-crypto-md5
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-hash, kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-hash, kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1370
-Filename: kmod-crypto-md5_3.8.2-1_ramips_24kec.ipk
+Installed-Size: 1373
+Filename: kmod-crypto-md5_3.7.10-1_ramips_24kec.ipk
 Size: 2100
-MD5Sum: db45131f9c5152fde4c67a57094ed568
+MD5Sum: 4f1dfad99b1bd8da37e22657ad4a6766
 Description:  MD5 digest CryptoAPI module
 
 Package: kmod-crypto-sha1
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-hash, kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-hash, kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1595
-Filename: kmod-crypto-sha1_3.8.2-1_ramips_24kec.ipk
+Installed-Size: 1593
+Filename: kmod-crypto-sha1_3.7.10-1_ramips_24kec.ipk
 Size: 2327
-MD5Sum: f3d396c9a06a6b4f01434bd3feb09736
+MD5Sum: 002ad4f9233a57582a0932be79d40551
 Description:  SHA1 digest CryptoAPI module
 
 Package: kmod-crypto-sha256
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-hash, kmod-crypto-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-hash, kmod-crypto-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 4091
-Filename: kmod-crypto-sha256_3.8.2-1_ramips_24kec.ipk
-Size: 4788
-MD5Sum: e967f499df9696054f68b511fe45ce8b
+Installed-Size: 4089
+Filename: kmod-crypto-sha256_3.7.10-1_ramips_24kec.ipk
+Size: 4796
+MD5Sum: b90e40fa484f5c88cd10116ac9402b94
 Description:  SHA224 SHA256 digest CryptoAPI module
 
 Package: kmod-ebtables-ipv4
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ebtables
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ebtables
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 3935
-Filename: kmod-ebtables-ipv4_3.8.2-1_ramips_24kec.ipk
-Size: 4680
-MD5Sum: 3965fd519d2e3069acacd72f02ebef3d
+Installed-Size: 3925
+Filename: kmod-ebtables-ipv4_3.7.10-1_ramips_24kec.ipk
+Size: 4665
+MD5Sum: b4228ed69735c09082d31406ede420f7
 Description:  This option adds the IPv4 support to ebtables, which allows basic
  IPv4 header field filtering, ARP filtering as well as SNAT, DNAT targets.
 
 Package: kmod-ebtables-ipv6
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ebtables
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ebtables
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1686
-Filename: kmod-ebtables-ipv6_3.8.2-1_ramips_24kec.ipk
+Installed-Size: 1684
+Filename: kmod-ebtables-ipv6_3.7.10-1_ramips_24kec.ipk
 Size: 2457
-MD5Sum: 1c11fdc63df8d30e5de8d4a4eb13d56a
+MD5Sum: f311f4f6ecc53fb7ca55acfa3be55ae7
 Description:  This option adds the IPv6 support to ebtables, which allows basic
  IPv6 header field filtering and target support.
 
 Package: kmod-ebtables-watchers
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ebtables
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ebtables
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 5379
-Filename: kmod-ebtables-watchers_3.8.2-1_ramips_24kec.ipk
-Size: 6079
-MD5Sum: d3e02f5465e9baea9a332d64eaf729ad
+Installed-Size: 5377
+Filename: kmod-ebtables-watchers_3.7.10-1_ramips_24kec.ipk
+Size: 6081
+MD5Sum: f377183286e0500ce47563cce983f399
 Description:  This option adds the log watchers, that you can use in any rule
  in any ebtables table.
 
 Package: kmod-ebtables
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 16808
-Filename: kmod-ebtables_3.8.2-1_ramips_24kec.ipk
-Size: 17554
-MD5Sum: 835bed26bbb8cbe1e078cd9cd041dc5f
+Installed-Size: 16800
+Filename: kmod-ebtables_3.7.10-1_ramips_24kec.ipk
+Size: 17557
+MD5Sum: 670816f9bb057da81b55d7ca2a8ae22a
 Description:  ebtables is a general, extensible frame/packet identification
  framework. It provides you to do Ethernet
  filtering/NAT/brouting on the Ethernet bridge.
 
 Package: kmod-eeprom-93cx6
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1680
-Filename: kmod-eeprom-93cx6_3.8.2-1_ramips_24kec.ipk
-Size: 2407
-MD5Sum: df59d48a2a3949d8fea5e5b311c6e2c5
+Installed-Size: 1672
+Filename: kmod-eeprom-93cx6_3.7.10-1_ramips_24kec.ipk
+Size: 2400
+MD5Sum: 3e3a46d662c88885de675b8a8590e419
 Description:  Kernel module for EEPROM 93CX6 support
 
 Package: kmod-fs-cifs
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-nls-base, kmod-crypto-arc4, kmod-crypto-hmac, kmod-crypto-md5, kmod-crypto-md4, kmod-crypto-des, kmod-crypto-ecb, kmod-crypto-sha256
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base, kmod-crypto-arc4, kmod-crypto-hmac, kmod-crypto-md5, kmod-crypto-md4, kmod-crypto-des, kmod-crypto-ecb, kmod-crypto-sha256
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 101801
-Filename: kmod-fs-cifs_3.8.2-1_ramips_24kec.ipk
-Size: 101407
-MD5Sum: f535f17e8ab4932a0f1d34229a74cdc5
+Installed-Size: 137116
+Filename: kmod-fs-cifs_3.7.10-1_ramips_24kec.ipk
+Size: 135832
+MD5Sum: a4562f0942d1561f776716acea008695
 Description:  Kernel module for CIFS support
 
 Package: kmod-fs-exportfs
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2587
-Filename: kmod-fs-exportfs_3.8.2-1_ramips_24kec.ipk
-Size: 3275
-MD5Sum: a07e5050833f7a17a0cf7b12a66323ae
+Installed-Size: 2514
+Filename: kmod-fs-exportfs_3.7.10-1_ramips_24kec.ipk
+Size: 3203
+MD5Sum: 4e2b9676bf49704714442d578afd1e13
 Description:  Kernel module for exportfs. Needed for some other modules.
 
 Package: kmod-fs-ext4
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-lib-crc16, kmod-crypto-hash
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-lib-crc16, kmod-crypto-hash
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 201538
-Filename: kmod-fs-ext4_3.8.2-1_ramips_24kec.ipk
-Size: 201722
-MD5Sum: a297e643a6e0ecb7a2101b936899da65
+Installed-Size: 190160
+Filename: kmod-fs-ext4_3.7.10-1_ramips_24kec.ipk
+Size: 190163
+MD5Sum: d24003b8ee9407fc004c9a3ed586dad3
 Description:  Kernel module for EXT4 filesystem support
 
 Package: kmod-fs-hfs
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-nls-base
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 27863
-Filename: kmod-fs-hfs_3.8.2-1_ramips_24kec.ipk
-Size: 28468
-MD5Sum: ab675bda5c8c5cdaaa6c245262df4346
+Installed-Size: 27774
+Filename: kmod-fs-hfs_3.7.10-1_ramips_24kec.ipk
+Size: 28375
+MD5Sum: fe8eb2e2feb1f6492df087daece70783
 Description:  Kernel module for HFS filesystem support
 
 Package: kmod-fs-hfsplus
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-nls-base, kmod-nls-utf8
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base, kmod-nls-utf8
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 48895
-Filename: kmod-fs-hfsplus_3.8.2-1_ramips_24kec.ipk
-Size: 49451
-MD5Sum: 02d502f59424c673ff5f4ec046e6e2f5
+Installed-Size: 48602
+Filename: kmod-fs-hfsplus_3.7.10-1_ramips_24kec.ipk
+Size: 49171
+MD5Sum: 21b70d3112e2ecd2257e5b1e15317ecf
 Description:  Kernel module for HFS+ filesystem support
 
-Package: kmod-fs-nfs-common
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Package: kmod-fs-msdos
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 103032
-Filename: kmod-fs-nfs-common_3.8.2-1_ramips_24kec.ipk
-Size: 103588
-MD5Sum: baf7eba74970c2f5e66b8fc2a0e2e292
+Installed-Size: 4645
+Filename: kmod-fs-msdos_3.7.10-1_ramips_24kec.ipk
+Size: 5339
+MD5Sum: 93f94c63600316e40f7e00a5bce49a3c
+Description:  Kernel module for MSDOS filesystem support
+
+Package: kmod-fs-nfs-common
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 102076
+Filename: kmod-fs-nfs-common_3.7.10-1_ramips_24kec.ipk
+Size: 102617
+MD5Sum: eaed6651d33b29466f9dd4d62f788662
 Description:  Common NFS filesystem modules
 
 Package: kmod-fs-nfs
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-fs-nfs-common
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-fs-nfs-common
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 60708
-Filename: kmod-fs-nfs_3.8.2-1_ramips_24kec.ipk
-Size: 61310
-MD5Sum: 18656a6682db5a64a901314b84580236
+Installed-Size: 60399
+Filename: kmod-fs-nfs_3.7.10-1_ramips_24kec.ipk
+Size: 60996
+MD5Sum: 15d8bc53c2b9c687d7bd9c27390e1219
 Description:  Kernel module for NFS support
 
 Package: kmod-fs-nfsd
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-fs-nfs-common, kmod-fs-exportfs
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-fs-nfs-common, kmod-fs-exportfs
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 41236
-Filename: kmod-fs-nfsd_3.8.2-1_ramips_24kec.ipk
-Size: 41972
-MD5Sum: b469d86e9f9f3fe66ebd5d430581eac9
+Installed-Size: 41266
+Filename: kmod-fs-nfsd_3.7.10-1_ramips_24kec.ipk
+Size: 42012
+MD5Sum: da52ed87b9d37217efd66ba8e9c07e0b
 Description:  Kernel module for NFS kernel server support
 
 Package: kmod-fs-ntfs
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-nls-base
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 53103
-Filename: kmod-fs-ntfs_3.8.2-1_ramips_24kec.ipk
-Size: 53590
-MD5Sum: 59cbb6752ba3625ee4c2c580be3c72d0
+Installed-Size: 53092
+Filename: kmod-fs-ntfs_3.7.10-1_ramips_24kec.ipk
+Size: 53546
+MD5Sum: a7f0d02c98c4ad4de9fcf8ed9bf22b3b
 Description:  Kernel module for NTFS filesystem support
 
-Package: kmod-fs-vfat
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-nls-base
+Package: kmod-fs-reiserfs
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 35275
-Filename: kmod-fs-vfat_3.8.2-1_ramips_24kec.ipk
-Size: 35945
-MD5Sum: 75cb1bafecef07982159e82201fd65a0
+Installed-Size: 117065
+Filename: kmod-fs-reiserfs_3.7.10-1_ramips_24kec.ipk
+Size: 117156
+MD5Sum: 7fdc2438b2612b23ef74a34d1ff1cdaa
+Description:  Kernel module for ReiserFS support
+
+Package: kmod-fs-vfat
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 35064
+Filename: kmod-fs-vfat_3.7.10-1_ramips_24kec.ipk
+Size: 35730
+MD5Sum: 9026022abaa1268baa0379685c539872
 Description:  Kernel module for VFAT filesystem support
 
 Package: kmod-fuse
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 36358
-Filename: kmod-fuse_3.8.2-1_ramips_24kec.ipk
-Size: 37002
-MD5Sum: 5c80e25b27a47a883e13d08b8b08952c
+Installed-Size: 36257
+Filename: kmod-fuse_3.7.10-1_ramips_24kec.ipk
+Size: 36908
+MD5Sum: 492566323954862f9adaa771a981eb42
 Description:  Kernel module for userspace filesystem support
 
 Package: kmod-gre6
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipv6, kmod-ip6-tunnel
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipv6, kmod-ip6-tunnel
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 10453
-Filename: kmod-gre6_3.8.2-1_ramips_24kec.ipk
-Size: 11184
-MD5Sum: ac059bb94d37b383e8a38a5b8597e629
+Installed-Size: 10449
+Filename: kmod-gre6_3.7.10-1_ramips_24kec.ipk
+Size: 11175
+MD5Sum: a0fb7a580b7471b0d4935ce535a4b76d
 Description:  Generic Routing Encapsulation support over IPv6
 
 Package: kmod-gre
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipv6
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipv6
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 11564
-Filename: kmod-gre_3.8.2-1_ramips_24kec.ipk
-Size: 12265
-MD5Sum: 8a5952e26c8404adb00e2cdb21b42067
+Installed-Size: 11502
+Filename: kmod-gre_3.7.10-1_ramips_24kec.ipk
+Size: 12203
+MD5Sum: 03b32b478a6ac5531b3716e236f548d7
 Description:  Generic Routing Encapsulation support
 
 Package: kmod-hid
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-input-core, kmod-input-evdev
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-input-core, kmod-input-evdev
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 34510
-Filename: kmod-hid_3.8.2-1_ramips_24kec.ipk
-Size: 34992
-MD5Sum: 5aef32415b73568a331e7f6e872b5a1d
+Installed-Size: 34053
+Filename: kmod-hid_3.7.10-1_ramips_24kec.ipk
+Size: 34612
+MD5Sum: ea1c624bf4b6330d4a34e91f253f7944
 Description:  Kernel modules for HID devices
 
 Package: kmod-hwmon-adt7475
@@ -1198,115 +1293,115 @@ MD5Sum: b6cdc96fa207ad193ca1332ec6cb01dd
 Description:  VID/VRM/VRD voltage conversion module for hardware monitoring.
 
 Package: kmod-i2c-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 13654
-Filename: kmod-i2c-core_3.8.2-1_ramips_24kec.ipk
-Size: 14337
-MD5Sum: e4d1a3423cbf2f75c15f0f9162800587
+Installed-Size: 13662
+Filename: kmod-i2c-core_3.7.10-1_ramips_24kec.ipk
+Size: 14351
+MD5Sum: aa357738d2988abf879b009fab0f5077
 Description:  Kernel modules for I2C support
 
 Package: kmod-ifb
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2991
-Filename: kmod-ifb_3.8.2-1_ramips_24kec.ipk
-Size: 3664
-MD5Sum: 92bde7d71350b970cefe623638a9c787
+Installed-Size: 2994
+Filename: kmod-ifb_3.7.10-1_ramips_24kec.ipk
+Size: 3666
+MD5Sum: 9ccb973201145ffe814c2d80c42addde
 Description:  The Intermediate Functional Block
 
 Package: kmod-input-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 16263
-Filename: kmod-input-core_3.8.2-1_ramips_24kec.ipk
-Size: 16871
-MD5Sum: 4a86a7ead0f76f2ac87791024f1e3476
+Installed-Size: 15793
+Filename: kmod-input-core_3.7.10-1_ramips_24kec.ipk
+Size: 16432
+MD5Sum: 7db347fe2aabf836d4712d1b45cfe177
 Description:  Kernel modules for support of input device
 
 Package: kmod-input-evdev
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-input-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-input-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 6432
-Filename: kmod-input-evdev_3.8.2-1_ramips_24kec.ipk
-Size: 7149
-MD5Sum: a14abf793374795cd544f49cf44e4eb0
+Installed-Size: 6427
+Filename: kmod-input-evdev_3.7.10-1_ramips_24kec.ipk
+Size: 7152
+MD5Sum: bda926fc3728ded10f84e709624fdeba
 Description:  Kernel modules for support of input device events
 
 Package: kmod-input-gpio-keys-polled
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-input-polldev, kmod-input-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-input-polldev, kmod-input-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2525
-Filename: kmod-input-gpio-keys-polled_3.8.2-1_ramips_24kec.ipk
-Size: 3235
-MD5Sum: 1f89ef67709923d51ff57d5eeee47b65
+Installed-Size: 2607
+Filename: kmod-input-gpio-keys-polled_3.7.10-1_ramips_24kec.ipk
+Size: 3328
+MD5Sum: ef7b680496f3a504358695074e07dc6e
 Description:  Kernel module for support polled GPIO keys input device
 
 Package: kmod-input-polldev
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-input-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-input-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2071
-Filename: kmod-input-polldev_3.8.2-1_ramips_24kec.ipk
-Size: 2807
-MD5Sum: d94c58f7b06b65526df1aae9ebdf92eb
+Installed-Size: 2072
+Filename: kmod-input-polldev_3.7.10-1_ramips_24kec.ipk
+Size: 2817
+MD5Sum: b65020a54792a04e60e35e880a52ddc4
 Description:  Kernel module for support of polled input devices
 
 Package: kmod-ip6-tunnel
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipv6, kmod-iptunnel6
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipv6, kmod-iptunnel6
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 10135
-Filename: kmod-ip6-tunnel_3.8.2-1_ramips_24kec.ipk
-Size: 10852
-MD5Sum: 2743240282c9455e67a69e67bec1892b
+Installed-Size: 9006
+Filename: kmod-ip6-tunnel_3.7.10-1_ramips_24kec.ipk
+Size: 9710
+MD5Sum: 4ddb5d1fa2a5748979863f72de794ebc
 Description:  Kernel modules for IPv6-in-IPv6 and IPv4-in-IPv6 tunnelling
 
 Package: kmod-ip6tables
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipv6
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipv6
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 22771
-Filename: kmod-ip6tables_3.8.2-1_ramips_24kec.ipk
-Size: 23431
-MD5Sum: fdb0c2c2d842cd7f1577eaecc7abb34b
+Installed-Size: 22774
+Filename: kmod-ip6tables_3.7.10-1_ramips_24kec.ipk
+Size: 23450
+MD5Sum: 83ff947ea531a0000c4fbf683985729e
 Description:  Netfilter IPv6 firewalling support
 
 Package: kmod-ipt-account
@@ -1325,32 +1420,32 @@ MD5Sum: e86eba8bf845038558f76d628e6040a8
 Description:  ACCOUNT netfilter module
 
 Package: kmod-ipt-compat-xtables
-Version: 3.8.2+2.1-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core
+Version: 3.7.10+2.1-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core
 Source: package/network/utils/xtables-addons
 SourceFile: xtables-addons-2.1.tar.xz
 SourceURL: @SF/xtables-addons
 Section: kernel
 Maintainer: Jo-Philipp Wich <jow@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 1785
-Filename: kmod-ipt-compat-xtables_3.8.2+2.1-1_ramips_24kec.ipk
-Size: 2568
-MD5Sum: b50351fb7abe133fc23d19c4232757c4
+Installed-Size: 1795
+Filename: kmod-ipt-compat-xtables_3.7.10+2.1-1_ramips_24kec.ipk
+Size: 2588
+MD5Sum: 615b38498fbcc46df63b4c32c8996a5d
 Description:  API compatibilty layer netfilter module
 
 Package: kmod-ipt-conntrack-extra
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core, kmod-ipt-conntrack
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core, kmod-ipt-conntrack
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 8381
-Filename: kmod-ipt-conntrack-extra_3.8.2-1_ramips_24kec.ipk
-Size: 9191
-MD5Sum: 3b8a239ff82dd2b1c4ab071948a17881
+Installed-Size: 8384
+Filename: kmod-ipt-conntrack-extra_3.7.10-1_ramips_24kec.ipk
+Size: 9197
+MD5Sum: ac67be03e351a27978bc53874e2408b6
 Description:  Netfilter (IPv4) extra kernel modules for connection tracking
  Includes:
  - connbytes
@@ -1360,17 +1455,17 @@ Description:  Netfilter (IPv4) extra kernel modules for connection tracking
  - recent
 
 Package: kmod-ipt-conntrack
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 35302
-Filename: kmod-ipt-conntrack_3.8.2-1_ramips_24kec.ipk
-Size: 36095
-MD5Sum: adaf090d5419fbbcbd01163f18e2f4e2
+Installed-Size: 35180
+Filename: kmod-ipt-conntrack_3.7.10-1_ramips_24kec.ipk
+Size: 35982
+MD5Sum: d67ebf0cd98f15c5e2c423433ad4c027
 Description:  Netfilter (IPv4) kernel modules for connection tracking
  Includes:
  - conntrack
@@ -1380,17 +1475,17 @@ Description:  Netfilter (IPv4) kernel modules for connection tracking
  - state
 
 Package: kmod-ipt-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 28875
-Filename: kmod-ipt-core_3.8.2-1_ramips_24kec.ipk
-Size: 29621
-MD5Sum: 430fec5adbf12573ad898cd01cd285d2
+Installed-Size: 28865
+Filename: kmod-ipt-core_3.7.10-1_ramips_24kec.ipk
+Size: 29627
+MD5Sum: 47481252c5c3d5fe726acdcb1f073a78
 Description:  Netfilter core kernel modules
  Includes:
  - comment
@@ -1402,18 +1497,18 @@ Description:  Netfilter core kernel modules
  - TCPMSS
 
 Package: kmod-ipt-dhcpmac
-Version: 3.8.2+2.1-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core, kmod-ipt-compat-xtables
+Version: 3.7.10+2.1-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core, kmod-ipt-compat-xtables
 Source: package/network/utils/xtables-addons
 SourceFile: xtables-addons-2.1.tar.xz
 SourceURL: @SF/xtables-addons
 Section: kernel
 Maintainer: Jo-Philipp Wich <jow@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 1728
-Filename: kmod-ipt-dhcpmac_3.8.2+2.1-1_ramips_24kec.ipk
-Size: 2512
-MD5Sum: 6aea8f221e7cab3aa067be1885f9da2d
+Installed-Size: 1727
+Filename: kmod-ipt-dhcpmac_3.7.10+2.1-1_ramips_24kec.ipk
+Size: 2510
+MD5Sum: 608eae4d21f20bb9f366593519bdd663
 Description:  DHCPMAC netfilter module
 
 Package: kmod-ipt-dnetmap
@@ -1452,34 +1547,63 @@ Description:  Other Netfilter (IPv4) kernel modules
  - quota
 
 Package: kmod-ipt-filter
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core, kmod-lib-textsearch
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core, kmod-lib-textsearch
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 8230
-Filename: kmod-ipt-filter_3.8.2-1_ramips_24kec.ipk
-Size: 8993
-MD5Sum: 4963b831d6cb478ecc74e73c8be17beb
+Installed-Size: 8229
+Filename: kmod-ipt-filter_3.7.10-1_ramips_24kec.ipk
+Size: 8998
+MD5Sum: 602108802f9f4f236c44185184d4d576
 Description:  Netfilter (IPv4) kernel modules for packet content inspection
  Includes:
  - layer7
  - string
 
-Package: kmod-ipt-ipopt
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core
+Package: kmod-ipt-geoip
+Version: 3.7.10+2.1-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core
+Source: package/network/utils/xtables-addons
+SourceFile: xtables-addons-2.1.tar.xz
+SourceURL: @SF/xtables-addons
+Section: kernel
+Maintainer: Jo-Philipp Wich <jow@openwrt.org>
+Architecture: ramips_24kec
+Installed-Size: 2892
+Filename: kmod-ipt-geoip_3.7.10+2.1-1_ramips_24kec.ipk
+Size: 3632
+MD5Sum: 2d2cf150d3d621eab7c3da55806b607c
+Description:  geoip netfilter module
+
+Package: kmod-ipt-hashlimit
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 8324
-Filename: kmod-ipt-ipopt_3.8.2-1_ramips_24kec.ipk
-Size: 9142
-MD5Sum: 81d2a8baed2439cc5d105a8d76d38e37
+Installed-Size: 5649
+Filename: kmod-ipt-hashlimit_3.7.10-1_ramips_24kec.ipk
+Size: 6368
+MD5Sum: 9dd52e84ce176721523a863f158f9b71
+Description:  Kernel modules support for the hashlimit bucket match module
+
+Package: kmod-ipt-ipopt
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 8322
+Filename: kmod-ipt-ipopt_3.7.10-1_ramips_24kec.ipk
+Size: 9138
+MD5Sum: 14a1e691851f62190d9c464fe4625a98
 Description:  Netfilter (IPv4) modules for matching/changing IP packet options
  Includes:
  - CLASSIFY
@@ -1544,18 +1668,18 @@ Description:  Netfilter (IPv4) modules for matching IPSec packets
  - policy
 
 Package: kmod-ipt-ipset
-Version: 3.8.2+6.16.1-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core, kmod-nfnetlink
+Version: 3.7.10+6.16.1-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core, kmod-nfnetlink
 Source: package/network/utils/ipset
 SourceFile: ipset-6.16.1.tar.bz2
 SourceURL: http://ipset.netfilter.org
 Section: kernel
 Maintainer: Jo-Philipp Wich <jow@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 89531
-Filename: kmod-ipt-ipset_3.8.2+6.16.1-1_ramips_24kec.ipk
-Size: 90066
-MD5Sum: f71381814b1a3d528cc93b07d5df1972
+Installed-Size: 89542
+Filename: kmod-ipt-ipset_3.7.10+6.16.1-1_ramips_24kec.ipk
+Size: 90082
+MD5Sum: caf0984daa257e087bc8b1b82d720743
 Description:  IPset netfilter modules
 
 Package: kmod-ipt-ipv4options
@@ -1574,64 +1698,64 @@ MD5Sum: caebf958f83a4b51a54f277ee13d94c7
 Description:  ipv4options netfilter module
 
 Package: kmod-ipt-led
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1977
-Filename: kmod-ipt-led_3.8.2-1_ramips_24kec.ipk
-Size: 2723
-MD5Sum: afd0d78370000d793bb4265bc0160d7e
+Installed-Size: 1976
+Filename: kmod-ipt-led_3.7.10-1_ramips_24kec.ipk
+Size: 2728
+MD5Sum: ab9c26f6b5bf3b2ea517aea7ad9346f2
 Description:  Netfilter target to trigger a LED when a network packet is matched.
 
 Package: kmod-ipt-nat-extra
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core, kmod-ipt-nat
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core, kmod-ipt-nat
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2004
-Filename: kmod-ipt-nat-extra_3.8.2-1_ramips_24kec.ipk
-Size: 2730
-MD5Sum: 692b7f87c626d0d71234cb48269a0175
+Installed-Size: 2003
+Filename: kmod-ipt-nat-extra_3.7.10-1_ramips_24kec.ipk
+Size: 2732
+MD5Sum: 7c33f2b23333ee08b4da9599bfae852e
 Description:  Netfilter (IPv4) kernel modules for extra NAT targets
  Includes:
  - NETMAP
  - REDIRECT
 
 Package: kmod-ipt-nat
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core, kmod-ipt-conntrack
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core, kmod-ipt-conntrack
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 12855
-Filename: kmod-ipt-nat_3.8.2-1_ramips_24kec.ipk
-Size: 13603
-MD5Sum: 0d2a655fa9cf063259d5df3684ca3f5a
+Installed-Size: 12757
+Filename: kmod-ipt-nat_3.7.10-1_ramips_24kec.ipk
+Size: 13523
+MD5Sum: 76ce8549aea98a35d9bd779d30094ca0
 Description:  Netfilter (IPv4) kernel modules for basic NAT targets
  Includes:
  - MASQUERADE
 
 Package: kmod-ipt-nathelper-extra
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core, kmod-ipt-nat, kmod-lib-textsearch
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core, kmod-ipt-nat, kmod-lib-textsearch
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 49503
-Filename: kmod-ipt-nathelper-extra_3.8.2-1_ramips_24kec.ipk
-Size: 50368
-MD5Sum: db890164b4fa57b71a64b473f95b8993
+Installed-Size: 49496
+Filename: kmod-ipt-nathelper-extra_3.7.10-1_ramips_24kec.ipk
+Size: 50351
+MD5Sum: b4e458c4d5e11dd4366192934d9007bf
 Description:  Extra Netfilter (IPv4) Conntrack and NAT helpers
  Includes:
  - amanda
@@ -1644,32 +1768,32 @@ Description:  Extra Netfilter (IPv4) Conntrack and NAT helpers
  - broadcast
 
 Package: kmod-ipt-nathelper-rtsp
-Version: 3.8.2+2.1-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core, kmod-ipt-conntrack-extra
+Version: 3.7.10+2.1-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core, kmod-ipt-conntrack-extra
 Source: package/network/utils/xtables-addons
 SourceFile: xtables-addons-2.1.tar.xz
 SourceURL: @SF/xtables-addons
 Section: kernel
 Maintainer: Jo-Philipp Wich <jow@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 6763
-Filename: kmod-ipt-nathelper-rtsp_3.8.2+2.1-1_ramips_24kec.ipk
-Size: 7572
-MD5Sum: b1a93ea0c5878b3e8f569adc0dca4523
+Installed-Size: 6752
+Filename: kmod-ipt-nathelper-rtsp_3.7.10+2.1-1_ramips_24kec.ipk
+Size: 7546
+MD5Sum: a6d87b478865ca219b11caaf7cbc2757
 Description:  RTSP Conntrack and NAT netfilter module
 
 Package: kmod-ipt-nathelper
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core, kmod-ipt-nat
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core, kmod-ipt-nat
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 7724
-Filename: kmod-ipt-nathelper_3.8.2-1_ramips_24kec.ipk
-Size: 8502
-MD5Sum: dde8e91ea4fc97b5659ab537bb971e5a
+Installed-Size: 7722
+Filename: kmod-ipt-nathelper_3.7.10-1_ramips_24kec.ipk
+Size: 8501
+MD5Sum: 97c3d6173723777821f7c15ebf1f684d
 Description:  Default Netfilter (IPv4) Conntrack and NAT helpers
  Includes:
  - ftp
@@ -1677,45 +1801,45 @@ Description:  Default Netfilter (IPv4) Conntrack and NAT helpers
  - tftp
 
 Package: kmod-iptunnel4
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1858
-Filename: kmod-iptunnel4_3.8.2-1_ramips_24kec.ipk
-Size: 2581
-MD5Sum: 6f34c64c45956c03f5f066479adfe76d
+Installed-Size: 1857
+Filename: kmod-iptunnel4_3.7.10-1_ramips_24kec.ipk
+Size: 2574
+MD5Sum: 256768685f2c9ec6170760198cdfc5cc
 Description:  Kernel modules for IPv4 tunneling
 
 Package: kmod-iptunnel6
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipv6
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipv6
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1897
-Filename: kmod-iptunnel6_3.8.2-1_ramips_24kec.ipk
-Size: 2605
-MD5Sum: 2235a7f1ae5eaf13f29acd61070b10bc
+Installed-Size: 1898
+Filename: kmod-iptunnel6_3.7.10-1_ramips_24kec.ipk
+Size: 2609
+MD5Sum: 5ca85408e836cc1e7cb855286564c81b
 Description:  Kernel modules for IPv6 tunneling
 
 Package: kmod-ipv6
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 140332
-Filename: kmod-ipv6_3.8.2-1_ramips_24kec.ipk
-Size: 140521
-MD5Sum: 1aac53f4645b10c28c7e2a323c19eecc
+Installed-Size: 140727
+Filename: kmod-ipv6_3.7.10-1_ramips_24kec.ipk
+Size: 140923
+MD5Sum: 998d663d2d35e2cd4ebb2dac7e30f7d3
 Description:  Kernel modules for IPv6 support
 
 Package: kmod-l2tp-eth
@@ -1733,129 +1857,143 @@ MD5Sum: 13f429de3de4d184f11d756dd6dd2d94
 Description:  Kernel modules for L2TP ethernet pseudowire support for L2TPv3
 
 Package: kmod-l2tp
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 12687
-Filename: kmod-l2tp_3.8.2-1_ramips_24kec.ipk
-Size: 13353
-MD5Sum: f0da691745c766e1c29d23fa40018fa2
+Installed-Size: 12514
+Filename: kmod-l2tp_3.7.10-1_ramips_24kec.ipk
+Size: 13175
+MD5Sum: 566396a6732cef3204b460627c9dea3e
 Description:  Kernel modules for L2TP V3 Support
 
 Package: kmod-leds-gpio
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1946
-Filename: kmod-leds-gpio_3.8.2-1_ramips_24kec.ipk
-Size: 2666
-MD5Sum: f5773e9ab9f7b40292529f812d317733
+Installed-Size: 2040
+Filename: kmod-leds-gpio_3.7.10-1_ramips_24kec.ipk
+Size: 2766
+MD5Sum: 81ff8c2e76783ec9cb606c17630b5a23
 Description:  Kernel module for LEDs on GPIO lines
 
+Package: kmod-ledtrig-default-on
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 103
+Filename: kmod-ledtrig-default-on_3.7.10-1_ramips_24kec.ipk
+Size: 709
+MD5Sum: 39ce851caa8c11a2270423957299ccea
+Description:  Kernel module that allows LEDs to be initialised in the ON state.
+
 Package: kmod-ledtrig-netdev
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
 Installed-Size: 105
-Filename: kmod-ledtrig-netdev_3.8.2-1_ramips_24kec.ipk
-Size: 702
-MD5Sum: c7ed6056b3130264da420bab1e7ab72f
+Filename: kmod-ledtrig-netdev_3.7.10-1_ramips_24kec.ipk
+Size: 697
+MD5Sum: 6bf5601c6a36828985382240d1d2372e
 Description:  Kernel module to drive LEDs based on network activity.
 
 Package: kmod-ledtrig-usbdev
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2280
-Filename: kmod-ledtrig-usbdev_3.8.2-1_ramips_24kec.ipk
-Size: 2997
-MD5Sum: 474a99ee3ec09d1eb34b41a9b06387d8
+Installed-Size: 2278
+Filename: kmod-ledtrig-usbdev_3.7.10-1_ramips_24kec.ipk
+Size: 2996
+MD5Sum: 3b01025291041eef0d3a26b1cc22922b
 Description:  Kernel module to drive LEDs based on USB device presence/activity.
 
 Package: kmod-lib-crc-ccitt
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1390
-Filename: kmod-lib-crc-ccitt_3.8.2-1_ramips_24kec.ipk
-Size: 2112
-MD5Sum: 2a3e26ffc12cf08e762ab6e809c0b444
+Installed-Size: 1386
+Filename: kmod-lib-crc-ccitt_3.7.10-1_ramips_24kec.ipk
+Size: 2105
+MD5Sum: 627ab44c541c3c656818832e08b0dfa2
 Description:  Kernel module for CRC-CCITT support
 
 Package: kmod-lib-crc-itu-t
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1404
-Filename: kmod-lib-crc-itu-t_3.8.2-1_ramips_24kec.ipk
-Size: 2121
-MD5Sum: 1685d87b2ba716910eaef4dff80693be
+Installed-Size: 1410
+Filename: kmod-lib-crc-itu-t_3.7.10-1_ramips_24kec.ipk
+Size: 2123
+MD5Sum: f2ecd63a9b58970562560b4e1cae42ee
 Description:  Kernel module for CRC ITU-T V.41 support
 
 Package: kmod-lib-crc16
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1337
-Filename: kmod-lib-crc16_3.8.2-1_ramips_24kec.ipk
-Size: 2060
-MD5Sum: 8d0d79d4e62eaf09f274371a8ea353a2
+Installed-Size: 1340
+Filename: kmod-lib-crc16_3.7.10-1_ramips_24kec.ipk
+Size: 2071
+MD5Sum: d4292bcfd945370e0c6f17d4ec919350
 Description:  Kernel module for CRC16 support
 
 Package: kmod-lib-lzo
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2903
-Filename: kmod-lib-lzo_3.8.2-1_ramips_24kec.ipk
-Size: 3609
-MD5Sum: 71ef810b4f64a4fb550d2a98162444e0
+Installed-Size: 2906
+Filename: kmod-lib-lzo_3.7.10-1_ramips_24kec.ipk
+Size: 3615
+MD5Sum: e83da57ec8ec023ca2e479e1f08151d7
 Description:  Kernel module for LZO compression/decompression support
 
 Package: kmod-lib-textsearch
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 3570
-Filename: kmod-lib-textsearch_3.8.2-1_ramips_24kec.ipk
-Size: 4272
-MD5Sum: a766d220b8c21013bd41161039f85133
+Installed-Size: 3571
+Filename: kmod-lib-textsearch_3.7.10-1_ramips_24kec.ipk
+Size: 4268
+MD5Sum: 2ad6630c0cd199211cfc6a391f9c7a1c
 Description:  Textsearch support
 
 Package: kmod-llc
@@ -1873,303 +2011,317 @@ MD5Sum: 29b2821301faba32a69634f4f315a22b
 Description:  Kernel module for ANSI/IEEE 802.2 LLC support.
 
 Package: kmod-mac80211
-Version: 3.8.2+2013-02-22-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-crypto-core, kmod-crypto-arc4, kmod-crypto-aes, kmod-cfg80211
+Version: 3.7.10+2013-02-22-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-crypto-core, kmod-crypto-arc4, kmod-crypto-aes, kmod-cfg80211
 Source: package/mac80211
 SourceFile: compat-wireless-2013-02-22.tar.bz2
 SourceURL: http://mirror2.openwrt.org/sources
 Section: kernel
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 170298
-Filename: kmod-mac80211_3.8.2+2013-02-22-1_ramips_24kec.ipk
-Size: 170251
-MD5Sum: bf16ed7583af7f0c0474b0b76571ab15
+Installed-Size: 170358
+Filename: kmod-mac80211_3.7.10+2013-02-22-1_ramips_24kec.ipk
+Size: 170295
+MD5Sum: d355eab408ee22972926852529892806
 Description:  Generic IEEE 802.11 Networking Stack (mac80211)
 
 Package: kmod-mppe
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ppp, kmod-crypto-core, kmod-crypto-arc4, kmod-crypto-sha1, kmod-crypto-ecb
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ppp, kmod-crypto-core, kmod-crypto-arc4, kmod-crypto-sha1, kmod-crypto-ecb
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 4338
-Filename: kmod-mppe_3.8.2-1_ramips_24kec.ipk
-Size: 5052
-MD5Sum: 35ef894f31bd251c5b2575cf3d8d5e4f
+Installed-Size: 4339
+Filename: kmod-mppe_3.7.10-1_ramips_24kec.ipk
+Size: 5058
+MD5Sum: 5032770e3717d100f330d48f69fb136b
 Description:  Kernel modules for Microsoft PPP compression/encryption
 
 Package: kmod-nfnetlink
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipt-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipt-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 2505
-Filename: kmod-nfnetlink_3.8.2-1_ramips_24kec.ipk
-Size: 3219
-MD5Sum: cf694968039e55c175e61913acf48d71
+Installed-Size: 2489
+Filename: kmod-nfnetlink_3.7.10-1_ramips_24kec.ipk
+Size: 3200
+MD5Sum: 5c21b1a84592f771a51c32854c517759
 Description:  Kernel modules support for a netlink-based userspace interface
 
 Package: kmod-nls-base
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 3205
-Filename: kmod-nls-base_3.8.2-1_ramips_24kec.ipk
-Size: 3903
-MD5Sum: 98528d8b165903b289e35a475e415f29
+Installed-Size: 3209
+Filename: kmod-nls-base_3.7.10-1_ramips_24kec.ipk
+Size: 3919
+MD5Sum: e5091e4a1d47b7aa4ed17294b6f1cf20
 Description:  Kernel module for NLS (Native Language Support)
 
 Package: kmod-nls-cp1251
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-nls-base
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1930
-Filename: kmod-nls-cp1251_3.8.2-1_ramips_24kec.ipk
-Size: 2634
-MD5Sum: 3678bcd4ff71258bae2211ef50a29075
+Installed-Size: 1929
+Filename: kmod-nls-cp1251_3.7.10-1_ramips_24kec.ipk
+Size: 2641
+MD5Sum: 695b3339ff2bd20de81e4b47d556976c
 Description:  Kernel module for NLS Codepage 1251 (Russian)
 
-Package: kmod-nls-utf8
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-nls-base
+Package: kmod-nls-koi8r
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1030
-Filename: kmod-nls-utf8_3.8.2-1_ramips_24kec.ipk
-Size: 1739
-MD5Sum: e080cf290f3efdd06379346692585b5d
+Installed-Size: 1990
+Filename: kmod-nls-koi8r_3.7.10-1_ramips_24kec.ipk
+Size: 2701
+MD5Sum: bfb9654dc72caddd392bc361b7239311
+Description:  Kernel module for NLS KOI8-R (Russian)
+
+Package: kmod-nls-utf8
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 1027
+Filename: kmod-nls-utf8_3.7.10-1_ramips_24kec.ipk
+Size: 1740
+MD5Sum: b543dcc77640ae9f34175bb05ecc1602
 Description:  Kernel module for NLS UTF-8
 
 Package: kmod-ppp
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-lib-crc-ccitt
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-lib-crc-ccitt
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 22538
-Filename: kmod-ppp_3.8.2-1_ramips_24kec.ipk
-Size: 23160
-MD5Sum: 0989b3d769c21a8cf3c09474cfde3bd1
+Installed-Size: 22541
+Filename: kmod-ppp_3.7.10-1_ramips_24kec.ipk
+Size: 23177
+MD5Sum: 0aea0bd80f135bcfad3db393b684329c
 Description:  Kernel modules for PPP support
 
 Package: kmod-pppoe
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ppp, kmod-pppox
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ppp, kmod-pppox
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 6215
-Filename: kmod-pppoe_3.8.2-1_ramips_24kec.ipk
-Size: 6927
-MD5Sum: 1029e93478524b749b16627774120004
+Installed-Size: 6220
+Filename: kmod-pppoe_3.7.10-1_ramips_24kec.ipk
+Size: 6949
+MD5Sum: cbe1c290d7c1c53ddf0fb6a4ca94981b
 Description:  Kernel module for PPPoE (PPP over Ethernet) support
 
 Package: kmod-pppol2tp
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ppp, kmod-pppox, kmod-l2tp
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ppp, kmod-pppox, kmod-l2tp
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 9458
-Filename: kmod-pppol2tp_3.8.2-1_ramips_24kec.ipk
-Size: 10191
-MD5Sum: 351c92117282bc3cc11614f71578e402
+Installed-Size: 9455
+Filename: kmod-pppol2tp_3.7.10-1_ramips_24kec.ipk
+Size: 10176
+MD5Sum: a62471aae0b671d1f1250823e5825fbd
 Description:  Kernel modules for PPPoL2TP (PPP over L2TP) support
 
 Package: kmod-pppox
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ppp
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ppp
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 1712
-Filename: kmod-pppox_3.8.2-1_ramips_24kec.ipk
-Size: 2440
-MD5Sum: e09821838e9a954c96fa8ff11ca026e7
+Installed-Size: 1709
+Filename: kmod-pppox_3.7.10-1_ramips_24kec.ipk
+Size: 2444
+MD5Sum: cb9b61396403cdaeb9097d424c019564
 Description:  Kernel helper module for PPPoE and PPTP support
 
 Package: kmod-pptp
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ppp, kmod-gre, kmod-pppox
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ppp, kmod-gre, kmod-pppox
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 5045
-Filename: kmod-pptp_3.8.2-1_ramips_24kec.ipk
-Size: 5713
-MD5Sum: 34a6dbe6832d280a1d5c4bd3443d5d86
+Installed-Size: 5042
+Filename: kmod-pptp_3.7.10-1_ramips_24kec.ipk
+Size: 5710
+MD5Sum: 443d1f83966bc3917c285ab17e70b954
 Description:  PPtP support
 
 Package: kmod-regmap
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-lib-lzo, kmod-i2c-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-lib-lzo, kmod-i2c-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 14162
-Filename: kmod-regmap_3.8.2-1_ramips_24kec.ipk
-Size: 14863
-MD5Sum: 2e37d47f7f82a0ceb789d9b74a56071b
+Installed-Size: 13026
+Filename: kmod-regmap_3.7.10-1_ramips_24kec.ipk
+Size: 13726
+MD5Sum: a24b328fb7bb64ecbb0fb7e528472189
 Description:  Generic register map support
 
 Package: kmod-rt2800-lib
-Version: 3.8.2+2013-02-22-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-rt2x00-lib, kmod-rt2x00-soc
+Version: 3.7.10+2013-02-22-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-rt2x00-lib, kmod-rt2x00-soc
 Source: package/mac80211
 SourceFile: compat-wireless-2013-02-22.tar.bz2
 SourceURL: http://mirror2.openwrt.org/sources
 Section: kernel
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 23680
-Filename: kmod-rt2800-lib_3.8.2+2013-02-22-1_ramips_24kec.ipk
-Size: 24335
-MD5Sum: a049b875de7cab2786d7a243b6d95039
+Installed-Size: 23528
+Filename: kmod-rt2800-lib_3.7.10+2013-02-22-1_ramips_24kec.ipk
+Size: 24093
+MD5Sum: 967fbd61a937ff7b8952a890796b1208
 Description:  Ralink Drivers for RT2x00 cards (rt2800 LIB)
 
 Package: kmod-rt2800-pci
-Version: 3.8.2+2013-02-22-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-rt2x00-pci, kmod-rt2800-lib, kmod-lib-crc-ccitt, kmod-rt2x00-soc
+Version: 3.7.10+2013-02-22-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-rt2x00-pci, kmod-rt2800-lib, kmod-lib-crc-ccitt, kmod-rt2x00-soc
 Source: package/mac80211
 SourceFile: compat-wireless-2013-02-22.tar.bz2
 SourceURL: http://mirror2.openwrt.org/sources
 Section: kernel
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 9291
-Filename: kmod-rt2800-pci_3.8.2+2013-02-22-1_ramips_24kec.ipk
-Size: 10105
-MD5Sum: dbbe1c835196302d9bc10d60ab31481a
+Installed-Size: 9358
+Filename: kmod-rt2800-pci_3.7.10+2013-02-22-1_ramips_24kec.ipk
+Size: 10162
+MD5Sum: 7a1e2e2d2561d5cb947f2f4814f02f7a
 Description:  Ralink Drivers for RT2x00 cards (RT2860 PCI)
 
 Package: kmod-rt2x00-lib
-Version: 3.8.2+2013-02-22-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-mac80211, kmod-lib-crc-itu-t
+Version: 3.7.10+2013-02-22-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-mac80211, kmod-lib-crc-itu-t
 Source: package/mac80211
 SourceFile: compat-wireless-2013-02-22.tar.bz2
 SourceURL: http://mirror2.openwrt.org/sources
 Section: kernel
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 20549
-Filename: kmod-rt2x00-lib_3.8.2+2013-02-22-1_ramips_24kec.ipk
-Size: 21306
-MD5Sum: d5944c0802c3bb7176e394bcbeb4ea66
+Installed-Size: 20552
+Filename: kmod-rt2x00-lib_3.7.10+2013-02-22-1_ramips_24kec.ipk
+Size: 21308
+MD5Sum: fff37bd5e26c1d31e0bc099b161da366
 Description:  Ralink Drivers for RT2x00 cards (LIB)
 
 Package: kmod-rt2x00-pci
-Version: 3.8.2+2013-02-22-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-rt2x00-lib, kmod-eeprom-93cx6
+Version: 3.7.10+2013-02-22-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-rt2x00-lib, kmod-eeprom-93cx6
 Source: package/mac80211
 SourceFile: compat-wireless-2013-02-22.tar.bz2
 SourceURL: http://mirror2.openwrt.org/sources
 Section: kernel
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 2121
-Filename: kmod-rt2x00-pci_3.8.2+2013-02-22-1_ramips_24kec.ipk
-Size: 2931
-MD5Sum: dfcb66a3c626f3c5304ec0f67e6ec172
+Installed-Size: 2123
+Filename: kmod-rt2x00-pci_3.7.10+2013-02-22-1_ramips_24kec.ipk
+Size: 2934
+MD5Sum: 0f538edddb5222d7f81de8025905ee89
 Description:  Ralink Drivers for RT2x00 cards (PCI)
 
 Package: kmod-rt2x00-soc
-Version: 3.8.2+2013-02-22-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-rt2x00-lib
+Version: 3.7.10+2013-02-22-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-rt2x00-lib
 Source: package/mac80211
 SourceFile: compat-wireless-2013-02-22.tar.bz2
 SourceURL: http://mirror2.openwrt.org/sources
 Section: kernel
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 1655
-Filename: kmod-rt2x00-soc_3.8.2+2013-02-22-1_ramips_24kec.ipk
-Size: 2450
-MD5Sum: 75df4da831ffec6679107ffcb7c2fafb
+Installed-Size: 1658
+Filename: kmod-rt2x00-soc_3.7.10+2013-02-22-1_ramips_24kec.ipk
+Size: 2453
+MD5Sum: 1fe8915fe74b88e98dce698d62d42881
 Description:  Ralink Drivers for RT2x00 cards (SoC)
 
 Package: kmod-sched-connmark
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-sched-core, kmod-ipt-core, kmod-ipt-conntrack-extra
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-sched-core, kmod-ipt-core, kmod-ipt-conntrack-extra
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
 Installed-Size: 1285
-Filename: kmod-sched-connmark_3.8.2-1_ramips_24kec.ipk
-Size: 2024
-MD5Sum: e892bf1e6e93ab80f967a00793671735
+Filename: kmod-sched-connmark_3.7.10-1_ramips_24kec.ipk
+Size: 2027
+MD5Sum: 16768ab9da4618d6333b6e0da95b2b8c
 Description:  Traffic shaper conntrack mark support
 
 Package: kmod-sched-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 34122
-Filename: kmod-sched-core_3.8.2-1_ramips_24kec.ipk
-Size: 34856
-MD5Sum: 7407aa22c7ed97af66c89503241e4dff
+Installed-Size: 34115
+Filename: kmod-sched-core_3.7.10-1_ramips_24kec.ipk
+Size: 34853
+MD5Sum: acb6e7eec93c3a168eba7a74f465e6e0
 Description:  Core kernel scheduler support for IP traffic
 
 Package: kmod-scsi-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 69224
-Filename: kmod-scsi-core_3.8.2-1_ramips_24kec.ipk
-Size: 69699
-MD5Sum: 7486ad050814d5828311e29559360918
+Installed-Size: 69178
+Filename: kmod-scsi-core_3.7.10-1_ramips_24kec.ipk
+Size: 69662
+MD5Sum: 32c96d923d0e2dd936232133815462d1
 Description:  SCSI device support
 
 Package: kmod-sit
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-ipv6, kmod-iptunnel4
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-ipv6, kmod-iptunnel4
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 9407
-Filename: kmod-sit_3.8.2-1_ramips_24kec.ipk
-Size: 10108
-MD5Sum: 374fdfc8c4199a60cf3916fd8c83475d
+Installed-Size: 7969
+Filename: kmod-sit_3.7.10-1_ramips_24kec.ipk
+Size: 8648
+MD5Sum: 959be4f9b6032be16487a73c9818fe9d
 Description:  Kernel modules for IPv6-in-IPv4 tunnelling
 
 Package: kmod-slip
@@ -2187,45 +2339,45 @@ MD5Sum: 3dc8bddccd18bf112fb6eacf6dd21cf3
 Description:  Kernel modules for SLIP support
 
 Package: kmod-sound-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-input-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-input-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 120784
-Filename: kmod-sound-core_3.8.2-1_ramips_24kec.ipk
-Size: 121274
-MD5Sum: 66b986f4212f08bfa58a1790988ea62c
+Installed-Size: 123895
+Filename: kmod-sound-core_3.7.10-1_ramips_24kec.ipk
+Size: 124282
+MD5Sum: 36c577b3bfcf41f9d3167a0aae39e746
 Description:  Kernel modules for sound support
 
 Package: kmod-sound-seq
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-sound-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-sound-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 29996
-Filename: kmod-sound-seq_3.8.2-1_ramips_24kec.ipk
-Size: 30671
-MD5Sum: 063d81afe3c766e7faf2063a4f8a0b3d
+Installed-Size: 30001
+Filename: kmod-sound-seq_3.7.10-1_ramips_24kec.ipk
+Size: 30703
+MD5Sum: 2774ae408c31a380bea42347b662751b
 Description:  Kernel modules for sequencer support
 
 Package: kmod-sound-soc-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-regmap, kmod-sound-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-regmap, kmod-sound-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 47355
-Filename: kmod-sound-soc-core_3.8.2-1_ramips_24kec.ipk
-Size: 47887
-MD5Sum: 24784652997afff774972e78a54016dd
+Installed-Size: 46970
+Filename: kmod-sound-soc-core_3.7.10-1_ramips_24kec.ipk
+Size: 47503
+MD5Sum: ac33dbed4abed08831b1826e20311b68
 Description:  SoC sound support
 
 Package: kmod-stp
@@ -2257,59 +2409,59 @@ MD5Sum: 9185e64f1b926a8befa72d99b031c0d9
 Description:  Kernel support for the TUN/TAP tunneling device
 
 Package: kmod-usb-acm
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 9592
-Filename: kmod-usb-acm_3.8.2-1_ramips_24kec.ipk
-Size: 10340
-MD5Sum: 07440e7dccb7f53017ec908104311c19
+Installed-Size: 9587
+Filename: kmod-usb-acm_3.7.10-1_ramips_24kec.ipk
+Size: 10332
+MD5Sum: 13992e69f24ed79305d61d7e888e8719
 Description:  Kernel support for USB ACM devices (modems/isdn controllers)
 
 Package: kmod-usb-audio
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core, kmod-sound-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core, kmod-sound-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 60100
-Filename: kmod-usb-audio_3.8.2-1_ramips_24kec.ipk
-Size: 60480
-MD5Sum: 4f8a78a218d8dbd2952f83e87135249e
+Installed-Size: 57071
+Filename: kmod-usb-audio_3.7.10-1_ramips_24kec.ipk
+Size: 57394
+MD5Sum: 3efd3b383df813d9315dc1f8962f3c42
 Description:  Kernel support for USB audio devices
 
 Package: kmod-usb-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-nls-base
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-nls-base
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 67173
-Filename: kmod-usb-core_3.8.2-1_ramips_24kec.ipk
-Size: 67680
-MD5Sum: 06eba1d3d26d79a7b30c440a00b3d667
+Installed-Size: 66898
+Filename: kmod-usb-core_3.7.10-1_ramips_24kec.ipk
+Size: 67389
+MD5Sum: cb003ad274cb44148c8e9d370f410c74
 Description:  Kernel support for USB
 
 Package: kmod-usb-hid
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core, kmod-hid, kmod-input-core, kmod-input-evdev
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core, kmod-hid, kmod-input-core, kmod-input-evdev
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 16300
-Filename: kmod-usb-hid_3.8.2-1_ramips_24kec.ipk
-Size: 17003
-MD5Sum: 6dbeb4b3dd01e41c8abfa27082b9b2da
+Installed-Size: 16252
+Filename: kmod-usb-hid_3.7.10-1_ramips_24kec.ipk
+Size: 16961
+MD5Sum: ab65d58ea4c9cec3568dd76a071b2bf7
 Description:  Kernel support for USB HID devices such as keyboards and mice
 
 Package: kmod-usb-net-asix
@@ -2327,59 +2479,59 @@ MD5Sum: 64e2be992cfd53cdb9a2c48dba41cd83
 Description:  Kernel module for USB-to-Ethernet Asix convertors
 
 Package: kmod-usb-net-cdc-ether
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-net
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-net
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 3227
-Filename: kmod-usb-net-cdc-ether_3.8.2-1_ramips_24kec.ipk
-Size: 3942
-MD5Sum: 1d3ac291b2ade93240c31a291b5bdcc4
+Installed-Size: 3225
+Filename: kmod-usb-net-cdc-ether_3.7.10-1_ramips_24kec.ipk
+Size: 3928
+MD5Sum: 43872c77056540c8ef338363f2cc9c0c
 Description:  Kernel support for USB CDC Ethernet devices
 
 Package: kmod-usb-net-cdc-ncm
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-net
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-net
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 6387
-Filename: kmod-usb-net-cdc-ncm_3.8.2-1_ramips_24kec.ipk
-Size: 7103
-MD5Sum: bb9b34347f612cbe3de7189bda817b76
+Installed-Size: 5787
+Filename: kmod-usb-net-cdc-ncm_3.7.10-1_ramips_24kec.ipk
+Size: 6496
+MD5Sum: 4202c54c5c0747695a2cb50053283c44
 Description:  Kernel support for CDC NCM connections
 
 Package: kmod-usb-net-qmi-wwan
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-net, kmod-usb-wdm
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-net, kmod-usb-wdm
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 3874
-Filename: kmod-usb-net-qmi-wwan_3.8.2-1_ramips_24kec.ipk
-Size: 4598
-MD5Sum: ff2a93c76e1d60bc614a401bc93a71bf
+Installed-Size: 3758
+Filename: kmod-usb-net-qmi-wwan_3.7.10-1_ramips_24kec.ipk
+Size: 4452
+MD5Sum: a3c987392bb5a960d2d8b6f49db1b49e
 Description:  QMI WWAN driver for Qualcomm MSM based 3G and LTE modems
 
 Package: kmod-usb-net-rndis
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-net, kmod-usb-net-cdc-ether
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-net, kmod-usb-net-cdc-ether
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 4384
-Filename: kmod-usb-net-rndis_3.8.2-1_ramips_24kec.ipk
-Size: 5081
-MD5Sum: 20e4a8df7e4b5357c195cd38a240790b
+Installed-Size: 4377
+Filename: kmod-usb-net-rndis_3.7.10-1_ramips_24kec.ipk
+Size: 5074
+MD5Sum: 7b2c0cce2853b04ff8057bd8db554fb5
 Description:  Kernel support for RNDIS connections
 
 Package: kmod-usb-net-sierrawireless
@@ -2397,59 +2549,59 @@ MD5Sum: 4159419357f55dfa28e65fcf2ae1cdb2
 Description:  Kernel support for Sierra Wireless devices
 
 Package: kmod-usb-net
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 10702
-Filename: kmod-usb-net_3.8.2-1_ramips_24kec.ipk
-Size: 11422
-MD5Sum: 521649c66b669aed054dee8adf3b0f47
+Installed-Size: 9548
+Filename: kmod-usb-net_3.7.10-1_ramips_24kec.ipk
+Size: 10271
+MD5Sum: 6e1a69271940ec63aa5ddd2e84ff1da5
 Description:  Kernel modules for USB-to-Ethernet convertors
 
 Package: kmod-usb-ohci
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 10065
-Filename: kmod-usb-ohci_3.8.2-1_ramips_24kec.ipk
-Size: 10773
-MD5Sum: 9a91189522de8b48ea4a980df5c61398
+Installed-Size: 10222
+Filename: kmod-usb-ohci_3.7.10-1_ramips_24kec.ipk
+Size: 10932
+MD5Sum: 4748f07876625eb536b90b4e5780f805
 Description:  Kernel support for USB OHCI controllers
 
 Package: kmod-usb-printer
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
 Installed-Size: 7168
-Filename: kmod-usb-printer_3.8.2-1_ramips_24kec.ipk
-Size: 7879
-MD5Sum: 823ccc69693246ac3bc049947be9a3a6
+Filename: kmod-usb-printer_3.7.10-1_ramips_24kec.ipk
+Size: 7875
+MD5Sum: 0b89d96baea1e695cb7a575efd26620c
 Description:  Kernel support for USB printers
 
 Package: kmod-usb-rt305x-dwc_otg
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 37354
-Filename: kmod-usb-rt305x-dwc_otg_3.8.2-1_ramips_24kec.ipk
-Size: 38000
-MD5Sum: 7ae0329952645912cbf9ead04a8da965
+Installed-Size: 37355
+Filename: kmod-usb-rt305x-dwc_otg_3.7.10-1_ramips_24kec.ipk
+Size: 37796
+MD5Sum: 9eae7f11c8a7d2f59e9692a68247f280
 Description:  This driver provides USB Device Controller support for the
  Synopsys DesignWare USB OTG Core used in the Ralink RT305X SoCs.
 
@@ -2496,48 +2648,48 @@ MD5Sum: c6e599cc18d23fd2ccb718fc32ef8678
 Description:  Kernel support for Winchiphead CH341 USB-to-Serial converters
 
 Package: kmod-usb-serial-cp210x
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-serial
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-serial
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 4606
-Filename: kmod-usb-serial-cp210x_3.8.2-1_ramips_24kec.ipk
-Size: 5341
-MD5Sum: fb9594d106cbb7f253bf93472b7a7c65
+Installed-Size: 4621
+Filename: kmod-usb-serial-cp210x_3.7.10-1_ramips_24kec.ipk
+Size: 5355
+MD5Sum: 0dc897e72c97ed8fd87d0acd4e90af39
 Description:  Kernel support for Silicon Labs cp210x USB-to-Serial converters
 
 Package: kmod-usb-serial-cypress-m8
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-serial
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-serial
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 6298
-Filename: kmod-usb-serial-cypress-m8_3.8.2-1_ramips_24kec.ipk
-Size: 7159
-MD5Sum: 31474bfaaece42e052f926c07700a98e
+Installed-Size: 6331
+Filename: kmod-usb-serial-cypress-m8_3.7.10-1_ramips_24kec.ipk
+Size: 7202
+MD5Sum: 83c05468df17e3cd758a62b17581d3d9
 Description:  Kernel support for devices with Cypress M8 USB to Serial chip
  (for example, the Delorme Earthmate LT-20 GPS)
  Supported microcontrollers in the CY4601 family are:
  CY7C63741 CY7C63742 CY7C63743 CY7C64013
 
 Package: kmod-usb-serial-ftdi
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-serial
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-serial
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 14251
-Filename: kmod-usb-serial-ftdi_3.8.2-1_ramips_24kec.ipk
-Size: 14621
-MD5Sum: d5e3658111cc71297facfa210eb89271
+Installed-Size: 14031
+Filename: kmod-usb-serial-ftdi_3.7.10-1_ramips_24kec.ipk
+Size: 14386
+MD5Sum: 3629e20f5ba070d7fc1c1107af5fc874
 Description:  Kernel support for FTDI USB-to-Serial converters
 
 Package: kmod-usb-serial-ipw
@@ -2611,17 +2763,17 @@ MD5Sum: b895889e9987565264abfe8dd5ae525f
 Description:  Kernel support for Motorola usb phone
 
 Package: kmod-usb-serial-option
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-serial-wwan, kmod-usb-serial
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-serial-wwan, kmod-usb-serial
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 7849
-Filename: kmod-usb-serial-option_3.8.2-1_ramips_24kec.ipk
-Size: 7809
-MD5Sum: 31da8f6a2d5ecdfc2eaa3ece7d35b682
+Installed-Size: 7818
+Filename: kmod-usb-serial-option_3.7.10-1_ramips_24kec.ipk
+Size: 7872
+MD5Sum: 41a06fa6ee67055f10b1c2ccb78778f4
 Description:  Kernel support for Option HSDPA modems
 
 Package: kmod-usb-serial-oti6858
@@ -2639,17 +2791,17 @@ MD5Sum: 2f41ba6f8796cc014ca29c3f493999a2
 Description:  Kernel support for Ours Technology OTI6858 USB-to-Serial converters
 
 Package: kmod-usb-serial-pl2303
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-serial
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-serial
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 5368
-Filename: kmod-usb-serial-pl2303_3.8.2-1_ramips_24kec.ipk
+Installed-Size: 5364
+Filename: kmod-usb-serial-pl2303_3.7.10-1_ramips_24kec.ipk
 Size: 6101
-MD5Sum: 5ff3da78437f8652830b6ba898564c6c
+MD5Sum: f10a8ae9a32eff254861fbbf0d4d8a6b
 Description:  Kernel support for Prolific PL2303 USB-to-Serial converters
 
 Package: kmod-usb-serial-qualcomm
@@ -2667,17 +2819,17 @@ MD5Sum: 8caddd1c7ae657d4eda72bc00144d9cb
 Description:  Kernel support for Qualcomm USB Serial devices (Gobi)
 
 Package: kmod-usb-serial-sierrawireless
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-serial
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-serial
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 5040
-Filename: kmod-usb-serial-sierrawireless_3.8.2-1_ramips_24kec.ipk
-Size: 5758
-MD5Sum: 60ec6a5c77af38116b3e1ff3db1a9150
+Installed-Size: 5073
+Filename: kmod-usb-serial-sierrawireless_3.7.10-1_ramips_24kec.ipk
+Size: 5794
+MD5Sum: 58a6543049efe230fe82c3337103abce
 Description:  Kernel support for Sierra Wireless devices
 
 Package: kmod-usb-serial-ti-usb
@@ -2709,216 +2861,739 @@ MD5Sum: 37247075ab511210703f58e7f1207c6c
 Description:  Kernel support for Handspring Visor PDAs
 
 Package: kmod-usb-serial-wwan
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-serial
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-serial
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 3754
-Filename: kmod-usb-serial-wwan_3.8.2-1_ramips_24kec.ipk
-Size: 4451
-MD5Sum: dee5d87be7d261e2943f7b7dd3836fa2
+Installed-Size: 3806
+Filename: kmod-usb-serial-wwan_3.7.10-1_ramips_24kec.ipk
+Size: 4504
+MD5Sum: 73c4de34176cdb038e1fdd348f9c69c7
 Description:  Kernel support for USB GSM and CDMA modems
 
 Package: kmod-usb-serial
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 12240
-Filename: kmod-usb-serial_3.8.2-1_ramips_24kec.ipk
-Size: 12957
-MD5Sum: 6754960dbd6837b668be4257b2e9dffb
+Installed-Size: 12216
+Filename: kmod-usb-serial_3.7.10-1_ramips_24kec.ipk
+Size: 12928
+MD5Sum: 6c837f22478664db06f314abd31a09aa
 Description:  Kernel support for USB-to-Serial converters
 
 Package: kmod-usb-storage-extras
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-storage
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-storage
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 30533
-Filename: kmod-usb-storage-extras_3.8.2-1_ramips_24kec.ipk
-Size: 31280
-MD5Sum: f01234cc2e2f7c67f6043c0a28b24462
+Installed-Size: 30505
+Filename: kmod-usb-storage-extras_3.7.10-1_ramips_24kec.ipk
+Size: 31242
+MD5Sum: 23aa09a162924ca334b727f4ea822552
 Description:  Say Y here if you want to have some more drivers,
  such as for SmartMedia card readers.
 
 Package: kmod-usb-storage
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-scsi-core, kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-scsi-core, kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 22289
-Filename: kmod-usb-storage_3.8.2-1_ramips_24kec.ipk
-Size: 22688
-MD5Sum: 59202b9494b6f48f7ed622b7c3c3ec19
+Installed-Size: 22312
+Filename: kmod-usb-storage_3.7.10-1_ramips_24kec.ipk
+Size: 22742
+MD5Sum: 2ff88f1f355df9948a959291a52c7e29
 Description:  Kernel support for USB Mass Storage devices
 
 Package: kmod-usb-wdm
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 5920
-Filename: kmod-usb-wdm_3.8.2-1_ramips_24kec.ipk
-Size: 6637
-MD5Sum: 00f48f3ebd8a93fbc3f11c26646abb57
+Installed-Size: 5922
+Filename: kmod-usb-wdm_3.7.10-1_ramips_24kec.ipk
+Size: 6644
+MD5Sum: 69dfd0321b9c8fc6886c69a54af254ae
 Description:  USB Wireless Device Management support
 
 Package: kmod-usb2
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 22323
-Filename: kmod-usb2_3.8.2-1_ramips_24kec.ipk
-Size: 22966
-MD5Sum: 8bffabd4ed781dd2137d2d4183331b5a
+Installed-Size: 21672
+Filename: kmod-usb2_3.7.10-1_ramips_24kec.ipk
+Size: 22347
+MD5Sum: 24415ab4ad07f65d0d6dcf831661b124
 Description:  Kernel support for USB2 (EHCI) controllers
 
-Package: kmod-video-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Package: kmod-usbip-client
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usbip, kmod-usb-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 49423
-Filename: kmod-video-core_3.8.2-1_ramips_24kec.ipk
-Size: 49733
-MD5Sum: c7b83cd3f7639776655fe280192cfca6
+Installed-Size: 9164
+Filename: kmod-usbip-client_3.7.10-1_ramips_24kec.ipk
+Size: 9874
+MD5Sum: 87bb416f44e70430365076670c01295e
+Description:  USB-over-IP client driver
+
+Package: kmod-usbip-server
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usbip, kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 9205
+Filename: kmod-usbip-server_3.7.10-1_ramips_24kec.ipk
+Size: 9914
+MD5Sum: f4baefe5e59a90012d358b8e32012fec
+Description:  USB-over-IP host driver
+
+Package: kmod-usbip
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 4269
+Filename: kmod-usbip_3.7.10-1_ramips_24kec.ipk
+Size: 4951
+MD5Sum: c52ed4f48dd52c9ad1b1f0cb1404d724
+Description:  USB-over-IP kernel support
+
+Package: kmod-video-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6)
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 49323
+Filename: kmod-video-core_3.7.10-1_ramips_24kec.ipk
+Size: 49670
+MD5Sum: 214b9d1dfcaeda4fd18e68db3d5acf9f
 Description:  Kernel modules for Video4Linux support
 
 Package: kmod-video-cpia2
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core, kmod-video-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core, kmod-video-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 18492
-Filename: kmod-video-cpia2_3.8.2-1_ramips_24kec.ipk
-Size: 19232
-MD5Sum: cdd80281d71e525a6a30fff64211fe75
+Installed-Size: 18487
+Filename: kmod-video-cpia2_3.7.10-1_ramips_24kec.ipk
+Size: 19224
+MD5Sum: 0dfe1e6c32ba792b7dd4b7364b181b3a
 Description:  Kernel modules for supporting CPIA2 USB based cameras.
 
-Package: kmod-video-gspca-core
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core, kmod-input-core, kmod-video-core
+Package: kmod-video-gspca-conex
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 11682
-Filename: kmod-video-gspca-core_3.8.2-1_ramips_24kec.ipk
-Size: 12475
-MD5Sum: 91f955f878d49c7b247327efe1b92b0a
+Installed-Size: 5243
+Filename: kmod-video-gspca-conex_3.7.10-1_ramips_24kec.ipk
+Size: 5968
+MD5Sum: d352b0cfb2cd7f86fc60a89b8369b432
+Description:  The Conexant Camera Driver (conex) kernel module.
+
+Package: kmod-video-gspca-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core, kmod-input-core, kmod-video-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 11678
+Filename: kmod-video-gspca-core_3.7.10-1_ramips_24kec.ipk
+Size: 12465
+MD5Sum: 54040e42f927d577a6158041d736891e
 Description:  Kernel modules for supporting GSPCA based webcam devices. Note this is just
  the core of the driver, please select a submodule that supports your webcam.
 
-Package: kmod-video-pwc
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core, kmod-video-videobuf2, kmod-video-core
+Package: kmod-video-gspca-etoms
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 22578
-Filename: kmod-video-pwc_3.8.2-1_ramips_24kec.ipk
-Size: 23263
-MD5Sum: 32d101c98b9dd0fa3e1ca94e118139de
+Installed-Size: 3926
+Filename: kmod-video-gspca-etoms_3.7.10-1_ramips_24kec.ipk
+Size: 4610
+MD5Sum: 9fe69db631c0d9c0273047720a2058d0
+Description:  The Etoms USB Camera Driver (etoms) kernel module.
+
+Package: kmod-video-gspca-finepix
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 2350
+Filename: kmod-video-gspca-finepix_3.7.10-1_ramips_24kec.ipk
+Size: 3069
+MD5Sum: 2a0c68f6a9db16aa27abc81dffc77975
+Description:  The Fujifilm FinePix USB V4L2 driver (finepix) kernel module.
+
+Package: kmod-video-gspca-gl860
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 14859
+Filename: kmod-video-gspca-gl860_3.7.10-1_ramips_24kec.ipk
+Size: 15490
+MD5Sum: df049a26922f17ce038ea224140aecd2
+Description:  gl860 webcam support
+
+Package: kmod-video-gspca-jeilinj
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 3997
+Filename: kmod-video-gspca-jeilinj_3.7.10-1_ramips_24kec.ipk
+Size: 4707
+MD5Sum: 7ef05dd4604eaa6634bac185f9eec992
+Description:  The JEILINJ USB Camera Driver (jeilinj) kernel module.
+
+Package: kmod-video-gspca-konica
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 3273
+Filename: kmod-video-gspca-konica_3.7.10-1_ramips_24kec.ipk
+Size: 3970
+MD5Sum: 1b8b2127007af95e0db5024c327bf559
+Description:  The Konica USB Camera Driver (konica) kernel module.
+
+Package: kmod-video-gspca-m5602
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 13852
+Filename: kmod-video-gspca-m5602_3.7.10-1_ramips_24kec.ipk
+Size: 14545
+MD5Sum: 58457ae16572c2d7f042529a61775d63
+Description:  The ALi USB m5602 Camera Driver (m5602) kernel module.
+
+Package: kmod-video-gspca-mars
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 3433
+Filename: kmod-video-gspca-mars_3.7.10-1_ramips_24kec.ipk
+Size: 4135
+MD5Sum: 8c8a0c1b04dc8da4344bd03f795a3f14
+Description:  The Mars USB Camera Driver (mars) kernel module.
+
+Package: kmod-video-gspca-mr97310a
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 5082
+Filename: kmod-video-gspca-mr97310a_3.7.10-1_ramips_24kec.ipk
+Size: 5803
+MD5Sum: 9267b8e551e31b86c68e79ec46f69aee
+Description:  The Mars-Semi MR97310A USB Camera Driver (mr97310a) kernel module.
+
+Package: kmod-video-gspca-ov519
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 16907
+Filename: kmod-video-gspca-ov519_3.7.10-1_ramips_24kec.ipk
+Size: 17624
+MD5Sum: e416495349a5da1ea4bb2f98690c637e
+Description:  The OV519 USB Camera Driver (ov519) kernel module.
+
+Package: kmod-video-gspca-ov534-9
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 5263
+Filename: kmod-video-gspca-ov534-9_3.7.10-1_ramips_24kec.ipk
+Size: 5996
+MD5Sum: fa5fac5e7c645053bafb97d1ce43b156
+Description:  The OV534-9 USB Camera Driver (ov534_9) kernel module.
+
+Package: kmod-video-gspca-ov534
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 6260
+Filename: kmod-video-gspca-ov534_3.7.10-1_ramips_24kec.ipk
+Size: 6976
+MD5Sum: 9646713fc4ea700f6724cb2b8bee80c9
+Description:  The OV534 USB Camera Driver (ov534) kernel module.
+
+Package: kmod-video-gspca-pac207
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 3442
+Filename: kmod-video-gspca-pac207_3.7.10-1_ramips_24kec.ipk
+Size: 4159
+MD5Sum: 9d1bea06328a53734b5cc2385f87c1fd
+Description:  The Pixart PAC207 USB Camera Driver (pac207) kernel module.
+
+Package: kmod-video-gspca-pac7311
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 4116
+Filename: kmod-video-gspca-pac7311_3.7.10-1_ramips_24kec.ipk
+Size: 4825
+MD5Sum: 18297940502b80b02adafbeb179b82d2
+Description:  The Pixart PAC7311 USB Camera Driver (pac7311) kernel module.
+
+Package: kmod-video-gspca-se401
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 4610
+Filename: kmod-video-gspca-se401_3.7.10-1_ramips_24kec.ipk
+Size: 5312
+MD5Sum: 9758a8630a9ab3b228fa1f6d59080c14
+Description:  The SE401 USB Camera Driver kernel module.
+
+Package: kmod-video-gspca-sn9c20x
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 12806
+Filename: kmod-video-gspca-sn9c20x_3.7.10-1_ramips_24kec.ipk
+Size: 13509
+MD5Sum: 37ceb2961bd93601874ec2b174644dc8
+Description:  The SN9C20X USB Camera Driver (sn9c20x) kernel module.
+
+Package: kmod-video-gspca-sonixb
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 6562
+Filename: kmod-video-gspca-sonixb_3.7.10-1_ramips_24kec.ipk
+Size: 7290
+MD5Sum: 22311f42619c85e2c096b3a524afdec6
+Description:  The SONIX Bayer USB Camera Driver (sonixb) kernel module.
+
+Package: kmod-video-gspca-sonixj
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 11974
+Filename: kmod-video-gspca-sonixj_3.7.10-1_ramips_24kec.ipk
+Size: 12679
+MD5Sum: 6d7bbd546aca5ec54250e365530e4cc9
+Description:  The SONIX JPEG USB Camera Driver (sonixj) kernel module.
+
+Package: kmod-video-gspca-spca500
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 5043
+Filename: kmod-video-gspca-spca500_3.7.10-1_ramips_24kec.ipk
+Size: 5765
+MD5Sum: 301dc6d61de7b6303ef5f3a266e5a273
+Description:  The SPCA500 USB Camera Driver (spca500) kernel module.
+
+Package: kmod-video-gspca-spca501
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 4047
+Filename: kmod-video-gspca-spca501_3.7.10-1_ramips_24kec.ipk
+Size: 4743
+MD5Sum: cc42d53985dbc29d853a38a8cc15f970
+Description:  The SPCA501 USB Camera Driver (spca501) kernel module.
+
+Package: kmod-video-gspca-spca505
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 3089
+Filename: kmod-video-gspca-spca505_3.7.10-1_ramips_24kec.ipk
+Size: 3794
+MD5Sum: d5d9c34d710f8d818282d16cec2e21b9
+Description:  The SPCA505 USB Camera Driver (spca505) kernel module.
+
+Package: kmod-video-gspca-spca506
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 3391
+Filename: kmod-video-gspca-spca506_3.7.10-1_ramips_24kec.ipk
+Size: 4110
+MD5Sum: b59b2f1e75784ee3d669f758645850ff
+Description:  The SPCA506 USB Camera Driver (spca506) kernel module.
+
+Package: kmod-video-gspca-spca508
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 3658
+Filename: kmod-video-gspca-spca508_3.7.10-1_ramips_24kec.ipk
+Size: 4375
+MD5Sum: 37493b7dff6c08363de4de4c1dabe026
+Description:  The SPCA508 USB Camera Driver (spca508) kernel module.
+
+Package: kmod-video-gspca-spca561
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 4739
+Filename: kmod-video-gspca-spca561_3.7.10-1_ramips_24kec.ipk
+Size: 5446
+MD5Sum: d1028c2d5a5b2850feef8d39af3a8167
+Description:  The SPCA561 USB Camera Driver (spca561) kernel module.
+
+Package: kmod-video-gspca-sq905
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 2770
+Filename: kmod-video-gspca-sq905_3.7.10-1_ramips_24kec.ipk
+Size: 3493
+MD5Sum: 66029086d99d3df156495b0749ba805f
+Description:  The SQ Technologies SQ905 based USB Camera Driver (sq905) kernel module.
+
+Package: kmod-video-gspca-sq905c
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 2409
+Filename: kmod-video-gspca-sq905c_3.7.10-1_ramips_24kec.ipk
+Size: 3125
+MD5Sum: ab9826c2917671cd047fca86ac6d9d0c
+Description:  The SQ Technologies SQ905C based USB Camera Driver (sq905c) kernel module.
+
+Package: kmod-video-gspca-stk014
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 3673
+Filename: kmod-video-gspca-stk014_3.7.10-1_ramips_24kec.ipk
+Size: 4397
+MD5Sum: 7792adaf4177cbd0c5d474dd79befbf1
+Description:  The Syntek DV4000 (STK014) USB Camera Driver (stk014) kernel module.
+
+Package: kmod-video-gspca-stv06xx
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 8705
+Filename: kmod-video-gspca-stv06xx_3.7.10-1_ramips_24kec.ipk
+Size: 9454
+MD5Sum: 2efa55aeab771470468a7fa3fff88219
+Description:  The STV06XX USB Camera Driver (stv06xx) kernel module.
+
+Package: kmod-video-gspca-sunplus
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 5529
+Filename: kmod-video-gspca-sunplus_3.7.10-1_ramips_24kec.ipk
+Size: 6245
+MD5Sum: ac803a90885fa71173913e81e1ec3883
+Description:  The SUNPLUS USB Camera Driver (sunplus) kernel module.
+
+Package: kmod-video-gspca-t613
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 5737
+Filename: kmod-video-gspca-t613_3.7.10-1_ramips_24kec.ipk
+Size: 6469
+MD5Sum: e7d29d43001c03e0f3554af62d5dbd7d
+Description:  The T613 (JPEG Compliance) USB Camera Driver (t613) kernel module.
+
+Package: kmod-video-gspca-tv8532
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 2400
+Filename: kmod-video-gspca-tv8532_3.7.10-1_ramips_24kec.ipk
+Size: 3106
+MD5Sum: 40ad0c8602709f7a17bf5e2f379fce6f
+Description:  The TV8532 USB Camera Driver (tv8532) kernel module.
+
+Package: kmod-video-gspca-vc032x
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 10171
+Filename: kmod-video-gspca-vc032x_3.7.10-1_ramips_24kec.ipk
+Size: 10873
+MD5Sum: fd8bf6ab0e6fb45d8cd68acd12f2eeff
+Description:  The VC032X USB Camera Driver (vc032x) kernel module.
+
+Package: kmod-video-gspca-zc3xx
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-gspca-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 14016
+Filename: kmod-video-gspca-zc3xx_3.7.10-1_ramips_24kec.ipk
+Size: 14703
+MD5Sum: 1cc1c1e7a73f2857b6517f79847537b9
+Description:  The ZC3XX USB Camera Driver (zc3xx) kernel module.
+
+Package: kmod-video-pwc
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core, kmod-video-videobuf2, kmod-video-core
+Source: package/kernel
+License: GPLv2
+Section: kernel
+Status: unknown hold not-installed
+Architecture: ramips_24kec
+Installed-Size: 22541
+Filename: kmod-video-pwc_3.7.10-1_ramips_24kec.ipk
+Size: 23245
+MD5Sum: a900dbad45b9773e2b60f3d807b7576c
 Description:  Kernel modules for supporting Philips USB based cameras.
 
 Package: kmod-video-sn9c102
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core, kmod-video-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core, kmod-video-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 31229
-Filename: kmod-video-sn9c102_3.8.2-1_ramips_24kec.ipk
-Size: 31625
-MD5Sum: e44090624967e7cc19a5a0afd98f6f57
+Installed-Size: 31020
+Filename: kmod-video-sn9c102_3.7.10-1_ramips_24kec.ipk
+Size: 31451
+MD5Sum: dc49cd8c4d28bea4f86692e42ade0788
 Description:  Kernel modules for supporting SN9C102
  camera chips.
 
 Package: kmod-video-uvc
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-usb-core, kmod-video-videobuf2, kmod-video-core, kmod-input-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-usb-core, kmod-video-videobuf2, kmod-video-core, kmod-input-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 37942
-Filename: kmod-video-uvc_3.8.2-1_ramips_24kec.ipk
-Size: 38778
-MD5Sum: 8ffdc3829b3b6e7f93950d6ac3f3c864
+Installed-Size: 37656
+Filename: kmod-video-uvc_3.7.10-1_ramips_24kec.ipk
+Size: 38451
+MD5Sum: 672366acd4e7a1f98f71252bf2226cbb
 Description:  Kernel modules for supporting USB Video Class (UVC) devices.
 
 Package: kmod-video-videobuf2
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e), kmod-video-core
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), kmod-video-core
 Source: package/kernel
 License: GPLv2
 Section: kernel
 Status: unknown hold not-installed
 Architecture: ramips_24kec
-Installed-Size: 16718
-Filename: kmod-video-videobuf2_3.8.2-1_ramips_24kec.ipk
-Size: 17354
-MD5Sum: 6a35dffd5b9a385bba574bf1ce771dde
+Installed-Size: 15142
+Filename: kmod-video-videobuf2_3.7.10-1_ramips_24kec.ipk
+Size: 15766
+MD5Sum: 6e819f2328fbf4e85499b6032f655bd0
 Description:  Kernel modules that implements three basic types of media buffers.
 
 Package: kmod-wimax-u200
-Version: 3.8.2-1
-Depends: kernel (=3.8.2-1-c121636b6ae46fad0a9a29dbbee9833e)
+Version: 3.7.10-1
+Depends: kernel (=3.7.10-1-4e7826a6618b6d8c2a937b3247cc36f6), 4g-scripts
 Source: feeds/custompackages/net/wimax-u200
 Section: kernel
 Architecture: ramips_24kec
-Installed-Size: 9111
-Filename: kmod-wimax-u200_3.8.2-1_ramips_24kec.ipk
-Size: 9666
-MD5Sum: b59d93e4fcfe5250c729a2305559e717
+Installed-Size: 9102
+Filename: kmod-wimax-u200_3.7.10-1_ramips_24kec.ipk
+Size: 9660
+MD5Sum: 1ca22ff746a72f00eb4c88f0de0c0a42
 Description:  Drivers for WiMAX
 
+Package: libblkid
+Version: 2.21.2-1
+Depends: libc, libuuid
+Source: package/util-linux
+SourceFile: util-linux-2.21.2.tar.xz
+SourceURL: @KERNEL/linux/utils/util-linux/v2.21
+License: GPLv2 LGPLv2.1 BSD-3c
+LicenseFiles: COPYING getopt/COPYING libblkid/COPYING libmount/COPYING Documentation/licenses/COPYING.GPLv2 Documentation/licenses/COPYING.LGPLv2.1 libuuid/COPYING Documentation/licenses/COPYING.BSD-3
+Section: libs
+Architecture: ramips_24kec
+Installed-Size: 66818
+Filename: libblkid_2.21.2-1_ramips_24kec.ipk
+Size: 67638
+MD5Sum: 47dccfbedc7644abb8b0c465c96c8003
+Description:  The libblkid library is used to identify block devices (disks) as to their
+ content (e.g. filesystem type, partitions) as well as extracting additional
+ information such as filesystem labels/volume names, partitions, unique
+ identifiers/serial numbers...
+
 Package: libblobmsg-json
-Version: 2013-01-29-0bc317aa4d9af44806c28ca286d79a8b5a92b2b8
+Version: 2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442
 Depends: libc, libjson, libubox
 Source: package/libs/libubox
-SourceFile: libubox-2013-01-29-0bc317aa4d9af44806c28ca286d79a8b5a92b2b8.tar.gz
+SourceFile: libubox-2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442.tar.gz
 SourceURL: git://nbd.name/luci2/libubox.git
 License: ISC BSD-3c
 Section: libs
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 3523
-Filename: libblobmsg-json_2013-01-29-0bc317aa4d9af44806c28ca286d79a8b5a92b2b8_ramips_24kec.ipk
-Size: 4205
-MD5Sum: 4e2b417c8c1efdd047f42d0699e30d27
+Installed-Size: 3511
+Filename: libblobmsg-json_2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442_ramips_24kec.ipk
+Size: 4194
+MD5Sum: 7fdfbe33a3bf225d2afcaba76989923c
 Description:  blobmsg <-> json conversion library
 
 Package: libcyassl
@@ -2929,10 +3604,10 @@ SourceFile: cyassl-1.6.5.zip
 SourceURL: http://www.yassl.com/
 Section: libs
 Architecture: ramips_24kec
-Installed-Size: 64287
+Installed-Size: 64288
 Filename: libcyassl_1.6.5-2_ramips_24kec.ipk
-Size: 64465
-MD5Sum: baaad66b7112a1c9b3067bc6b309f8e1
+Size: 64511
+MD5Sum: 2feceb1bcfdf0e74663a9c6af882661d
 Description:  CyaSSL is an SSL library optimized for small footprint, both on disk and for
  memory use.
 
@@ -2998,38 +3673,53 @@ Status: unknown hold not-installed
 Essential: yes
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 30536
+Installed-Size: 30529
 Filename: libgcc_4.6-linaro-1_ramips_24kec.ipk
-Size: 31032
-MD5Sum: 84f7848e1a48b940d9fe961d08423e13
+Size: 31035
+MD5Sum: 05c32c32418a76e7ee1058e21c4d4d9d
 Description:  GCC support library
 
+Package: libgd
+Version: 2.0.35-1
+Depends: libc, libjpeg, libpng
+Source: feeds/packages/libs/gd
+SourceFile: gd-2.0.35.tar.bz2
+SourceURL: http://www.libgd.org/releases
+Section: libs
+Architecture: ramips_24kec
+Installed-Size: 57706
+Filename: libgd_2.0.35-1_ramips_24kec.ipk
+Size: 58283
+MD5Sum: 745e41695f9906b5e767adaff6bf5e0b
+Description:  GD is an open source code library for the dynamic creation of images by
+ programmers. GD creates PNG, JPEG and GIF images, among other formats.
+
 Package: libip4tc
-Version: 1.4.18-1
+Version: 1.4.18-3
 Depends: libc
 Source: package/network/utils/iptables
 SourceFile: iptables-1.4.18.tar.bz2
 SourceURL: http://www.netfilter.org/projects/iptables/files ftp://ftp.be.netfilter.org/pub/netfilter/iptables/ ftp://ftp.de.netfilter.org/pub/netfilter/iptables/ ftp://ftp.no.netfilter.org/pub/netfilter/iptables/
 Section: libs
 Architecture: ramips_24kec
-Installed-Size: 10198
-Filename: libip4tc_1.4.18-1_ramips_24kec.ipk
-Size: 10821
-MD5Sum: ea2756db1abc6c6682b0e5407e088fff
+Installed-Size: 10202
+Filename: libip4tc_1.4.18-3_ramips_24kec.ipk
+Size: 10825
+MD5Sum: f93b36df1492cc4320e95bf9fc2fc859
 Description:  IPv4 firewall - shared libiptc library
 
 Package: libip6tc
-Version: 1.4.18-1
+Version: 1.4.18-3
 Depends: libc
 Source: package/network/utils/iptables
 SourceFile: iptables-1.4.18.tar.bz2
 SourceURL: http://www.netfilter.org/projects/iptables/files ftp://ftp.be.netfilter.org/pub/netfilter/iptables/ ftp://ftp.de.netfilter.org/pub/netfilter/iptables/ ftp://ftp.no.netfilter.org/pub/netfilter/iptables/
 Section: libs
 Architecture: ramips_24kec
-Installed-Size: 10554
-Filename: libip6tc_1.4.18-1_ramips_24kec.ipk
-Size: 11181
-MD5Sum: 7d97deb22b768525bdaa714f0f153689
+Installed-Size: 10551
+Filename: libip6tc_1.4.18-3_ramips_24kec.ipk
+Size: 11185
+MD5Sum: 1bc3e798576546d69f66ac614a0cf5d5
 Description:  IPv6 firewall - shared libiptc library
 
 Package: libiwinfo-lua
@@ -3041,8 +3731,8 @@ Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
 Installed-Size: 6225
 Filename: libiwinfo-lua_39_ramips_24kec.ipk
-Size: 6833
-MD5Sum: 37c573850812e79dfdfbab2a15984d88
+Size: 6830
+MD5Sum: 37004d850e779e5514979cec5db37568
 Description:  This is the Lua binding for the iwinfo library. It provides access to all enabled
  backends.
 
@@ -3053,12 +3743,44 @@ Source: package/network/utils/iwinfo
 Section: libs
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 21473
+Installed-Size: 21475
 Filename: libiwinfo_39_ramips_24kec.ipk
-Size: 22104
-MD5Sum: 6f735ac07e1f1fec0c4c9896b4b6dba5
+Size: 22056
+MD5Sum: 820816c934ff5d5c37ad32f402321d93
 Description:  Wireless information library with consistent interface for proprietary Broadcom,
  madwifi, nl80211 and wext driver interfaces.
+
+Package: libjpeg
+Version: 6b-1
+Depends: libc
+Source: feeds/packages/libs/jpeg
+SourceFile: jpegsrc.v6b.tar.gz
+SourceURL: http://www.ijg.org/files/ ftp://ftp.uu.net/graphics/jpeg/
+License: FREE
+LicenseFiles: README
+Section: libs
+Architecture: ramips_24kec
+Installed-Size: 58846
+Filename: libjpeg_6b-1_ramips_24kec.ipk
+Size: 59461
+MD5Sum: df065467b636533ec8feed9e2945c24d
+Description:  The Independent JPEG Group's JPEG runtime library
+
+Package: libjson-script
+Version: 2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442
+Depends: libc, libubox
+Source: package/libs/libubox
+SourceFile: libubox-2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442.tar.gz
+SourceURL: git://nbd.name/luci2/libubox.git
+License: ISC BSD-3c
+Section: utils
+Maintainer: Felix Fietkau <nbd@openwrt.org>
+Architecture: ramips_24kec
+Installed-Size: 4943
+Filename: libjson-script_2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442_ramips_24kec.ipk
+Size: 5579
+MD5Sum: 2ae57fd8df6a7c6494a50c003cf88d57
+Description:  Minimalistic JSON based scripting engine
 
 Package: libjson
 Version: 0.9-2
@@ -3071,10 +3793,10 @@ LicenseFiles: COPYING
 Section: libs
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 9435
+Installed-Size: 9433
 Filename: libjson_0.9-2_ramips_24kec.ipk
-Size: 10101
-MD5Sum: 17700d9612eb2b1bcc28c1d43c3fd282
+Size: 10106
+MD5Sum: 72d768a7780ecc05454d7d362f3bd213
 Description:  This package contains a library for javascript object notation backends.
 
 Package: liblua
@@ -3088,10 +3810,10 @@ LicenseFiles: COPYRIGHT
 Section: libs
 Maintainer: Jo-Philipp Wich <jow@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 72141
+Installed-Size: 72140
 Filename: liblua_5.1.5-1_ramips_24kec.ipk
-Size: 72821
-MD5Sum: de4f4dcf3c29b9d37b97849608486534
+Size: 72822
+MD5Sum: 04cf7b6e81d8f7f18b7ad4b7f6d9a959
 Description:  Lua is a powerful light-weight programming language designed for extending 
  applications. Lua is also frequently used as a general-purpose, stand-alone 
  language. Lua is free software.
@@ -3105,11 +3827,29 @@ SourceFile: libnet.tar.gz
 SourceURL: http://www.packetfactory.net/libnet/dist/
 Section: libs
 Architecture: ramips_24kec
-Installed-Size: 28464
+Installed-Size: 28459
 Filename: libnet1_1.1.2.1-2_ramips_24kec.ipk
-Size: 29092
-MD5Sum: 5ae14afaa7bd540aaf22f641ed17a986
+Size: 29102
+MD5Sum: cce810a79e1c0890d66866c96d5342b2
 Description:  Low-level packet creation library (v1.1.x)
+
+Package: libnfnetlink
+Version: 1.0.1-1
+Depends: libc
+Source: package/libs/libnfnetlink
+SourceFile: libnfnetlink-1.0.1.tar.bz2
+SourceURL: http://www.netfilter.org/projects/libnfnetlink/files/ ftp://ftp.netfilter.org/pub/libnfnetlink/ http://mirrors.evolva.ro/netfilter.org/libnfnetlink/
+Section: libs
+Maintainer: Jo-Philipp Wich <jow@openwrt.org>
+Architecture: ramips_24kec
+Installed-Size: 8947
+Filename: libnfnetlink_1.0.1-1_ramips_24kec.ipk
+Size: 9742
+MD5Sum: dfb5b380f80c62c4a9f351891740f1cd
+Description:  libnfnetlink is is the low-level library for netfilter related kernel/userspace communication.
+ It provides a generic messaging infrastructure for in-kernel netfilter subsystems
+ (such as nfnetlink_log, nfnetlink_queue, nfnetlink_conntrack) and their respective users
+ and/or management tools in userspace.
 
 Package: libnl-tiny
 Version: 0.1-3
@@ -3121,8 +3861,8 @@ Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
 Installed-Size: 12689
 Filename: libnl-tiny_0.1-3_ramips_24kec.ipk
-Size: 13285
-MD5Sum: 2dbd7b41d4d3701bc410a942426239fe
+Size: 13282
+MD5Sum: 9c37dab5552f1b14a021386db156a814
 Description:  This package contains a stripped down version of libnl
 
 Package: libopenssl
@@ -3135,10 +3875,10 @@ License: SSLEAY OPENSSL
 LicenseFiles: LICENSE
 Section: libs
 Architecture: ramips_24kec
-Installed-Size: 624696
+Installed-Size: 624701
 Filename: libopenssl_1.0.1e-1_ramips_24kec.ipk
-Size: 618769
-MD5Sum: 59fdcb5762d3dd2ef0e245f82a6bc5ac
+Size: 618859
+MD5Sum: ebef3716ce92a52068938a65a3d1c76d
 Description:  The OpenSSL Project is a collaborative effort to develop a robust,
  commercial-grade, full-featured, and Open Source toolkit implementing the Secure
  Sockets Layer (SSL v2/v3) and Transport Layer Security (TLS v1) protocols as well
@@ -3146,18 +3886,18 @@ Description:  The OpenSSL Project is a collaborative effort to develop a robust,
  This package contains the OpenSSL shared libraries, needed by other programs.
 
 Package: libpcap
-Version: 1.1.1-2
+Version: 1.3.0-1
 Depends: libc
 Source: package/libs/libpcap
-SourceFile: libpcap-1.1.1.tar.gz
+SourceFile: libpcap-1.3.0.tar.gz
 SourceURL: http://www.tcpdump.org/release/
 Section: libs
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 83308
-Filename: libpcap_1.1.1-2_ramips_24kec.ipk
-Size: 83964
-MD5Sum: e9409514f042583bd2dc9ad85e903c48
+Installed-Size: 84816
+Filename: libpcap_1.3.0-1_ramips_24kec.ipk
+Size: 85480
+MD5Sum: 033488353a750d2af67dbe19c66ce324
 Description:  This package contains a system-independent library for user-level network packet
  capture.
 
@@ -3177,6 +3917,21 @@ Size: 75989
 MD5Sum: ce1929583341b0fc8f495d19d08f2480
 Description:  A Perl Compatible Regular Expression library
 
+Package: libpng
+Version: 1.2.50-1
+Depends: libc, zlib
+Source: feeds/packages/libs/libpng
+SourceFile: libpng-1.2.50.tar.xz
+SourceURL: @SF/libpng
+License: LIBPNG GPLv2
+Section: libs
+Architecture: ramips_24kec
+Installed-Size: 120255
+Filename: libpng_1.2.50-1_ramips_24kec.ipk
+Size: 120884
+MD5Sum: 1d2de9fe50fb71726096047fa4aa38ee
+Description:  A PNG format files handling library
+
 Package: libpthread
 Version: 0.9.33.2-1
 Depends: libgcc
@@ -3186,10 +3941,10 @@ Status: unknown hold not-installed
 Essential: yes
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 30516
+Installed-Size: 30511
 Filename: libpthread_0.9.33.2-1_ramips_24kec.ipk
-Size: 31095
-MD5Sum: 020097ba6b1f85aee5d50928094efdf2
+Size: 31085
+MD5Sum: 4c11c452e191285d23fedf1343b15dc4
 Description:  POSIX thread library
 
 Package: libqmi
@@ -3217,56 +3972,56 @@ Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
 Installed-Size: 4857
 Filename: librt_0.9.33.2-1_ramips_24kec.ipk
-Size: 5436
-MD5Sum: c9da1b6a5a01505027c4a8d9b538d9ca
+Size: 5434
+MD5Sum: ccd8e8116a1734d4b648487927b72cea
 Description:  POSIX.1b RealTime extension library
 
 Package: libubox
-Version: 2013-01-29-0bc317aa4d9af44806c28ca286d79a8b5a92b2b8
+Version: 2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442
 Depends: libc
 Source: package/libs/libubox
-SourceFile: libubox-2013-01-29-0bc317aa4d9af44806c28ca286d79a8b5a92b2b8.tar.gz
+SourceFile: libubox-2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442.tar.gz
 SourceURL: git://nbd.name/luci2/libubox.git
 License: ISC BSD-3c
 Section: libs
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 11060
-Filename: libubox_2013-01-29-0bc317aa4d9af44806c28ca286d79a8b5a92b2b8_ramips_24kec.ipk
-Size: 11723
-MD5Sum: 1daef4b461496b784520aa000d4b006b
+Installed-Size: 11375
+Filename: libubox_2013-03-05-49e6e062b8effe281a85de167c16c5f039b74442_ramips_24kec.ipk
+Size: 12015
+MD5Sum: 24a08e3ec4ab1d1bc38326b226ca3b9e
 Description:  Basic utility library
 
 Package: libubus-lua
-Version: 2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50
+Version: 2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe
 Depends: libc, libubus, liblua
 Source: package/ubus
-SourceFile: ubus-2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50.tar.gz
+SourceFile: ubus-2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe.tar.gz
 SourceURL: git://nbd.name/luci2/ubus.git
 License: LGPLv2.1
 Section: luci2
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 5007
-Filename: libubus-lua_2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50_ramips_24kec.ipk
-Size: 5653
-MD5Sum: e429dabb54bc7cc150875659e77b6963
+Installed-Size: 4903
+Filename: libubus-lua_2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe_ramips_24kec.ipk
+Size: 5542
+MD5Sum: f3c9d4125bf8cf93d8794a96ea192c8c
 Description:  Lua binding for the OpenWrt RPC client
 
 Package: libubus
-Version: 2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50
+Version: 2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe
 Depends: libc, libubox
 Source: package/ubus
-SourceFile: ubus-2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50.tar.gz
+SourceFile: ubus-2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe.tar.gz
 SourceURL: git://nbd.name/luci2/ubus.git
 License: LGPLv2.1
 Section: luci2
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 11803
-Filename: libubus_2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50_ramips_24kec.ipk
-Size: 12436
-MD5Sum: e0a65278e34dd535172100686a77870b
+Installed-Size: 11534
+Filename: libubus_2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe_ramips_24kec.ipk
+Size: 12167
+MD5Sum: 62f562f3e3e83d09e4fb7a7c634b78ca
 Description:  OpenWrt RPC client library
 
 Package: libuci-lua
@@ -3279,10 +4034,10 @@ License: LGPLv2.1 GPLv2
 Section: libs
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 6124
+Installed-Size: 6126
 Filename: libuci-lua_2013-01-04.1-1_ramips_24kec.ipk
-Size: 6739
-MD5Sum: e5219385bd013722258ed87e746058ce
+Size: 6738
+MD5Sum: aafea9ee4e33fc630da21c7b47107c9b
 Description:  Lua plugin for UCI
 
 Package: libuci
@@ -3295,10 +4050,10 @@ License: LGPLv2.1 GPLv2
 Section: libs
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 15261
+Installed-Size: 15259
 Filename: libuci_2013-01-04.1-1_ramips_24kec.ipk
-Size: 15852
-MD5Sum: c481241c295b099a1d690eb77916bde4
+Size: 15848
+MD5Sum: 67986a09f42a69a504a2736e95ea7e94
 Description:  C library for the Unified Configuration Interface (UCI)
 
 Package: libusb-1.0
@@ -3310,10 +4065,10 @@ SourceURL: @SF/libusb
 Section: libs
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 22816
+Installed-Size: 22814
 Filename: libusb-1.0_1.0.9-1_ramips_24kec.ipk
-Size: 23432
-MD5Sum: 349a16189543f6c05ccd3443c71166e5
+Size: 23425
+MD5Sum: b6bf130792c7a63a7588fad120fcc2e6
 Description:  libusb is a C library that gives applications easy access to USB devices on
  many different operating systems.
 
@@ -3326,10 +4081,10 @@ SourceURL: @SF/libusb
 Section: libs
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 5843
+Installed-Size: 5844
 Filename: libusb-compat_0.1.4-1_ramips_24kec.ipk
-Size: 6490
-MD5Sum: 3af0c5860b06658f695b99c772c6fee0
+Size: 6496
+MD5Sum: fa3dfb934acba29e445aa044eae28b29
 Description:  libusb is a C library that gives applications easy access to USB devices on
  many different operating systems.
 
@@ -3343,25 +4098,58 @@ License: ISC
 Section: libs
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 2851
+Installed-Size: 2848
 Filename: libustream-cyassl_2013-01-22-da607e6272d789ed5dae3b0efff90912fda6f81f_ramips_24kec.ipk
-Size: 3531
-MD5Sum: 1f67f606d17567c28c98cb507c790736
+Size: 3529
+MD5Sum: e5af408db0718860a76544ac617aead2
 Description:  ustream SSL Library (cyassl)
 
+Package: libuuid
+Version: 2.21.2-1
+Depends: libc
+Source: package/util-linux
+SourceFile: util-linux-2.21.2.tar.xz
+SourceURL: @KERNEL/linux/utils/util-linux/v2.21
+License: GPLv2 LGPLv2.1 BSD-3c
+LicenseFiles: COPYING getopt/COPYING libblkid/COPYING libmount/COPYING Documentation/licenses/COPYING.GPLv2 Documentation/licenses/COPYING.LGPLv2.1 libuuid/COPYING Documentation/licenses/COPYING.BSD-3
+Section: libs
+Architecture: ramips_24kec
+Installed-Size: 5589
+Filename: libuuid_2.21.2-1_ramips_24kec.ipk
+Size: 6397
+MD5Sum: ed1165006b77e96ff548d20527f96ebd
+Description:  The UUID library is used to generate unique identifiers for objects
+ that may be accessible beyond the local system. This library
+ generates UUIDs compatible with those created by the Open Software
+ Foundation (OSF) Distributed Computing Environment (DCE) utility.
+
 Package: libxtables
-Version: 1.4.18-1
+Version: 1.4.18-3
 Depends: libc
 Source: package/network/utils/iptables
 SourceFile: iptables-1.4.18.tar.bz2
 SourceURL: http://www.netfilter.org/projects/iptables/files ftp://ftp.be.netfilter.org/pub/netfilter/iptables/ ftp://ftp.de.netfilter.org/pub/netfilter/iptables/ ftp://ftp.no.netfilter.org/pub/netfilter/iptables/
 Section: libs
 Architecture: ramips_24kec
-Installed-Size: 16958
-Filename: libxtables_1.4.18-1_ramips_24kec.ipk
-Size: 17589
-MD5Sum: b9d8dd1c38a911111b4ef79b9437ff2f
+Installed-Size: 16957
+Filename: libxtables_1.4.18-3_ramips_24kec.ipk
+Size: 17588
+MD5Sum: beb74d7dbe885b9d86b7cf5351fe0d57
 Description:  IPv4/IPv6 firewall - shared xtables library
+
+Package: list-smargo
+Version: 2013-04-11-8609-1
+Depends: libc, oscam
+Source: feeds/custompackages/net/oscam
+SourceFile: oscam-2013-04-11-8609.tar.bz2
+SourceURL: http://www.streamboard.tv/svn/oscam/trunk
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 2485
+Filename: list-smargo_2013-04-11-8609-1_ramips_24kec.ipk
+Size: 3092
+MD5Sum: 26dbdcb2e0b785bb5b5704d344025e1f
+Description:  Smargo reader support
 
 Package: lua
 Version: 5.1.5-1
@@ -3374,493 +4162,568 @@ LicenseFiles: COPYRIGHT
 Section: lang
 Maintainer: Jo-Philipp Wich <jow@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 4716
+Installed-Size: 4719
 Filename: lua_5.1.5-1_ramips_24kec.ipk
-Size: 5473
-MD5Sum: 14eda92e326bd20b7b267ecc507c7831
+Size: 5471
+MD5Sum: 74ffa5b5d5acdbe1a8afc0a7a42579e4
 Description:  Lua is a powerful light-weight programming language designed for extending 
  applications. Lua is also frequently used as a general-purpose, stand-alone 
  language. Lua is free software.
  This package contains the Lua language interpreter.
 
-Package: luci-app-commands
-Version: trunk+svn57-1
-Depends: libc
+Package: luci-app-3ginfo
+Version: trunk+svn141-1
+Depends: libc, 3ginfo
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 6784
-Filename: luci-app-commands_trunk+svn57-1_ramips_24kec.ipk
-Size: 7465
-MD5Sum: 2ae3c673751c5c0d0094d3a2be0e5f4b
+Installed-Size: 1563
+Filename: luci-app-3ginfo_trunk+svn141-1_ramips_24kec.ipk
+Size: 2221
+MD5Sum: 58089ce2bc04fb054340187e8d5e329c
+Description:  LuCI Support for 3ginfo
+
+Package: luci-app-commands
+Version: trunk+svn141-1
+Depends: libc
+Source: feeds/luci/luci
+SourceFile: luci-trunk+svn141.tar.gz
+SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
+Section: luci
+Maintainer: LuCI Development Team <luci@lists.subsignal.org>
+Architecture: ramips_24kec
+Installed-Size: 6787
+Filename: luci-app-commands_trunk+svn141-1_ramips_24kec.ipk
+Size: 7468
+MD5Sum: 0ca346e01f29134e153daf5d31c73c2a
 Description:  LuCI Shell Command Module
 
 Package: luci-app-ddns
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, ddns-scripts
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 10967
-Filename: luci-app-ddns_trunk+svn57-1_ramips_24kec.ipk
-Size: 11604
-MD5Sum: 057872eed5e017df69010f88148a4824
+Installed-Size: 10965
+Filename: luci-app-ddns_trunk+svn141-1_ramips_24kec.ipk
+Size: 11603
+MD5Sum: 9e5b64a2f1a167af02c485edeba82fb2
 Description:  Dynamic DNS configuration module
 
 Package: luci-app-diag-core
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 4720
-Filename: luci-app-diag-core_trunk+svn57-1_ramips_24kec.ipk
-Size: 5365
-MD5Sum: 35af3e02532f569ab10440cd72d21da4
+Installed-Size: 4727
+Filename: luci-app-diag-core_trunk+svn141-1_ramips_24kec.ipk
+Size: 5370
+MD5Sum: d90972a97b739053201036ea05de1c7f
 Description:  LuCI Diagnostics Tools (Core)
 
 Package: luci-app-diag-devinfo
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci-app-diag-core, smap, netdiscover, mac-to-devinfo, httping, smap-to-devinfo, netdiscover-to-devinfo
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 20969
-Filename: luci-app-diag-devinfo_trunk+svn57-1_ramips_24kec.ipk
-Size: 21693
-MD5Sum: d7834aacd11ad72a0fe5ee68ad0d493f
+Installed-Size: 20960
+Filename: luci-app-diag-devinfo_trunk+svn141-1_ramips_24kec.ipk
+Size: 21684
+MD5Sum: 6e29813c2304e095d3fac8a22261b2c8
 Description:  LuCI Diagnostics Tools (Device Info)
 
 Package: luci-app-firewall
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, firewall
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 53067
-Filename: luci-app-firewall_trunk+svn57-1_ramips_24kec.ipk
-Size: 53816
-MD5Sum: 1deab2987292869b025cacd803314341
+Installed-Size: 52831
+Filename: luci-app-firewall_trunk+svn141-1_ramips_24kec.ipk
+Size: 53582
+MD5Sum: 27cd64161a9386a99527114f2c37fc7e
 Description:  Firewall and Portforwarding application
 
 Package: luci-app-multiwan
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci-app-firewall, multiwan
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 11513
-Filename: luci-app-multiwan_trunk+svn57-1_ramips_24kec.ipk
-Size: 12180
-MD5Sum: d23ddaff5116b15853f1080c3c232e94
+Installed-Size: 11510
+Filename: luci-app-multiwan_trunk+svn141-1_ramips_24kec.ipk
+Size: 12164
+MD5Sum: c6e7cd51f04d25bffd2a52e94660b46d
 Description:  LuCI Support for the OpenWrt MultiWAN agent
 
 Package: luci-app-ntpc
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, ntpclient
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 7473
-Filename: luci-app-ntpc_trunk+svn57-1_ramips_24kec.ipk
-Size: 8151
-MD5Sum: 776d787e7c9d145ca48a9978319ee3d3
+Installed-Size: 7468
+Filename: luci-app-ntpc_trunk+svn141-1_ramips_24kec.ipk
+Size: 8148
+MD5Sum: ee9cb7e295d672afc0efeb883ae06315
 Description:  NTP time synchronisation configuration module
 
+Package: luci-app-p910nd
+Version: trunk+svn141-1
+Depends: libc, p910nd
+Source: feeds/luci/luci
+SourceFile: luci-trunk+svn141.tar.gz
+SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
+Section: luci
+Maintainer: LuCI Development Team <luci@lists.subsignal.org>
+Architecture: ramips_24kec
+Installed-Size: 5679
+Filename: luci-app-p910nd_trunk+svn141-1_ramips_24kec.ipk
+Size: 6461
+MD5Sum: d657f304e0f5c4ed4693a7d4f702be10
+Description:  p910nd - Printer server module
+
 Package: luci-app-qos
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, qos-scripts
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
 Installed-Size: 9970
-Filename: luci-app-qos_trunk+svn57-1_ramips_24kec.ipk
-Size: 10660
-MD5Sum: 91a296df2ce00d9385a5b8ebef695f30
+Filename: luci-app-qos_trunk+svn141-1_ramips_24kec.ipk
+Size: 10649
+MD5Sum: 3f4adf3aa6e46d8af5c5aa0a026ba5d3
 Description:  Quality of Service configuration module
 
-Package: luci-app-wol
-Version: trunk+svn57-1
-Depends: libc, etherwake
+Package: luci-app-upnp
+Version: trunk+svn141-1
+Depends: libc, miniupnpd
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 7810
-Filename: luci-app-wol_trunk+svn57-1_ramips_24kec.ipk
-Size: 8469
-MD5Sum: e6550a318214f5d1bdcfe2c924fe9062
+Installed-Size: 17350
+Filename: luci-app-upnp_trunk+svn141-1_ramips_24kec.ipk
+Size: 18061
+MD5Sum: 3c9a46c45dff613ee42a5d5e9e22d149
+Description:  Universal Plug & Play configuration module
+
+Package: luci-app-vnstat
+Version: trunk+svn141-1
+Depends: libc, vnstat, vnstati
+Source: feeds/luci/luci
+SourceFile: luci-trunk+svn141.tar.gz
+SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
+Section: luci
+Maintainer: LuCI Development Team <luci@lists.subsignal.org>
+Architecture: ramips_24kec
+Installed-Size: 7717
+Filename: luci-app-vnstat_trunk+svn141-1_ramips_24kec.ipk
+Size: 8515
+MD5Sum: 2fead8daa80c1135d11e0119bfc80a7e
+Description:  LuCI Support for VnStat
+
+Package: luci-app-wol
+Version: trunk+svn141-1
+Depends: libc, etherwake
+Source: feeds/luci/luci
+SourceFile: luci-trunk+svn141.tar.gz
+SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
+Section: luci
+Maintainer: LuCI Development Team <luci@lists.subsignal.org>
+Architecture: ramips_24kec
+Installed-Size: 7809
+Filename: luci-app-wol_trunk+svn141-1_ramips_24kec.ipk
+Size: 8471
+MD5Sum: 1b986ebdf5a8c4f05b16b4b39eab46ae
 Description:  LuCI Support for Wake-on-LAN
 
 Package: luci-i18n-english
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 524
-Filename: luci-i18n-english_trunk+svn57-1_ramips_24kec.ipk
-Size: 1274
-MD5Sum: 30692f3aa0bf47252467116e8e6b9a84
+Installed-Size: 527
+Filename: luci-i18n-english_trunk+svn141-1_ramips_24kec.ipk
+Size: 1275
+MD5Sum: d3caeb435dd021d532bca1e2a7428d9a
 Description:  English
 
 Package: luci-i18n-russian
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 24720
-Filename: luci-i18n-russian_trunk+svn57-1_ramips_24kec.ipk
-Size: 25508
-MD5Sum: 0d159e4efa74b4e98064b1844640aba2
+Installed-Size: 24723
+Filename: luci-i18n-russian_trunk+svn141-1_ramips_24kec.ipk
+Size: 25518
+MD5Sum: d026b0c5506984ad25fffb9874d59ef5
 Description:  Russian (by Skryabin Dmitry)
 
-Package: luci-lib-core
-Version: trunk+svn57-1
-Depends: libc, lua, libuci-lua, libubus-lua
+Package: luci-i18n-ukrainian
+Version: trunk+svn141-1
+Depends: libc
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 29403
-Filename: luci-lib-core_trunk+svn57-1_ramips_24kec.ipk
-Size: 30001
-MD5Sum: 1329a1d118078d95f9294af4c8bdc8ad
+Installed-Size: 22708
+Filename: luci-i18n-ukrainian_trunk+svn141-1_ramips_24kec.ipk
+Size: 23459
+MD5Sum: 1404d9d008158de3f6404c53c5d32deb
+Description:  Ukrainian
+
+Package: luci-lib-core
+Version: trunk+svn141-1
+Depends: libc, lua, libuci-lua, libubus-lua
+Source: feeds/luci/luci
+SourceFile: luci-trunk+svn141.tar.gz
+SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
+Section: luci
+Maintainer: LuCI Development Team <luci@lists.subsignal.org>
+Architecture: ramips_24kec
+Installed-Size: 29397
+Filename: luci-lib-core_trunk+svn141-1_ramips_24kec.ipk
+Size: 29997
+MD5Sum: 7d7ebef93e9b3918af6bd3155cbe7ace
 Description:  LuCI core libraries
 
 Package: luci-lib-ipkg
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 2309
-Filename: luci-lib-ipkg_trunk+svn57-1_ramips_24kec.ipk
-Size: 2949
-MD5Sum: a10996615d2cce437df61ea725ab9bbb
+Installed-Size: 2314
+Filename: luci-lib-ipkg_trunk+svn141-1_ramips_24kec.ipk
+Size: 2946
+MD5Sum: c86e2f4cca5258209eb4f48fd2bd4767
 Description:  LuCI IPKG/OPKG call abstraction library
 
 Package: luci-lib-lucid-http
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci-lib-core, luci-lib-lucid
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 9090
-Filename: luci-lib-lucid-http_trunk+svn57-1_ramips_24kec.ipk
-Size: 9755
-MD5Sum: bad0236816ce522a0f2faa318324c7b2
+Installed-Size: 9084
+Filename: luci-lib-lucid-http_trunk+svn141-1_ramips_24kec.ipk
+Size: 9733
+MD5Sum: c3ddd07eb9af981e3e6269519180a305
 Description:  LuCId HTTP Backend
 
 Package: luci-lib-lucid
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci-lib-core, luci-lib-nixio, luci-lib-web, luci-lib-px5g
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 5825
-Filename: luci-lib-lucid_trunk+svn57-1_ramips_24kec.ipk
-Size: 6484
-MD5Sum: 4c324f0aa808c88095e8bd0d02d9365f
+Installed-Size: 5817
+Filename: luci-lib-lucid_trunk+svn141-1_ramips_24kec.ipk
+Size: 6474
+MD5Sum: 518e932f8fb55ade0083c465b129c18a
 Description:  LuCId Full-Stack Webserver
 
 Package: luci-lib-nixio
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci-lib-core, libopenssl
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 31799
-Filename: luci-lib-nixio_trunk+svn57-1_ramips_24kec.ipk
-Size: 32389
-MD5Sum: 2dfb45c255a1e28c8031b3b84d0d87c7
+Installed-Size: 31794
+Filename: luci-lib-nixio_trunk+svn141-1_ramips_24kec.ipk
+Size: 32387
+MD5Sum: 50a7bfa15c084553cfdab175a8568398
 Description:  NIXIO POSIX library
 
 Package: luci-lib-px5g
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci-lib-core, luci-lib-nixio
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 29098
-Filename: luci-lib-px5g_trunk+svn57-1_ramips_24kec.ipk
-Size: 29815
-MD5Sum: b5e2c1d9110e76f52177462a7919c7fc
+Installed-Size: 29094
+Filename: luci-lib-px5g_trunk+svn141-1_ramips_24kec.ipk
+Size: 29810
+MD5Sum: d5a7be5ae3ad994bea7f2284c01223d5
 Description:  RSA/X.509 Key Generator (required for LuCId SSL support)
 
 Package: luci-lib-sys
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 15729
-Filename: luci-lib-sys_trunk+svn57-1_ramips_24kec.ipk
+Installed-Size: 15732
+Filename: luci-lib-sys_trunk+svn141-1_ramips_24kec.ipk
 Size: 16351
-MD5Sum: 1c9d1d1bab99e74521f0172ca6e4a7b8
+MD5Sum: f1b35abf03e5ce198a8b116d7e08747b
 Description:  LuCI Linux/POSIX system library
 
 Package: luci-lib-web
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci-lib-core, luci-lib-sys, luci-lib-nixio, luci-lib-core, luci-sgi-cgi
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 64378
-Filename: luci-lib-web_trunk+svn57-1_ramips_24kec.ipk
-Size: 65160
-MD5Sum: 60e6210e824822be172f14281da90fed
+Installed-Size: 64377
+Filename: luci-lib-web_trunk+svn141-1_ramips_24kec.ipk
+Size: 65176
+MD5Sum: 039a1f7ffa3f9873558488f171a534ca
 Description:  MVC Webframework
 
 Package: luci-mod-admin-core
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci-lib-web, luci-proto-core, luci-i18n-english
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 5260
-Filename: luci-mod-admin-core_trunk+svn57-1_ramips_24kec.ipk
-Size: 6036
-MD5Sum: 554346a6160af04936ff33e80fa7cf54
+Installed-Size: 5258
+Filename: luci-mod-admin-core_trunk+svn141-1_ramips_24kec.ipk
+Size: 6031
+MD5Sum: d0a0ae0eada4bcbe060012604df46542
 Description:  Web UI Core module
 
 Package: luci-mod-admin-full
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci-mod-admin-core, luci-lib-ipkg
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 67705
-Filename: luci-mod-admin-full_trunk+svn57-1_ramips_24kec.ipk
-Size: 68477
-MD5Sum: 6d42a2d11de07502c95a83b13453adda
+Installed-Size: 67717
+Filename: luci-mod-admin-full_trunk+svn141-1_ramips_24kec.ipk
+Size: 68495
+MD5Sum: 36f19208283bdb0c3fcf7440171b5909
 Description:  LuCI Administration - full-featured for full control
 
 Package: luci-proto-3g
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, comgt
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 1846
-Filename: luci-proto-3g_trunk+svn57-1_ramips_24kec.ipk
-Size: 2469
-MD5Sum: 4eb649d35f8b09a49a58f9c2e3ec50eb
+Installed-Size: 1844
+Filename: luci-proto-3g_trunk+svn141-1_ramips_24kec.ipk
+Size: 2473
+MD5Sum: 474adae5b24e66e736f557a830ca0887
 Description:  Support for 3G
 
 Package: luci-proto-4g
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, 4g-scripts
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 2340
-Filename: luci-proto-4g_trunk+svn57-1_ramips_24kec.ipk
-Size: 2977
-MD5Sum: eda2a18457828906c3646a6db45b4780
+Installed-Size: 2339
+Filename: luci-proto-4g_trunk+svn141-1_ramips_24kec.ipk
+Size: 2988
+MD5Sum: 62b11fa86b877a1b02c6d26c298f5f8a
 Description:  Suport for 4G (LTE)
 
 Package: luci-proto-core
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 1879
-Filename: luci-proto-core_trunk+svn57-1_ramips_24kec.ipk
-Size: 2524
-MD5Sum: ae305b72ebb0dd90a3b930c2a3e04704
+Installed-Size: 1876
+Filename: luci-proto-core_trunk+svn141-1_ramips_24kec.ipk
+Size: 2522
+MD5Sum: 3814049e89bd457abbbb7d8bc6ff19fb
 Description:  Support for static/dhcp/none
 
 Package: luci-proto-ipv6
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, 6in4, 6to4, 6rd, ipv6-support
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 2728
-Filename: luci-proto-ipv6_trunk+svn57-1_ramips_24kec.ipk
-Size: 3381
-MD5Sum: ef50fa65e462e10f8b824d6065313687
+Installed-Size: 2717
+Filename: luci-proto-ipv6_trunk+svn141-1_ramips_24kec.ipk
+Size: 3367
+MD5Sum: 56ad0b7ced108d4737e009d224b4e97c
 Description:  Support for DHCPv6/6in4/6to4/6rd
 
 Package: luci-proto-ppp
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 2984
-Filename: luci-proto-ppp_trunk+svn57-1_ramips_24kec.ipk
-Size: 3636
-MD5Sum: 6773e769c98b0eccd572ff06363e33ef
+Installed-Size: 2988
+Filename: luci-proto-ppp_trunk+svn141-1_ramips_24kec.ipk
+Size: 3630
+MD5Sum: 9d894873e146374d4591b40e1e4de38f
 Description:  Support for PPP/PPPoE/PPPoA/PPtP
 
 Package: luci-proto-relay
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, relayd
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 2201
-Filename: luci-proto-relay_trunk+svn57-1_ramips_24kec.ipk
-Size: 2849
-MD5Sum: 97ab56b52af38d4606de6644ddc18b71
+Installed-Size: 2199
+Filename: luci-proto-relay_trunk+svn141-1_ramips_24kec.ipk
+Size: 2844
+MD5Sum: 1c2210e2927a816ef2731ee0dfcd9f77
 Description:  Support for relayd pseudo bridges
 
 Package: luci-sgi-cgi
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
 Installed-Size: 1477
-Filename: luci-sgi-cgi_trunk+svn57-1_ramips_24kec.ipk
-Size: 2145
-MD5Sum: c888fae5517f80eea35e5d1d78f7046c
+Filename: luci-sgi-cgi_trunk+svn141-1_ramips_24kec.ipk
+Size: 2153
+MD5Sum: ff6e726496e8729c224898add1ae1cb9
 Description:  CGI Gateway behind existing Webserver
 
 Package: luci-ssl
-Version: trunk+svn57-1
+Version: trunk+svn141-1
 Depends: libc, luci, libustream-cyassl, px5g
 Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
-SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
-Section: luci
-Maintainer: LuCI Development Team <luci@lists.subsignal.org>
-Architecture: ramips_24kec
-Installed-Size: 106
-Filename: luci-ssl_trunk+svn57-1_ramips_24kec.ipk
-Size: 753
-MD5Sum: e8d13a82bb66aba87e243dece7250ba4
-Description:  Standard OpenWrt set with HTTPS support
-
-Package: luci-theme-base
-Version: trunk+svn57-1
-Depends: libc
-Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
-SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
-Section: luci
-Maintainer: LuCI Development Team <luci@lists.subsignal.org>
-Architecture: ramips_24kec
-Installed-Size: 23635
-Filename: luci-theme-base_trunk+svn57-1_ramips_24kec.ipk
-Size: 24257
-MD5Sum: fdf3d0ae4db8037b1f5cbcf173a9c18e
-Description:  Common base for all themes
-
-Package: luci-theme-openwrt
-Version: trunk+svn57-1
-Depends: libc, luci-theme-base
-Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
-SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
-Section: luci
-Maintainer: LuCI Development Team <luci@lists.subsignal.org>
-Architecture: ramips_24kec
-Installed-Size: 7053
-Filename: luci-theme-openwrt_trunk+svn57-1_ramips_24kec.ipk
-Size: 7858
-MD5Sum: eccb17ad171c12cbe246ab41983dc4b9
-Description:  OpenWrt.org (default)
-
-Package: luci
-Version: trunk+svn57-1
-Depends: libc, uhttpd, uhttpd-mod-ubus, luci-mod-admin-full, luci-theme-openwrt, luci-app-firewall, luci-proto-core, luci-proto-ppp, libiwinfo-lua
-Source: feeds/luci/luci
-SourceFile: luci-trunk+svn57.tar.gz
+SourceFile: luci-trunk+svn141.tar.gz
 SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 Section: luci
 Maintainer: LuCI Development Team <luci@lists.subsignal.org>
 Architecture: ramips_24kec
 Installed-Size: 105
-Filename: luci_trunk+svn57-1_ramips_24kec.ipk
-Size: 825
-MD5Sum: 15e58454e17867721b819a588b880ebe
+Filename: luci-ssl_trunk+svn141-1_ramips_24kec.ipk
+Size: 753
+MD5Sum: 66e43124f8ee28568acac4b225435c9a
+Description:  Standard OpenWrt set with HTTPS support
+
+Package: luci-theme-base
+Version: trunk+svn141-1
+Depends: libc
+Source: feeds/luci/luci
+SourceFile: luci-trunk+svn141.tar.gz
+SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
+Section: luci
+Maintainer: LuCI Development Team <luci@lists.subsignal.org>
+Architecture: ramips_24kec
+Installed-Size: 23637
+Filename: luci-theme-base_trunk+svn141-1_ramips_24kec.ipk
+Size: 24257
+MD5Sum: f06663f11ac0e5a6ea5e386a469590f7
+Description:  Common base for all themes
+
+Package: luci-theme-openwrt
+Version: trunk+svn141-1
+Depends: libc, luci-theme-base
+Source: feeds/luci/luci
+SourceFile: luci-trunk+svn141.tar.gz
+SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
+Section: luci
+Maintainer: LuCI Development Team <luci@lists.subsignal.org>
+Architecture: ramips_24kec
+Installed-Size: 7057
+Filename: luci-theme-openwrt_trunk+svn141-1_ramips_24kec.ipk
+Size: 7866
+MD5Sum: 245ca8244a6eb013ba189241ad2f2d57
+Description:  OpenWrt.org (default)
+
+Package: luci
+Version: trunk+svn141-1
+Depends: libc, uhttpd, uhttpd-mod-ubus, luci-mod-admin-full, luci-theme-openwrt, luci-app-firewall, luci-proto-core, luci-proto-ppp, libiwinfo-lua
+Source: feeds/luci/luci
+SourceFile: luci-trunk+svn141.tar.gz
+SourceURL: http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
+Section: luci
+Maintainer: LuCI Development Team <luci@lists.subsignal.org>
+Architecture: ramips_24kec
+Installed-Size: 104
+Filename: luci_trunk+svn141-1_ramips_24kec.ipk
+Size: 823
+MD5Sum: 292c94fde2abb3f70c46e739254fd61a
 Description:  Standard OpenWrt set including full admin with ppp support and the default OpenWrt theme
 
 Package: mac-to-devinfo
@@ -3870,14 +4733,29 @@ Source: feeds/packages/net/mac-to-devinfo
 Section: net
 Maintainer: Daniel Dickinson <openwrt@cshore.neomailbox.net>
 Architecture: ramips_24kec
-Installed-Size: 3951
+Installed-Size: 3948
 Filename: mac-to-devinfo_1.0.0-2_ramips_24kec.ipk
-Size: 4686
-MD5Sum: 01620e74627ee4823c33af4415f316f8
+Size: 4678
+MD5Sum: f309a8432bc6bf4142828930fa7bc4ae
 Description:  Scripts to take a mac address (or ip if the ip is in the arp cache)
  and translate it into device information (mostly OUI owner, from the
  IEEE data files, but more information may be available for specific
  devices/vendors).
+
+Package: miniupnpd
+Version: 1.8-2
+Depends: libc, iptables, libip4tc, libip6tc, libnfnetlink
+Source: feeds/packages/net/miniupnpd
+SourceFile: miniupnpd-1.8.tar.gz
+SourceURL: http://miniupnp.free.fr/files
+Section: net
+Maintainer: Daniel Dickinson <openwrt@cshore.neomailbox.net>
+Architecture: ramips_24kec
+Installed-Size: 41257
+Filename: miniupnpd_1.8-2_ramips_24kec.ipk
+Size: 42089
+MD5Sum: 3a6fbe4f0079417d0d94e52bebd00cff
+Description:  Lightweight UPnP daemon
 
 Package: mpcs
 Version: 0.9e-1
@@ -3885,10 +4763,10 @@ Depends: libc, libpthread
 Source: feeds/custompackages/net/mpcs
 Section: custom
 Architecture: ramips_24kec
-Installed-Size: 150162
+Installed-Size: 149552
 Filename: mpcs_0.9e-1_ramips_24kec.ipk
-Size: 149845
-MD5Sum: 2b3ae9fa3b38db806008279cb103e3f3
+Size: 149397
+MD5Sum: 01ad4ffdb84d3650df04ab0380abbfd8
 Description:  Cardsharing software 
 
 Package: mtd
@@ -3898,10 +4776,10 @@ Source: package/mtd
 License: GPLv2 GPLv2+
 Section: utils
 Architecture: ramips_24kec
-Installed-Size: 11286
+Installed-Size: 11284
 Filename: mtd_20_ramips_24kec.ipk
-Size: 11832
-MD5Sum: 0a7735119e1c99d019481ad140096f55
+Size: 11839
+MD5Sum: a849b6fe1aa8f7247fda62e3a4710bdd
 Description:  This package contains an utility useful to upgrade from other firmware or 
  older OpenWrt releases.
 
@@ -3912,10 +4790,10 @@ Source: feeds/packages/net/multiwan
 Section: net
 Maintainer: Craig M. Coffee <craigc@netlab7.com>
 Architecture: ramips_24kec
-Installed-Size: 7644
+Installed-Size: 7647
 Filename: multiwan_1.0.22-2_ramips_24kec.ipk
-Size: 8475
-MD5Sum: 62673e38b6b9691324dfcf70773ccbdd
+Size: 8473
+MD5Sum: 4f5530eeb65f4c96daa114c8de8fb44a
 Description:  An agent script that makes Multi-WAN configuration simple,
  easy and manageable. Complete with load balancing, failover and an easy
  to manage traffic ruleset.
@@ -3928,8 +4806,8 @@ Section: net
 Architecture: ramips_24kec
 Installed-Size: 1094
 Filename: netdiscover-to-devinfo_1.0.0-2_ramips_24kec.ipk
-Size: 1688
-MD5Sum: 9d1b1016e7d36573e0fb50895ccc6a9f
+Size: 1690
+MD5Sum: f94b55f9d4bbf223a29fd7ec09ab71fb
 Description:  A script to use netdiscover to discover all devices on the specified
  arp-able networks and translate into the device information.
 
@@ -3942,26 +4820,26 @@ SourceURL: http://nixgeneration.com/~jaime/netdiscover/releases/
 Section: net
 Maintainer: Daniel Dickinson <openwrt@cshore.neomailbox.net>
 Architecture: ramips_24kec
-Installed-Size: 126010
+Installed-Size: 126013
 Filename: netdiscover_0.3-beta6-3_ramips_24kec.ipk
-Size: 121173
-MD5Sum: 5bb552ee1e764052da477ae8c0ade013
+Size: 121186
+MD5Sum: e08fba34893ed71feabb34c415ae66dd
 Description:  An active/passive address reconnaissance tool
 
 Package: netifd
-Version: 2013-02-19-486aa750a164d41905beb61afec89268e3eb7f48
+Version: 2013-04-05-ec72439d9960e6f37293c715c3f7b9584b03ddd8
 Depends: libc, libuci, libnl-tiny, libubus, ubus, ubusd, jshn
 Source: package/network/config/netifd
-SourceFile: netifd-2013-02-19-486aa750a164d41905beb61afec89268e3eb7f48.tar.gz
+SourceFile: netifd-2013-04-05-ec72439d9960e6f37293c715c3f7b9584b03ddd8.tar.gz
 SourceURL: git://nbd.name/luci2/netifd.git
 License: GPLv2
 Section: base
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 40733
-Filename: netifd_2013-02-19-486aa750a164d41905beb61afec89268e3eb7f48_ramips_24kec.ipk
-Size: 41466
-MD5Sum: dc33ee612cd25befd5beb2ebd3c8d488
+Installed-Size: 43249
+Filename: netifd_2013-04-05-ec72439d9960e6f37293c715c3f7b9584b03ddd8_ramips_24kec.ipk
+Size: 43851
+MD5Sum: abdb8b4bdef0aef4bffdebeb42be4188
 Description:  OpenWrt Network Interface Configuration Daemon
 
 Package: ntpclient
@@ -3972,25 +4850,25 @@ SourceFile: ntpclient_2007_365.tar.gz
 SourceURL: http://doolittle.icarus.com/ntpclient/
 Section: net
 Architecture: ramips_24kec
-Installed-Size: 12481
+Installed-Size: 12479
 Filename: ntpclient_2007_365-4_ramips_24kec.ipk
-Size: 13093
-MD5Sum: f662a5966d7ad576167bf0b95ca4e06c
+Size: 13094
+MD5Sum: 6c1dcebff3b174fded4a605eaa3ecdc9
 Description:  NTP client for setting system time from NTP servers.
 
 Package: odhcp6c
-Version: 2013-02-12-31ce2ea9f57322d526daf266c7fca4bd407297cb
+Version: 2013-03-26-920fda0ef9da478202fc330cc887e1ef3d703925
 Depends: libc, kmod-ipv6
 Source: package/network/ipv6/odhcp6c
-SourceFile: odhcp6c-2013-02-12.tar.bz2
+SourceFile: odhcp6c-2013-03-26.tar.bz2
 SourceURL: git://github.com/sbyx/odhcp6c.git
 Section: ipv6
 Maintainer: Steven Barth <steven@midlink.org>
 Architecture: ramips_24kec
-Installed-Size: 14048
-Filename: odhcp6c_2013-02-12-31ce2ea9f57322d526daf266c7fca4bd407297cb_ramips_24kec.ipk
-Size: 14651
-MD5Sum: 13c53c44676358a2b03c789fc8203f75
+Installed-Size: 14256
+Filename: odhcp6c_2013-03-26-920fda0ef9da478202fc330cc887e1ef3d703925_ramips_24kec.ipk
+Size: 14848
+MD5Sum: 36b2d1522cfaf501d92126ecbd75fc52
 Description:  Embedded DHCPv6-client for OpenWrt
 
 Package: opkg
@@ -4004,10 +4882,10 @@ LicenseFiles: COPYING
 Section: base
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 56315
+Installed-Size: 56313
 Filename: opkg_618-3_ramips_24kec.ipk
-Size: 57023
-MD5Sum: 9b68549b46f7def68b70a3a56e235f70
+Size: 57063
+MD5Sum: a5d4d127028c3d24a00d57347f70ded7
 Description:  Lightweight package management system
  opkg is the opkg Package Management System, for handling
  installation and removal of packages on a system. It can
@@ -4015,6 +4893,40 @@ Description:  Lightweight package management system
  necessary to install a particular package.
  
  opkg knows how to install both .ipk and .deb packages.
+
+Package: oscam
+Version: 2013-04-11-8609-1
+Depends: libc, libopenssl, libusb-1.0
+Source: feeds/custompackages/net/oscam
+SourceFile: oscam-2013-04-11-8609.tar.bz2
+SourceURL: http://www.streamboard.tv/svn/oscam/trunk
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 391307
+Filename: oscam_2013-04-11-8609-1_ramips_24kec.ipk
+Size: 391463
+MD5Sum: 8658046917a4faedbe2a93d8810be709
+Description:  Open Source Conditional Access Module
+
+Package: p910nd
+Version: 0.95-3
+Depends: libc
+Source: feeds/packages/net/p910nd
+SourceFile: p910nd-0.95.tar.bz2
+SourceURL: @SF/p910nd
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 5241
+Filename: p910nd_0.95-3_ramips_24kec.ipk
+Size: 6032
+MD5Sum: 1a40c5118b98c4cf61df76413a59df99
+Description:  p910nd is a small daemon that copies any data received on
+ the port it is listening on to the corresponding printer
+ port. It is primarily intended for diskless Linux hosts
+ running as printer drivers but there is no reason why it
+ could not be used on diskful hosts. Port 9100 is copied
+ to /dev/lp0, 9101 to /dev/lp1 and 9102 to /dev/lp2. The
+ default is port 9100 to /dev/lp0.
 
 Package: ppp-mod-pppoe
 Version: 2.4.5-9
@@ -4025,10 +4937,10 @@ SourceURL: ftp://ftp.samba.org/pub/ppp/
 Section: net
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 8673
+Installed-Size: 8671
 Filename: ppp-mod-pppoe_2.4.5-9_ramips_24kec.ipk
-Size: 9318
-MD5Sum: 09271a50fa7ee56bc5a292b4e9aa31c2
+Size: 9312
+MD5Sum: 1a4335facd34bce48849ddc50627a29e
 Description:  This package contains a PPPoE (PPP over Ethernet) plugin for ppp.
 
 Package: ppp-mod-pppol2tp
@@ -4040,10 +4952,10 @@ SourceURL: ftp://ftp.samba.org/pub/ppp/
 Section: net
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 4299
+Installed-Size: 4296
 Filename: ppp-mod-pppol2tp_2.4.5-9_ramips_24kec.ipk
 Size: 4923
-MD5Sum: c3ba367cd00958416089349350fa7ba3
+MD5Sum: e5f307028c38712c7e6551deefdc2d43
 Description:  This package contains a PPPoL2TP (PPP over L2TP) plugin for ppp.
 
 Package: ppp-mod-pptp
@@ -4055,10 +4967,10 @@ SourceURL: ftp://ftp.samba.org/pub/ppp/
 Section: net
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 16012
+Installed-Size: 16004
 Filename: ppp-mod-pptp_2.4.5-9_ramips_24kec.ipk
-Size: 16603
-MD5Sum: fc12ca5fdd847e43e5675b2a23dec6a2
+Size: 16600
+MD5Sum: 11fc2a17327365dd5fa4bd18bc374f5a
 Description:  This package contains a PPtP plugin for ppp.
 
 Package: ppp-mod-radius
@@ -4070,10 +4982,10 @@ SourceURL: ftp://ftp.samba.org/pub/ppp/
 Section: net
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 21063
+Installed-Size: 21048
 Filename: ppp-mod-radius_2.4.5-9_ramips_24kec.ipk
-Size: 21785
-MD5Sum: f5348473be54ecf5b57d8bcab43d7071
+Size: 21762
+MD5Sum: c90d6b2c1cc2ce8f90887a044cd57547
 Description:  This package contains a RADIUS (Remote Authentication Dial-In User Service)
  plugin for ppp.
 
@@ -4086,10 +4998,10 @@ SourceURL: ftp://ftp.samba.org/pub/ppp/
 Section: net
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 118314
+Installed-Size: 118305
 Filename: ppp-multilink_2.4.5-9_ramips_24kec.ipk
-Size: 118848
-MD5Sum: cb80e84b24a77d042e10d5c0b28ff4a7
+Size: 118850
+MD5Sum: ac77875577d0310bf2fdb848ba16e70c
 Description:  PPP daemon (with multilink support)
 
 Package: ppp
@@ -4108,19 +5020,19 @@ MD5Sum: 4283fd88dccdd581fd30e7c151ae4fea
 Description:  This package contains the PPP (Point-to-Point Protocol) daemon.
 
 Package: procd
-Version: 2012-12-20-d343dd9e9a64d4ae7d225ea29169e97fa8d116a1
-Depends: libc, ubusd, ubus
+Version: 2013-03-14-9fcc900e301e0c304488b6b83f10c8db5b8f4ce0
+Depends: libc, ubusd, ubus, libjson-script
 Source: package/procd
-SourceFile: procd-2012-12-20-d343dd9e9a64d4ae7d225ea29169e97fa8d116a1.tar.gz
+SourceFile: procd-2013-03-14-9fcc900e301e0c304488b6b83f10c8db5b8f4ce0.tar.gz
 SourceURL: git://nbd.name/luci2/procd.git
 License: GPLv2
 Section: base
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 9148
-Filename: procd_2012-12-20-d343dd9e9a64d4ae7d225ea29169e97fa8d116a1_ramips_24kec.ipk
-Size: 9814
-MD5Sum: 0498e8b23b445432109049215750e560
+Installed-Size: 26122
+Filename: procd_2013-03-14-9fcc900e301e0c304488b6b83f10c8db5b8f4ce0_ramips_24kec.ipk
+Size: 26710
+MD5Sum: 56bcb24ed2f7369d9b4ff36084cd2e1f
 Description:  OpenWrt system process manager
 
 Package: px5g
@@ -4130,10 +5042,10 @@ Source: package/px5g
 Section: utils
 Maintainer: Jo-Philipp Wich <xm@subsignal.org>
 Architecture: ramips_24kec
-Installed-Size: 26360
+Installed-Size: 26357
 Filename: px5g_1_ramips_24kec.ipk
-Size: 26980
-MD5Sum: dd77e1b87a111dd90f7122e89948aafd
+Size: 26972
+MD5Sum: d213f8ec0197e0e63d53381b7ed567b2
 Description:  Px5g is a tiny standalone X.509 certificate generator.
  It suitable to create key files and certificates in DER
  and PEM format for use with stunnel, uhttpd and others.
@@ -4145,10 +5057,10 @@ Source: package/network/config/qos-scripts
 Section: utils
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: all
-Installed-Size: 6119
+Installed-Size: 6118
 Filename: qos-scripts_1.2.1-6_all.ipk
-Size: 6804
-MD5Sum: f7c553f90192f61d2900f7047e589029
+Size: 6803
+MD5Sum: 16f4f36432e539b356853d30034ad154
 Description:  A set of scripts that abstract QoS configuration into a simple 
  configuration file supporting stanzas that specify any number of QoS 
  entries.
@@ -4162,10 +5074,10 @@ SourceURL: git://nbd.name/relayd.git
 Section: net
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 9634
+Installed-Size: 9636
 Filename: relayd_2011-10-24-4e8f1fa4ca2b176500362843a9e57ea5abd4b7a3_ramips_24kec.ipk
-Size: 10285
-MD5Sum: 327ad1df9999b7c2d08c84892a035ecd
+Size: 10295
+MD5Sum: 23d13af93b7b55f515c7cba07688462c
 Description:  Transparent routing / relay daemon
 
 Package: resolveip
@@ -4175,10 +5087,10 @@ Source: package/network/utils/resolveip
 Section: utils
 Maintainer: Jo-Philipp Wich <jow@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 1787
+Installed-Size: 1786
 Filename: resolveip_2_ramips_24kec.ipk
-Size: 2507
-MD5Sum: 6f51c75efbcd411805109e3e3500945d
+Size: 2509
+MD5Sum: 312ff144b9bfafb2c9608e598e2654c0
 Description:  This package contains the small resolveip utility which
  can be used by scripts to turn host names into numeric
  IP addresses. It supports IPv4 and IPv6 resolving and
@@ -4193,8 +5105,8 @@ Section: net
 Architecture: ramips_24kec
 Installed-Size: 2181
 Filename: smap-to-devinfo_1.0.0-2_ramips_24kec.ipk
-Size: 2850
-MD5Sum: 4488eb10131e55f83e014e609aac376c
+Size: 2847
+MD5Sum: c87a89eef46f24fab361a62a4b3dfbdb
 Description:  A script to use smap to discover all SIP devices on the networks
  (provided ICMP and SIP are allowed to the network from the host) and
  translate (through the ip then mac) into the device information.
@@ -4208,12 +5120,28 @@ SourceURL: http://www.wormulon.net/smap/
 Section: net
 Maintainer: Daniel Dickinson <openwrt@cshore.neomailbox.net>
 Architecture: ramips_24kec
-Installed-Size: 21680
+Installed-Size: 21681
 Filename: smap_0.6.0-2_ramips_24kec.ipk
-Size: 22358
-MD5Sum: 354b738b932029e60bdd4a5ad73695d7
+Size: 22356
+MD5Sum: 9a16c2e4a12b2169986cf25e9df7d4f9
 Description:  Discovers and identifies SIP devices on the network including hardware
  phones, softphones, PBX software, and PBX equipment.
+
+Package: swap-utils
+Version: 2.21.2-1
+Depends: libc, libblkid
+Source: package/util-linux
+SourceFile: util-linux-2.21.2.tar.xz
+SourceURL: @KERNEL/linux/utils/util-linux/v2.21
+License: GPLv2 LGPLv2.1 BSD-3c
+LicenseFiles: COPYING getopt/COPYING libblkid/COPYING libmount/COPYING Documentation/licenses/COPYING.GPLv2 Documentation/licenses/COPYING.LGPLv2.1 libuuid/COPYING Documentation/licenses/COPYING.BSD-3
+Section: utils
+Architecture: ramips_24kec
+Installed-Size: 19569
+Filename: swap-utils_2.21.2-1_ramips_24kec.ipk
+Size: 20238
+MD5Sum: eb7194068e859b4c88ceb8479bcb9efe
+Description:  contains: mkswap, swaplabel, swapon, swapoff
 
 Package: swconfig
 Version: 10
@@ -4222,10 +5150,10 @@ Source: package/network/config/swconfig
 Section: base
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 7084
+Installed-Size: 7082
 Filename: swconfig_10_ramips_24kec.ipk
-Size: 7682
-MD5Sum: 5885c4ce85fed78d25552e0be8d55ec3
+Size: 7684
+MD5Sum: 64e51d255b90e51a912eeb1fd798bb63
 Description:  Switch configuration utility
 
 Package: tc
@@ -4238,40 +5166,40 @@ Section: net
 Architecture: ramips_24kec
 Installed-Size: 96493
 Filename: tc_3.7.0-1_ramips_24kec.ipk
-Size: 97052
-MD5Sum: afe687662a1df8275a59a2a7c6675bc6
+Size: 97065
+MD5Sum: 25c22325a518acd821aad243bcf70084
 Description:  Traffic control utility
 
 Package: ubus
-Version: 2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50
+Version: 2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe
 Depends: libc, libubus, libblobmsg-json, ubusd
 Source: package/ubus
-SourceFile: ubus-2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50.tar.gz
+SourceFile: ubus-2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe.tar.gz
 SourceURL: git://nbd.name/luci2/ubus.git
 License: LGPLv2.1
 Section: luci2
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 3469
-Filename: ubus_2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50_ramips_24kec.ipk
-Size: 4150
-MD5Sum: fe5b4d426bb777bd8288635a55e6e1ce
+Installed-Size: 3508
+Filename: ubus_2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe_ramips_24kec.ipk
+Size: 4184
+MD5Sum: d8b50b688a33b385867ddef0f527723c
 Description:  OpenWrt RPC client utility
 
 Package: ubusd
-Version: 2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50
+Version: 2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe
 Depends: libc, libubox
 Source: package/ubus
-SourceFile: ubus-2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50.tar.gz
+SourceFile: ubus-2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe.tar.gz
 SourceURL: git://nbd.name/luci2/ubus.git
 License: LGPLv2.1
 Section: luci2
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 7303
-Filename: ubusd_2013-01-13-bf566871bd6a633e4504c60c6fc55b2a97305a50_ramips_24kec.ipk
-Size: 7973
-MD5Sum: df603744141076fefc111b346c136a2e
+Installed-Size: 7350
+Filename: ubusd_2013-04-04-90037b772c525ad734acb4641c9dacb7abf48ffe_ramips_24kec.ipk
+Size: 8026
+MD5Sum: eb5ff08397b3910248a30c60c294a4ef
 Description:  OpenWrt RPC daemon
 
 Package: uci
@@ -4284,44 +5212,58 @@ License: LGPLv2.1 GPLv2
 Section: base
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 6806
+Installed-Size: 6805
 Filename: uci_2013-01-04.1-1_ramips_24kec.ipk
-Size: 7492
-MD5Sum: 6bcefa8186306202c84f5b3abaf962fb
+Size: 7486
+MD5Sum: 2ee48ee4c4e97241eac5c2841bd0cd47
 Description:  Utility for the Unified Configuration Interface (UCI)
 
 Package: uhttpd-mod-ubus
-Version: 2013-01-22-14e3971c37e6feb0ec5eda0988e07d8a786ba9f9
+Version: 2013-03-15-3675d407ecf4908a231eb6bde6bb6408f20a9e81
 Depends: libc, uhttpd, libubus, libblobmsg-json
 Source: package/network/services/uhttpd
-SourceFile: uhttpd-2013-01-22-14e3971c37e6feb0ec5eda0988e07d8a786ba9f9.tar.gz
+SourceFile: uhttpd-2013-03-15-3675d407ecf4908a231eb6bde6bb6408f20a9e81.tar.gz
 SourceURL: git://nbd.name/uhttpd2.git
 Section: net
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 8032
-Filename: uhttpd-mod-ubus_2013-01-22-14e3971c37e6feb0ec5eda0988e07d8a786ba9f9_ramips_24kec.ipk
-Size: 8797
-MD5Sum: 517d761b6c748f7addcbd7f84716117f
+Installed-Size: 4861
+Filename: uhttpd-mod-ubus_2013-03-15-3675d407ecf4908a231eb6bde6bb6408f20a9e81_ramips_24kec.ipk
+Size: 5549
+MD5Sum: 4622b76d882948a009bf52b20e66ee8e
 Description:  The ubus plugin adds a HTTP/JSON RPC proxy for ubus and publishes the
  session.* namespace and procedures.
 
 Package: uhttpd
-Version: 2013-01-22-14e3971c37e6feb0ec5eda0988e07d8a786ba9f9
+Version: 2013-03-15-3675d407ecf4908a231eb6bde6bb6408f20a9e81
 Depends: libc, libubox
 Source: package/network/services/uhttpd
-SourceFile: uhttpd-2013-01-22-14e3971c37e6feb0ec5eda0988e07d8a786ba9f9.tar.gz
+SourceFile: uhttpd-2013-03-15-3675d407ecf4908a231eb6bde6bb6408f20a9e81.tar.gz
 SourceURL: git://nbd.name/uhttpd2.git
 Section: net
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 19998
-Filename: uhttpd_2013-01-22-14e3971c37e6feb0ec5eda0988e07d8a786ba9f9_ramips_24kec.ipk
-Size: 20663
-MD5Sum: 0832923582a07060e1b98744952ae286
+Installed-Size: 20201
+Filename: uhttpd_2013-03-15-3675d407ecf4908a231eb6bde6bb6408f20a9e81_ramips_24kec.ipk
+Size: 20975
+MD5Sum: 684c8241eb2c10e92315112254a2068d
 Description:  uHTTPd is a tiny single threaded HTTP server with TLS, CGI and Lua
  support. It is intended as a drop-in replacement for the Busybox
  HTTP daemon.
+
+Package: uqmi
+Version: 0.0.1-rz-1
+Depends: libc
+Source: feeds/custompackages/net/uqmi
+Section: utils
+Maintainer: Felix Fietkau <nbd@openwrt.org>
+Architecture: ramips_24kec
+Installed-Size: 19460
+Filename: uqmi_0.0.1-rz-1_ramips_24kec.ipk
+Size: 20080
+MD5Sum: fe543ca76c59afb54e025e7859f5c167
+Description:  Small QMI CLI Interface Configuration Manager for QMI modems,
+ like Huawei E392, E398 made by Felix Fietkau aka nbd 
 
 Package: usb-modeswitch-data
 Version: 20121109
@@ -4332,10 +5274,10 @@ SourceURL: http://www.draisberghof.de/usb_modeswitch
 Section: utils
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 13390
+Installed-Size: 13392
 Filename: usb-modeswitch-data_20121109_ramips_24kec.ipk
-Size: 13646
-MD5Sum: bcd58def3d230c7aeecc37056e79b0dd
+Size: 13633
+MD5Sum: db2a0a922605304cb91e8588c3ab6743
 Description:  Configuration database for usb-modeswitch.
  Contains definitions for many USB devices required to
  autoswitch "flip flop" gear.
@@ -4349,10 +5291,10 @@ SourceURL: http://www.draisberghof.de/usb_modeswitch
 Section: utils
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 17535
+Installed-Size: 17529
 Filename: usb-modeswitch_1.2.5-1_ramips_24kec.ipk
-Size: 18252
-MD5Sum: 455b98515f9fefab957bce5f77429e1b
+Size: 18235
+MD5Sum: 1b2a0a3e6d9541f0100f3207a0d82892
 Description:  A mode switching tool for controlling
  "flip flop" (multiple device) USB gear.
 
@@ -4364,9 +5306,44 @@ Section: net
 Architecture: ramips_24kec
 Installed-Size: 3423
 Filename: ussd159_1-1_ramips_24kec.ipk
-Size: 3970
-MD5Sum: 7bcaf5786fd8b090edcbc446e99f550a
+Size: 3975
+MD5Sum: 48c1dcba384f856bea55296f5d1ed8a0
 Description:  Small program for sending USSD requests.
+
+Package: vnstat
+Version: 1.11-3
+Depends: libc
+Source: feeds/packages/net/vnstat
+SourceFile: vnstat-1.11.tar.gz
+SourceURL: http://humdi.net/vnstat
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 57117
+Filename: vnstat_1.11-3_ramips_24kec.ipk
+Size: 57957
+MD5Sum: 52f5ac1ded88b0c9c5e3caeb93049f27
+Description:  vnStat is a network traffic monitor for Linux that keeps a log of daily
+ network traffic for the selected interface(s). vnStat isn't a packet
+ sniffer. The traffic information is analyzed from the /proc -filesystem,
+ so vnStat can be used without root permissions.
+
+Package: vnstati
+Version: 1.11-3
+Depends: libc, vnstat, libgd
+Source: feeds/packages/net/vnstat
+SourceFile: vnstat-1.11.tar.gz
+SourceURL: http://humdi.net/vnstat
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 29733
+Filename: vnstati_1.11-3_ramips_24kec.ipk
+Size: 30409
+MD5Sum: 4a001334770d9ca36c95e43d296247e4
+Description:  The purpose of vnstati is to provide image output support for statistics
+ collected using vnstat(1). However, the image file format is limited to
+ png. All basic outputs of vnStat are supported excluding live traffic
+ features. The image can be outputted either to a file or to standard
+ output.
 
 Package: wget
 Version: 1.14-1
@@ -4388,6 +5365,21 @@ Description:  Wget is a network utility to retrieve files from the Web using htt
  archives and home pages or to travel the Web like a WWW robot.
  This package is built with SSL support.
 
+Package: wol
+Version: 0.7.1-3
+Depends: libc
+Source: feeds/packages/net/wol
+SourceFile: wol-0.7.1.tar.gz
+SourceURL: @SF/ahh
+Section: net
+Architecture: ramips_24kec
+Installed-Size: 6521
+Filename: wol_0.7.1-3_ramips_24kec.ipk
+Size: 7166
+MD5Sum: 783fe6a3d3c742197b216a68edbdf6c4
+Description:  wol implements Wake On LAN functionality in a small program.
+ It wakes up hardware that is Magic Packet compliant.
+
 Package: wpad-mini
 Version: 20130302-1
 Depends: libc, libnl-tiny
@@ -4405,17 +5397,17 @@ Description:  This package contains a minimal IEEE 802.1x/WPA Authenticator and 
 
 Package: wpad
 Version: 20130302-1
-Depends: libc, libnl-tiny
+Depends: libc, libnl-tiny, libubus
 Source: package/network/services/hostapd
 SourceFile: hostapd-20130302.tar.bz2
 SourceURL: git://w1.fi/srv/git/hostap.git
 Section: net
 Maintainer: Felix Fietkau <nbd@openwrt.org>
 Architecture: ramips_24kec
-Installed-Size: 315497
+Installed-Size: 317542
 Filename: wpad_20130302-1_ramips_24kec.ipk
-Size: 315840
-MD5Sum: 020467c018157412f0cfd5bde5213c3b
+Size: 317664
+MD5Sum: 4a667ea9246ea9e328b790338a64e3ed
 Description:  This package contains a full featured IEEE 802.1x/WPA/EAP/RADIUS
  Authenticator and Supplicant
 
@@ -4429,9 +5421,9 @@ License: ZLIB
 LicenseFiles: README
 Section: libs
 Architecture: ramips_24kec
-Installed-Size: 39715
+Installed-Size: 39712
 Filename: zlib_1.2.7-1_ramips_24kec.ipk
-Size: 40398
-MD5Sum: 1c1fcacc4741cbb88a5843d23097f7ff
+Size: 40399
+MD5Sum: ec100f626cad4cbcaa3228d16b406fd2
 Description:  Library implementing the deflate compression method
 
