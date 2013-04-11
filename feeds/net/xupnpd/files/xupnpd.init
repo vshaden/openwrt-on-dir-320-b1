@@ -1,0 +1,137 @@
+#!/bin/sh /etc/rc.common
+
+START=99
+ROOT=/etc/xupnpd
+CONFIG=$ROOT/xupnpd.lua
+PROG=/usr/bin/xupnpd
+
+config_params () {
+	main_params="ssdp_interface ssdp_loop ssdp_notify_interval \
+			ssdp_max_age http_port debug \
+			udpxy_url mcast_interface proxy \
+			user_agent http_timeout name \
+			uuid cache_size cache_ttl \
+			default_mime_type feeds_update_interval playlists_update_interval \
+			drive"
+
+	bool_params="dlna_notify group sort_files"
+
+	for param in $main_params; do
+		local value
+		config_get value $1 $param ''
+		[ "$value" ] && echo -ne "cfg.$param='$value'\n" >> "$CONFIG"
+	done
+
+	for bool_param in $bool_params; do
+		local bool_value
+		config_get_bool bool_value $1 $bool_param 0
+		if [ $bool_value = 1 ]; then
+			bool_as_string=true
+		else
+			bool_as_string=false
+		fi
+		echo -ne "cfg.$bool_param=$bool_as_string\n" >> "$CONFIG"
+		
+		
+}
+
+config_feed () {
+	local plugin
+	local name
+	local type
+	
+	config_get plugin $1 plugin
+	config_get name $1 feed_name
+	config_get type $1 feed_type
+
+	echo -ne "{ '$plugin',\t'$type',\t'$name' }\n" >> "$CONFIG"
+}
+
+config_playlist () {
+	local name
+	local path
+	local iplist
+	
+	config_get name $1 name ''
+	config_get path $1 path ''
+	config_get iplist $1 iplist ''
+
+	if [ "$iplist" ]; then
+		echo -ne "{ '$path',\t'$name',\t'$iplist' }\n" >> "$CONFIG"
+	else
+		echo -ne "{ '$path',\t'$name' }\n" >> "$CONFIG"
+	fi
+}
+
+config_additional () {
+	bools="artist albumart dlna_headers \
+		dlna_extras content_disp soap_length \
+		wdtv sec_extras"
+
+	strings="container feature_list albumart"
+
+	cp $ROOT/xupnpd_main_sample.lua /tmp/xupnpd_main.tmp
+
+	for string_param in $strings; do
+		local string_value
+		config_get string_value $1 $string_param ''
+		sed -i "s/%$string_param%/'$string_value'/g" /tmp/xupnpd_main.tmp
+	done
+
+	for bool_param in $bools; do
+		local bool_value
+		config_get_bool bool_value $1 $bool_param 0
+		if [ $bool_value = 1 ]; then
+			bool_as_string=true
+		else
+			bool_as_string=false
+		fi
+		sed -i "s/%$bool_param%/$bool_as_string/g" /tmp/xupnpd_main.tmp
+	done
+
+	mv /tmp/xupnpd_main.tmp $ROOT/xupnpd_main.lua
+}
+start () {
+	config_load xupnpd
+
+	[ -e "$CONFIG" ] && rm "$CONFIG"
+
+	echo "cfg={}" >> "$CONFIG"
+
+	config_foreach config_params main
+
+	echo -ne "playlist=\n{\n" >> "$CONFIG"
+	config_foreach config_playlist playlist
+	echo "}" >> "$CONFIG"
+
+	echo -ne "feeds=\n{\n" >> "$CONFIG"
+	config_foreach config_feed feed
+	echo "}" >> "$CONFIG"
+
+	echo "cfg.log_facility='syslog'" >> "$CONFIG"
+	echo "cfg.daemon=true" >> "$CONFIG"
+	echo "cfg.embedded=true" >> "$CONFIG"
+	echo "cfg.version='1.031'" >> "$CONFIG"
+	echo "cfg.log_ident=arg[1] or 'xupnpd'" >> "$CONFIG"
+	echo "cfg.pid_file='/var/run/'..cfg.log_ident..'.pid'" >> "$CONFIG"
+	echo "cfg.www_root='./www/'" >> "$CONFIG"
+	echo "cfg.tmp_path='/tmp/'" >> "$CONFIG"
+	echo "cfg.plugin_path='./plugins/'" >> "$CONFIG"
+	echo "cfg.config_path='./config/'" >> "$CONFIG"
+	echo "cfg.playlists_path='./playlists/'" >> "$CONFIG"
+	echo "cfg.feeds_path='/tmp/xupnpd-feeds/'" >> "$CONFIG"
+	echo "cfg.ui_path='./ui/'" >> "$CONFIG"
+	echo "cfg.profiles='./profiles/'" >> "$CONFIG"
+	
+	echo "dofile('xupnpd_main.lua')" >> "$CONFIG"
+
+	config_foreach config_additional advanced
+
+	export XUPNPDROOTDIR=$ROOT
+	service_start $PROG
+}
+	
+stop () {
+	service_stop $PROG
+	unset XUPNPDROOTDIR
+}
