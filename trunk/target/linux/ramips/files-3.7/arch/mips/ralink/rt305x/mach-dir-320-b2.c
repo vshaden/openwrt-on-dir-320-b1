@@ -101,5 +101,5 @@ static void __init dir320b2_init(void)
 	rt305x_register_usb();
 }
 
-MIPS_MACHINE(RAMIPS_MACH_DIR_320_b2, "DIR-320-B2", "D-Link DIR-320 B2",
+MIPS_MACHINE(RAMIPS_MACH_DIR_320_B2, "DIR-320-B2", "D-Link DIR-320 B2",
 	     dir320b2_init);

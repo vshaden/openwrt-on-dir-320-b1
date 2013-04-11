@@ -1,6 +1,6 @@
 /dts-v1/;
 
-/include/ "rt53xxz50.dtsi"
+/include/ "rt5350.dtsi"
 
 / {
 	#address-cells = <1>;
@@ -13,7 +13,7 @@
 	};
 
 	chosen {
-		bootargs = "console=ttyS0,57600 mtdparts=spi0.0:192k(u-boot)ro,64k(u-boot-env)ro,64k(factory)ro,1024k(kernel),6848k(rootfs),7872k@0x50000(firmware)";
+		bootargs = "console=ttyS1,57600 mtdparts=spi0.0:192k(u-boot)ro,64k(u-boot-env)ro,64k(factory)ro,1024k(kernel),6848k(rootfs),7872k@0x50000(firmware)";
 	};
 
 	palmbus@10000000 {

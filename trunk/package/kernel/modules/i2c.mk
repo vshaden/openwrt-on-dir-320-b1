@@ -19,10 +19,10 @@ define i2c_defaults
   FILES:=$(call ModuleFiles,$(1))
   AUTOLOAD:=$(call ModuleAuto,$(2),$(1),$(3))
 endef
+#  CONFIG_OF_I2C:drivers/of/of_i2c \
 
 I2C_CORE_MODULES:= \
   CONFIG_I2C:drivers/i2c/i2c-core \
-  CONFIG_OF_I2C:drivers/of/of_i2c \
   CONFIG_I2C_CHARDEV:drivers/i2c/i2c-dev
 
 define KernelPackage/i2c-core
