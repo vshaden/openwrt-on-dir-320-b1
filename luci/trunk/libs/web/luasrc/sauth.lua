@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
         http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: sauth.lua 8900 2012-08-08 09:48:47Z jow $
+$Id$
 
 ]]--
 

@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: meetme_settings.lua 4397 2009-03-30 19:29:37Z jow $
+$Id$
 ]]--
 
 cbimap = Map("asterisk", "MeetMe - Common Settings",

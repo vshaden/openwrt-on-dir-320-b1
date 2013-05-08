@@ -5,7 +5,7 @@ Description:
 Utilities for interaction with the Linux system
 
 FileId:
-$Id: sys.lua 9662 2013-01-30 13:36:20Z soma $
+$Id$
 
 License:
 Copyright 2008 Steven Barth <steven@midlink.org>

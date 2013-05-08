@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: coovachilli_network.lua 3943 2008-12-23 21:57:34Z jow $
+$Id$
 ]]--
 
 require("luci.sys")

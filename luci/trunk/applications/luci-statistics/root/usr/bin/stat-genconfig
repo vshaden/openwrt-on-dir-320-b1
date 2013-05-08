@@ -11,7 +11,7 @@ You may obtain a copy of the License at
 
 		http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: stat-genconfig 9534 2012-12-11 13:27:37Z jow $
+$Id$
 
 ]]--
 
@@ -395,6 +395,12 @@ plugins = {
 
 	unixsock = {
 		{ "SocketFile", "SocketGroup", "SocketPerms" },
+		{ },
+		{ }
+	},
+
+	uptime = {
+		{ },
 		{ },
 		{ }
 	},

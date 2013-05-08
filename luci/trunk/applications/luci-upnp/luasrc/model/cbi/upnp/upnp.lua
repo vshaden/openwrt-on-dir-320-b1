@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: upnp.lua 9569 2012-12-25 02:44:19Z jow $
+$Id$
 ]]--
 
 m = Map("upnpd", luci.util.pcdata(translate("Universal Plug & Play")),

@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: asterisk-iax-connections.lua 3620 2008-10-23 15:42:12Z jow $
+$Id$
 ]]--
 
 cbimap = Map("asterisk", "asterisk", "")

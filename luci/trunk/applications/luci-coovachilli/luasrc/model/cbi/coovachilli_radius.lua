@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: coovachilli_radius.lua 3438 2008-09-25 00:42:55Z jow $
+$Id$
 ]]--
 
 

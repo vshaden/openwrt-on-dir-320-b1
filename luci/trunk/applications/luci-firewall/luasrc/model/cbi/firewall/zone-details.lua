@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: zone-details.lua 8169 2012-01-09 05:48:27Z jow $
+$Id$
 ]]--
 
 local nw = require "luci.model.network"

@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: coovachilli_auth.lua 3445 2008-09-25 12:11:56Z jow $
+$Id$
 ]]--
 
 

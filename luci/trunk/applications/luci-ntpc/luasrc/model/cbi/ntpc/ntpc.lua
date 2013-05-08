@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: ntpc.lua 9417 2012-11-10 20:55:50Z soma $
+$Id$
 ]]--
 m = Map("ntpclient", translate("Time Synchronisation"), translate("Synchronizes the system time"))
 

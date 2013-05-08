@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: route.lua 8562 2012-04-15 14:31:12Z jow $
+$Id$
 ]]--
 
 local sid = arg[1]

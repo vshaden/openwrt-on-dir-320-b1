@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: wifi.lua 8953 2012-08-08 20:07:36Z jow $
+$Id$
 ]]--
 
 -- Data init --

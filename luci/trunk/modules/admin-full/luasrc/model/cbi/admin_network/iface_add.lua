@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: iface_add.lua 8783 2012-06-26 21:49:21Z jow $
+$Id$
 
 ]]--
 

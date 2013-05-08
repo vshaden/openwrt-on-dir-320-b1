@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: asterisk-mod-chan.lua 3618 2008-10-23 02:25:26Z jow $
+$Id$
 ]]--
 
 cbimap = Map("asterisk", "asterisk", "")

@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: servicectl.lua 9484 2012-11-21 19:29:47Z jow $
+$Id$
 ]]--
 
 module("luci.controller.admin.servicectl", package.seeall)

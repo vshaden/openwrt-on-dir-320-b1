@@ -1,32 +1,16 @@
 include $(TOPDIR)/rules.mk
 
-PKG_BRANCH:=trunk
-
-ifeq ($(DUMP),)
-  USELOCAL:=$(shell grep luci ../../../.project 2>/dev/null >/dev/null && echo 1)
-endif
+LUCI_TOPDIR=../../..
 
 PKG_NAME:=luci
 PKG_RELEASE:=1
 
 PKG_BUILD_PARALLEL:=0
 
-ifeq ($(USELOCAL),1)
-  PKG_VERSION:=trunk+svn
-else
-  PKG_SOURCE_URL:=http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/$(PKG_BRANCH)
-  ifeq ($(DUMP),)
-    PKG_REV:=$(shell LC_ALL=C svn info $(CURDIR) | sed -ne's/^Revision: //p')
-    PKG_VERSION:=trunk+svn$(PKG_REV)
-  endif
-  PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
-  PKG_SOURCE:=$(PKG_SOURCE_SUBDIR).tar.gz
-  PKG_SOURCE_PROTO:=svn
-  PKG_SOURCE_VERSION:=$(PKG_REV)
-endif
+PKG_VERSION:=$(shell $(LUCI_TOPDIR)/build/mkrevision.sh 2>/dev/null || echo unknown)
 
 PKG_BUILD_DEPENDS:=$(if $(STAGING_DIR_ROOT),lua/host)
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 PKG_INSTALL_DIR:=$(PKG_BUILD_DIR)/ipkg-install
 
 LUA_TARGET:=source
@@ -63,7 +47,7 @@ define Package/luci-lib-core/install
 	$(PKG_BUILD_DIR)/build/mkversion.sh $(1)/usr/lib/lua/luci/version.lua \
 		"OpenWrt Firmware" \
 		"$(OPENWRTVERSION)" \
-		"$(PKG_BRANCH)" \
+		"trunk" \
 		"$(PKG_VERSION)"
 endef
 
@@ -212,11 +196,10 @@ endef
 
 $(eval $(call protocol,core,Support for static/dhcp/none))
 $(eval $(call protocol,ppp,Support for PPP/PPPoE/PPPoA/PPtP))
-$(eval $(call protocol,ipv6,Support for DHCPv6/6in4/6to4/6rd,+PACKAGE_luci-proto-ipv6:6in4 +PACKAGE_luci-proto-ipv6:6to4 +PACKAGE_luci-proto-ipv6:6rd +PACKAGE_luci-proto-ipv6:ipv6-support))
+$(eval $(call protocol,ipv6,Support for DHCPv6/6in4/6to4/6rd,+PACKAGE_luci-proto-ipv6:6in4 +PACKAGE_luci-proto-ipv6:6to4 +PACKAGE_luci-proto-ipv6:6rd +PACKAGE_luci-proto-ipv6:odhcp6c))
 $(eval $(call protocol,3g,Support for 3G,+PACKAGE_luci-proto-3g:comgt))
 $(eval $(call protocol,relay,Support for relayd pseudo bridges,+PACKAGE_luci-proto-relay:relayd))
 $(eval $(call protocol,4g,Suport for 4G (LTE),+PACKAGE_luci-proto-4g:4g-scripts))
-
 
 
 ### Community Packages ###
@@ -329,7 +312,7 @@ $(eval $(call application,siitwizard,SIIT IPv4-over-IPv6 configuration wizard,\
 	+PACKAGE_luci-app-siitwizard:kmod-siit))
 
 $(eval $(call application,firewall,Firewall and Portforwarding application,\
-	+PACKAGE_luci-app-firewall:firewall))
+	+PACKAGE_luci-app-firewall:firewall3))
 
 $(eval $(call application,freifunk-policyrouting,Policy routing for mesh traffic,\
         +PACKAGE_luci-app-freifunk-policyrouting:freifunk-policyrouting))
@@ -341,7 +324,7 @@ $(eval $(call application,meshwizard, Shellscript based wizard to setup mesh net
         +PACKAGE_luci-app-freifunk-meshwizard:meshwizard))
 
 $(eval $(call application,olsr,OLSR configuration and status module,\
-	+olsrd +olsrd-mod-txtinfo))
+	+olsrd +olsrd-mod-jsoninfo))
 
 $(eval $(call application,olsr-viz,OLSR Visualisation,\
 	luci-app-olsr +olsrd-mod-txtinfo))
@@ -453,10 +436,16 @@ $(eval $(call application,pbx,LuCI PBX Administration,\
 	+PACKAGE_luci-app-pbx:asterisk18-codec-a-mu \
 	+PACKAGE_luci-app-pbx:asterisk18-codec-alaw \
 	+PACKAGE_luci-app-pbx:asterisk18-func-cut \
-	+PACKAGE_luci-app-pbx:asterisk18-res-clioriginate))
+	+PACKAGE_luci-app-pbx:asterisk18-res-clioriginate \
+	+PACKAGE_luci-app-pbx:asterisk18-func-channel \
+	+PACKAGE_luci-app-pbx:asterisk18-chan-local \
+	+PACKAGE_luci-app-pbx:asterisk18-app-record \
+	+PACKAGE_luci-app-pbx:asterisk18-app-senddtmf \
+	+PACKAGE_luci-app-pbx:asterisk18-res-crypto))
 
 $(eval $(call application,pbx-voicemail,LuCI PBX Administration Voicemail Support,\
-	luci-app-pbx +PACKAGE_luci-app-pbx-voicemail:msmtp))
+	luci-app-pbx +PACKAGE_luci-app-pbx-voicemail:msmtp \
+	+PACKAGE_luci-app-pbx-voicemail:coreutils-base64))
 
 $(eval $(call application,ltqtapi,Lantiq voip))
 
@@ -523,8 +512,8 @@ define theme
 endef
 
 $(eval $(call theme,base,Common base for all themes))
-$(eval $(call theme,openwrt,OpenWrt.org (default),,,1))
-$(eval $(call theme,bootstrap,Bootstrap Theme))
+$(eval $(call theme,openwrt,OpenWrt.org))
+$(eval $(call theme,bootstrap,Bootstrap Theme (default),,,1))
 
 $(eval $(call theme,freifunk-bno,Freifunk Berlin Nordost Theme,\
 	Stefan Pirwitz <stefan-at-freifunk-bno-dot-de>))
@@ -600,7 +589,7 @@ endef
 $(eval $(call collection,,\
 	Standard OpenWrt set including full admin with ppp support and the \
 	default OpenWrt theme,\
-	+uhttpd +uhttpd-mod-ubus +luci-mod-admin-full +luci-theme-openwrt \
+	+uhttpd +uhttpd-mod-ubus +luci-mod-admin-full +luci-theme-bootstrap \
 	+luci-app-firewall +luci-proto-core +luci-proto-ppp +libiwinfo-lua))
 
 $(eval $(call collection,ssl,\
@@ -617,16 +606,20 @@ PKG_CONFIG_DEPENDS=$(patsubst %,CONFIG_PACKAGE_%,$(LUCI_BUILD_PACKAGES))
 
 include $(INCLUDE_DIR)/package.mk
 
-ifeq ($(USELOCAL),1)
-  define Build/Prepare
+define Build/Prepare
+	@if [ ! -x $(LUCI_TOPDIR)/build/mkrevision.sh ]; then \
+		echo "*** Repository layout changed!" >&2; \
+		echo "*** Please change the LuCI url in feeds.conf to http://svn.luci.subsignal.org/luci/trunk and reinstall the feed with" >&2; \
+		echo "*** ./scripts/feeds update luci; ./scripts/feeds install -a -p luci" >&2; \
+		exit 1; \
+	fi
 	mkdir -p $(PKG_BUILD_DIR)
-	$(TAR) c -C ../../../ . \
+	$(TAR) c -C $(LUCI_TOPDIR) . \
 		--exclude=.pc --exclude=.svn --exclude=.git \
 		--exclude='boa-0*' --exclude='*.o' --exclude='*.so' \
 		--exclude=dist | \
 			tar x -C $(PKG_BUILD_DIR)/
-  endef
-endif
+endef
 
 define Build/Configure
 endef

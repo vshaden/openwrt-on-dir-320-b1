@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: hosts.lua 9416 2012-11-10 17:38:37Z soma $
+$Id$
 ]]--
 
 require("luci.sys")

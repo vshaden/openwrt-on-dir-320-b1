@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: ifaces.lua 9067 2012-08-17 08:24:24Z jow $
+$Id$
 ]]--
 
 local fs = require "nixio.fs"

@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: custom.lua 8108 2011-12-19 21:16:31Z jow $
+$Id$
 ]]--
 
 local fs = require "nixio.fs"

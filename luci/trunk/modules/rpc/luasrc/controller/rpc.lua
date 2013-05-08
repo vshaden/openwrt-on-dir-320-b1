@@ -10,7 +10,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: rpc.lua 8902 2012-08-08 09:48:53Z jow $
+$Id$
 ]]--
 
 local require = require

@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
         http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: exec.lua 7993 2011-11-28 15:19:11Z soma $
+$Id$
 
 ]]--
 

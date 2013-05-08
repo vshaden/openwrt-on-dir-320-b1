@@ -614,7 +614,7 @@ function get_status_by_route(self, addr, mask)
 			if s and s.route then
 				local rt
 				for _, rt in ipairs(s.route) do
-					if rt.target == addr and rt.mask == mask then
+					if not rt.table and rt.target == addr and rt.mask == mask then
 						return net, s
 					end
 				end
@@ -813,8 +813,14 @@ end
 
 function protocol.ip6addr(self)
 	local addrs = self:_ubus("ipv6-address")
-	return addrs and #addrs > 0
-		and "%s/%d" %{ addrs[1].address, addrs[1].mask }
+	if addrs and #addrs > 0 then
+		return "%s/%d" %{ addrs[1].address, addrs[1].mask }
+	else
+		addrs = self:_ubus("ipv6-prefix-assignment")
+		if addrs and #addrs > 0 then
+			return "%s/%d" %{ addrs[1].address, addrs[1].mask }
+		end
+	end
 end
 
 function protocol.gw6addr(self)

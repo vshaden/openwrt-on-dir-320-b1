@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: phone_sip.lua 4356 2009-03-21 05:00:40Z jow $
+$Id$
 
 ]]--
 

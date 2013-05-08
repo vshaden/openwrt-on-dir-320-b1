@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: netdiscover_devinfo.lua 9051 2012-08-15 14:16:57Z jow $
+$Id$
 ]]--
 
 require("luci.i18n")

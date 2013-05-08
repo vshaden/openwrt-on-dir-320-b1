@@ -11,7 +11,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: startup.lua 9670 2013-02-26 18:50:36Z dgolle $
+$Id$
 ]]--
 
 require "luci.fs"

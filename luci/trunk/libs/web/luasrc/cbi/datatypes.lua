@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
         http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: datatypes.lua 9665 2013-02-05 13:15:48Z jow $
+$Id$
 
 ]]--
 

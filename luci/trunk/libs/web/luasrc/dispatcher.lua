@@ -5,7 +5,7 @@ Description:
 The request dispatcher and module dispatcher generators
 
 FileId:
-$Id: dispatcher.lua 9018 2012-08-14 15:31:26Z jow $
+$Id$
 
 License:
 Copyright 2008 Steven Barth <steven@midlink.org>

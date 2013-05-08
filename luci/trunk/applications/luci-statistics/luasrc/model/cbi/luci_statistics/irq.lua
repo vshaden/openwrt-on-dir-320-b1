@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
         http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: irq.lua 7987 2011-11-28 04:19:38Z jow $
+$Id$
 
 ]]--
 

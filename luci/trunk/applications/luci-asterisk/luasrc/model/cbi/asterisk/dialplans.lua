@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: dialplans.lua 4274 2009-02-24 01:09:51Z jow $
+$Id$
 
 ]]--
 

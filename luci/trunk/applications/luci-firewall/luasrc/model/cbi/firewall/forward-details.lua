@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: forward-details.lua 8962 2012-08-09 10:03:32Z jow $
+$Id$
 ]]--
 
 local sys = require "luci.sys"

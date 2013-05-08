@@ -6,7 +6,7 @@ Offers an interface for binding configuration values to certain
 data types. Supports value and range validation and basic dependencies.
 
 FileId:
-$Id: cbi.lua 9507 2012-11-26 12:53:43Z jow $
+$Id$
 
 License:
 Copyright 2008 Steven Barth <steven@midlink.org>

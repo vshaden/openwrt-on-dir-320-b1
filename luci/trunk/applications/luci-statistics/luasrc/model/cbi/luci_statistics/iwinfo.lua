@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
         http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: iwinfo.lua 8059 2011-12-07 21:08:49Z jow $
+$Id$
 
 ]]--
 

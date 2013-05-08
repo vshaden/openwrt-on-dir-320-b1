@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
         http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: interface.lua 8311 2012-02-19 15:11:23Z stargieg $
+$Id$
 
 ]]--
 

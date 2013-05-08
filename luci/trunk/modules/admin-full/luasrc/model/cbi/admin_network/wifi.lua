@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0
 
-$Id: wifi.lua 9414 2012-10-31 15:58:15Z dgolle $
+$Id$
 ]]--
 
 local wa = require "luci.tools.webadmin"

@@ -9,7 +9,7 @@ You may obtain a copy of the License at
 
 	http://www.apache.org/licenses/LICENSE-2.0 
 
-$Id: collectd.lua 9521 2012-12-02 13:32:54Z jow $
+$Id$
 
 ]]--
 
