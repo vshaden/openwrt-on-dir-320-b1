@@ -38,9 +38,8 @@ CMAKE_OPTIONS += \
 	-DOPTIONAL_INCLUDE_DIR=$(STAGING_DIR)/opt/include \
 
 define Package/uqmi/install
-        $(INSTALL_DIR) $(1)/sbin
-        $(INSTALL_BIN) $(PKG_BUILD_DIR)/uqmi $(1)/sbin/
-
+	$(INSTALL_DIR) $(1)/sbin
+	$(INSTALL_BIN) $(PKG_BUILD_DIR)/uqmi $(1)/sbin/
 endef
 
 $(eval $(call BuildPackage,uqmi))
