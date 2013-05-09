@@ -1,6 +1,5 @@
-# 
-# Copyright (C) 2012 OpenWrt.org
-# Copyright (C) 2013 Rusink <rzrusink@qmail.com>
+#
+# Copyright (C) 2011-2013 Entware
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,42 +8,38 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=uqmi
-PKG_VERSION:=0.0.1-rz
+PKG_VERSION:=20130305
+PKG_REV:=b61b3e8ff2b29e08b53eabc7b813c1c87c734947
 PKG_RELEASE:=1
 
-PKG_BUILD_PARALLEL:=1
-
-
-PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
-PKG_MAINTAINER:=Felix Fietkau <nbd@openwrt.org>
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
+PKG_SOURCE_URL:=git://nbd.name/uqmi.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_VERSION:=$(PKG_REV)
 
 include $(INCLUDE_DIR)/package.mk
+include $(INCLUDE_DIR)/cmake.mk
 
 define Package/uqmi
-   SECTION:=utils
-   CATEGORY:=Utilities
-   DEPENDS:=
-   TITLE:= QMI CLI Interface Configuration Manager
+	SECTION:=utils
+	CATEGORY:=Utilities
+	DEPENDS:=+libubox
+	TITLE:=standalone QMI utility
+	URL:=http://nbd.name/gitweb.cgi?p=uqmi.git
+	MAINTAINER:=Entware team, wl500g-repo.googlecode.com
 endef
 
 define Package/uqmi/description
-	Small QMI CLI Interface Configuration Manager for QMI modems,
-	like Huawei E392, E398 made by Felix Fietkau aka nbd 
+ uqmi is a small QMI utility
 endef
 
-define Build/Prepare
-	mkdir -p $(PKG_BUILD_DIR)
-	$(CP) ./src/* $(PKG_BUILD_DIR)
-	$(MAKE) -C $(PKG_BUILD_DIR)/libuboxm \
-	 $(MAKE_ARGS) \
-		CC="$(TARGET_CC)" CFLAGS="$(TARGET_CFLAGS)" \
-		LDFLAGS="$(TARGET_LDFLAGS)"
-	$(call Build/Prepare/Default)
-endef
+CMAKE_OPTIONS += \
+	-DOPTIONAL_INCLUDE_DIR=$(STAGING_DIR)/opt/include \
 
 define Package/uqmi/install
-	$(INSTALL_DIR) $(1)/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/uqmi $(1)/sbin/
+        $(INSTALL_DIR) $(1)/sbin
+        $(INSTALL_BIN) $(PKG_BUILD_DIR)/uqmi $(1)/sbin/
 
 endef
 
