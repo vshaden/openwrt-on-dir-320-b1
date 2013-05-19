@@ -117,10 +117,9 @@ void __init rt305x_register_flash(unsigned int id)
 static void rt305x_fe_reset(void)
 {
 	u32 reset_bits = RT305X_RESET_FE;
-
 	if (soc_is_rt5350())
 		reset_bits |= RT305X_RESET_ESW;
-	rt305x_sysc_wr(reset_bits, SYSC_REG_RESET_CTRL);
+	rt305x_sysc_wr(RT305X_RESET_FE, SYSC_REG_RESET_CTRL);
 	rt305x_sysc_wr(0, SYSC_REG_RESET_CTRL);
 }
 
@@ -163,6 +162,7 @@ struct rt305x_esw_platform_data rt305x_esw_data = {
 	.vlan_config		= RT305X_ESW_VLAN_CONFIG_NONE,
 	.reg_initval_fct2	= 0x00d6500c,
 	.reg_initval_fpa2	= 0x3f502b28,
+	.led_polarity           = 0x0, /* Led polarity low for all leds */
 };
 
 static struct platform_device rt305x_esw_device = {
