@@ -10,11 +10,14 @@
 
 #include <linux/init.h>
 #include <linux/platform_device.h>
-#include <linux/spi/spi.h>
-#include <linux/spi/flash.h>
 #include <linux/mtd/mtd.h>
 #include <linux/mtd/partitions.h>
 #include <linux/mtd/physmap.h>
+#include <linux/leds.h>
+#include <linux/gpio_keys.h>
+#include <linux/input.h>
+#include <linux/spi/spi.h>
+#include <linux/spi/flash.h>
 
 #include <asm/mach-ralink/machine.h>
 #include <asm/mach-ralink/dev-gpio-buttons.h>
@@ -89,6 +92,7 @@ static void __init dir320b1_init(void)
 	rt305x_register_spi(dir320b1_spi_slave_info,
 			    ARRAY_SIZE(dir320b1_spi_slave_info));
 	rt305x_esw_data.vlan_config = RT305X_ESW_VLAN_CONFIG_LLLLW;
+	rt305x_esw_data.led_polarity = 0x17; /* Port 0,1,2,4 has inverted LED polarity on 320NRU */
 	rt305x_register_ethernet();
 	ramips_register_gpio_leds(-1, ARRAY_SIZE(dir_320_b1_leds_gpio),
 				  dir_320_b1_leds_gpio);
@@ -102,3 +106,4 @@ static void __init dir320b1_init(void)
 
 MIPS_MACHINE(RAMIPS_MACH_DIR_320_B1, "DIR-320-B1", "D-Link DIR-320 B1",
 	     dir320b1_init);
+

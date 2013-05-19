@@ -65,11 +65,10 @@ enum ramips_mach_type {
 	
 	/* RT3352 based machines */
 	RAMIPS_MACH_WAP120NF,
-	RAMIPS_MACH_DIR_620_D1,
 
 	/* RT3662 based machines */
 	RAMIPS_MACH_RT_N56U,		/* Asus RT-N56U */
-	
+
 	/* RT5350 based machines */
-	RAMIPS_MACH_DIR_320_B1
+	RAMIPS_MACH_DIR_320_B1,
 };
