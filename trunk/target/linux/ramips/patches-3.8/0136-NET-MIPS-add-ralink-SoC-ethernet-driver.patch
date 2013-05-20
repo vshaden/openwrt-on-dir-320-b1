@@ -1,7 +1,7 @@
-From 34fc7d26c01ba594be347aefcc31f55b36c06a72 Mon Sep 17 00:00:00 2001
+From 1c31c288bc1e853e3226ba593a13a0492b39c9e8 Mon Sep 17 00:00:00 2001
 From: John Crispin <blogic@openwrt.org>
-Date: Mon, 22 Apr 2013 23:20:03 +0200
-Subject: [PATCH 136/137] NET: MIPS: add ralink SoC ethernet driver
+Date: Fri, 15 Mar 2013 19:07:05 +0100
+Subject: [PATCH 120/121] NET: MIPS: add ralink SoC ethernet driver
 
 Add support for Ralink FE and ESW.
 
@@ -14,10 +14,10 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
  drivers/net/ethernet/ramips/Kconfig                |   18 +
  drivers/net/ethernet/ramips/Makefile               |    9 +
  drivers/net/ethernet/ramips/ramips_debugfs.c       |  127 ++
- drivers/net/ethernet/ramips/ramips_esw.c           | 1221 +++++++++++++++++++
+ drivers/net/ethernet/ramips/ramips_esw.c           | 1220 +++++++++++++++++++
  drivers/net/ethernet/ramips/ramips_eth.h           |  375 ++++++
- drivers/net/ethernet/ramips/ramips_main.c          | 1281 ++++++++++++++++++++
- 10 files changed, 3061 insertions(+)
+ drivers/net/ethernet/ramips/ramips_main.c          | 1285 ++++++++++++++++++++
+ 10 files changed, 3064 insertions(+)
  create mode 100644 arch/mips/include/asm/mach-ralink/rt305x_esw_platform.h
  create mode 100644 drivers/net/ethernet/ramips/Kconfig
  create mode 100644 drivers/net/ethernet/ramips/Makefile
@@ -26,9 +26,11 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
  create mode 100644 drivers/net/ethernet/ramips/ramips_eth.h
  create mode 100644 drivers/net/ethernet/ramips/ramips_main.c
 
---- /dev/null
-+++ b/arch/mips/include/asm/mach-ralink/rt305x_esw_platform.h
-@@ -0,0 +1,27 @@
+Index: linux-3.8.12/arch/mips/include/asm/mach-ralink/rt305x_esw_platform.h
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ linux-3.8.12/arch/mips/include/asm/mach-ralink/rt305x_esw_platform.h	2013-05-20 18:44:40.000000000 +0400
+@@ -0,0 +1,28 @@
 +/*
 + *  Ralink RT305x SoC platform device registration
 + *
@@ -53,12 +55,15 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	u8 vlan_config;
 +	u32 reg_initval_fct2;
 +	u32 reg_initval_fpa2;
++	u8 led_polarity;
 +};
 +
 +#endif /* _RT305X_ESW_PLATFORM_H */
---- a/arch/mips/ralink/rt305x.c
-+++ b/arch/mips/ralink/rt305x.c
-@@ -221,6 +221,7 @@ void __init ralink_clk_init(void)
+Index: linux-3.8.12/arch/mips/ralink/rt305x.c
+===================================================================
+--- linux-3.8.12.orig/arch/mips/ralink/rt305x.c	2013-05-20 18:44:39.000000000 +0400
++++ linux-3.8.12/arch/mips/ralink/rt305x.c	2013-05-20 18:44:40.000000000 +0400
+@@ -221,6 +221,7 @@
  	}
  
  	ralink_clk_add("cpu", cpu_rate);
@@ -66,9 +71,11 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
  	ralink_clk_add("10000b00.spi", sys_rate);
  	ralink_clk_add("10000100.timer", wdt_rate);
  	ralink_clk_add("10000120.watchdog", wdt_rate);
---- a/drivers/net/ethernet/Kconfig
-+++ b/drivers/net/ethernet/Kconfig
-@@ -136,6 +136,7 @@ source "drivers/net/ethernet/packetengin
+Index: linux-3.8.12/drivers/net/ethernet/Kconfig
+===================================================================
+--- linux-3.8.12.orig/drivers/net/ethernet/Kconfig	2013-05-08 07:33:25.000000000 +0400
++++ linux-3.8.12/drivers/net/ethernet/Kconfig	2013-05-20 18:44:40.000000000 +0400
+@@ -136,6 +136,7 @@
  source "drivers/net/ethernet/pasemi/Kconfig"
  source "drivers/net/ethernet/qlogic/Kconfig"
  source "drivers/net/ethernet/racal/Kconfig"
@@ -76,9 +83,11 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
  source "drivers/net/ethernet/realtek/Kconfig"
  source "drivers/net/ethernet/renesas/Kconfig"
  source "drivers/net/ethernet/rdc/Kconfig"
---- a/drivers/net/ethernet/Makefile
-+++ b/drivers/net/ethernet/Makefile
-@@ -54,6 +54,7 @@ obj-$(CONFIG_NET_PACKET_ENGINE) += packe
+Index: linux-3.8.12/drivers/net/ethernet/Makefile
+===================================================================
+--- linux-3.8.12.orig/drivers/net/ethernet/Makefile	2013-05-08 07:33:25.000000000 +0400
++++ linux-3.8.12/drivers/net/ethernet/Makefile	2013-05-20 18:44:40.000000000 +0400
+@@ -54,6 +54,7 @@
  obj-$(CONFIG_NET_VENDOR_PASEMI) += pasemi/
  obj-$(CONFIG_NET_VENDOR_QLOGIC) += qlogic/
  obj-$(CONFIG_NET_VENDOR_RACAL) += racal/
@@ -86,8 +95,10 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
  obj-$(CONFIG_NET_VENDOR_REALTEK) += realtek/
  obj-$(CONFIG_SH_ETH) += renesas/
  obj-$(CONFIG_NET_VENDOR_RDC) += rdc/
---- /dev/null
-+++ b/drivers/net/ethernet/ramips/Kconfig
+Index: linux-3.8.12/drivers/net/ethernet/ramips/Kconfig
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ linux-3.8.12/drivers/net/ethernet/ramips/Kconfig	2013-05-20 18:44:40.000000000 +0400
 @@ -0,0 +1,18 @@
 +config NET_RAMIPS
 +       tristate "Ralink RT288X/RT3X5X/RT3662/RT3883 ethernet driver"
@@ -107,8 +118,10 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	depends on DEBUG_FS
 +
 +endif
---- /dev/null
-+++ b/drivers/net/ethernet/ramips/Makefile
+Index: linux-3.8.12/drivers/net/ethernet/ramips/Makefile
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ linux-3.8.12/drivers/net/ethernet/ramips/Makefile	2013-05-20 18:44:40.000000000 +0400
 @@ -0,0 +1,9 @@
 +#
 +# Makefile for the Ramips SoCs built-in ethernet macs
@@ -119,8 +132,10 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +ramips-$(CONFIG_NET_RAMIPS_DEBUG_FS)	+= ramips_debugfs.o
 +
 +obj-$(CONFIG_NET_RAMIPS)	+= ramips.o
---- /dev/null
-+++ b/drivers/net/ethernet/ramips/ramips_debugfs.c
+Index: linux-3.8.12/drivers/net/ethernet/ramips/ramips_debugfs.c
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ linux-3.8.12/drivers/net/ethernet/ramips/ramips_debugfs.c	2013-05-20 18:44:40.000000000 +0400
 @@ -0,0 +1,127 @@
 +/*
 + *  Ralink SoC ethernet driver debugfs code
@@ -249,9 +264,11 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	debugfs_remove(raeth_debugfs_root);
 +	raeth_debugfs_root = NULL;
 +}
---- /dev/null
-+++ b/drivers/net/ethernet/ramips/ramips_esw.c
-@@ -0,0 +1,1221 @@
+Index: linux-3.8.12/drivers/net/ethernet/ramips/ramips_esw.c
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ linux-3.8.12/drivers/net/ethernet/ramips/ramips_esw.c	2013-05-20 18:57:32.000000000 +0400
+@@ -0,0 +1,1438 @@
 +#include <linux/ioport.h>
 +#include <linux/switch.h>
 +#include <linux/mii.h>
@@ -303,6 +320,15 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +#define RT305X_ESW_REG_P4PC		0xf8
 +#define RT305X_ESW_REG_P5PC		0xfc
 +
++/* RT5350 only registers */
++#define RT305X_ESW_REG_LED_POLARITY     0x168
++#define RT305X_ESW_REG_P0TPC		0x150
++#define RT305X_ESW_REG_P1TPC		0x154
++#define RT305X_ESW_REG_P2TPC		0x158
++#define RT305X_ESW_REG_P3TPC		0x15c
++#define RT305X_ESW_REG_P4TPC		0x160
++#define RT305X_ESW_REG_P5TPC		0x164
++
 +#define RT305X_ESW_LED_LINK		0
 +#define RT305X_ESW_LED_100M		1
 +#define RT305X_ESW_LED_DUPLEX		2
@@ -314,6 +340,7 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +#define RT305X_ESW_LED_100MACT		8
 +/* Additional led states not in datasheet: */
 +#define RT305X_ESW_LED_BLINK		10
++#define RT305X_ESW_LED_OFF		11
 +#define RT305X_ESW_LED_ON		12
 +
 +#define RT305X_ESW_LINK_S		25
@@ -406,6 +433,9 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	/* Global attributes. */
 +	RT305X_ESW_ATTR_ENABLE_VLAN,
 +	RT305X_ESW_ATTR_ALT_VLAN_DISABLE,
++	RT305X_ESW_ATTR_LED_FREQ,
++	RT305X_ESW_ATTR_PKT_LENGTH,
++	RT305X_ESW_ATTR_BC_STATUS,
 +	/* Port attributes. */
 +	RT305X_ESW_ATTR_PORT_DISABLE,
 +	RT305X_ESW_ATTR_PORT_DOUBLETAG,
@@ -414,6 +444,9 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	RT305X_ESW_ATTR_PORT_LAN,
 +	RT305X_ESW_ATTR_PORT_RECV_BAD,
 +	RT305X_ESW_ATTR_PORT_RECV_GOOD,
++	RT305X_ESW_ATTR_PORT_TR_BAD,
++	RT305X_ESW_ATTR_PORT_TR_GOOD,
++	RT305X_ESW_ATTR_PORT_LED_POLARITY,
 +};
 +
 +struct rt305x_esw_port {
@@ -447,7 +480,8 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	bool			alt_vlan_disable;
 +	struct rt305x_esw_vlan vlans[RT305X_ESW_NUM_VLANS];
 +	struct rt305x_esw_port ports[RT305X_ESW_NUM_PORTS];
-+
++	u8                      led_polarity; /* LED polarity. RT5350 only */
++	u32                     sgc; /* SGC value */
 +};
 +
 +static inline void
@@ -689,6 +723,7 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	 * ports.
 +	 */
 +	rt305x_esw_wr(esw, 0x0008a301, RT305X_ESW_REG_SGC);
++	esw->sgc=0x0008a301;
 +
 +	/* Setup SoC Port control register */
 +	rt305x_esw_wr(esw,
@@ -710,6 +745,9 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	rt305x_esw_wr(esw, 0x00000005, RT305X_ESW_REG_P2LED);
 +	rt305x_esw_wr(esw, 0x00000005, RT305X_ESW_REG_P3LED);
 +	rt305x_esw_wr(esw, 0x00000005, RT305X_ESW_REG_P4LED);
++
++	if (soc_is_rt5350())
++	        rt305x_esw_wr(esw,esw->led_polarity, RT305X_ESW_REG_LED_POLARITY);
 +
 +	/* Copy disabled port configuration from bootloader setup */
 +	port_disable = rt305x_esw_get_port_disable(esw);
@@ -809,6 +847,8 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	u8 en_vlan = 0;
 +	u8 untag = 0;
 +
++	rt305x_esw_wr(esw, esw->sgc, RT305X_ESW_REG_SGC);
++
 +	for (i = 0; i < RT305X_ESW_NUM_VLANS; i++) {
 +		u32 vid, vmsc;
 +		if (esw->global_vlan_enable) {
@@ -820,6 +860,10 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +		}
 +		rt305x_esw_set_vlan_id(esw, i, vid);
 +		rt305x_esw_set_vmsc(esw, i, vmsc);
++	}
++
++	if (soc_is_rt5350()) {
++	        rt305x_esw_wr(esw,esw->led_polarity, RT305X_ESW_REG_LED_POLARITY);
 +	}
 +
 +	for (i = 0; i < RT305X_ESW_NUM_PORTS; i++) {
@@ -1059,6 +1103,27 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +}
 +
 +static int
++rt305x_esw_get_port_tr_badgood(struct switch_dev *dev,
++				 const struct switch_attr *attr,
++				 struct switch_val *val)
++{
++	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
++	int idx = val->port_vlan;
++	int shift = attr->id == RT305X_ESW_ATTR_PORT_TR_GOOD ? 0 : 16;
++	u32 reg;
++
++	if (!soc_is_rt5350())
++		return -EINVAL;
++
++	if (idx < 0 || idx >= RT305X_ESW_NUM_LANWAN)
++		return -EINVAL;
++
++	reg = rt305x_esw_rr(esw, RT305X_ESW_REG_P0TPC + 4*idx);
++	val->value.i = (reg >> shift) & 0xffff;
++	return 0;
++}
++
++static int
 +rt305x_esw_get_port_led(struct switch_dev *dev,
 +			const struct switch_attr *attr,
 +			struct switch_val *val)
@@ -1215,6 +1280,121 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	return 0;
 +}
 +
++static int
++rt305x_esw_set_port_led_polarity(struct switch_dev *dev,
++			const struct switch_attr *attr,
++			struct switch_val *val)
++{
++	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
++	int idx = val->port_vlan;
++
++	if (idx < 0 || idx >= RT305X_ESW_NUM_LEDS)
++		return -EINVAL;
++
++	if (!soc_is_rt5350())
++	        return -EINVAL;
++
++	if (val->value.i==0)
++                esw->led_polarity &= ~ (1 << idx);
++	else
++		esw->led_polarity |= (1 << idx);
++	return 0;
++}
++
++static int
++rt305x_esw_get_port_led_polarity(struct switch_dev *dev,
++			const struct switch_attr *attr,
++			struct switch_val *val)
++{
++	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
++	int idx = val->port_vlan;
++
++	if (!soc_is_rt5350())
++	        return -EINVAL;
++
++
++	if (idx < 0 || idx >= RT305X_ESW_NUM_PORTS ||
++	    idx >= RT305X_ESW_NUM_LEDS)
++		return -EINVAL;
++
++	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_LED_POLARITY) >> idx) & 1;
++
++	return 0;
++}
++
++static int
++rt305x_esw_set_led_freq(struct switch_dev *dev,
++			const struct switch_attr *attr,
++			struct switch_val *val)
++{
++	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
++
++        esw->sgc &= 0xfe7fffff;
++        esw->sgc |= ((val->value.i & 3) << 23);
++        return 0;
++}
++
++static int
++rt305x_esw_get_led_freq(struct switch_dev *dev,
++			const struct switch_attr *attr,
++			struct switch_val *val)
++{
++	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
++
++	val->value.i = (rt305x_esw_rr(esw,RT305X_ESW_REG_SGC) >> 23) & 3;
++
++	return 0;
++}
++
++static int
++rt305x_esw_set_pkt_length(struct switch_dev *dev,
++			const struct switch_attr *attr,
++			struct switch_val *val)
++{
++	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
++
++        esw->sgc &= 0xffffff3f;
++        esw->sgc |= ((val->value.i & 3) << 6);
++        return 0;
++}
++
++static int
++rt305x_esw_get_pkt_length(struct switch_dev *dev,
++			const struct switch_attr *attr,
++			struct switch_val *val)
++{
++	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
++
++	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_SGC) >> 6) & 3;
++
++	return 0;
++}
++
++
++static int
++rt305x_esw_set_bc_status(struct switch_dev *dev,
++			const struct switch_attr *attr,
++			struct switch_val *val)
++{
++	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
++
++        esw->sgc &= 0xffffffcf;
++        esw->sgc |= ((val->value.i & 3) << 4);
++        return 0;
++}
++
++static int
++rt305x_esw_get_bc_status(struct switch_dev *dev,
++			const struct switch_attr *attr,
++			struct switch_val *val)
++{
++	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
++
++	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_SGC) >> 4) & 3;
++
++	return 0;
++}
++
 +static const struct switch_attr rt305x_esw_global[] = {
 +	{
 +		.type = SWITCH_TYPE_INT,
@@ -1234,6 +1414,33 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +		.id = RT305X_ESW_ATTR_ALT_VLAN_DISABLE,
 +		.get = rt305x_esw_get_alt_vlan_disable,
 +		.set = rt305x_esw_set_alt_vlan_disable,
++	},
++	{
++		.type = SWITCH_TYPE_INT,
++		.name = "led_freq",
++		.description = "LED Flash frequency (0:30mS, 1:60mS, 2:240mS, 3:480mS)",
++		.max = 3,
++		.id = RT305X_ESW_ATTR_LED_FREQ,
++		.get = rt305x_esw_get_led_freq,
++		.set = rt305x_esw_set_led_freq,
++	},
++	{
++		.type = SWITCH_TYPE_INT,
++		.name = "pkt_maxlen",
++		.description = "Maximum packet lenghth tagged/untagged (0:1536/1536, 1:1522/1518, 2:1526/1522)",
++		.max = 2,
++		.id = RT305X_ESW_ATTR_PKT_LENGTH,
++		.get = rt305x_esw_get_pkt_length,
++		.set = rt305x_esw_set_pkt_length,
++	},
++	{
++		.type = SWITCH_TYPE_INT,
++		.name = "bc_storm_protect",
++		.description = "Global broadcast storm protection (0:Disable, 1:64 blocks, 2:96 blocks, 3:128 blocks)",
++		.max = 2,
++		.id = RT305X_ESW_ATTR_BC_STATUS,
++		.get = rt305x_esw_get_bc_status,
++		.set = rt305x_esw_set_bc_status,
 +	},
 +};
 +
@@ -1271,7 +1478,7 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +		.name = "led",
 +		.description = "LED mode (0:link, 1:100m, 2:duplex, 3:activity,"
 +				" 4:collision, 5:linkact, 6:duplcoll, 7:10mact,"
-+				" 8:100mact, 10:blink, 12:on)",
++				" 8:100mact, 10:blink, 11:off, 12:on)",
 +		.max = 15,
 +		.id = RT305X_ESW_ATTR_PORT_LED,
 +		.get = rt305x_esw_get_port_led,
@@ -1298,6 +1505,29 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +		.description = "Receive good packet counter",
 +		.id = RT305X_ESW_ATTR_PORT_RECV_GOOD,
 +		.get = rt305x_esw_get_port_recv_badgood,
++	},
++	{
++		.type = SWITCH_TYPE_INT,
++		.name = "led_polarity",
++		.description = "LED Polarity for each port (0:low active, 1:high active). rt5350 only",
++		.max = 1,
++		.id = RT305X_ESW_ATTR_PORT_LED_POLARITY,
++		.get = rt305x_esw_get_port_led_polarity,
++		.set = rt305x_esw_set_port_led_polarity,
++	},
++	{
++		.type = SWITCH_TYPE_INT,
++		.name = "tr_bad",
++		.description = "Transmit bad packet counter. rt5350 only",
++		.id = RT305X_ESW_ATTR_PORT_TR_BAD,
++		.get = rt305x_esw_get_port_tr_badgood,
++	},
++	{
++		.type = SWITCH_TYPE_INT,
++		.name = "tr_good",
++		.description = "Transmit good packet counter. rt5350 only",
++		.id = RT305X_ESW_ATTR_PORT_TR_GOOD,
++		.get = rt305x_esw_get_port_tr_badgood,
 +	},
 +};
 +
@@ -1350,7 +1580,7 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +{
 +	struct device_node *np = pdev->dev.of_node;
 +	const struct rt305x_esw_platform_data *pdata;
-+	const __be32 *port_map, *reg_init;
++	const __be32 *port_map, *reg_init, *led_polarity;
 +	struct rt305x_esw *esw;
 +	struct switch_dev *swdev;
 +	struct resource *res, *irq;
@@ -1404,6 +1634,10 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	reg_init = of_get_property(np, "ralink,fpa2", NULL);
 +        if (reg_init)
 +		esw->reg_initval_fpa2 = be32_to_cpu(*reg_init);
++
++	led_polarity = of_get_property(np, "ralink,led-polarity", NULL);
++	if (led_polarity && soc_is_rt5350())
++		esw->led_polarity = be32_to_cpu(*led_polarity) & 0x1F;
 +
 +	swdev = &esw->swdev;
 +	swdev->of_node = pdev->dev.of_node;
@@ -1473,8 +1707,10 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +{
 +	platform_driver_unregister(&rt305x_esw_driver);
 +}
---- /dev/null
-+++ b/drivers/net/ethernet/ramips/ramips_eth.h
+Index: linux-3.8.12/drivers/net/ethernet/ramips/ramips_eth.h
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ linux-3.8.12/drivers/net/ethernet/ramips/ramips_eth.h	2013-05-20 18:44:40.000000000 +0400
 @@ -0,0 +1,375 @@
 +/*
 + *   This program is free software; you can redistribute it and/or modify
@@ -1851,9 +2087,11 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +#endif /* CONFIG_NET_RAMIPS_DEBUG_FS */
 +
 +#endif /* RAMIPS_ETH_H */
---- /dev/null
-+++ b/drivers/net/ethernet/ramips/ramips_main.c
-@@ -0,0 +1,1281 @@
+Index: linux-3.8.12/drivers/net/ethernet/ramips/ramips_main.c
+===================================================================
+--- /dev/null	1970-01-01 00:00:00.000000000 +0000
++++ linux-3.8.12/drivers/net/ethernet/ramips/ramips_main.c	2013-05-20 18:44:40.000000000 +0400
+@@ -0,0 +1,1285 @@
 +/*
 + *   This program is free software; you can redistribute it and/or modify
 + *   it under the terms of the GNU General Public License as published by
@@ -1884,7 +2122,6 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +#include <linux/of_device.h>
 +#include <linux/clk.h>
 +#include <linux/of_net.h>
-+#include <linux/of_mdio.h>
 +
 +#include "ramips_eth.h"
 +
@@ -2148,7 +2385,7 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	}
 +
 +	mdio_cfg = RAMIPS_MDIO_CFG_TX_CLK_SKEW_200 |
-+		   RAMIPS_MDIO_CFG_RX_CLK_SKEW_200 |
++		   RAMIPS_MDIO_CFG_TX_CLK_SKEW_200 |
 +		   RAMIPS_MDIO_CFG_GP1_FRC_EN;
 +
 +	if (re->duplex == DUPLEX_FULL)
@@ -2263,25 +2500,12 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +static int
 +ramips_mdio_init(struct raeth_priv *re)
 +{
-+	struct device_node *mii_np;
 +	int err;
-+
-+	mii_np = of_get_child_by_name(re->of_node, "mdio-bus");
-+	if (!mii_np) {
-+		dev_err(re->parent, "no %s child node found", "mdio-bus");
-+		return -ENODEV;
-+	}
-+
-+	if (!of_device_is_available(mii_np)) {
-+		err = 0;
-+		goto err_put_node;
-+	}
++	int i;
 +
 +	re->mii_bus = mdiobus_alloc();
-+	if (re->mii_bus == NULL) {
-+		err = -ENOMEM;
-+		goto err_put_node;
-+	}
++	if (re->mii_bus == NULL)
++		return -ENOMEM;
 +
 +	re->mii_bus->name = "ramips_mdio";
 +	re->mii_bus->read = ramips_mdio_read;
@@ -2292,7 +2516,12 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	re->mii_bus->parent = re->parent;
 +
 +	snprintf(re->mii_bus->id, MII_BUS_ID_SIZE, "%s", "ramips_mdio");
-+	err = of_mdiobus_register(re->mii_bus, mii_np);
++	re->mii_bus->phy_mask = 0;
++
++	for (i = 0; i < PHY_MAX_ADDR; i++)
++		re->mii_irq[i] = PHY_POLL;
++
++	err = mdiobus_register(re->mii_bus);
 +	if (err)
 +		goto err_free_bus;
 +
@@ -2300,20 +2529,13 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +
 +err_free_bus:
 +	kfree(re->mii_bus);
-+err_put_node:
-+	of_node_put(mii_np);
-+	re->mii_bus = NULL;
 +	return err;
 +}
 +
 +static void
 +ramips_mdio_cleanup(struct raeth_priv *re)
 +{
-+	if (!re->mii_bus)
-+		return;
-+
 +	mdiobus_unregister(re->mii_bus);
-+	of_node_put(re->mii_bus->dev.of_node);
 +	kfree(re->mii_bus);
 +}
 +
@@ -2346,54 +2568,77 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +}
 +
 +static int
-+ramips_phy_connect_by_node(struct raeth_priv *re, struct device_node *phy_node)
++ramips_phy_connect_multi(struct raeth_priv *re)
 +{
-+	struct phy_device *phydev;
-+	int phy_mode;
++	struct net_device *netdev = re->netdev;
++	struct phy_device *phydev = NULL;
++	int phy_addr;
++	int ret = 0;
 +
-+	phy_mode = of_get_phy_mode(re->of_node);
-+	if (phy_mode < 0) {
-+		dev_err(re->parent, "incorrect phy-mode\n");
-+		return -EINVAL;
++	for (phy_addr = 0; phy_addr < PHY_MAX_ADDR; phy_addr++) {
++		if (!(re->phy_mask & (1 << phy_addr)))
++			continue;
++
++		if (re->mii_bus->phy_map[phy_addr] == NULL)
++			continue;
++
++		RADEBUG("%s: PHY found at %s, uid=%08x\n",
++			netdev->name,
++			dev_name(&re->mii_bus->phy_map[phy_addr]->dev),
++			re->mii_bus->phy_map[phy_addr]->phy_id);
++
++		if (phydev == NULL)
++			phydev = re->mii_bus->phy_map[phy_addr];
 +	}
 +
-+	phydev = of_phy_connect(re->netdev, phy_node, ramips_phy_link_adjust,
-+				0, phy_mode);
-+	if (IS_ERR(phydev)) {
-+		dev_err(re->parent, "could not connect to PHY\n");
++	if (!phydev) {
++		netdev_err(netdev, "no PHY found with phy_mask=%08x\n",
++			   re->phy_mask);
++		return -ENODEV;
++	}
++
++	re->phy_dev = phy_connect(netdev, dev_name(&phydev->dev),
++				  ramips_phy_link_adjust, 0, re->phy_if_mode);
++
++	if (IS_ERR(re->phy_dev)) {
++		netdev_err(netdev, "could not connect to PHY at %s\n",
++			   dev_name(&phydev->dev));
 +		return PTR_ERR(re->phy_dev);
 +	}
 +
 +	phydev->supported &= PHY_GBIT_FEATURES;
 +	phydev->advertising = phydev->supported;
 +
-+	dev_info(re->parent,
-+		 "connected to PHY at %s [uid=%08x, driver=%s]\n",
-+		 dev_name(&phydev->dev), phydev->phy_id,
-+		 phydev->drv->name);
++	RADEBUG("%s: connected to PHY at %s [uid=%08x, driver=%s]\n",
++		netdev->name, dev_name(&phydev->dev),
++		phydev->phy_id, phydev->drv->name);
 +
-+	re->phy_dev = phydev;
 +	re->link = 0;
 +	re->speed = 0;
 +	re->duplex = -1;
 +	re->rx_fc = 0;
 +	re->tx_fc = 0;
 +
-+	return 0;
++	return ret;
 +}
 +
 +static int
-+ramips_phy_connect_fixed(struct raeth_priv *re, const __be32 *link, int size)
++ramips_phy_connect_fixed(struct raeth_priv *re)
 +{
-+	if (size != (4 * sizeof(*link))) {
-+		dev_err(re->parent, "invalid fixed-link property\n");
-+		return -EINVAL;
-+	}
++	if (!re->speed) {
++		const __be32 *link;
++		int size;
 +
-+	re->speed = be32_to_cpup(link++);
-+	re->duplex = be32_to_cpup(link++);
-+	re->tx_fc = be32_to_cpup(link++);
-+	re->rx_fc = be32_to_cpup(link++);
++		link = of_get_property(re->of_node,
++					"ralink,fixed-link", &size);
++		if (!link || size != (4 * sizeof(*link)))
++			return -ENOENT;
++
++		re->speed = be32_to_cpup(link++);
++		re->duplex = be32_to_cpup(link++);
++		re->tx_fc = be32_to_cpup(link++);
++		re->rx_fc = be32_to_cpup(link++);
++	}
 +
 +	switch (re->speed) {
 +	case SPEED_10:
@@ -2401,31 +2646,28 @@ Signed-off-by: John Crispin <blogic@openwrt.org>
 +	case SPEED_1000:
 +		break;
 +	default:
-+		dev_err(re->parent, "invalid link speed: %d\n", re->speed);
++		netdev_err(re->netdev, "invalid speed specified\n");
 +		return -EINVAL;
 +	}
 +
-+	dev_info(re->parent, "using fixed link parameters\n");
++	pr_info("%s: using fixed link parameters\n", re->netdev->name);
 +	return 0;
 +}
 +
 +static int
 +ramips_phy_connect(struct raeth_priv *re)
 +{
-+	struct device_node *phy_node;
-+	const __be32 *p32;
-+	int size;
++	const __be32 *mask;
 +
-+	phy_node = of_parse_phandle(re->of_node, "phy-handle", 0);
-+	if (phy_node)
-+		return ramips_phy_connect_by_node(re, phy_node);
++	mask = of_get_property(re->of_node, "ralink,phy-mask", NULL);
++	re->phy_if_mode = of_get_phy_mode(re->of_node);
 +
-+	p32 = of_get_property(re->of_node, "ralink,fixed-link", &size);
-+	if (p32)
-+		return ramips_phy_connect_fixed(re, p32, size);
++	if (!re->phy_if_mode || !mask)
++		return ramips_phy_connect_fixed(re);
 +
-+	dev_err(re->parent, "unable to get connection type\n");
-+	return -EINVAL;
++	re->phy_mask = be32_to_cpup(mask);
++	return ramips_phy_connect_multi(re);
++
 +}
 +
 +static void

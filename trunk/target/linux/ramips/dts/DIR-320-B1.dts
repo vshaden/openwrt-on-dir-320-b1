@@ -60,6 +60,7 @@
 	esw@10110000 {
 		status = "okay";
 		ralink,portmap = <0x2f>;
+		ralink,led-polarity = <0x17>;
 	};
 
 	gpio-leds {
@@ -107,5 +108,22 @@
 
 	ohci@101c0000 {
 		status = "okay";
+	};
+
+	gpio_export {
+		compatible = "gpio-export";
+		#size-cells = <0>;
+
+		usb {
+			gpio-export,name = "usb";
+			gpio-export,output = <1>;
+			gpios = <&gpio0 7 0>;
+		};
+	
+		root_hub {
+			gpio-export,name = "root_hub";
+			gpio-export,output = <1>;
+			gpios = <&gpio0 12 0>;
+		};
 	};
 };

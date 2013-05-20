@@ -147,6 +147,7 @@
 	esw@10110000 {
 		compatible = "ralink,rt5350-esw", "ralink,rt3050-esw";
 		reg = <0x10110000 8000>;
+		ralink,led-polarity = <0x00>;
 
 		interrupt-parent = <&intc>;
 		interrupts = <17>;

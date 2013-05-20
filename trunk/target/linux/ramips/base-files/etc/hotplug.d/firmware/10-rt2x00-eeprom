@@ -30,12 +30,13 @@ rt2x00_eeprom_extract_and_patch () {
 	local replace=$6 #this 1 byte hex (AB, without 0x)
 	local mtd
 
+	. /lib/functions.sh
+
 	xxd=$(which xxd)
 	sed=$(which sed)
 
 	if [ -n "$xxd" -a -n "$sed" ]; then
-		. /lib/functions.sh
-
+		
 		mtd=$(find_mtd_part $part)
 		[ -n "$mtd" ] || \
 			rt2x00_eeprom_die "no mtd device found for partition $part"
@@ -43,12 +44,12 @@ rt2x00_eeprom_extract_and_patch () {
 		dd if=$mtd of=/tmp/$FIRMWARE bs=1 skip=$offset count=$count 2>/dev/null || \
 			rt2x00_eeprom_die "failed to extract from $mtd"
 
-		xxd -p -u -c 1 /tmp/$FIRMWARE > /tmp/$FIRMWARE.dump # make hex dump
+		xxd -p -u -c 1 /tmp/$FIRMWARE > /tmp/$FIRMWARE.dump
 		for i in $(seq $patchseekstart $patchseekend); do
 			sed -i ${i}d /tmp/$FIRMWARE.dump
-			sed -i ${i}i${replace} /tmp/$FIRMWARE.dump # patch it
+			sed -i ${i}i${replace} /tmp/$FIRMWARE.dump
 		done
-		xxd -r -p -u -c 1 /tmp/$FIRMWARE.dump /lib/firmware/$FIRMWARE # compile patched firmware
+		xxd -r -p -u -c 1 /tmp/$FIRMWARE.dump /lib/firmware/$FIRMWARE
 
 		rm -rf /tmp/$FIRMWARE*
 	else
@@ -146,7 +147,7 @@ case "$FIRMWARE" in
 		rt2x00_eeprom_extract "board-nvram" 64880 272
 		;;
 	dir-320-b1)
-		rt2x00_eeprom_extract_and_patch "factory" 0 272 83 95 15
+		rt2x00_eeprom_extract_and_patch "factory" 0 272 83 96 15
 		;;
 	*)
 		rt2x00_eeprom_die "board $board is not supported yet"

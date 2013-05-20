@@ -6,6 +6,12 @@
 . /lib/ramips.sh
 
 ramips_set_preinit_iface() {
+	local board=$(ramips_board_name)
+	case "$board" in
+		dir-320-b1)
+			return 0
+		;;
+	esac
 	ifname=eth0
 }
 

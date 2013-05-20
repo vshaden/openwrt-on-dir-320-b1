@@ -66,6 +66,9 @@ case $board in
 		ucidef_set_led_default "wan" "WAN LED (amber)" "d-link:amber:wan" "1"
 		set_wifi_led "rt2800pci-phy0::radio"
 		;;
+	dir-320-b1)
+		set_usb_led "d-link:green:usb"
+		set_wifi_led "rt2800pci-phy0::radio"
 	dir-615-d|\
 	dir-615-h1)
 		ucidef_set_led_default "status" "Status LED (amber)" "d-link:amber:status" "0"
