@@ -47,7 +47,8 @@ endef
 
 define Build/Prepare
 	$(call Build/Prepare/Default)
-	mv $(PKG_BUILD_DIR)/xupnpd_main.lua $(PKG_BUILD_DIR)/xupnpd_main_sample.lua
+	rm $(PKG_BUILD_DIR)/xupnpd_main.lua
+	cp ./files/xupnpd_main.lua $(PKG_BUILD_DIR)/xupnpd_main_sample.lua
 endef
 
 define Package/xupnpd/install
