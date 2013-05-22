@@ -147,7 +147,7 @@ case "$FIRMWARE" in
 		rt2x00_eeprom_extract "board-nvram" 64880 272
 		;;
 	dir-320-b1)
-		rt2x00_eeprom_extract_and_patch "factory" 0 272 83 96 15
+		rt2x00_eeprom_extract_and_patch "factory" 0 272 83 96 1F
 		;;
 	*)
 		rt2x00_eeprom_die "board $board is not supported yet"
