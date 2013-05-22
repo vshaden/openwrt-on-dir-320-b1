@@ -10,7 +10,6 @@ define Package/3ginfo
   SECTION:=net
   CATEGORY:=Network
   TITLE:=Information about 3g/4g connection
-  DEPENDS:= +ussd159 +gnokii
 endef
 
 define Package/3ginfo/description
