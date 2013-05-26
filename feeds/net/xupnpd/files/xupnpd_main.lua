@@ -45,16 +45,16 @@ end
 
 -- options for profiles
 cfg.dev_desc_xml='/dev.xml'             -- UPnP Device Description XML
-cfg.upnp_container=%upnp_container%     -- UPnP class for containers
-cfg.upnp_artist=%upnp_artist%                   -- send <upnp:artist> / <upnp:actor> in SOAP response
-cfg.upnp_feature_list=%upnp-feature_list%                -- X_GetFeatureList response body
-cfg.upnp_albumart=%upnp_albumart%                     -- 0: <upnp:albumArtURI>direct url</upnp:albumArtURI>, 1: <res>direct url<res>, 2: <upnp:albumArtURI>local url</upnp:albumArtURI>, 3: <res>local url<res>
-cfg.dlna_headers=%dlna_headers%                   -- send TransferMode.DLNA.ORG and ContentFeatures.DLNA.ORG in HTTP response
-cfg.dlna_extras=%dlna_extras%                    -- DLNA extras in headers and SOAP
-cfg.content_disp=%content_disp%                  -- send Content-Disposition when streaming
-cfg.soap_length=%soap_length%                    -- send Content-Length in SOAP response
-cfg.wdtv=%wdtw%                          -- WDTV Live compatible mode
-cfg.sec_extras=%sec_extras%                    -- Samsung extras
+cfg.upnp_container='%container%'     -- UPnP class for containers
+cfg.upnp_artist='%artist%'                   -- send <upnp:artist> / <upnp:actor> in SOAP response
+cfg.upnp_feature_list='%feature_list%'                -- X_GetFeatureList response body
+cfg.upnp_albumart='%albumart%'                     -- 0: <upnp:albumArtURI>direct url</upnp:albumArtURI>, 1: <res>direct url<res>, 2: <upnp:albumArtURI>local url</upnp:albumArtURI>, 3: <res>local url<res>
+cfg.dlna_headers='%dlna_headers%'                   -- send TransferMode.DLNA.ORG and ContentFeatures.DLNA.ORG in HTTP response
+cfg.dlna_extras='%dlna_extras%'                    -- DLNA extras in headers and SOAP
+cfg.content_disp='%content_disp%'                  -- send Content-Disposition when streaming
+cfg.soap_length='%soap_length%'                    -- send Content-Length in SOAP response
+cfg.wdtv='%wdtw%'                          -- WDTV Live compatible mode
+cfg.sec_extras='%sec_extras%'                    -- Samsung extras
 
 
 update_id=1             -- system update_id
