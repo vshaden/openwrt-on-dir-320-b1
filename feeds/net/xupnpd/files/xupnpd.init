@@ -31,7 +31,7 @@ config_params () {
 			bool_as_string=false
 		fi
 		echo -ne "cfg.$bool_param=$bool_as_string\n" >> "$CONFIG"
-		
+	done
 		
 }
 
@@ -44,7 +44,7 @@ config_feed () {
 	config_get name $1 feed_name
 	config_get type $1 feed_type
 
-	echo -ne "{ '$plugin',\t'$type',\t'$name' }\n" >> "$CONFIG"
+	echo -ne "\t{ '$plugin',\t'$type',\t'$name' },\n" >> "$CONFIG"
 }
 
 config_playlist () {
@@ -57,14 +57,14 @@ config_playlist () {
 	config_get iplist $1 iplist ''
 
 	if [ "$iplist" ]; then
-		echo -ne "{ '$path',\t'$name',\t'$iplist' }\n" >> "$CONFIG"
+		echo -ne "\t{ '$path',\t'$name',\t'$iplist' },\n" >> "$CONFIG"
 	else
-		echo -ne "{ '$path',\t'$name' }\n" >> "$CONFIG"
+		echo -ne "\t{ '$path',\t'$name' },\n" >> "$CONFIG"
 	fi
 }
 
 config_additional () {
-	bools="artist albumart dlna_headers \
+	bools="artist dlna_headers \
 		dlna_extras content_disp soap_length \
 		wdtv sec_extras"
 
@@ -74,8 +74,12 @@ config_additional () {
 
 	for string_param in $strings; do
 		local string_value
-		config_get string_value $1 $string_param ''
-		sed -i "s/%$string_param%/'$string_value'/g" /tmp/xupnpd_main.tmp
+		config_get string_value $1 $string_param
+		if [ -n "$string_value" ]; then
+			sed -i s/%${string_param}%/${string_value}/g /tmp/xupnpd_main.tmp
+		else
+			sed -i s/%${string_param}%//g /tmp/xupnpd_main.tmp
+		fi
 	done
 
 	for bool_param in $bools; do
@@ -86,7 +90,7 @@ config_additional () {
 		else
 			bool_as_string=false
 		fi
-		sed -i "s/%$bool_param%/$bool_as_string/g" /tmp/xupnpd_main.tmp
+		sed -i s/%${bool_param}%/${bool_as_string}/g /tmp/xupnpd_main.tmp
 	done
 
 	mv /tmp/xupnpd_main.tmp $ROOT/xupnpd_main.lua
