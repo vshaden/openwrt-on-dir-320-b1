@@ -89,6 +89,7 @@ static void __init dir320b1_init(void)
 	rt305x_register_spi(dir320b1_spi_slave_info,
 			    ARRAY_SIZE(dir320b1_spi_slave_info));
 	rt305x_esw_data.vlan_config = RT305X_ESW_VLAN_CONFIG_LLLLW;
+	rt305x_esw_data.led_polarity = 0x17;
 	rt305x_register_ethernet();
 	ramips_register_gpio_leds(-1, ARRAY_SIZE(dir_320_b1_leds_gpio),
 				  dir_320_b1_leds_gpio);
