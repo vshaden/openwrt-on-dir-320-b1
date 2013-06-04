@@ -14,7 +14,12 @@
  */
 
 #define RT305X_ESW_REG_FCT0		0x08
+#define RT305X_ESW_REG_FCT1		0x0c
+#define RT305X_ESW_REG_PFC0		0x10
 #define RT305X_ESW_REG_PFC1		0x14
+#define RT305X_ESW_REG_PFC2		0x18
+#define RT305X_ESW_REG_QGS0		0x1c
+#define RT305X_ESW_REG_QGS1		0x20
 #define RT305X_ESW_REG_ATS		0x24
 #define RT305X_ESW_REG_ATS0		0x28
 #define RT305X_ESW_REG_ATS1		0x2c
@@ -48,7 +53,7 @@
 #define RT305X_ESW_REG_P5PC		0xfc
 
 /* RT5350 only registers */
-#define RT305X_EWS_REG_LED_POLARITY     0x168
+#define RT305X_ESW_REG_LED_POLARITY     0x168
 #define RT305X_ESW_REG_P0TPC		0x150
 #define RT305X_ESW_REG_P1TPC		0x154
 #define RT305X_ESW_REG_P2TPC		0x158
@@ -159,6 +164,42 @@ enum {
 	RT305X_ESW_ATTR_LED_FREQ,
 	RT305X_ESW_ATTR_PKT_LENGTH,
 	RT305X_ESW_ATTR_BC_STATUS,
+	RT305X_ESW_ATTR_FC_RLS_TH,
+	RT305X_ESW_ATTR_FC_SET_TH,
+	RT305X_ESW_ATTR_DROP_RLS_TH,
+	RT305X_ESW_ATTR_DROP_SET_TH,
+	RT305X_ESW_ATTR_MTCC_LMT,
+	RT305X_ESW_ATTR_TURN_OFF_FC,
+	RT305X_ESW_ATTR_VO_NUM,
+	RT305X_ESW_ATTR_CL_NUM,
+	RT305X_ESW_ATTR_BE_NUM,
+	RT305X_ESW_ATTR_BK_NUM,
+	RT305X_ESW_ATTR_CPU_USE_Q1_EN,
+	RT305X_ESW_ATTR_IGMP_TO_CPU,
+	RT305X_ESW_ATTR_PRIORITY_OPTION,
+	RT305X_ESW_ATTR_PRI_TH_VO,
+	RT305X_ESW_ATTR_PRI_TH_CL,
+	RT305X_ESW_ATTR_PRI_TH_BE,
+	RT305X_ESW_ATTR_PRI_TH_BK,
+	RT305X_ESW_ATTR_PRI_QUE,
+	RT305X_ESW_ATTR_PRI_OUTQUE_FULL_VO,
+	RT305X_ESW_ATTR_PRI_OUTQUE_FULL_CL,
+	RT305X_ESW_ATTR_PRI_OUTQUE_FULL_BE,
+	RT305X_ESW_ATTR_PRI_OUTQUE_FULL_BK,
+	RT305X_ESW_ATTR_PORT_TH,
+	RT305X_ESW_ATTR_PRI7_QUE,
+	RT305X_ESW_ATTR_PRI6_QUE,
+	RT305X_ESW_ATTR_PRI5_QUE,
+	RT305X_ESW_ATTR_PRI4_QUE,
+	RT305X_ESW_ATTR_PRI3_QUE,
+	RT305X_ESW_ATTR_PRI2_QUE,
+	RT305X_ESW_ATTR_PRI1_QUE,
+	RT305X_ESW_ATTR_PRI0_QUE,
+	RT305X_ESW_ATTR_EMPTY_CNT,
+	RT305X_ESW_ATTR_OUTQUE_FULL_VO,
+	RT305X_ESW_ATTR_OUTQUE_FULL_CL,
+	RT305X_ESW_ATTR_OUTQUE_FULL_BE,
+	RT305X_ESW_ATTR_OUTQUE_FULL_BK,
 	/* Port attributes. */
 	RT305X_ESW_ATTR_PORT_DISABLE,
 	RT305X_ESW_ATTR_PORT_DOUBLETAG,
@@ -170,6 +211,9 @@ enum {
 	RT305X_ESW_ATTR_PORT_TR_BAD,
 	RT305X_ESW_ATTR_PORT_TR_GOOD,
 	RT305X_ESW_ATTR_PORT_LED_POLARITY,
+	RT305X_ESW_ATTR_PORT_EN_TOS,
+	RT305X_ESW_ATTR_PORT_EN_VLAN,
+	RT305X_ESW_ATTR_PORT_PRI,
 };
 
 struct rt305x_esw_port {
@@ -198,6 +242,12 @@ struct rt305x_esw {
 	struct rt305x_esw_port ports[RT305X_ESW_NUM_PORTS];
 	u8                      led_polarity; /* LED polarity. RT5350 only */
 	u32                     sgc; /* SGC value */
+	u32			fct0;
+	u8			fct1;
+	u32			pfc0;
+	u32			pfc1;
+	u32			pfc2;
+	u32			qgs0;				
 };
 
 static inline void
@@ -396,6 +446,7 @@ rt305x_esw_set_port_disable(struct rt305x_esw *esw, unsigned disable_mask)
 		       disable_mask << RT305X_ESW_POC0_DIS_PORT_S);
 }
 
+
 static int
 rt305x_esw_apply_config(struct switch_dev *dev);
 
@@ -458,10 +509,10 @@ rt305x_esw_hw_init(struct rt305x_esw *esw)
 
 	/* Force Link polarity on ports */
 	if (soc_is_rt5350()) {
-	        rt305x_esw_wr(esw,esw->pdata->led_polarity & 0x1F, RT305X_EWS_REG_LED_POLARITY);
+	        rt305x_esw_wr(esw,esw->pdata->led_polarity & 0x1F, RT305X_ESW_REG_LED_POLARITY);
         	esw->led_polarity= esw->pdata->led_polarity & 0x1F;
         }
-
+	
 	/* Copy disabled port configuration from bootloader setup */
 	port_disable = rt305x_esw_get_port_disable(esw);
 	for (i = 0; i < 6; i++)
@@ -557,8 +608,16 @@ rt305x_esw_apply_config(struct switch_dev *dev)
 	}
 
 	if (soc_is_rt5350()) {
-	        rt305x_esw_wr(esw,esw->led_polarity, RT305X_EWS_REG_LED_POLARITY);
+	        rt305x_esw_wr(esw,esw->led_polarity, RT305X_ESW_REG_LED_POLARITY);
 	}
+
+	/* Apply Flow Control settings */
+	rt305x_esw_wr(esw,esw->fct0, RT305X_ESW_REG_FCT0);
+	rt305x_esw_wr(esw,esw->fct1, RT305X_ESW_REG_FCT1);
+	rt305x_esw_wr(esw,esw->pfc0, RT305X_ESW_REG_PFC0);
+	rt305x_esw_wr(esw,esw->pfc1, RT305X_ESW_REG_PFC1);
+	rt305x_esw_wr(esw,esw->pfc2, RT305X_ESW_REG_PFC2);
+	rt305x_esw_wr(esw,esw->qgs0, RT305X_ESW_REG_QGS0);
 
 	for (i = 0; i < RT305X_ESW_NUM_PORTS; i++) {
 		u32 pvid;
@@ -616,8 +675,7 @@ rt305x_esw_get_port_tr_badgood(struct switch_dev *dev,
 	int shift = attr->id == RT305X_ESW_ATTR_PORT_TR_GOOD ? 0 : 16;
 	u32 reg;
 
-	if (!soc_is_rt5350())
-		return -EINVAL;
+	
 
 	if (idx < 0 || idx >= RT305X_ESW_NUM_LANWAN)
 	return -EINVAL;
@@ -986,9 +1044,6 @@ rt305x_esw_set_port_led_polarity(struct switch_dev *dev,
 	if (idx < 0 || idx >= RT305X_ESW_NUM_LEDS)
 		return -EINVAL;
 	
-	if (!soc_is_rt5350())
-	        return -EINVAL;
-
         if (val->value.i==0)
                 esw->led_polarity &= ~ (1 << idx);
         else
@@ -1004,15 +1059,11 @@ rt305x_esw_get_port_led_polarity(struct switch_dev *dev,
 	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
 	int idx = val->port_vlan;
 
-	if (!soc_is_rt5350())
-	        return -EINVAL;
-
-
 	if (idx < 0 || idx >= RT305X_ESW_NUM_PORTS ||
 	    idx >= RT305X_ESW_NUM_LEDS)
 		return -EINVAL;
 
-	val->value.i = (rt305x_esw_rr(esw, RT305X_EWS_REG_LED_POLARITY) >> idx) & 1;
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_LED_POLARITY) >> idx) & 1;
 	return 0;
 }
 
@@ -1023,9 +1074,10 @@ rt305x_esw_set_led_freq(struct switch_dev *dev,
 {
 	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
 	
-        esw->sgc &= 0xfe7fffff;
-        esw->sgc |= ((val->value.i & 3) << 23);
-        return 0;
+    esw->sgc &= 0xfe7fffff;
+    esw->sgc |= ((val->value.i & 3) << 23);
+    
+    return 0;
 }
 
 static int
@@ -1034,6 +1086,8 @@ rt305x_esw_get_led_freq(struct switch_dev *dev,
 		struct switch_val *val)
 {
 	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
+
+	
 
 	val->value.i = (rt305x_esw_rr(esw,RT305X_ESW_REG_SGC) >> 23) & 3;
 
@@ -1058,6 +1112,8 @@ rt305x_esw_get_pkt_length(struct switch_dev *dev,
 			struct switch_val *val)
 {
 	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
+
+	
 
 	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_SGC) >> 6) & 3;
 
@@ -1084,11 +1140,896 @@ rt305x_esw_get_bc_status(struct switch_dev *dev,
 {
 	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw, swdev);
 
+	
+
 	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_SGC) >> 4) & 3;
 
 	return 0;
 }
 
+static int
+rt305x_esw_set_igmp_to_cpu(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	if (val->value.i==0)
+                esw->pfc1 &= 0xff7fffff;
+        else
+                esw->pfc1 |= 0x00800000;
+	return 0;
+}
+
+static int
+rt305x_esw_get_igmp_to_cpu(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC1) >> 23) & 1;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_drop_set_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->fct0 &= 0xffffff00;
+	esw->fct0 |= (val->value.i & 255 );
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_drop_set_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = rt305x_esw_rr(esw, RT305X_ESW_REG_FCT0) & 255;
+	
+	return 0;	
+}
+
+static int
+rt305x_esw_set_drop_rls_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->fct0 &= 0xffff00ff;
+	esw->fct0 |= ((val->value.i & 255) << 8);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_drop_rls_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_FCT0) >> 8) & 255;
+	
+	return 0;	
+}
+
+static int
+rt305x_esw_set_fc_set_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->fct0 &= 0xff00ffff;
+	esw->fct0 |= ((val->value.i & 255) << 16);
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_fc_set_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+				
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_FCT0) >> 16) & 255;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_fc_rls_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->fct0 &= 0x00ffffff;
+	esw->fct0 |= ((val->value.i & 255) << 24);
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_fc_rls_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+		
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_FCT0) >> 24) & 255;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_port_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->fct1 = 0x00;
+	esw->fct1 |= (val->value.i & 255);
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_port_th(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+				
+	val->value.i = rt305x_esw_rr(esw, RT305X_ESW_REG_FCT1) & 255;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_bk_num(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->pfc0 &= 0xfffffff0;
+	esw->pfc0 |= (val->value.i & 15);
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_bk_num(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+		
+			
+	val->value.i = rt305x_esw_rr(esw, RT305X_ESW_REG_PFC0) & 15;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_be_num(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->pfc0 &= 0xffffff0f;
+	esw->pfc0 |= ((val->value.i & 15) << 4);
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_be_num(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	
+			
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC0) >> 4) & 15;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_cl_num(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->pfc0 &= 0xfffff0ff;
+	esw->pfc0 |= ((val->value.i & 15) << 8);
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_cl_num(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+		
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC0) >> 8) & 15;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_vo_num(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->pfc0 &= 0xffff0fff;
+	esw->pfc0 |= ((val->value.i & 15) << 12);
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_vo_num(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+		
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC0) >> 12) & 15;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_turn_off_fc(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	/* used only 2 meanings, but size is 3 bits */
+	esw->pfc0 &= 0xff80ffff;
+	esw->pfc0 |= ((val->value.i & 1) << 16); 
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_turn_off_fc(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+		
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC0) >> 16) & 1;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_mtcc_lmt(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->pfc0 &= 0xf0ffffff;
+	esw->pfc0 |= ((val->value.i & 15) << 24);
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_mtcc_lmt(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+		
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC0) >> 24) & 15;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_port_pri(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	int idx = val->port_vlan;
+	int shift = 2*idx;
+
+	/* this is 2 bits value, shift is start bit */
+
+	if (idx < 0 || idx >= RT305X_ESW_NUM_PORTS)
+		return -EINVAL;
+	
+	esw->pfc1 &= ~ (3 << shift);
+	esw->pfc1 |= ((val->value.i & 3) << shift);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_port_pri(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	int idx = val->port_vlan;
+	int shift = 2*idx;
+
+	
+
+	if (idx < 0 || idx >= RT305X_ESW_NUM_PORTS)
+		return -EINVAL;
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC1) >> shift) & 3;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_priority_option(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	esw->pfc1 &= 0xffff7fff;
+	esw->pfc1 |= ((val->value.i & 1) << 15);
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_priority_option(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+		
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC1) >> 15) & 1;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_port_en_vlan(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	int idx = val->port_vlan;
+	int shift = idx+16; /* starts from 16th bit */
+
+	if (idx < 0 || idx >= RT305X_ESW_NUM_PORTS)
+		return -EINVAL;
+	
+	if (val->value.i==0)
+		esw->pfc1 &= ~ (1 << shift);
+	else	
+		esw->pfc1 |= (1 << shift);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_port_en_vlan(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	int idx = val->port_vlan;
+	int shift = idx+16;
+
+	
+
+	if (idx < 0 || idx >= RT305X_ESW_NUM_PORTS)
+		return -EINVAL;
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC1) >> shift) & 1;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_port_en_tos(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	int idx = val->port_vlan;
+	int shift = idx+24; /* starts from 24th bit */
+
+	if (idx < 0 || idx >= RT305X_ESW_NUM_PORTS)
+		return -EINVAL;
+	
+	esw->pfc1 &= 0x80ffffff;
+	esw->pfc1 |= ((val->value.i & 1) << shift);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_port_en_tos(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	int idx = val->port_vlan;
+	int shift = idx+24;
+
+	if (idx < 0 || idx >= RT305X_ESW_NUM_PORTS)
+		return -EINVAL;
+	
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC1) >> shift) & 1;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_cpu_use_q1_en(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->pfc1 &= 0x7fffffff;
+	esw->pfc1 |= ((val->value.i & 1) << 31);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_cpu_use_q1_en(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC1) >> 31) & 1;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri_th_bk(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->pfc2 &= 0xffffff00;
+	esw->pfc2 |= (val->value.i & 1);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri_th_bk(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = rt305x_esw_rr(esw, RT305X_ESW_REG_PFC1) & 1;
+	
+	return 0;
+}
+
+		
+static int
+rt305x_esw_set_pri_th_be(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->pfc2 &= 0xffff00ff;
+	esw->pfc2 |= ((val->value.i & 1) << 8);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri_th_be(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC2) >> 8) & 1;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri_th_cl(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->pfc2 &= 0xff00ffff;
+	esw->pfc2 |= ((val->value.i & 1) << 16);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri_th_cl(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC2) >> 16) & 1;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri_th_vo(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->pfc2 &= 0x00ffffff;
+	esw->pfc2 |= ((val->value.i & 1) << 24);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri_th_vo(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_PFC2) >> 24) & 1;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri0_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->qgs0 &= 0xfffcffff;
+	esw->qgs0 |= ((val->value.i & 3) << 16);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri0_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS0) >> 16) & 3;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri1_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->qgs0 &= 0xfff3ffff;
+	esw->qgs0 |= ((val->value.i & 3) << 18);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri1_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS0) >> 18) & 3;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri2_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->qgs0 &= 0xffcfffff;
+	esw->qgs0 |= ((val->value.i & 3) << 20);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri2_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS0) >> 20) & 3;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri3_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->qgs0 &= 0xff3fffff;
+	esw->qgs0 |= ((val->value.i & 3) << 22);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri3_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS0) >> 22) & 3;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri4_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->qgs0 &= 0xfcffffff;
+	esw->qgs0 |= ((val->value.i & 3) << 24);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri4_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS0) >> 24) & 3;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri5_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->qgs0 &= 0xf3ffffff;
+	esw->qgs0 |= ((val->value.i & 3) << 26);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri5_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS0) >> 26) & 3;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri6_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->qgs0 &= 0xcfffffff;
+	esw->qgs0 |= ((val->value.i & 3) << 28);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri6_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS0) >> 28) & 3;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_set_pri7_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+	
+	esw->qgs0 &= 0x3fffffff;
+	esw->qgs0 |= ((val->value.i & 3) << 30);
+	
+	return 0;
+}	
+
+static int
+rt305x_esw_get_pri7_que(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS0) >> 30) & 3;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_empty_cnt(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	val->value.i = rt305x_esw_rr(esw, RT305X_ESW_REG_QGS0) & 1023;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_outque_full_vo(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS1) >> 24) & 255;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_outque_full_cl(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS1) >> 16) & 511;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_outque_full_be(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = (rt305x_esw_rr(esw, RT305X_ESW_REG_QGS1) >> 8) & 255;
+	
+	return 0;
+}
+
+static int
+rt305x_esw_get_outque_full_bk(struct switch_dev *dev,
+			const struct switch_attr *attr,
+			struct switch_val *val)
+{
+	struct rt305x_esw *esw = container_of(dev, struct rt305x_esw,swdev);
+
+	
+
+	val->value.i = rt305x_esw_rr(esw, RT305X_ESW_REG_QGS1) & 255;
+	
+	return 0;
+}
+		
 static const struct switch_attr rt305x_esw_global[] = {
 	{
 		.type = SWITCH_TYPE_INT,
@@ -1135,6 +2076,281 @@ static const struct switch_attr rt305x_esw_global[] = {
 		.id = RT305X_ESW_ATTR_BC_STATUS,
 		.get = rt305x_esw_get_bc_status,
 		.set = rt305x_esw_set_bc_status,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "fc_rls_th",
+		.description = "Flow Control Release Treshold",
+		.max = 255,
+		.id = RT305X_ESW_ATTR_FC_RLS_TH,
+		.get = rt305x_esw_get_fc_rls_th,
+		.set = rt305x_esw_set_fc_rls_th,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "fc_set_th",
+		.description = "Flow Control Set Treshold",
+		.max = 255,
+		.id = RT305X_ESW_ATTR_FC_SET_TH,
+		.get = rt305x_esw_get_fc_set_th,
+		.set = rt305x_esw_set_fc_set_th,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "drop_rls_th",
+		.description = "Drop Release Treshold",
+		.max = 255,
+		.id = RT305X_ESW_ATTR_DROP_RLS_TH,
+		.get = rt305x_esw_get_drop_rls_th,
+		.set = rt305x_esw_set_drop_rls_th,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "drop_set_th",
+		.description = "Drop Set Treshold",
+		.max = 255,
+		.id = RT305X_ESW_ATTR_DROP_SET_TH,
+		.get = rt305x_esw_get_drop_set_th,
+		.set = rt305x_esw_set_drop_set_th,
+	},
+		{
+		.type = SWITCH_TYPE_INT,
+		.name = "mtcc_lmt",
+		.description = "Maximum Back-off Count Limit",
+		.max = 15,
+		.id = RT305X_ESW_ATTR_MTCC_LMT,
+		.get = rt305x_esw_get_mtcc_lmt,
+		.set = rt305x_esw_set_mtcc_lmt,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "turn_off_fc",
+		.description = "Turns off FC when receiving highest priority packets: 0:disable, 1:enable",
+		.max = 1,
+		.id = RT305X_ESW_ATTR_TURN_OFF_FC,
+		.get = rt305x_esw_get_turn_off_fc,
+		.set = rt305x_esw_set_turn_off_fc,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "vo_num",
+		.description = "The number (weighting) of voice packets to be sent before moving to the control load queue",
+		.max = 15,
+		.id = RT305X_ESW_ATTR_VO_NUM,
+		.get = rt305x_esw_get_vo_num,
+		.set = rt305x_esw_set_vo_num,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "cl_num",
+		.description = "The number (weighting) of control load to be sent before moving to the control load queue",
+		.max = 15,
+		.id = RT305X_ESW_ATTR_CL_NUM,
+		.get = rt305x_esw_get_cl_num,
+		.set = rt305x_esw_set_cl_num,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "be_num",
+		.description = "The number (weighting) of best effort to be sent before moving to the control load queue",
+		.max = 15,
+		.id = RT305X_ESW_ATTR_BE_NUM,
+		.get = rt305x_esw_get_be_num,
+		.set = rt305x_esw_set_be_num,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "bk_num",
+		.description = "The number (weighting) of background to be sent before moving to the control load queue",
+		.max = 15,
+		.id = RT305X_ESW_ATTR_BK_NUM,
+		.get = rt305x_esw_get_bk_num,
+		.set = rt305x_esw_set_bk_num,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "cpu_use_q1_en",
+		.description = "Sets the CPU port to only use q1. "
+				"0: Default priority resolution, " 
+				"1: Packets forwarded to the CPU port use the best-effort queue.",
+		.max = 1,
+		.id = RT305X_ESW_ATTR_CPU_USE_Q1_EN,
+		.get = rt305x_esw_get_cpu_use_q1_en,
+		.set = rt305x_esw_set_cpu_use_q1_en,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "igmp_to_cpu",
+		.description = "Enables IGMP forwarding to the CPU."
+				"0: IGMP message is flooded to all ports."
+				"1: IGMP message is forwarded to the CPU port only.",
+		.max = 1,
+		.id = RT305X_ESW_ATTR_IGMP_TO_CPU,
+		.get = rt305x_esw_get_igmp_to_cpu,
+		.set = rt305x_esw_set_igmp_to_cpu,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "priority_option",
+		.description = "Priority Resolution Option "
+				"0: 802.1p -> TOS -> Per port, "
+				"1: TOS -> 802.1p -> Per port.",
+		.max = 1,
+		.id = RT305X_ESW_ATTR_PRIORITY_OPTION,
+		.get = rt305x_esw_get_priority_option,
+		.set = rt305x_esw_set_priority_option,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri_th_vo",
+		.description = "Voice treshold - highest priority",
+		.max = 255,
+		.id = RT305X_ESW_ATTR_PRI_TH_VO,
+		.get = rt305x_esw_get_pri_th_vo,
+		.set = rt305x_esw_set_pri_th_vo,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri_th_cl",
+		.description = "Control Load Treshold",
+		.max = 255,
+		.id = RT305X_ESW_ATTR_PRI_TH_CL,
+		.get = rt305x_esw_get_pri_th_cl,
+		.set = rt305x_esw_set_pri_th_cl,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri_th_be",
+		.description = "Best Effort Treshold",
+		.max = 255,
+		.id = RT305X_ESW_ATTR_PRI_TH_BE,
+		.get = rt305x_esw_get_pri_th_be,
+		.set = rt305x_esw_set_pri_th_be,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri_th_bk",
+		.description = "Background treshold - lowest priority",
+		.max = 255,
+		.id = RT305X_ESW_ATTR_PRI_TH_BK,
+		.get = rt305x_esw_get_pri_th_bk,
+		.set = rt305x_esw_set_pri_th_bk,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "port_th",
+		.description = "Per Port Output Treshold",
+		.max = 1,
+		.id = RT305X_ESW_ATTR_PORT_TH,
+		.set = rt305x_esw_set_port_th,
+		.get = rt305x_esw_get_port_th,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri0_que",
+		.description = "Queue Mapping for Priority Tag #0",
+		.max = 3,
+		.id = RT305X_ESW_ATTR_PRI0_QUE,
+		.set = rt305x_esw_set_pri0_que,
+		.get = rt305x_esw_get_pri0_que,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri1_que",
+		.description = "Queue Mapping for Priority Tag #1",
+		.max = 3,
+		.id = RT305X_ESW_ATTR_PRI1_QUE,
+		.set = rt305x_esw_set_pri1_que,
+		.get = rt305x_esw_get_pri1_que,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri2_que",
+		.description = "Queue Mapping for Priority Tag #2",
+		.max = 3,
+		.id = RT305X_ESW_ATTR_PRI2_QUE,
+		.set = rt305x_esw_set_pri2_que,
+		.get = rt305x_esw_get_pri2_que,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri3_que",
+		.description = "Queue Mapping for Priority Tag #3",
+		.max = 3,
+		.id = RT305X_ESW_ATTR_PRI3_QUE,
+		.set = rt305x_esw_set_pri3_que,
+		.get = rt305x_esw_get_pri3_que,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri4_que",
+		.description = "Queue Mapping for Priority Tag #4",
+		.max = 3,
+		.id = RT305X_ESW_ATTR_PRI4_QUE,
+		.set = rt305x_esw_set_pri4_que,
+		.get = rt305x_esw_get_pri4_que,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri5_que",
+		.description = "Queue Mapping for Priority Tag #5",
+		.max = 3,
+		.id = RT305X_ESW_ATTR_PRI5_QUE,
+		.set = rt305x_esw_set_pri5_que,
+		.get = rt305x_esw_get_pri5_que,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri6_que",
+		.description = "Queue Mapping for Priority Tag #6",
+		.max = 3,
+		.id = RT305X_ESW_ATTR_PRI6_QUE,
+		.set = rt305x_esw_set_pri6_que,
+		.get = rt305x_esw_get_pri6_que,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "pri7_que",
+		.description = "Queue Mapping for Priority Tag #7",
+		.max = 3,
+		.id = RT305X_ESW_ATTR_PRI7_QUE,
+		.set = rt305x_esw_set_pri7_que,
+		.get = rt305x_esw_get_pri7_que,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "empty_cnt",
+		.description = "Global Queue Block Counts",
+		.id = RT305X_ESW_ATTR_EMPTY_CNT,
+		.get = rt305x_esw_get_empty_cnt,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "outque_full_vo",
+		.description = "Congested Voice Queue",
+		.id = RT305X_ESW_ATTR_OUTQUE_FULL_VO,
+		.get = rt305x_esw_get_outque_full_vo,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "outque_full_cl",
+		.description = "Congested Control Load Queue",
+		.id = RT305X_ESW_ATTR_OUTQUE_FULL_CL,
+		.get = rt305x_esw_get_outque_full_cl,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "outque_full_be",
+		.description = "Congested Best Effort Queue",
+		.id = RT305X_ESW_ATTR_OUTQUE_FULL_BE,
+		.get = rt305x_esw_get_outque_full_be,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "outque_full_bk",
+		.description = "Congested Background Queue",
+		.id = RT305X_ESW_ATTR_OUTQUE_FULL_BK,
+		.get = rt305x_esw_get_outque_full_bk,
 	},
 };
 
@@ -1222,6 +2438,37 @@ static const struct switch_attr rt305x_esw_port[] = {
 		.description = "Transmit good packet counter. rt5350 only",
 		.id = RT305X_ESW_ATTR_PORT_TR_GOOD,
 		.get = rt305x_esw_get_port_tr_badgood,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "en_tos",
+		.description = "Enable ToS on port 6 ~ 0 "
+				"0: Disable, "
+				"1: Enable ",
+		.max = 1,						
+		.id = RT305X_ESW_ATTR_PORT_EN_TOS,
+		.set = rt305x_esw_set_port_en_tos,
+		.get = rt305x_esw_get_port_en_tos,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "en_vlan",
+		.description = "Enables per port VLAN-tag VID membership and priority tag checking. "
+				"0: Disable, "
+				"1: Enable",
+		.max = 1,						
+		.id = RT305X_ESW_ATTR_PORT_EN_VLAN,
+		.set = rt305x_esw_set_port_en_vlan,
+		.get = rt305x_esw_get_port_en_vlan,
+	},
+	{
+		.type = SWITCH_TYPE_INT,
+		.name = "port_pri",
+		.description = "Port Priority",
+		.max = 3,						
+		.id = RT305X_ESW_ATTR_PORT_PRI,
+		.set = rt305x_esw_set_port_pri,
+		.get = rt305x_esw_get_port_pri,
 	},
 };
 
