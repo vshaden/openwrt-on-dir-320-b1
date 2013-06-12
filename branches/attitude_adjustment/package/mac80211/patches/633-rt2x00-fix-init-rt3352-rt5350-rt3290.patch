@@ -1,0 +1,32 @@
+After update upto compat-wireless-2012-02-22 some critical changes were lost
+and driver fail to allocate device. This fix was checked on
+dir620d1 (rt3352) and dir320b1 (rt5350). No check for rt3290 but
+it have the same init registers (reg2 - start init RF & reg17 - frequency
+offset eeprom value).
+
+Signed-off-by: Serge Vasilugin <vasilugin@yandex.ru>
+
+
+--- a/drivers/net/wireless/rt2x00/rt2800lib.c
++++ b/drivers/net/wireless/rt2x00/rt2800lib.c
+@@ -4430,6 +4430,8 @@ static int rt2800_init_rfcsr(struct rt2x
+ 	 */
+ 
+ 	if (rt2x00_rt(rt2x00dev, RT3290) ||
++	    rt2x00_rt(rt2x00dev, RT3352) ||
++	    rt2x00_rt(rt2x00dev, RT5350) ||
+ 	    rt2x00_rt(rt2x00dev, RT5390) ||
+ 	    rt2x00_rt(rt2x00dev, RT5392)) {
+ 		rt2800_rfcsr_read(rt2x00dev, 2, &rfcsr);
+@@ -4583,7 +4585,10 @@ static int rt2800_init_rfcsr(struct rt2x
+ 	rt2x00_set_field32(&reg, OPT_14_CSR_BIT0, 1);
+ 	rt2800_register_write(rt2x00dev, OPT_14_CSR, reg);
+ 
+-	if (!rt2x00_rt(rt2x00dev, RT5390) &&
++	if (!rt2x00_rt(rt2x00dev, RT3290) &&
++	    !rt2x00_rt(rt2x00dev, RT3352) &&
++	    !rt2x00_rt(rt2x00dev, RT5350) &&
++	    !rt2x00_rt(rt2x00dev, RT5390) &&
+ 	    !rt2x00_rt(rt2x00dev, RT5392)) {
+ 		rt2800_rfcsr_read(rt2x00dev, 17, &rfcsr);
+ 		rt2x00_set_field8(&rfcsr, RFCSR17_TX_LO1_EN, 0);
