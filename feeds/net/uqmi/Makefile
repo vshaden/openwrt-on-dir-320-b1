@@ -40,7 +40,7 @@ endef
 ifeq ($(BUILD_VARIANT),dynamic)
 	CONFIG_UQMI_DYNAMIC:=y
 	include $(INCLUDE_DIR)/cmake.mk
-	CMAKE_OPTIONS += -DOPTIONAL_INCLUDE_DIR=$(STAGING_DIR)/opt/include
+	CMAKE_OPTIONS += -DOPTIONAL_INCLUDE_DIR=$(STAGING_DIR)/usr/include
 endif
 
 ifeq ($(BUILD_VARIANT),static)
