@@ -1,0 +1,18 @@
+Index: compat-wireless-2013-06-13/drivers/net/wireless/rt2x00/rt2800lib.c
+===================================================================
+--- compat-wireless-2013-06-13.orig/drivers/net/wireless/rt2x00/rt2800lib.c	2013-07-02 19:55:48.259659861 +0400
++++ compat-wireless-2013-06-13/drivers/net/wireless/rt2x00/rt2800lib.c	2013-07-02 20:01:09.611696870 +0400
+@@ -3059,6 +3059,13 @@
+ 		} else {
+ 			power_ctrl = 0;
+ 		}
++
++		printk(KERN_DEBUG "delta: %i, power_ctrl: %i", delta, power_ctrl);
++
++		if (rt2x00_rt(rt2x00dev, RT5350)) {
++			power_ctrl = 3;
++		} //temporary solution
++
+ 		rt2x00_set_field8(&r1, BBP1_TX_POWER_CTRL, power_ctrl);
+ 		rt2800_bbp_write(rt2x00dev, 1, r1);
+ 	}
