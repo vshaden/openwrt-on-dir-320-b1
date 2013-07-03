@@ -205,8 +205,8 @@ ramips_setup_macs()
 		;;
 
 	dir-320-b1)
-		lan_mac=$(ramips_get_mac_binary factory 1032)
-		wan_mac=$(/usr/sbin/maccalc add "$lan_mac" 1)
+		lan_mac=$(mtd_mac_binary factory 1032)
+		wan_mac=$(macaddr_add add "$lan_mac" 1)
 		;;
 
 	dir-620-a1)
