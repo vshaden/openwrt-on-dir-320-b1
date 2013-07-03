@@ -19,9 +19,9 @@ start() {
 	include /lib/network
 	setup_switch
 
-	sleep 5
+	sleep 10
 
-	/sbin/wifi down
+#	/sbin/wifi down
 	/sbin/wifi up
 }
 
