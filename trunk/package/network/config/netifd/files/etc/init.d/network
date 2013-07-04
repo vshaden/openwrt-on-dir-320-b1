@@ -21,7 +21,7 @@ start() {
 
 	sleep 10
 
- #  /sbin/wifi down
+#	/sbin/wifi down
 	/sbin/wifi up
 }
 
