@@ -19,8 +19,6 @@ VMLINUX:=$(IMG_PREFIX)-vmlinux
 UIMAGE:=$(IMG_PREFIX)-uImage
 
 ifeq ($(CONFIG_TARGET_ROOTFS_INITRAMFS),y)
-VMLINUX:=$(IMG_PREFIX)-vmlinux-initramfs
-UIMAGE:=$(IMG_PREFIX)-uImage-initramfs
 define Image/Build/Initramfs
 	$(call Image/Build/Profile/$(PROFILE),initramfs)
 endef
@@ -113,8 +111,12 @@ BuildFirmware/Default4M/initramfs=$(call BuildFirmware/OF/initramfs,$(1),$(2),$(
 # $(2) = lowercase board name
 # $(3) = dts file
 ralink_default_fw_size_8M=8060928
-BuildFirmware/Default8M/squashfs=$(call BuildFirmware/OF,$(1),$(2),$(3),$(ralink_default_fw_size_8M))
-BuildFirmware/Default8M/initramfs=$(call BuildFirmware/OF/initramfs,$(1),$(2),$(3))
+BuildFirmware/Default8M/squashfs=$(call BuildFirmware/OF,$(1),$(2),$(3),$(ralink_default_fw_size_8M),$(4))
+BuildFirmware/Default8M/initramfs=$(call BuildFirmware/OF/initramfs,$(1),$(2),$(3),$(4))
+
+ralink_default_fw_size_16M=16121856
+BuildFirmware/Default16M/squashfs=$(call BuildFirmware/OF,$(1),$(2),$(3),$(ralink_default_fw_size_16M),$(4))
+BuildFirmware/Default16M/initramfs=$(call BuildFirmware/OF/initramfs,$(1),$(2),$(3),$(4))
 
 # Build images for a custom sized flash layout
 # $(1) = squashfs/initramfs
@@ -279,6 +281,8 @@ define BuildFirmware/ASL26555/initramfs
 endef
 Image/Build/Profile/ASL26555=$(call BuildFirmware/ASL26555/$(1),$(1),asl26555,ASL26555)
 
+Image/Build/Profile/AWM002-EVB=$(call BuildFirmware/DefaultDualSize/$(1),$(1),awm002-evb,AWM002-EVB)
+
 Image/Build/Profile/BC2=$(call BuildFirmware/Default8M/$(1),$(1),bc2,BC2)
 
 broadway_mtd_size=7929856
@@ -323,13 +327,22 @@ Image/Build/Profile/HW550-3G=$(call BuildFirmware/Default8M/$(1),$(1),hw550-3g,H
 belkin_f5d8235v2_mtd_size=7929856
 Image/Build/Profile/F5D8235V2=$(call BuildFirmware/CustomFlash/$(1),$(1),f5d8235v2,F5D8235_V2,$(belkin_f5d8235v2_mtd_size))
 
+# 0x770000
+belkin_f7c027_mtd_size=7798784
+Image/Build/Profile/F7C027=$(call BuildFirmware/CustomFlash/$(1),$(1),belkinf7c027,F7C027,$(belkin_f7c027_mtd_size))
+
 Image/Build/Profile/FONERA20N=$(call BuildFirmware/Edimax/$(1),$(1),fonera20n,FONERA20N,$(ralink_default_fw_size_8M),RSDK,NL1T,0x50000,0xc0000)
 
 Image/Build/Profile/RT-N13U=$(call BuildFirmware/Default8M/$(1),$(1),rt-n13u,RT-N13U)
 
+Image/Build/Profile/HG255D=$(call BuildFirmware/Default16M/$(1),$(1),hg255d,HG255D)
+
 Image/Build/Profile/FREESTATION5=$(call BuildFirmware/Default8M/$(1),$(1),freestation5,FREESTATION5)
 
 Image/Build/Profile/MOFI3500-3GN=$(call BuildFirmware/Default8M/$(1),$(1),mofi3500-3gn,MOFI3500-3GN)
+
+# Kernel name should be "Linux Kernel Image" to make the OpenWrt image installable from factory Web UI
+Image/Build/Profile/MPRA2=$(call BuildFirmware/Default8M/$(1),$(1),mpr-a2,MPRA2,Linux Kernel Image)
 
 Image/Build/Profile/NBG-419N=$(call BuildFirmware/Default4M/$(1),$(1),nbg-419n,NBG-419N)
 
@@ -438,26 +451,30 @@ define Image/Build/Profile/Default
 	$(call Image/Build/Profile/ALL5003,$(1))
 	$(call Image/Build/Profile/ARGUS_ATP52B,$(1))
 	$(call Image/Build/Profile/ASL26555,$(1))
+	$(call Image/Build/Profile/AWM002-EVB,$(1))
 	$(call Image/Build/Profile/BC2,$(1))
 	$(call Image/Build/Profile/BROADWAY,$(1))
 	$(call Image/Build/Profile/CARAMBOLA,$(1))
 	$(call Image/Build/Profile/D105,$(1))
 	$(call Image/Build/Profile/DIR-300-B1,$(1))
+	$(call Image/Build/Profile/DIR-320-B1,$(1))
 	$(call Image/Build/Profile/DIR-600-B1,$(1))
 	$(call Image/Build/Profile/DIR-600-B2,$(1))
 	$(call Image/Build/Profile/DIR-615-D,$(1))
 	$(call Image/Build/Profile/DIR-620-A1,$(1))
 	$(call Image/Build/Profile/DIR-620-D1,$(1))
-	$(call Image/Build/Profile/DIR-320-B1,$(1))
 	$(call Image/Build/Profile/DIR615H1,$(1))
 	$(call Image/Build/Profile/DAP1350,$(1))
 	$(call Image/Build/Profile/DAP1350WW,$(1))
 	$(call Image/Build/Profile/ESR-9753,$(1))
+	$(call Image/Build/Profile/F7C027,$(1))
 	$(call Image/Build/Profile/F5D8235V2,$(1))
 	$(call Image/Build/Profile/FONERA20N,$(1))
 	$(call Image/Build/Profile/FREESTATION5,$(1))
+#	$(call Image/Build/Profile/HG255D,$(1))
 	$(call Image/Build/Profile/HW550-3G,$(1))
 	$(call Image/Build/Profile/MOFI3500-3GN,$(1))
+	$(call Image/Build/Profile/MPRA2,$(1))
 	$(call Image/Build/Profile/MZKW300NH2,$(1))
 	$(call Image/Build/Profile/NBG-419N,$(1))
 	$(call Image/Build/Profile/NW718,$(1))
@@ -512,6 +529,18 @@ define Image/Build/Profile/Default
 endef
 endif
 
+#
+# MT7620A Profiles
+#
+
+Image/Build/Profile/MT7620a=$(call BuildFirmware/Default8M/$(1),$(1),mt7620a,MT7620a)
+
+ifeq ($(SUBTARGET),mt7620a)
+define Image/Build/Profile/Default
+	$(call Image/Build/Profile/MT7620a,$(1))
+endef
+endif
+
 
 #
 # Generic Targets
@@ -522,6 +551,13 @@ define Image/BuildKernel
 	$(call CompressLzma,$(KDIR)/vmlinux,$(KDIR)/vmlinux.bin.lzma)
 	$(call MkImage,lzma,$(KDIR)/vmlinux.bin.lzma,$(KDIR)/uImage.lzma)
 	cp $(KDIR)/uImage.lzma $(BIN_DIR)/$(UIMAGE).bin
+ifneq ($(CONFIG_TARGET_ROOTFS_INITRAMFS),)
+	cp $(KDIR)/vmlinux-initramfs.elf $(BIN_DIR)/$(VMLINUX)-initramfs.elf
+	cp $(KDIR)/vmlinux-initramfs $(BIN_DIR)/$(VMLINUX)-initramfs.bin
+	$(call CompressLzma,$(KDIR)/vmlinux-initramfs,$(KDIR)/vmlinux-initramfs.bin.lzma)
+	$(call MkImage,lzma,$(KDIR)/vmlinux-initramfs.bin.lzma,$(KDIR)/uImage-initramfs.lzma)
+	cp $(KDIR)/uImage-initramfs.lzma $(BIN_DIR)/$(UIMAGE)-initramfs.bin
+endif
 	$(call Image/Build/Initramfs)
 endef
 

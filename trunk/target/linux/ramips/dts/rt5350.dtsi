@@ -230,7 +230,6 @@
 		interrupts = <17>;
 
 		status = "disabled";
-		ralink,led_polarity = <0x00>;
 	};
 
 	wmac@10180000 {

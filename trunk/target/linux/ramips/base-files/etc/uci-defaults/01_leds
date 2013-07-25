@@ -69,7 +69,7 @@ case $board in
 	dir-320-b1)
 		set_usb_led "d-link:green:usb"
 		set_wifi_led "rt2800pci-phy0::radio"
-    ;;
+  		;;
 	dir-615-d|\
 	dir-615-h1)
 		ucidef_set_led_default "status" "Status LED (amber)" "d-link:amber:status" "0"
@@ -98,6 +98,9 @@ case $board in
 	mofi3500-3gn)
 		set_usb_led "mofi3500-3gn:green:usb"
 		;;
+	mpr-a2)
+		set_wifi_led "mpr-a2:blue:system"
+		;;
 	mzk-w300nh2)
 		set_wifi_led "mzkw300nh2:amber:wlan"
 		;;
@@ -124,6 +127,11 @@ case $board in
 		;;
 	wcr-150gn)
 		set_usb_led "wcr150gn:amber:user"
+		;;
+	hg255d)
+    		set_wifi_led "hg255d:wlan"
+    		set_usb_led "hg255d:usb"
+    		ucidef_set_led_netdev "eth" "Internet" "hg255d:internet" "eth0.2"
 		;;
 	wnce2001)
 		set_wifi_led "netgear:green:wlan"
