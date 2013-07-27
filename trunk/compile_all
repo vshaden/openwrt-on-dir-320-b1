@@ -1,6 +1,7 @@
 #!/bin/sh
 JOBS=3 #number of cpus + 1
 make prereq V=99
+./scripts/feeds update -a && ./scripts/feeds install -a
 if [ $? = 0 ]; then
 cp -f openwrt.config.default .config
 make V=99 -j $JOBS
