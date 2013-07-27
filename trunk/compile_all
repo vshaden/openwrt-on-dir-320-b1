@@ -1,0 +1,14 @@
+#!/bin/sh
+JOBS=3 #number of cpus + 1
+make prereq V=99
+if [ $? = 0 ]; then
+cp -f openwrt.config.default .config
+make V=99 -j $JOBS
+cp bin/ramips/openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin openwrt-std-`date +%Y.%m.%d`.bin
+cp -f openwrt.config.oscam .config
+make V=99 -j $JOBS
+cp bin/ramips/openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin openwrt-oscam-`date +%Y.%m.%d`.bin
+cp -f openwrt.config.mpcs .config
+make V=99 -j $JOBS
+cp bin/ramips/openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin openwrt-std-`date +%Y.%m.%d`.bin
+fi
