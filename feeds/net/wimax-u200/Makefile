@@ -19,7 +19,7 @@ define KernelPackage/wimax-u200
   FILES:= \
 	$(PKG_BUILD_DIR)/samsung_u200/u200.$(LINUX_KMOD_SUFFIX)
 #  AUTOLOAD:=$(call AutoLoad,70,u200)
-  DEPENDS:= +4g-scripts
+  DEPENDS:= +4g-scripts +kmod-usb-core
 endef
 
 define Build/Prepare
