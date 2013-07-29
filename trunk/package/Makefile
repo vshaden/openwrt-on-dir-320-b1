@@ -6,6 +6,7 @@
 #
 
 curdir:=package
+XARGS:=xargs -r
 
 -include $(TMP_DIR)/.packagedeps
 $(curdir)/builddirs:=$(sort $(package-) $(package-y) $(package-m))
