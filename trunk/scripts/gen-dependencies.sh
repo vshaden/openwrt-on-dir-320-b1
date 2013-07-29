@@ -11,6 +11,7 @@ READELF="${READELF:-readelf}"
 OBJCOPY="${OBJCOPY:-objcopy}"
 TARGETS=$*
 XARGS="${XARGS:-xargs -r}"
+TMP_DIR="$(dirname $0)/../tmp"
 
 [ -z "$TARGETS" ] && {
   echo "$SELF: no directories / files specified"
