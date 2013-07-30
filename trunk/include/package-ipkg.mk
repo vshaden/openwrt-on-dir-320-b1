@@ -6,6 +6,7 @@
 #
 
 # invoke ipkg-build with some default options
+XARGS:=xargs -r
 IPKG_BUILD:= \
   ipkg-build -c -o 0 -g 0
 

@@ -20,6 +20,7 @@ ifeq ($(MAKECMDGOALS),refresh)
 endif
 
 QUILT_CMD:=quilt --quiltrc=-
+XARGS:=xargs -r
 
 define filter_series
 sed -e s,\\\#.*,, $(1) | grep -E \[a-zA-Z0-9\]

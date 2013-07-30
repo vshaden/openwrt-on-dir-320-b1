@@ -11,6 +11,7 @@ ifneq ($(DUMP),1)
   all: compile
 endif
 
+XARGS:=xargs -r
 export QUILT=1
 STAMP_PREPARED:=$(LINUX_DIR)/.prepared
 STAMP_CONFIGURED:=$(LINUX_DIR)/.configured

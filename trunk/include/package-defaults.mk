@@ -5,6 +5,7 @@
 # See /LICENSE for more information.
 #
 
+XARGS:=xargs -r
 PKG_DEFAULT_DEPENDS = +libc +USE_EGLIBC:librt +USE_EGLIBC:libpthread
 
 ifneq ($(PKG_NAME),toolchain)
