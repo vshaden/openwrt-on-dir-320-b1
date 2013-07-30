@@ -153,7 +153,7 @@ define KernelPackage/ipt-nat
   KCONFIG:=$(KCONFIG_IPT_NAT)
   FILES:=$(foreach mod,$(IPT_NAT-m),$(LINUX_DIR)/net/$(mod).ko)
   AUTOLOAD:=$(call AutoLoad,42,$(notdir $(IPT_NAT-m)))
-  $(call AddDepends/ipt,+kmod-ipt-conntrack)
+  $(call AddDepends/ipt,+kmod-ipt-conntrack +IPV6:kmod-ip6tables)
 endef
 
 define KernelPackage/ipt-nat/description
