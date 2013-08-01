@@ -152,7 +152,7 @@ define KernelPackage/ipt-nat
   TITLE:=Basic NAT targets
   KCONFIG:=$(KCONFIG_IPT_NAT)
   FILES:=$(foreach mod,$(IPT_NAT-m),$(LINUX_DIR)/net/$(mod).ko)
-  AUTOLOAD:=$(call AutoLoad,42,$(notdir $(IPT_NAT-m)))
+  AUTOLOAD:=$(call AutoLoad,50,$(notdir $(IPT_NAT-m)))
   $(call AddDepends/ipt,+kmod-ipt-conntrack +IPV6:kmod-ip6tables)
 endef
 
@@ -169,7 +169,7 @@ define KernelPackage/ipt-nat-extra
   TITLE:=Extra NAT targets
   KCONFIG:=$(KCONFIG_IPT_NAT_EXTRA)
   FILES:=$(foreach mod,$(IPT_NAT_EXTRA-m),$(LINUX_DIR)/net/$(mod).ko)
-  AUTOLOAD:=$(call AutoLoad,43,$(notdir $(IPT_NAT_EXTRA-m)))
+  AUTOLOAD:=$(call AutoLoad,51,$(notdir $(IPT_NAT_EXTRA-m)))
   $(call AddDepends/ipt,+kmod-ipt-nat)
 endef
 
@@ -187,7 +187,7 @@ define KernelPackage/ipt-nathelper
   TITLE:=Basic Conntrack and NAT helpers
   KCONFIG:=$(KCONFIG_IPT_NATHELPER)
   FILES:=$(foreach mod,$(IPT_NATHELPER-m),$(LINUX_DIR)/net/$(mod).ko)
-  AUTOLOAD:=$(call AutoLoad,45,$(notdir $(IPT_NATHELPER-m)))
+  AUTOLOAD:=$(call AutoLoad,51,$(notdir $(IPT_NATHELPER-m)))
   $(call AddDepends/ipt,+kmod-ipt-nat)
 endef
 
@@ -206,7 +206,7 @@ define KernelPackage/ipt-nathelper-extra
   TITLE:=Extra Conntrack and NAT helpers
   KCONFIG:=$(KCONFIG_IPT_NATHELPER_EXTRA)
   FILES:=$(foreach mod,$(IPT_NATHELPER_EXTRA-m),$(LINUX_DIR)/net/$(mod).ko)
-  AUTOLOAD:=$(call AutoLoad,45,$(notdir $(IPT_NATHELPER_EXTRA-m)))
+  AUTOLOAD:=$(call AutoLoad,51,$(notdir $(IPT_NATHELPER_EXTRA-m)))
   $(call AddDepends/ipt,+kmod-ipt-nat +kmod-lib-textsearch)
 endef
 
