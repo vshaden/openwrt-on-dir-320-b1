@@ -1,7 +1,7 @@
 Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800.h
 ===================================================================
---- compat-wireless-2013-06-27.orig/drivers/net/wireless/rt2x00/rt2800.h	2013-07-25 20:52:48.318813366 +0400
-+++ compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800.h	2013-07-25 20:56:21.737061612 +0400
+--- compat-wireless-2013-06-27.orig/drivers/net/wireless/rt2x00/rt2800.h	2013-08-01 16:15:05.000000000 +0400
++++ compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800.h	2013-08-01 16:20:27.000000000 +0400
 @@ -71,6 +71,7 @@
  #define RF3053				0x000d
  #define RF5592				0x000f
@@ -23,28 +23,28 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800.h
 + */
 +
 +#define EEPROM_CH_3_4_TSSI_DELTA	0x002a
-+#define EEPROM_CH_3_TSSI_DELTA		FIELD16(0x00ff)
++#define EEPROM_CH_3_TSSI_DELTA		FIELD16(0x000f)
 +#define EEPROM_CH_4_TSSI_DELTA		FIELD16(0x0f00)
 +
 +#define EEPROM_CH_5_6_TSSI_DELTA	0x002b
-+#define EEPROM_CH_5_TSSI_DELTA		FIELD16(0x00ff)
-+#define EEPROM_CH_6_TSSI_DELTA		FIELD16(0xff00)
++#define EEPROM_CH_5_TSSI_DELTA		FIELD16(0x000f)
++#define EEPROM_CH_6_TSSI_DELTA		FIELD16(0x0f00)
 +
 +#define EEPROM_CH_7_8_TSSI_DELTA	0x002c
-+#define EEPROM_CH_7_TSSI_DELTA		FIELD16(0x00ff)
-+#define EEPROM_CH_8_TSSI_DELTA		FIELD16(0xff00)
++#define EEPROM_CH_7_TSSI_DELTA		FIELD16(0x000f)
++#define EEPROM_CH_8_TSSI_DELTA		FIELD16(0x0f00)
 +
 +#define EEPROM_CH_9_10_TSSI_DELTA	0x002d
-+#define EEPROM_CH_9_TSSI_DELTA		FIELD16(0x00ff)
-+#define EEPROM_CH_10_TSSI_DELTA		FIELD16(0xff00)
++#define EEPROM_CH_9_TSSI_DELTA		FIELD16(0x000f)
++#define EEPROM_CH_10_TSSI_DELTA		FIELD16(0x0f00)
 +
 +#define EEPROM_CH_11_12_TSSI_DELTA	0x002e
-+#define EEPROM_CH_11_TSSI_DELTA		FIELD16(0x00ff)
-+#define EEPROM_CH_12_TSSI_DELTA		FIELD16(0xff00)
++#define EEPROM_CH_11_TSSI_DELTA		FIELD16(0x000f)
++#define EEPROM_CH_12_TSSI_DELTA		FIELD16(0x0f00)
 +
 +#define EEPROM_CH_13_14_TSSI_DELTA	0x002f
-+#define EEPROM_CH_13_TSSI_DELTA		FIELD16(0x00ff)
-+#define EEPROM_CH_14_TSSI_DELTA		FIELD16(0xff00)
++#define EEPROM_CH_13_TSSI_DELTA		FIELD16(0x000f)
++#define EEPROM_CH_14_TSSI_DELTA		FIELD16(0x0f00)
 +
 +/*
 + * RT5350: desired tssi for cck, ofdm, ht
@@ -75,8 +75,8 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800.h
   */
 Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
 ===================================================================
---- compat-wireless-2013-06-27.orig/drivers/net/wireless/rt2x00/rt2800lib.c	2013-07-25 20:52:48.382809359 +0400
-+++ compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c	2013-07-25 20:56:21.741061348 +0400
+--- compat-wireless-2013-06-27.orig/drivers/net/wireless/rt2x00/rt2800lib.c	2013-08-01 16:15:05.000000000 +0400
++++ compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c	2013-08-01 16:50:39.000000000 +0400
 @@ -692,8 +692,9 @@
  	struct rt2x00_dev *rt2x00dev = entry->queue->rt2x00dev;
  	struct skb_frame_desc *skbdesc = get_skb_frame_desc(entry->skb);
@@ -168,11 +168,11 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  		rt2800_bbp_read(rt2x00dev, 49, &bbp);
  		rt2x00_set_field8(&bbp, BBP49_UPDATE_FLAG, 0);
  		rt2800_bbp_write(rt2x00dev, 49, bbp);
-@@ -2960,6 +2997,261 @@
+@@ -2960,6 +2997,262 @@
  	return min(delta, 0);
  }
  
-+static u32 rt5350_tssi_ratio(s32 delta_power)
++static u32 rt5350_tssi_ratio(int delta_power)
 +{
 +  u32 ratio = 0;
 +  
@@ -273,6 +273,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
 +  tssi_base = rt2x00_get_field16(eeprom, EEPROM_TSSI_BASE);
 +  
 +  rt2x00_eeprom_read(rt2x00dev, EEPROM_TSSI_OVER_OFDM54, &eeprom);
++  tssi_ch_delta[0] = 14; //just to be safe
 +  tssi_ch_delta[1] = rt2x00_get_field16(eeprom, EEPROM_CH_1_TSSI_DELTA);
 +  tssi_ch_delta[2] = rt2x00_get_field16(eeprom, EEPROM_CH_2_TSSI_DELTA);
 +  
@@ -309,7 +310,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
 +  tx_power = rt2x00_get_field16(eeprom, EEPROM_DESTSSI_CCK_MCS01);
 +  rt2x00dev->rt5350_desired_tssi_over_cck[0] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + 3 + tssi_current_ch_delta);
 +  rt2x00dev->rt5350_desired_tssi_over_cck[1] = rt2x00dev->rt5350_desired_tssi_over_cck[0];
-+  
++
 +  tx_power = rt2x00_get_field16(eeprom, EEPROM_DESTSSI_CCK_MCS23);
 +  rt2x00dev->rt5350_desired_tssi_over_cck[2] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + 3 + tssi_current_ch_delta);
 +  rt2x00dev->rt5350_desired_tssi_over_cck[3] = rt2x00dev->rt5350_desired_tssi_over_cck[2];
@@ -326,22 +327,22 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
 +  
 +  rt2x00_eeprom_read(rt2x00dev, EEPROM_DESTSSI_OFDM_MCS0123, &eeprom);
 +  tx_power = rt2x00_get_field16(eeprom, EEPROM_DESTSSI_OFDM_MCS01);
-+  rt2x00dev->rt5350_desired_tssi_over_ofdm[0] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + tssi_current_ch_delta);
++  rt2x00dev->rt5350_desired_tssi_over_ofdm[0] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + tssi_current_ch_delta - 31);
 +  rt2x00dev->rt5350_desired_tssi_over_ofdm[1] = rt2x00dev->rt5350_desired_tssi_over_ofdm[0];
-+  
++
 +  tx_power = rt2x00_get_field16(eeprom, EEPROM_DESTSSI_OFDM_MCS23);
-+  rt2x00dev->rt5350_desired_tssi_over_ofdm[2] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + tssi_current_ch_delta);
++  rt2x00dev->rt5350_desired_tssi_over_ofdm[2] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + tssi_current_ch_delta - 14);
 +  rt2x00dev->rt5350_desired_tssi_over_ofdm[3] = rt2x00dev->rt5350_desired_tssi_over_ofdm[2];
-+  
++
 +  rt2x00_eeprom_read(rt2x00dev, EEPROM_DESTSSI_OFDM_MCS4567, &eeprom);
 +  tx_power = rt2x00_get_field16(eeprom, EEPROM_DESTSSI_OFDM_MCS45);
-+  rt2x00dev->rt5350_desired_tssi_over_ofdm[4] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + tssi_current_ch_delta);
++  rt2x00dev->rt5350_desired_tssi_over_ofdm[4] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + tssi_current_ch_delta - 14);
 +  rt2x00dev->rt5350_desired_tssi_over_ofdm[5] = rt2x00dev->rt5350_desired_tssi_over_ofdm[4];
-+  
++
 +  tx_power = rt2x00_get_field16(eeprom, EEPROM_DESTSSI_OFDM_MCS67);
 +  rt2x00dev->rt5350_desired_tssi_over_ofdm[6] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + tssi_current_ch_delta);
 +  rt2x00dev->rt5350_desired_tssi_over_ofdm[7] = rt2x00dev->rt5350_desired_tssi_over_ofdm[6];
-+  
++
 +  // Boundary verification: the desired TSSI value (OFDM: MCS0~MCS7)
 +  for (i=0;i<7;i++)
 +  {
@@ -363,20 +364,20 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
 +  rt2x00dev->rt5350_desired_tssi_over_ht[3] = rt2x00dev->rt5350_desired_tssi_over_ht[2];
 +  rt2x00dev->rt5350_desired_tssi_over_ht40[2] = rt2x00dev->rt5350_desired_tssi_over_ht[2];
 +  rt2x00dev->rt5350_desired_tssi_over_ht40[3] = rt2x00dev->rt5350_desired_tssi_over_ht[3];
-+  
++
 +  rt2x00_eeprom_read(rt2x00dev, EEPROM_DESTSSI_HT_MCS4567, &eeprom);
 +  tx_power = rt2x00_get_field16(eeprom, EEPROM_DESTSSI_HT_MCS45);
 +  rt2x00dev->rt5350_desired_tssi_over_ht[4] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + tssi_current_ch_delta);
 +  rt2x00dev->rt5350_desired_tssi_over_ht[5] = rt2x00dev->rt5350_desired_tssi_over_ht[4];
 +  rt2x00dev->rt5350_desired_tssi_over_ht40[4] = rt2x00dev->rt5350_desired_tssi_over_ht[4];
 +  rt2x00dev->rt5350_desired_tssi_over_ht40[5] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 - 1 + tssi_current_ch_delta);
-+  
++
 +  tx_power = rt2x00_get_field16(eeprom, EEPROM_DESTSSI_HT_MCS67);
 +  rt2x00dev->rt5350_desired_tssi_over_ht[6] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 + tssi_current_ch_delta);
 +  rt2x00dev->rt5350_desired_tssi_over_ht[7] = rt2x00dev->rt5350_desired_tssi_over_ht[6];
 +  rt2x00dev->rt5350_desired_tssi_over_ht40[6] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 - 1 + tssi_current_ch_delta);
 +  rt2x00dev->rt5350_desired_tssi_over_ht40[7] = tssi_base * rt5350_tssi_ratio(tx_power - tx_power_ofdm54 - 1 + tssi_current_ch_delta);
-+  
++
 +  // Boundary verification: the desired TSSI value (HT: MCS0~MCS7)
 +  for (i=0;i<7;i++)
 +  {
@@ -430,7 +431,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  static u8 rt2800_compensate_txpower(struct rt2x00_dev *rt2x00dev, int is_rate_b,
  				   enum ieee80211_band band, int power_level,
  				   u8 txpower, int delta)
-@@ -3037,7 +3329,11 @@
+@@ -3037,7 +3330,11 @@
  	 * expected. We adjust it, based on TSSI reference and boundaries values
  	 * provided in EEPROM.
  	 */
@@ -443,7 +444,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  
  	/*
  	 * Decrease power according to user settings, on devices with unknown
-@@ -3224,6 +3520,7 @@
+@@ -3224,6 +3521,7 @@
  		rt2800_rfcsr_write(rt2x00dev, 7, rfcsr);
  		break;
  	case RF3290:
@@ -451,7 +452,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  	case RF5360:
  	case RF5370:
  	case RF5372:
-@@ -3322,6 +3619,12 @@
+@@ -3322,6 +3620,12 @@
  	/* Always recalculate LNA gain before changing configuration */
  	rt2800_config_lna_gain(rt2x00dev, libconf);
  
@@ -464,7 +465,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  	if (flags & IEEE80211_CONF_CHANGE_CHANNEL) {
  		rt2800_config_channel(rt2x00dev, libconf->conf,
  				      &libconf->rf, &libconf->channel);
-@@ -3563,7 +3866,8 @@
+@@ -3563,7 +3867,8 @@
  	} else if (rt2x00_rt(rt2x00dev, RT3572)) {
  		rt2800_register_write(rt2x00dev, TX_SW_CFG0, 0x00000400);
  		rt2800_register_write(rt2x00dev, TX_SW_CFG1, 0x00080606);
@@ -474,7 +475,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  		   rt2x00_rt(rt2x00dev, RT5392) ||
  		   rt2x00_rt(rt2x00dev, RT5592)) {
  		rt2800_register_write(rt2x00dev, TX_SW_CFG0, 0x00000404);
-@@ -4216,9 +4520,13 @@
+@@ -4216,9 +4521,13 @@
  
  	rt2800_bbp_write(rt2x00dev, 82, 0x62);
  
@@ -491,7 +492,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  
  	rt2800_bbp_write(rt2x00dev, 86, 0x38);
  
-@@ -4232,9 +4540,13 @@
+@@ -4232,9 +4541,13 @@
  
  	rt2800_bbp_write(rt2x00dev, 104, 0x92);
  
@@ -508,7 +509,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  
  	rt2800_bbp_write(rt2x00dev, 120, 0x50);
  
-@@ -4259,6 +4571,13 @@
+@@ -4259,6 +4572,13 @@
  	rt2800_bbp_write(rt2x00dev, 143, 0xa2);
  
  	rt2800_bbp_write(rt2x00dev, 148, 0xc8);
@@ -522,7 +523,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  }
  
  static void rt2800_init_bbp_3390(struct rt2x00_dev *rt2x00dev)
-@@ -4543,6 +4862,7 @@
+@@ -4543,6 +4863,7 @@
  		rt2800_init_bbp_3290(rt2x00dev);
  		break;
  	case RT3352:
@@ -530,7 +531,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  		rt2800_init_bbp_3352(rt2x00dev);
  		break;
  	case RT3390:
-@@ -5182,6 +5502,76 @@
+@@ -5182,6 +5503,76 @@
  	rt2800_normal_mode_setup_3xxx(rt2x00dev);
  }
  
@@ -607,7 +608,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  static void rt2800_init_rfcsr_5390(struct rt2x00_dev *rt2x00dev)
  {
  	rt2800_rf_init_calibration(rt2x00dev, 2);
-@@ -5410,6 +5800,9 @@
+@@ -5410,6 +5801,9 @@
  	case RT3572:
  		rt2800_init_rfcsr_3572(rt2x00dev);
  		break;
@@ -617,7 +618,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  	case RT5390:
  		rt2800_init_rfcsr_5390(rt2x00dev);
  		break;
-@@ -5621,6 +6014,12 @@
+@@ -5621,6 +6015,12 @@
  		rt2x00_set_field16(&word, EEPROM_NIC_CONF0_RF_TYPE, RF2820);
  		rt2x00_eeprom_write(rt2x00dev, EEPROM_NIC_CONF0, word);
  		rt2x00_eeprom_dbg(rt2x00dev, "Antenna: 0x%04x\n", word);
@@ -630,7 +631,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  	} else if (rt2x00_rt(rt2x00dev, RT2860) ||
  		   rt2x00_rt(rt2x00dev, RT2872)) {
  		/*
-@@ -5749,6 +6148,8 @@
+@@ -5749,6 +6149,8 @@
  	    rt2x00_rt(rt2x00dev, RT5390) ||
  	    rt2x00_rt(rt2x00dev, RT5392))
  		rt2x00_eeprom_read(rt2x00dev, EEPROM_CHIP_ID, &rf);
@@ -639,7 +640,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  	else
  		rf = rt2x00_get_field16(eeprom, EEPROM_NIC_CONF0_RF_TYPE);
  
-@@ -5765,6 +6166,7 @@
+@@ -5765,6 +6167,7 @@
  	case RF3290:
  	case RF3320:
  	case RF3322:
@@ -647,7 +648,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  	case RF5360:
  	case RF5370:
  	case RF5372:
-@@ -6263,7 +6665,8 @@
+@@ -6263,7 +6666,8 @@
  		   rt2x00_rf(rt2x00dev, RF5392)) {
  		spec->num_channels = 14;
  		spec->channels = rf_vals_3x;
@@ -657,7 +658,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  		spec->num_channels = 14;
  		if (spec->clk_is_20mhz)
  			spec->channels = rf_vals_xtal20mhz_3x;
-@@ -6364,6 +6767,7 @@
+@@ -6364,6 +6768,7 @@
  	case RF3320:
  	case RF3052:
  	case RF3290:
@@ -665,7 +666,7 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  	case RF5360:
  	case RF5370:
  	case RF5372:
-@@ -6401,6 +6805,7 @@
+@@ -6401,6 +6806,7 @@
  	case RT3352:
  	case RT3390:
  	case RT3572:
@@ -675,8 +676,8 @@ Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2800lib.c
  	case RT5592:
 Index: compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2x00.h
 ===================================================================
---- compat-wireless-2013-06-27.orig/drivers/net/wireless/rt2x00/rt2x00.h	2013-07-25 20:52:48.334812365 +0400
-+++ compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2x00.h	2013-07-25 20:56:21.741061348 +0400
+--- compat-wireless-2013-06-27.orig/drivers/net/wireless/rt2x00/rt2x00.h	2013-08-01 16:15:05.000000000 +0400
++++ compat-wireless-2013-06-27/drivers/net/wireless/rt2x00/rt2x00.h	2013-08-01 16:15:05.000000000 +0400
 @@ -181,6 +181,7 @@
  #define RT3572		0x3572
  #define RT3593		0x3593
