@@ -1,0 +1,61 @@
+#!/bin/sh
+CPUs=`cat /proc/cpuinfo | grep processor | wc -l`
+JOBS=`expr $cpus + 1`
+compile_standart () {
+cp -f openwrt.config.default .config
+make V=99 -j $1
+cp bin/ramips/openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin openwrt-std-`date +%Y.%m.%d`.bin
+}
+
+compile_oscam() {
+cp -f openwrt.config.oscam .config
+make V=99 -j $1
+cp bin/ramips/openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin openwrt-oscam-`date +%Y.%m.%d`.bin
+}
+
+compile_mpcs() {
+cp -f openwrt.config.mpcs .config
+make V=99 -j $1
+cp bin/ramips/openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin openwrt-mpcs-`date +%Y.%m.%d`.bin
+}
+
+compile_all() {
+compile_standart $1
+compile_oscam $1
+compile_mpcs $1
+}
+
+prepare() {
+./scripts/feeds update -a && ./scripts/feeds install -a
+}
+
+usage () {
+cat << EOF
+"Usage: $0 <variant> [jobs]"
+"Variants are:"
+"standart - build without mpcs and oscam"
+"mpcs - build with mpcs"
+"oscam - build with oscam"
+"all - compile all variants"
+"Jobs - number of jobs (default: number of CPU's + 1)"
+EOF
+}
+
+case "$1" in
+	"all")
+	compile_all $JOBS
+	;;
+	"standart")
+	compile_standart $JOBS
+	;;
+	"oscam")
+	compile_oscam $JOBS
+	;;
+	"mpcs")
+	compile_standart $JOBS
+	;;
+	*)
+	echo "Invalid variant $1"
+	usage
+	;;
+esac
