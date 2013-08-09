@@ -1,6 +1,6 @@
 #!/bin/sh
 CPUs=`cat /proc/cpuinfo | grep processor | wc -l`
-JOBS=`expr $cpus + 1`
+JOBS=`expr $CPUs + 1`
 compile_standart () {
 cp -f openwrt.config.default .config
 make V=99 -j $1
