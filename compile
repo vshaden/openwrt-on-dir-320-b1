@@ -25,10 +25,6 @@ compile_oscam $1
 compile_mpcs $1
 }
 
-prepare() {
-./scripts/feeds update -a && ./scripts/feeds install -a
-}
-
 usage () {
 cat << EOF
 "Usage: $0 <variant> [jobs]"
@@ -41,6 +37,7 @@ cat << EOF
 EOF
 }
 
+./scripts/feeds update -a && ./scripts/feeds install -a
 case "$1" in
 	"all")
 	compile_all $JOBS
