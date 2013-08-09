@@ -173,7 +173,6 @@ endef
 
 $(eval $(call KernelPackage,usb-audio))
 
-
 define KernelPackage/usb-printer
   TITLE:=Support for printers
   KCONFIG:=CONFIG_USB_PRINTER
@@ -712,6 +711,19 @@ endef
 
 $(eval $(call KernelPackage,usb-net-pegasus))
 
+define KernelPackage/usb-net-qmi-wwan
+  TITLE:=QMI WWAN driver
+  KCONFIG:=CONFIG_USB_NET_QMI_WWAN
+  FILES:= $(LINUX_DIR)/drivers/$(USBNET_DIR)/qmi_wwan.ko
+  AUTOLOAD:=$(call AutoLoad,61,qmi_wwan)
+  $(call AddDepends/usb-net,+kmod-usb-wdm)
+endef
+
+define KernelPackage/usb-net-qmi-wwan/description
+ QMI WWAN driver for Qualcomm MSM based 3G and LTE modems
+endef
+
+$(eval $(call KernelPackage,usb-net-qmi-wwan))
 
 define KernelPackage/usb-net-mcs7830
   TITLE:=Kernel module for USB-to-Ethernet MCS7830 convertors
