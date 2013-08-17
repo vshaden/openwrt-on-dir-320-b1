@@ -41,25 +41,25 @@ MAKE_FLAGS+= \
 	OFLAGS=""
 
 define Package/xl2tpd-beeline/conffiles
-/etc/xl2tpd-beeline/xl2tpd-beeline.conf
+/etc/xl2tpd-beeline/xl2tpd.conf
 /etc/xl2tpd-beeline/xl2tp-secrets
-/etc/ppp/options.xl2tpd-beeline
+/etc/ppp/options.xl2tpd
 endef
 
 define Package/xl2tpd-beeline/install
 	$(INSTALL_DIR) $(1)/usr/sbin
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/local/sbin/xl2tpd-beeline $(1)/usr/sbin/
-	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/local/sbin/xl2tpd-beeline-control $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/local/sbin/xl2tpd $(1)/usr/sbin/
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/local/sbin/xl2tpd-control $(1)/usr/sbin/
 
 	$(INSTALL_DIR) $(1)/etc/init.d
-	$(INSTALL_BIN) ./files/xl2tpd-beeline.init $(1)/etc/init.d/xl2tpd-beeline
+	$(INSTALL_BIN) ./files/xl2tpd.init $(1)/etc/init.d/xl2tpd
 
-	$(INSTALL_DIR) $(1)/etc/xl2tpd-beeline
-	$(INSTALL_DATA) ./files/xl2tpd-beeline.conf $(1)/etc/xl2tpd-beeline/
-	$(INSTALL_CONF) ./files/xl2tp-secrets $(1)/etc/xl2tpd-beeline/
+	$(INSTALL_DIR) $(1)/etc/xl2tpd
+	$(INSTALL_DATA) ./files/xl2tpd.conf $(1)/etc/xl2tpd/
+	$(INSTALL_CONF) ./files/xl2tp-secrets $(1)/etc/xl2tpd/
 
 	$(INSTALL_DIR) $(1)/etc/ppp
-	$(INSTALL_DATA) ./files/options.xl2tpd-beeline $(1)/etc/ppp/
+	$(INSTALL_DATA) ./files/options.xl2tpd $(1)/etc/ppp/
 
 	$(INSTALL_DIR) $(1)/lib/netifd/proto
 	$(INSTALL_BIN) ./files/l2tp.sh $(1)/lib/netifd/proto
