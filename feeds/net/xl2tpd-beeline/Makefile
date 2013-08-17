@@ -11,7 +11,7 @@ PKG_NAME:=xl2tpd-beeline
 PKG_VERSION:=1.3.1
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE:=xl2tpd-$(PKG_VERSION).tar.gz
 # Host seems to be down.
 #PKG_SOURCE_URL:=ftp://ftp.xelerance.com/xl2tpd/
 PKG_MD5SUM:=cf61576fef5c2d6c68279a408ec1f0d5
