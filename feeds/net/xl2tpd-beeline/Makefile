@@ -13,9 +13,9 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 # Host seems to be down.
-#PKG_SOURCE_URL:=ftp://ftp.xelerance.com/xl2tpd-beeline/
+#PKG_SOURCE_URL:=ftp://ftp.xelerance.com/xl2tpd/
 PKG_MD5SUM:=cf61576fef5c2d6c68279a408ec1f0d5
-PKG_SOURCE_URL:=http://pkgs.fedoraproject.org/lookaside/pkgs/xl2tpd-beeline/xl2tpd-beeline-$(PKG_VERSION).tar.gz/$(PKG_MD5SUM)/
+PKG_SOURCE_URL:=http://pkgs.fedoraproject.org/lookaside/pkgs/xl2tpd/xl2tpd-$(PKG_VERSION).tar.gz/$(PKG_MD5SUM)/
 
 PKG_INSTALL:=1
 
