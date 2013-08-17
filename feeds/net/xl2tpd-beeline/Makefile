@@ -16,6 +16,7 @@ PKG_SOURCE:=xl2tpd-$(PKG_VERSION).tar.gz
 #PKG_SOURCE_URL:=ftp://ftp.xelerance.com/xl2tpd/
 PKG_MD5SUM:=cf61576fef5c2d6c68279a408ec1f0d5
 PKG_SOURCE_URL:=http://pkgs.fedoraproject.org/lookaside/pkgs/xl2tpd/xl2tpd-$(PKG_VERSION).tar.gz/$(PKG_MD5SUM)/
+PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 
 PKG_INSTALL:=1
 
