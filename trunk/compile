@@ -37,7 +37,7 @@ cat << EOF
 EOF
 }
 
-[ -n "$2" ] && JOBS=$1
+[ -n "$2" ] && JOBS=$2
 ./scripts/feeds update -a && ./scripts/feeds install -a
 case "$1" in
 	"all")
