@@ -38,6 +38,7 @@ EOF
 }
 
 ./scripts/feeds update -a && ./scripts/feeds install -a
+[ -n $2 ] && JOBS=$2
 case "$1" in
 	"all")
 	compile_all $JOBS
