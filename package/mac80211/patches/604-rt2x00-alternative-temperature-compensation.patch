@@ -1,7 +1,7 @@
 Index: compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800.h
 ===================================================================
 --- compat-wireless-2013-02-22.orig/drivers/net/wireless/rt2x00/rt2800.h	2013-02-23 03:36:56.000000000 +0400
-+++ compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800.h	2013-08-31 14:51:15.000000000 +0400
++++ compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800.h	2013-08-31 15:20:27.000000000 +0400
 @@ -2180,6 +2180,110 @@
  #define EEPROM_VERSION_FAE		FIELD16(0x00ff)
  #define EEPROM_VERSION_VERSION		FIELD16(0xff00)
@@ -116,7 +116,7 @@ Index: compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800.h
 Index: compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800lib.c
 ===================================================================
 --- compat-wireless-2013-02-22.orig/drivers/net/wireless/rt2x00/rt2800lib.c	2013-02-23 03:36:56.000000000 +0400
-+++ compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800lib.c	2013-08-31 14:51:15.000000000 +0400
++++ compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800lib.c	2013-08-31 15:21:42.000000000 +0400
 @@ -687,8 +687,9 @@
  	struct rt2x00_dev *rt2x00dev = entry->queue->rt2x00dev;
  	struct skb_frame_desc *skbdesc = get_skb_frame_desc(entry->skb);
@@ -170,7 +170,7 @@ Index: compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800lib.c
  	rt2x00lib_txdone(entry, &txdesc);
  }
  EXPORT_SYMBOL_GPL(rt2800_txdone_entry);
-@@ -2365,6 +2394,246 @@
+@@ -2365,6 +2394,240 @@
  	}
  }
  
@@ -375,18 +375,12 @@ Index: compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800lib.c
 +
 +  //wait for update
 +  for(i=0;i<100;i++) {
-+	rt2800_bbp_read(rt2x00dev, 47, &bbp47);
 +	rt2800_bbp_read(rt2x00dev, 49, &bbp49);	
-+	if (!rt2x00_get_field8(bbp47, BBP47_TSSI_UPDATE_REQ) ||
-+	     rt2x00_get_field8(bbp49, BBP49_UPDATE_FLAG)) { //TSSI updated, request cleared, update flag set
-+		rt2800_bbp_read(rt2x00dev, 47, &bbp47);
-+		rt2x00_set_field8(&bbp49, BBP47_TSSI_REPORT_SEL, 0);
-+		rt2800_bbp_write(rt2x00dev, 47, bbp47);
-+		rt2800_bbp_read(rt2x00dev, 49, &bbp49);
-+
-+		if(bbp47 > rt2x00dev->tssi_max) {
++	if (rt2x00_get_field8(bbp49, BBP49_UPDATE_FLAG)) {
++		if(bbp49 > rt2x00dev->tssi_max) {
 +			current_tssi = 0;
 +		}
++		break;
 +	}
 +	mdelay(1);
 + }
@@ -417,7 +411,7 @@ Index: compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800lib.c
  static int rt2800_get_gain_calibration_delta(struct rt2x00_dev *rt2x00dev)
  {
  	u8 tssi_bounds[9];
-@@ -2895,6 +3164,8 @@
+@@ -2895,6 +3158,8 @@
  	/* Always recalculate LNA gain before changing configuration */
  	rt2800_config_lna_gain(rt2x00dev, libconf);
  
@@ -428,8 +422,8 @@ Index: compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2800lib.c
  				      &libconf->rf, &libconf->channel);
 Index: compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2x00.h
 ===================================================================
---- compat-wireless-2013-02-22.orig/drivers/net/wireless/rt2x00/rt2x00.h	2013-08-31 14:51:10.000000000 +0400
-+++ compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2x00.h	2013-08-31 14:52:18.000000000 +0400
+--- compat-wireless-2013-02-22.orig/drivers/net/wireless/rt2x00/rt2x00.h	2013-08-31 15:20:18.000000000 +0400
++++ compat-wireless-2013-02-22/drivers/net/wireless/rt2x00/rt2x00.h	2013-08-31 15:20:30.000000000 +0400
 @@ -749,6 +749,19 @@
  	NUM_IF_COMB,
  };
