@@ -251,7 +251,7 @@ disable_mac80211() (
 	include /lib/network
 	for wdev in $(list_phy_interfaces "$phy"); do
 		[ -f "/var/run/$wdev.pid" ] && kill $(cat /var/run/$wdev.pid) >&/dev/null 2>&1
-		for pid in `pidof wpa_supplicant meshd-nl80211`; do
+		for pid in `pidof wpa_supplicant`; do
 			grep "$wdev" /proc/$pid/cmdline >/dev/null && \
 				kill $pid
 		done
@@ -270,35 +270,17 @@ get_freq() {
 }
 
 mac80211_generate_mac() {
-	local id="$1"
-	local ref="$2"
-	local mask="$3"
+	local off="$1"
+	local mac="$2"
+	local oIFS="$IFS"; IFS=":"; set -- $mac; IFS="$oIFS"
 
-	[ "$mask" = "00:00:00:00:00:00" ] && mask="ff:ff:ff:ff:ff:ff";
-	local oIFS="$IFS"; IFS=":"; set -- $mask; IFS="$oIFS"
+	local b2mask=0x00
+	[ $off -gt 0 ] && b2mask=0x02
 
-	local mask1=$1
-	local mask6=$6
-
-	local oIFS="$IFS"; IFS=":"; set -- $ref; IFS="$oIFS"
-	[ "$((0x$mask1))" -gt 0 ] && {
-		b1="0x$1"
-		[ "$id" -gt 0 ] && \
-			b1=$(($b1 ^ ((($id - 1) << 2) | 0x2)))
-		printf "%02x:%s:%s:%s:%s:%s" $b1 $2 $3 $4 $5 $6
-		return
-	}
-
-	[ "$((0x$mask6))" -lt 255 ] && {
-		printf "%s:%s:%s:%s:%s:%02x" $1 $2 $3 $4 $5 $(( 0x$6 ^ $id ))
-		return
-	}
-
-	off2=$(( (0x$6 + $id) / 0x100 ))
-	printf "%s:%s:%s:%s:%02x:%02x" \
-		$1 $2 $3 $4 \
-		$(( (0x$5 + $off2) % 0x100 )) \
-		$(( (0x$6 + $id) % 0x100 ))
+	printf "%02x:%s:%s:%s:%02x:%02x" \
+		$(( 0x$1 | $b2mask )) $2 $3 $4 \
+		$(( (0x$5 + ($off / 0x100)) % 0x100 )) \
+		$(( (0x$6 + $off) % 0x100 ))
 }
 
 enable_mac80211() {
@@ -370,13 +352,8 @@ enable_mac80211() {
 				[ "$apidx" -gt 1 ] || iw phy "$phy" interface add "$ifname" type managed
 			;;
 			mesh)
-				config_get key "$vif" key ""
-				if [ -n "$key" ]; then
-					iw phy "$phy" interface add "$ifname" type mp
-				else
-					config_get mesh_id "$vif" mesh_id
-					iw phy "$phy" interface add "$ifname" type mp mesh_id "$mesh_id"
-				fi
+				config_get mesh_id "$vif" mesh_id
+				iw phy "$phy" interface add "$ifname" type mp mesh_id "$mesh_id"
 			;;
 			monitor)
 				iw phy "$phy" interface add "$ifname" type monitor
@@ -398,7 +375,7 @@ enable_mac80211() {
 		config_get macaddr "$device" macaddr
 		config_get vif_mac "$vif" macaddr
 		[ -n "$vif_mac" ] || {
-			vif_mac="$(mac80211_generate_mac $macidx $macaddr $(cat /sys/class/ieee80211/${phy}/address_mask))"
+			vif_mac="$(mac80211_generate_mac $macidx $macaddr)"
 			macidx="$(($macidx + 1))"
 		}
 		[ "$mode" = "ap" ] || ifconfig "$ifname" hw ether "$vif_mac"
@@ -416,12 +393,7 @@ enable_mac80211() {
 			# We attempt to set the channel for all interfaces, although
 			# mac80211 may not support it or the driver might not yet
 			# for ap mode this is handled by hostapd
-			config_get htmode "$device" htmode
-			case "$htmode" in
-				HT20|HT40+|HT40-) ;;
-				*) htmode= ;;
-			esac
-			[ -n "$fixed" -a -n "$channel" ] && iw dev "$ifname" set channel "$channel" $htmode
+			[ -n "$fixed" -a -n "$channel" ] && iw dev "$ifname" set channel "$channel"
 		fi
 
 		i=$(($i + 1))
@@ -431,16 +403,9 @@ enable_mac80211() {
 	rm -f /var/run/hostapd-$phy.conf
 	for vif in $vifs; do
 		config_get mode "$vif" mode
-		case "$mode" in
-			ap)
-				mac80211_hostapd_setup_bss "$phy" "$vif"
-				start_hostapd=1
-			;;
-			mesh)
-				config_get key "$vif" key ""
-				[ -n "$key" ] && authsae_start_interface "$device" "$vif"
-			;;
-		esac
+		[ "$mode" = "ap" ] || continue
+		mac80211_hostapd_setup_bss "$phy" "$vif"
+		start_hostapd=1
 	done
 
 	[ -n "$start_hostapd" ] && {
@@ -542,20 +507,6 @@ enable_mac80211() {
 					${brstr:+basic-rates $brstr} \
 					${mcval:+mcast-rate $mcval} \
 					${keyspec:+keys $keyspec}
-			;;
-			mesh)
-				mp_list="mesh_retry_timeout mesh_confirm_timeout mesh_holding_timeout mesh_max_peer_links
-					mesh_max_retries mesh_ttl mesh_element_ttl mesh_auto_open_plinks mesh_hwmp_max_preq_retries
-					mesh_path_refresh_time mesh_min_discovery_timeout mesh_hwmp_active_path_timeout
-					mesh_hwmp_preq_min_interval mesh_hwmp_net_diameter_traversal_time mesh_hwmp_rootmode
-					mesh_hwmp_rann_interval mesh_gate_announcements mesh_fwding mesh_sync_offset_max_neighor
-					mesh_rssi_threshold mesh_hwmp_active_path_to_root_timeout mesh_hwmp_root_interval
-					mesh_hwmp_confirmation_interval mesh_power_mode mesh_awake_window"
-				for mp in $mp_list
-				do
-					config_get mp_val "$vif" "$mp" ""
-					[ -n "$mp_val" ] && iw dev "$ifname" set mesh_param "$mp" "$mp_val"
-				done
 			;;
 			sta)
 				if eval "type wpa_supplicant_setup_vif" 2>/dev/null >/dev/null; then
