@@ -1,6 +1,6 @@
 src-svn packages svn://svn.openwrt.org/openwrt/packages
 src-svn xwrt http://x-wrt.googlecode.com/svn/trunk/package
-src-git luci git://github.com/dtaht/cerowrt-luci-3.3.git
+src-svn luci http://openwrt-on-dir-320-b1.googlecode.com/svn/luci/trunk
 src-git cerowrtpackages git://github.com/dtaht/ceropackages-3.3.git
 src-svn openwrtondir320b1packages http://openwrt-on-dir-320-b1.googlecode.com/svn/feeds
 src-git cjdns git://github.com/cjdelisle/cjdns-openwrt.git
