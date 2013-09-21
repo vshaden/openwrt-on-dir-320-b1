@@ -38,7 +38,7 @@ EOF
 }
 
 [ -n "$2" ] && JOBS=$2
-cp -rf ./copy-patch .
+cp -rf ./copy-patch/* .
 ./scripts/feeds update -a && ./scripts/feeds install -a
 case "$1" in
 	"all")
