@@ -58,3 +58,5 @@ case "$1" in
 	usage
 	;;
 esac
+make package/index
+cp -rf bin/ramips/packages /home/jenkins/bb-repo/bin/ramips/packages
