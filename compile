@@ -40,6 +40,9 @@ EOF
 [ -n "$2" ] && JOBS=$2
 cp -rf ./copy-patch/* .
 ./scripts/feeds update -a && ./scripts/feeds install -a
+#rebuild kernel and packages
+make target/linux/clean
+make package/clean
 case "$1" in
 	"all")
 	compile_all $JOBS
@@ -58,5 +61,5 @@ case "$1" in
 	usage
 	;;
 esac
-make package/index
-cp -rf bin/ramips/packages /home/jenkins/bb-repo/bin/ramips/packages
+make package/index V=99
+cp -rf bin/ramips/packages/* /home/jenkins/bb-repo/bin/ramips/packages
