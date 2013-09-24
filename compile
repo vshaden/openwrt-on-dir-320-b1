@@ -62,4 +62,3 @@ case "$1" in
 	;;
 esac
 make package/index V=99
-cp -rf bin/ramips/packages/* /home/jenkins/bb-repo/bin/ramips/packages
