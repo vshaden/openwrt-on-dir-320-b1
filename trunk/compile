@@ -42,7 +42,7 @@ cp -rf ./copy-patch/* .
 ./scripts/feeds update -a && ./scripts/feeds install -a
 #rebuild kernel and packages
 make target/linux/clean
-make package/clean
+#make package/clean
 case "$1" in
 	"all")
 	compile_all $JOBS
