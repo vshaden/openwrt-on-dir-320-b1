@@ -12,3 +12,4 @@ src-git telephony http://feeds.openwrt.nanl.de/openwrt/telephony.git
 #src-svn lxde svn://svn.openwrt.org/openwrt/feeds/lxde
 #src-link custom /usr/src/openwrt/custom-feed
 src-git cjdns git://github.com/cjdelisle/cjdns-openwrt.git
+src-git exopenwrt https://github.com/black-roland/exOpenWrt.git
