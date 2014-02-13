@@ -54,7 +54,7 @@ case "$1" in
 	compile_oscam $JOBS
 	;;
 	"mpcs")
-	compile_standart $JOBS
+	compile_mpcs $JOBS
 	;;
 	*)
 	echo "Invalid variant $1"
