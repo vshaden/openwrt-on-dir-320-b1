@@ -19,14 +19,14 @@ make V=99 -j $1
 cp bin/ramips/openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin openwrt-BB-std-`date +%Y.%m.%d`.bin
 }
 
-compile_oscam() {
+compile_mpcs() {
 sed -i -f select_mpcs.sed .config
 make defconfig
 make V=99 -j $1
 cp bin/ramips/openwrt-ramips-rt305x-dir-320-b1-squashfs-sysupgrade.bin openwrt-BB-mpcs-`date +%Y.%m.%d`.bin
 }
 
-compile_mpcs() {
+compile_oscam() {
 sed -i -f select_oscam.sed .config
 make defconfig
 sed -i -f select_oscam_st2.sed .config
