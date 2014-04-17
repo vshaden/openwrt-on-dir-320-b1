@@ -11,11 +11,10 @@ PKG_NAME:=davfs2
 PKG_VERSION:=1.4.7
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:= \
-	http://pkgs.fedoraproject.org/lookaside/pkgs/davfs2/davfs2-1.4.7.tar.gz/c75f9d7d260e7364362b89beba2b3186/ \
-	http://fossies.org/unix/www \
 	http://download.savannah.gnu.org/releases/davfs2/
+	http://pkgs.fedoraproject.org/lookaside/pkgs/davfs2/davfs2-1.4.7.tar.gz/c75f9d7d260e7364362b89beba2b3186/
 #PKG_BUILD_DEPENDS:=gperf/host libopenssl
 PKG_BUILD_DEPENDS:=libopenssl
 
