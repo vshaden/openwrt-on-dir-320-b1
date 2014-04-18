@@ -117,3 +117,4 @@ s/# CONFIG_PACKAGE_kmod-wimax-u200 is not set/CONFIG_PACKAGE_kmod-wimax-u200=y/
 s/# CONFIG_PACKAGE_usb-modeswitch is not set/CONFIG_PACKAGE_usb-modeswitch=y/
 s/# CONFIG_PACKAGE_usbreset is not set/CONFIG_PACKAGE_usbreset=y/
 s/# CONFIG_PACKAGE_uvcdynctrl is not set/CONFIG_PACKAGE_uvcdynctrl=m/
+s/# CONFIG_PACKAGE_glib2 is not set/CONFIG_PACKAGE_glib2=y/
