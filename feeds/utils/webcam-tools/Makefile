@@ -13,7 +13,7 @@ PKG_RELEASE:=1
 
 PKG_SOURCE:=libwebcam-src-$(PKG_VERSION).tar.gz
 PKG_SOURCE_URL:=@SF/project/libwebcam/source
-
+PKG_BUILD_DIR:=$(BUILD_DIR)/libwebcam-src-$(PKG_VERSION)
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
