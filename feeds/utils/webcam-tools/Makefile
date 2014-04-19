@@ -8,15 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=webcam-tools
-PKG_VERSION:=0.2.2
+PKG_VERSION:=0.2.4
 PKG_RELEASE:=1
-PKG_REV:=HEAD
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=git://git.code.sf.net/p/libwebcam/code
-PKG_SOURCE_SUBDIR:=webcam-tools-$(PKG_VERSION)
-PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_SOURCE_PROTO:=git
+PKG_SOURCE_URL:=@SF/libwebcam/source
+
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
