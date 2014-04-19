@@ -1,7 +1,7 @@
 Index: webcam-tools-0.2.2/uvcdynctrl/CMakeLists.txt
 ===================================================================
---- webcam-tools-0.2.4.orig/uvcdynctrl/CMakeLists.txt	2013-05-23 16:54:28.000000000 +0400
-+++ webcam-tools-0.2.4/uvcdynctrl/CMakeLists.txt	2013-05-23 16:55:09.000000000 +0400
+--- libwebcam-src-0.2.4.orig/uvcdynctrl/CMakeLists.txt	2013-05-23 16:54:28.000000000 +0400
++++ libwebcam-src-0.2.4/uvcdynctrl/CMakeLists.txt	2013-05-23 16:55:09.000000000 +0400
 @@ -84,6 +84,10 @@
  	COMPILE_FLAGS "--std=gnu99 -Wall"
  )
